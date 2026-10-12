@@ -1,309 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aguatura & Rock Creek Conservancy — Project Spotlight</title>
-    <!-- Google Fonts for Clean Editorial Look -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #1b4d3e;
-            --accent-green: #2e8b57;
-            --light-bg: #f4f7f5;
-            --text-main: #2c3e35;
-            --text-muted: #6c7a72;
-            --white: #ffffff;
-            --border-color: #e2e8e4;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aguatura – Protecting Nature Through Knowledge and Action</title>
+  <style>
+    /* Globales Design & Farben */
+    :root {
+      --primary-color: #0d47a1;
+      --accent-color: #00acc1;
+      --bg-light: #f4f7f6;
+      --text-dark: #2c3e50;
+      --text-light: #ffffff;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif, system-ui;
-            color: var(--text-main);
-            background-color: var(--white);
-            line-height: 1.7;
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* Navigation */
+    header {
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary-green);
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            list-style: none;
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
 
-        .nav-links li span {
-            color: var(--primary-green);
-            cursor: pointer;
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
 
-        .hero {
-            background-color: var(--light-bg);
-            padding: 5rem 5% 4rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
 
-        .tag {
-            display: inline-block;
-            background-color: rgba(46, 139, 87, 0.1);
-            color: var(--accent-green);
-            padding: 0.35rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--primary-green);
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            line-height: 1.2;
-        }
+    /* Hero / Header-Bereich */
+    .hero {
+      background: linear-gradient(135deg, rgba(13, 71, 161, 0.85), rgba(0, 172, 193, 0.8)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      color: var(--text-light);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
 
-        .hero p.subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto;
-        }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
 
-        .meta-bar {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            padding: 2rem 5%;
-            background: var(--white);
-            border-bottom: 1px solid var(--border-color);
-            flex-wrap: wrap;
-        }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 750px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
 
-        .meta-item {
-            text-align: center;
-        }
+    .btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: var(--text-light);
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
 
-        .meta-item span {
-            display: block;
-        }
+    .btn:hover {
+      background: #00838f;
+    }
 
-        .meta-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            margin-bottom: 0.25rem;
-        }
+    /* Hauptinhalte / Abschnitte */
+    .container {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
 
-        .meta-value {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--primary-green);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
 
-        .container {
-            max-width: 850px;
-            margin: 4rem auto;
-            padding: 0 5%;
-        }
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin: 2.5rem 0 1rem;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.8rem;
+    }
 
-        .highlight-box {
-            background: var(--light-bg);
-            border-left: 4px solid var(--accent-green);
-            padding: 2rem;
-            margin: 2.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
 
-        .highlight-box p {
-            font-style: italic;
-            color: var(--primary-green);
-            font-weight: 500;
-            margin-bottom: 0;
-        }
-
-        .interactive-card {
-            background: var(--primary-green);
-            color: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin: 3rem 0;
-            box-shadow: 0 10px 30px rgba(27, 77, 62, 0.15);
-        }
-
-        .interactive-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .sensor-status {
-            display: inline-block;
-            background: #2e8b57;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .metric-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .metric-box {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 1.25rem;
-            border-radius: 8px;
-        }
-
-        .metric-box .num {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #a8df9e;
-        }
-
-        .metric-box .desc {
-            font-size: 0.85rem;
-            color: #d1ded6;
-        }
-
-        footer {
-            background: var(--light-bg);
-            text-align: center;
-            padding: 3rem 5%;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        @media (max-width: 768px) {
-            .meta-bar {
-                gap: 2rem;
-            }
-        }
-    </style>
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Aguatura</div>
-        <ul class="nav-links">
-            <li><span>Project Map</span></li>
-            <li>About Us</li>
-            <li>Collaborate</li>
-        </ul>
-    </header>
+  <!-- Header & Navigation -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">AGUATURA</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projekte</a></li>
+        <li><a href="about.html">Über uns</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="hero">
-        <span class="tag">Active Partnership • North America</span>
-        <h1>The Symphony of the Streams</h1>
-        <p class="subtitle">How Aguatura and the Rock Creek Conservancy teamed up to deploy bio-acoustic mapping and micro-wetland swarms for urban watershed resilience.</p>
-    </section>
+  <!-- Hero Bereich -->
+  <section class="hero">
+    <h1>Protecting Nature Through Knowledge and Action</h1>
+    <p>Aguatura ist eine gemeinnützige Organisation, die Menschen, Wissen und Erfahrung zusammenbringt, um Ökosysteme zu schützen, nachhaltiges Wassermanagement zu fördern und die Biodiversität zu bewahren.</p>
+    <a href="projects.html" class="btn">Projekte entdecken</a>
+  </section>
 
-    <div class="meta-bar">
-        <div class="meta-item">
-            <span class="meta-label">Location</span>
-            <span class="meta-value">Washington D.C. & Maryland, USA</span>
-        </div>
-        <div class="meta-item">
-            <span class="meta-label">Partners</span>
-            <span class="meta-value">Rock Creek Conservancy</span>
-        </div>
-        <div class="meta-item">
-            <span class="meta-label">Focus Area</span>
-            <span class="meta-value">Water Management & Biodiversity</span>
-        </div>
+  <!-- Haupt-Themen -->
+  <main class="container">
+    <h2 style="text-align: center; color: var(--primary-color);">Unsere Schwerpunkte</h2>
+    <div class="grid">
+      
+      <div class="card">
+        <h3>Wassermanagement</h3>
+        <p>Schutz und nachhaltige Nutzung natürlicher Wasserressourcen durch wissenschaftlichen Austausch und regionale Initiativen.</p>
+      </div>
+
+      <div class="card">
+        <h3>Biodiversität</h3>
+        <p>Erhalt der Artenvielfalt und Schutz von Flusslandschaften sowie empfindlichen Ökosystemen weltweit.</p>
+      </div>
+
+      <div class="card">
+        <h3>Globale Vernetzung</h3>
+        <p>Verbindung von Experten, lokalen Gemeinschaften und NGOs für wirkungsvollen Naturschutz vor Ort.</p>
+      </div>
+
     </div>
+  </main>
 
-    <main class="container">
-        <h2>Bridging Global Insights with Local Watershed Action</h2>
-        <p>Urban waterways face an unrelenting threat from modern storm runoff, heavy debris, and disappearing macroinvertebrates. Traditional restoration cycles are often bogged down by heavy engineering expenses and isolated operational silos. To combat this, Aguatura partnered with the <strong>Rock Creek Conservancy</strong> to test an unconventional knowledge-transfer model: listening closer to the ecosystem before acting.</p>
-        
-        <p>Rather than treating the urban watershed purely as a mechanical challenge of pipes and channels, the initiative treated Rock Creek as a living matrix that could communicate its distress signals in real time.</p>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Aguatura. Alle Rechte vorbehalten. | <a href="index.html">aguatura.org</a></p>
+  </footer>
 
-        <div class="highlight-box">
-            <p>"True ecological protection happens when global expertise stops prescribing solutions from afar, and instead amplifies the real-time needs of local communities and native habitats."</p>
-        </div>
-
-        <h2>The Innovation: Bio-Acoustic Siphon Network</h2>
-        <p>Combining European river-monitoring insights with local grassroots stewardship, the project team deployed low-cost, solar-powered acoustic sensors along the riverbed. Healthy streams emit a vibrant auditory crackle filled with biological signals, whereas polluted or sediment-choked channels sound hollow and flat.</p>
-        
-        <p>When shifts in the acoustic soundscape identify an incoming pollutant flush or erosion stress point, automated alerts mobilize volunteer swarms. Instead of bulky construction barriers, teams deploy modular, floating micro-wetlands built from recycled materials right to the precise zones of ecological stress.</p>
-
-        <div class="interactive-card">
-            <h3>Live Telemetry Feed: Node RC-402</h3>
-            <span class="sensor-status">● Acoustic Array Active & Listening</span>
-            <p style="font-size: 0.95rem; color: #e2e8e4;">Simulated real-time output from the Rock Creek bio-acoustic monitoring network.</p>
-            
-            <div class="metric-grid">
-                <div class="metric-box">
-                    <div class="num">84.2 dB</div>
-                    <div class="desc">Biological Soundscape Density (Healthy Threshold)</div>
-                </div>
-                <div class="metric-box">
-                    <div class="num">14 Units</div>
-                    <div class="desc">Active Micro-Wetland Islands Deployed</div>
-                </div>
-                <div class="metric-box">
-                    <div class="num">-38%</div>
-                    <div class="desc">Reduction in Storm Surge Sedimentation Index</div>
-                </div>
-            </div>
-        </div>
-
-        <h2>Lasting Impact and Knowledge Sharing</h2>
-        <p>Within six months of pilot testing, this collaborative framework proved that environmental protection does not always require heavy machinery. By enabling local volunteers to react dynamically to real-time bio-data, Rock Creek has seen a resurgence in micro-habitat stability.</p>
-        <p>True to Aguatura's mission, the blueprints, sensor codes, and community frameworks developed here are being cataloged for deployment in other urban river corridors worldwide—proving that when we learn to listen to water together, solutions travel further.</p>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Aguatura Non-Profit Organization. Protecting Nature Through Knowledge & Action.</p>
-    </footer>
 </body>
 </html>
