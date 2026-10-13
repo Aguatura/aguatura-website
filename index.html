@@ -1,319 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aguatura – Protecting Nature Through Knowledge and Action</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons für Social Media -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguatura – Protecting Nature Through Knowledge and Action</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome für Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #123524;
+            --accent-blue: #1E5168;
+            --bg-light: #F8F9FA;
+            --text-color: #333333;
+            --white: #FFFFFF;
+        }
 
-  <style>
-    :root {
-      --primary-blue: #0284c7;
-      --dark-navy: #0f172a;
-      --light-bg: #f8fafc;
-      --text-main: #334155;
-      --text-muted: #64748b;
-      --card-bg: #ffffff;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: var(--text-main);
-      background-color: var(--light-bg);
-      line-height: 1.7;
-    }
+        header {
+            background-color: var(--white);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* Header & Navigation */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        .logo-container img {
+            height: 60px;
+            width: auto;
+        }
 
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 2rem;
-    }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
+        .social-icons a {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
 
-    .logo-img {
-      height: 48px;
-      width: auto;
-      object-fit: contain;
-    }
+        .social-icons a:hover {
+            color: var(--primary-dark);
+        }
 
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--dark-navy);
-      text-transform: uppercase;
-    }
+        .hero {
+            background: linear-gradient(rgba(18, 53, 36, 0.7), rgba(30, 81, 104, 0.7)), url('water-bg.jpg') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-main);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
 
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--primary-blue);
-    }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
 
-    /* Hero Banner */
-    .hero {
-      position: relative;
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.75) 100%), 
-                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: #ffffff;
-      padding: 8rem 2rem;
-      text-align: center;
-    }
+        /* Dreikanaliges Layout (Channels Section) */
+        .channels {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-    .hero-content {
-      max-width: 850px;
-      margin: 0 auto;
-    }
+        .channel-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
+        .channel-card:hover {
+            transform: translateY(-5px);
+        }
 
-    .hero p {
-      font-size: 1.25rem;
-      font-weight: 300;
-      opacity: 0.95;
-      margin-bottom: 2.5rem;
-      max-width: 750px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .channel-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
 
-    .btn-primary {
-      display: inline-block;
-      background: var(--primary-blue);
-      color: #ffffff;
-      padding: 0.9rem 2.2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-      transition: all 0.3s ease;
-    }
+        .channel-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
 
-    .btn-primary:hover {
-      background: #0369a1;
-      transform: translateY(-2px);
-    }
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
 
-    /* Inhaltsbereich */
-    .section-container {
-      max-width: 1100px;
-      margin: 5rem auto;
-      padding: 0 2rem;
-    }
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
 
-    .section-title {
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--dark-navy);
-      margin-bottom: 3rem;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    .card-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 2rem;
-    }
-
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--dark-navy);
-      margin-bottom: 0.8rem;
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-    }
-
-    /* Footer mit echten Icons & Links */
-    footer {
-      background: var(--dark-navy);
-      color: #94a3b8;
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-    }
-
-    .social-links a {
-      color: #ffffff;
-      font-size: 1.5rem;
-      opacity: 0.8;
-      transition: all 0.2s;
-    }
-
-    .social-links a:hover {
-      opacity: 1;
-      color: var(--primary-blue);
-      transform: translateY(-3px);
-    }
-
-    .footer-copy {
-      font-size: 0.9rem;
-      border-top: 1px solid #1e293b;
-      padding-top: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .nav-container { flex-direction: column; gap: 1rem; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header & Navigation -->
-  <header>
-    <div class="nav-container">
-      <a href="index.html" class="logo-container">
-        <!-- Pflanze/Hand-Logo aus Repository oder Fallback Text -->
-        <img src="logo.png" alt="Aguatura Logo" class="logo-img" onerror="this.style.display='none'">
-        <span class="logo-text">AGUATURA</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="projects.html">Projekte</a></li>
-        <li><a href="about.html">Über uns</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- Hero Bereich -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Protecting Nature Through Knowledge and Action</h1>
-      <p>Aguatura is a non-profit organization that brings together people, knowledge, and experience to protect ecosystems, promote sustainable water management, and safeguard biodiversity.</p>
-      <a href="projects.html" class="btn-primary">Discover our projects</a>
-    </div>
-  </section>
-
-  <!-- Schwerpunkte mit echten Fotos -->
-  <main class="section-container">
-    <h2 class="section-title">Our Focus Areas</h2>
-    <div class="grid-3">
-      
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Water Management" class="card-img">
-        <div class="card-content">
-          <h3>Sustainable Water Management</h3>
-          <p>Protecting river basins and freshwater ecosystems through scientific knowledge, local participation, and actionable conservation strategies.</p>
+    <!-- Header mit Logo und Social Media -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Aguatura Logo">
         </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="Biodiversity Protection" class="card-img">
-        <div class="card-content">
-          <h3>Biodiversity Conservation</h3>
-          <p>Safeguarding vulnerable species and flora along critical aquatic corridors, connecting habitats across regions and borders.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
         </div>
-      </div>
+    </header>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Global Network" class="card-img">
-        <div class="card-content">
-          <h3>Global Expert Network</h3>
-          <p>Connecting local communities, NGOs, researchers, and dedicated passionate experts to share blueprints and scale real solutions.</p>
+    <!-- Hero Bereich -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Protecting Nature Through Knowledge and Action</h1>
+            <p>Aguatura is a non-profit organization that brings together people, knowledge, and experience to protect ecosystems, promote sustainable water management, and safeguard biodiversity.</p>
         </div>
-      </div>
+    </section>
 
-    </div>
-  </main>
+    <!-- Dreikanaliges Layout -->
+    <section class="channels">
+        <div class="channel-card">
+            <h3>Water Management</h3>
+            <p>Developing innovative solutions for sustainable water resource conservation, clean supply, and watershed protection.</p>
+        </div>
+        <div class="channel-card">
+            <h3>Biodiversity</h3>
+            <p>Preserving natural habitats and protecting endangered species through targeted ecological research and field action.</p>
+        </div>
+        <div class="channel-card">
+            <h3>Global Collaboration</h3>
+            <p>Connecting communities, scientists, and organizations worldwide to drive collective environmental impact.</p>
+        </div>
+    </section>
 
-  <!-- Footer mit exakten Social Media Links -->
-  <footer>
-    <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fas fa-envelope"></i></a>
-    </div>
-    <div class="footer-copy">
-      <p>&copy; 2026 Aguatura Non-Profit Organization. All rights reserved. | <a href="index.html" style="color: #ffffff; text-decoration: none;">aguatura.org</a></p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
