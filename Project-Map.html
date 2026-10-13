@@ -68,6 +68,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             margin-bottom: 30px;
+            background-color: #e5e3df; /* Hintergrundfarbe während des Ladens */
         }
 
         /* Infobox */
@@ -85,4 +86,145 @@
             padding: 10px 20px;
             background-color: var(--accent-blue);
             color: var(--white);
-            text-decoration
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn-more:hover {
+            background-color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="Logo" alt="Aguatura Logo" class="site-logo">
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Project-Map.html" style="color: var(--primary-dark);">Project Map</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Unsere Projekte weltweit</h1>
+        <p style="text-align: center; margin-bottom: 30px;">Klicke auf ein Land oder ein Projekt auf der Karte, um mehr zu erfahren.</p>
+
+        <!-- Karte -->
+        <div id="map"></div>
+
+        <!-- Infobox -->
+        <div id="project-info">
+            <h2 id="project-title">Wähle ein Land aus</h2>
+            <p id="project-desc">Klicke auf ein hervorgehobenes Land auf der Karte, um Informationen zu unseren Projekten zu sehen.</p>
+            <a id="project-link" href="#" class="btn-more" style="display: none;">Mehr erfahren</a>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Karte initialisieren
+            const map = L.map('map').setView([15.0, 0.0], 2);
+
+            // OpenStreetMap Kacheln laden
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            // 2. Projektdaten pro Land
+            const countryProjects = {
+                "Costa Rica": {
+                    title: "Flussdelta-Schutz (Costa Rica)",
+                    desc: "Regenerative Wasseraufbereitung und Schutz der lokalen Fluss-Biodiversität in Zentralamerika.",
+                    link: "#"
+                },
+                "Kenya": {
+                    title: "Aufforstung & Wasserspeicher (Kenia)",
+                    desc: "Wiederherstellung natürlicher Feuchtgebiete zur Dürreprävention und Unterstützung lokaler Gemeinschaften.",
+                    link: "#"
+                },
+                "Germany": {
+                    title: "Renaturierung Gewässer (Deutschland)",
+                    desc: "Lokal gefördertes Projekt zur Wiederbelebung heimischer Auenlandschaften und Flusssysteme.",
+                    link: "#"
+                }
+            };
+
+            let selectedLayer = null;
+
+            function style(feature) {
+                const isProjectCountry = countryProjects[feature.properties.name] || countryProjects[feature.properties.ADMIN];
+                return {
+                    fillColor: isProjectCountry ? '#1B4D3E' : '#999999',
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    fillOpacity: isProjectCountry ? 0.6 : 0.15
+                };
+            }
+
+            function onEachFeature(feature, layer) {
+                const countryName = feature.properties.name || feature.properties.ADMIN;
+
+                layer.on({
+                    mouseover: function (e) {
+                        if (layer !== selectedLayer) {
+                            layer.setStyle({ fillOpacity: 0.7, weight: 2 });
+                        }
+                    },
+                    mouseout: function (e) {
+                        if (layer !== selectedLayer) {
+                            geojson.resetStyle(layer);
+                        }
+                    },
+                    click: function (e) {
+                        if (selectedLayer) {
+                            geojson.resetStyle(selectedLayer);
+                        }
+
+                        selectedLayer = layer;
+                        layer.setStyle({
+                            fillColor: '#1E3A8A',
+                            fillOpacity: 0.85,
+                            weight: 2
+                        });
+
+                        const project = countryProjects[countryName];
+                        if (project) {
+                            document.getElementById('project-title').innerText = project.title;
+                            document.getElementById('project-desc').innerText = project.desc;
+                            const linkBtn = document.getElementById('project-link');
+                            linkBtn.href = project.link;
+                            linkBtn.style.display = "inline-block";
+                        } else {
+                            document.getElementById('project-title').innerText = countryName;
+                            document.getElementById('project-desc').innerText = "In diesem Land sind aktuell noch keine aktiven Projekte hinterlegt.";
+                            document.getElementById('project-link').style.display = "none";
+                        }
+
+                        document.getElementById('project-info').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            let geojson;
+            // Ausfallsicheres Laden der Ländergrenzen
+            fetch('https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    geojson = L.geoJson(data, {
+                        style: style,
+                        onEachFeature: onEachFeature
+                    }).addTo(map);
+                })
+                .catch(err => console.log('GeoJSON konnte nicht geladen werden, Basiskarte bleibt aktiv:', err));
+        });
+    </script>
+</body>
+</html>
