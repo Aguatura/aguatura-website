@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aguatura – Project Map</title>
     
-    <!-- Leaflet CSS für die Karte -->
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
         :root {
-            --primary-dark: #1B4D3E;
-            --accent-blue: #1E3A8A;
-            --bg-light: #F4F8F6;
-            --text-color: #1C2A39;
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-blue: #1E3A8A;    /* Tiefes Wasserblau */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
             --white: #FFFFFF;
         }
 
@@ -25,7 +25,7 @@
             color: var(--text-color);
         }
 
-        /* Header / Navigation */
+        /* Header */
         header {
             background-color: var(--white);
             padding: 15px 30px;
@@ -46,6 +46,10 @@
             font-weight: bold;
         }
 
+        nav a:hover {
+            color: var(--primary-dark);
+        }
+
         .container {
             max-width: 1100px;
             margin: 40px auto;
@@ -57,7 +61,7 @@
             text-align: center;
         }
 
-        /* Karten-Container */
+        /* Map Box */
         #map {
             height: 500px;
             width: 100%;
@@ -66,14 +70,13 @@
             margin-bottom: 30px;
         }
 
-        /* Infobox unter der Karte */
+        /* Infobox */
         #project-info {
             background: var(--white);
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             border-left: 6px solid var(--primary-dark);
-            transition: all 0.3s ease;
         }
 
         .btn-more {
@@ -82,95 +85,4 @@
             padding: 10px 20px;
             background-color: var(--accent-blue);
             color: var(--white);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .btn-more:hover {
-            background-color: var(--primary-dark);
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="index.html">
-            <img src="Logo" alt="Aguatura Logo" class="site-logo">
-        </a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="projects.html" style="color: var(--primary-dark);">Project Map</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1>Unsere Projekte weltweit</h1>
-        <p style="text-align: center; margin-bottom: 30px;">Klicke auf einen Marker auf der Karte, um mehr über das jeweilige Schutzprojekt zu erfahren.</p>
-
-        <!-- Interaktive Weltkarte -->
-        <div id="map"></div>
-
-        <!-- Dynamische Detail-Infobox -->
-        <div id="project-info">
-            <h2 id="project-title">Wähle ein Projekt aus</h2>
-            <p id="project-desc">Klicke auf einen Pin in der Karte, um Details zu den Aguatura-Initiativen vor Ort anzuzeigen.</p>
-            <a id="project-link" href="#" class="btn-more" style="display: none;">Mehr erfahren</a>
-        </div>
-    </div>
-
-    <!-- Leaflet JS Bibliotheken -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        // 1. Weltkarte initialisieren (Zentriert auf den Atlantik/Äquator mit Zoom level 2)
-        const map = L.map('map').setView([10.0, 0.0], 2);
-
-        // OpenStreetMap Hintergrund-Tiles laden
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
-
-        // 2. Eure Projekte festlegen (Name, Koordinaten [Lat, Lng], Vorschautext, Link)
-        const projects = [
-            {
-                name: "Flussdelta-Schutz Projekt A",
-                coords: [9.9281, -84.0907], // Beispiel: Costa Rica
-                desc: "Regenerative Wasseraufbereitung und Schutz der lokalen Fluss-Biodiversität.",
-                link: "project-costa-rica.html"
-            },
-            {
-                name: "Aufforstung & Wasserspeicher B",
-                coords: [-1.2921, 36.8219], // Beispiel: Kenia
-                desc: "Wiederherstellung natürlicher Feuchtgebiete zur Dürreprävention.",
-                link: "project-kenya.html"
-            },
-            {
-                name: "Renaturierung Gewässer C",
-                coords: [48.1371, 11.5761], // Beispiel: Deutschland
-                desc: "Lokal gefördertes Projekt zur Wiederbelebung heimischer Auenlandschaften.",
-                link: "project-germany.html"
-            }
-        ];
-
-        // 3. Marker für jedes Projekt auf der Karte platzieren
-        projects.forEach(project => {
-            const marker = L.marker(project.coords).addTo(map);
-
-            // Beim Klick auf den Marker Infobox aktualisieren
-            marker.on('click', () => {
-                document.getElementById('project-title').innerText = project.name;
-                document.getElementById('project-desc').innerText = project.desc;
-                
-                const linkBtn = document.getElementById('project-link');
-                linkBtn.href = project.link;
-                linkBtn.style.display = "inline-block";
-                
-                // Sanft zur Stelle scrollen
-                document.getElementById('project-info').scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-
-</body>
-</html>
+            text-decoration
