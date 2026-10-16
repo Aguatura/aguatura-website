@@ -5,44 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aguatura – Project Map</title>
     
-    <!-- Leaflet CSS -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome für Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Karte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
         :root {
             --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
             --accent-blue: #1E3A8A;    /* Tiefes Wasserblau */
             --bg-light: #F4F8F6;       /* Softes Naturweiß */
             --text-color: #1C2A39;     /* Dunkles Schiefergrau */
             --white: #FFFFFF;
         }
 
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-light);
-            color: var(--text-color);
+            box-sizing: border-box;
         }
 
-        /* Angepasster Header: Logo & Nav links/zentriert, Sprache rechts */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
         header {
             background-color: var(--white);
-            padding: 15px 30px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 30px; /* Abstand zwischen Logo und Navigation */
+            gap: 30px;
         }
 
-        .site-logo {
-            height: 40px;
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            display: block;
         }
 
         nav {
@@ -53,8 +75,8 @@
         nav a {
             text-decoration: none;
             color: var(--text-color);
-            font-weight: bold;
-            transition: color 0.2s ease;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         nav a:hover,
@@ -62,71 +84,259 @@
             color: var(--primary-dark);
         }
 
-        /* Sprach-Dropdown rechts */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* SOCIAL MEDIA ICONS */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
         #language-select {
             padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid #ccc;
             background-color: var(--white);
-            font-weight: bold;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
             color: var(--text-color);
             cursor: pointer;
         }
 
+        /* INHALTSBEREICH */
         .container {
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
+            flex: 1;
         }
 
         h1 {
+            font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
             text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
 
-        /* Map Box */
+        .subtitle {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        /* FILTER LEISTE */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .filter-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .filter-group select {
+            border: none;
+            background: transparent;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* CLEAR FILTERS BUTTON */
+        .btn-clear {
+            background-color: transparent;
+            border: 1px solid var(--primary-dark);
+            color: var(--primary-dark);
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+
+        /* KARTE */
         #map {
-            height: 500px;
+            height: 480px;
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             margin-bottom: 30px;
-            background-color: #e5e3df;
+            background-color: #d4dadc;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Infobox */
+        /* INFOBOX & GRID */
         #project-info {
             background: var(--white);
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border-left: 6px solid var(--primary-dark);
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        #project-info h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: var(--bg-light);
+            border: 1px solid #e2ece9;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background-color: #E8F2EE;
+            color: var(--primary-dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
         }
 
         .btn-more {
             display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: var(--accent-blue);
+            padding: 11px 26px;
+            background-color: var(--primary-dark);
             color: var(--white);
             text-decoration: none;
             border-radius: 6px;
-            font-weight: bold;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .btn-more:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
             background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER LAYOUT -->
+    <!-- HEADER -->
     <header>
         <div class="header-left">
-            <a href="index.html">
-                <img src="Logo" alt="Aguatura Logo" class="site-logo">
-            </a>
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
             <nav>
                 <a href="index.html" id="nav-home">Home</a>
                 <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
@@ -134,83 +344,177 @@
             </nav>
         </div>
 
-        <!-- Sprachauswahl rechts -->
-        <select id="language-select" onchange="changeLanguage(this.value)">
-            <option value="en" selected>English</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-        </select>
+        <div class="header-right">
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <!-- Sprachauswahl -->
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
     </header>
 
+    <!-- HAUPTINHALT -->
     <div class="container">
-        <h1 id="page-title">Our Projects Worldwide</h1>
-        <p id="page-subtitle" style="text-align: center; margin-bottom: 30px;">Click on a country on the map to learn more about our local initiatives.</p>
+        <h1 id="page-title">Our Projects</h1>
+        <p id="page-subtitle" class="subtitle">Click on a country on the map or use the filters below to explore our initiatives.</p>
+
+        <!-- FILTER & CLEAR BUTTON -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label id="lbl-continent" for="filter-continent">Continent:</label>
+                <select id="filter-continent" onchange="applyFilters()">
+                    <option value="all" id="opt-cont-all">All Continents</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Europe">Europe</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label id="lbl-topic" for="filter-topic">Topic:</label>
+                <select id="filter-topic" onchange="applyFilters()">
+                    <option value="all" id="opt-top-all">All Topics</option>
+                    <option value="Water Management" id="opt-top-water">Water Management</option>
+                    <option value="Biodiversity" id="opt-top-bio">Biodiversity</option>
+                    <option value="Reforestation" id="opt-top-reforest">Reforestation</option>
+                </select>
+            </div>
+            <button id="btn-clear" class="btn-clear" onclick="clearFilters()">Clear Filters</button>
+        </div>
 
         <!-- Karte -->
         <div id="map"></div>
 
-        <!-- Infobox -->
+        <!-- Infobox / Dynamische Projektliste -->
         <div id="project-info">
-            <h2 id="project-title">Select a country</h2>
-            <p id="project-desc">Click on a highlighted country on the map to view information about our projects.</p>
-            <a id="project-link" href="#" class="btn-more" style="display: none;">Learn more</a>
+            <h2 id="project-title">Filtered Projects</h2>
+            <p id="project-desc">Explore our active global efforts matching your selection.</p>
+
+            <div id="project-content">
+                <!-- Dynamischer Inhalt -->
+            </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
+        // Übersetzungen für Interface-Texte
         const translations = {
             en: {
                 navHome: "Home",
                 navMap: "Project Map",
                 navAbout: "About us",
-                title: "Our Projects Worldwide",
-                subtitle: "Click on a country on the map to learn more about our local initiatives.",
-                selectTitle: "Select a country",
-                selectDesc: "Click on a highlighted country on the map to view information about our projects.",
+                title: "Our Projects",
+                subtitle: "Click on a country on the map or use the filters below to explore our initiatives.",
+                lblContinent: "Continent:",
+                lblTopic: "Topic:",
+                optContAll: "All Continents",
+                optTopAll: "All Topics",
+                optTopWater: "Water Management",
+                optTopBio: "Biodiversity",
+                optTopReforest: "Reforestation",
+                btnClear: "Clear Filters",
+                latestTitle: "Projects Overview",
+                latestDesc: "Discover our initiatives below, or click on any highlighted country on the map.",
                 noProject: "No active projects are currently registered in this country.",
-                btnText: "Learn more"
+                btnExplore: "Explore More Projects",
+                btnText: "Learn more",
+                backToList: "← Back to list"
             },
             de: {
                 navHome: "Startseite",
                 navMap: "Projektkarte",
                 navAbout: "Über uns",
-                title: "Unsere Projekte weltweit",
-                subtitle: "Klicke auf ein Land auf der Karte, um mehr über unsere Initiativen zu erfahren.",
-                selectTitle: "Wähle ein Land aus",
-                selectDesc: "Klicke auf ein hervorgehobenes Land auf der Karte, um Informationen zu unseren Projekten zu sehen.",
+                title: "Unsere Projekte",
+                subtitle: "Klicke auf ein Land auf der Karte oder nutze die Filter, um unsere Initiativen zu entdecken.",
+                lblContinent: "Kontinent:",
+                lblTopic: "Thema:",
+                optContAll: "Alle Kontinente",
+                optTopAll: "Alle Themen",
+                optTopWater: "Wasserwirtschaft",
+                optTopBio: "Biodiversität",
+                optTopReforest: "Aufforstung",
+                btnClear: "Filter zurücksetzen",
+                latestTitle: "Projektübersicht",
+                latestDesc: "Entdecke hier unsere Initiativen oder klicke auf ein hervorgehobenes Land auf der Karte.",
                 noProject: "In diesem Land sind aktuell noch keine aktiven Projekte hinterlegt.",
-                btnText: "Mehr erfahren"
+                btnExplore: "Mehr Projekte entdecken",
+                btnText: "Mehr erfahren",
+                backToList: "← Zurück zur Übersicht"
             },
             fr: {
                 navHome: "Accueil",
                 navMap: "Carte des Projets",
                 navAbout: "À propos",
-                title: "Nos Projets dans le Monde",
-                subtitle: "Cliquez sur un pays de la carte pour en savoir plus sur nos initiatives locales.",
-                selectTitle: "Sélectionnez un pays",
-                selectDesc: "Cliquez sur un pays en surbrillance sur la carte pour voir les informations sur nos projets.",
+                title: "Nos Projets",
+                subtitle: "Cliquez sur un pays de la carte ou utilisez les filtres pour explorer nos initiatives.",
+                lblContinent: "Continent :",
+                lblTopic: "Thème :",
+                optContAll: "Tous les continents",
+                optTopAll: "Tous les thèmes",
+                optTopWater: "Gestion de l'eau",
+                optTopBio: "Biodiversité",
+                optTopReforest: "Reboisement",
+                btnClear: "Effacer les filtres",
+                latestTitle: "Aperçu des projets",
+                latestDesc: "Découvrez nos initiatives ci-dessous ou cliquez sur un pays en surbrillance.",
                 noProject: "Aucun projet actif n'est actuellement enregistré dans ce pays.",
-                btnText: "En savoir plus"
+                btnExplore: "Explorer plus de projets",
+                noMatch: "Aucun projet actif ne correspond aux critères sélectionnés.",
+                btnText: "En savoir plus",
+                backToList: "← Retour à la liste"
             },
             es: {
                 navHome: "Inicio",
                 navMap: "Mapa de Proyectos",
                 navAbout: "Sobre nosotros",
-                title: "Nuestros Proyectos en el Mundo",
-                subtitle: "Haz clic en un país del mapa para obtener más información sobre nuestras iniciativas.",
-                selectTitle: "Selecciona un país",
-                selectDesc: "Haz clic en un país resaltado en el mapa para ver información sobre nuestros proyectos.",
+                title: "Nuestros Proyectos",
+                subtitle: "Haz clic en un país del mapa o usa los filtros para explorar nuestras iniciativas.",
+                lblContinent: "Continente:",
+                lblTopic: "Tema:",
+                optContAll: "Todos los continentes",
+                optTopAll: "Todos los temas",
+                optTopWater: "Gestión del Agua",
+                optTopBio: "Biodiversidad",
+                optTopReforest: "Reforestación",
+                btnClear: "Limpiar filtros",
+                latestTitle: "Resumen de proyectos",
+                latestDesc: "Descubre nuestras iniciativas a continuación o haz clic en un país resaltado.",
                 noProject: "Actualmente no hay proyectos activos registrados en este país.",
-                btnText: "Saber más"
+                btnExplore: "Explorar más proyectos",
+                btnText: "Saber más",
+                backToList: "← Volver a la lista"
             }
+        };
+
+        const countryNames = {
+            "Germany": { en: "Germany", de: "Deutschland", fr: "Allemagne", es: "Alemania" },
+            "Costa Rica": { en: "Costa Rica", de: "Costa Rica", fr: "Costa Rica", es: "Costa Rica" },
+            "Kenya": { en: "Kenya", de: "Kenia", fr: "Kenya", es: "Kenia" },
+            "India": { en: "India", de: "Indien", fr: "Inde", es: "India" }
         };
 
         const countryProjects = {
             "Costa Rica": {
+                continent: "Americas",
+                topic: "Water Management",
+                tags: ["Water Management", "Biodiversity"],
                 en: { title: "River Delta Protection (Costa Rica)", desc: "Regenerative water treatment and protection of local river biodiversity in Central America." },
                 de: { title: "Flussdelta-Schutz (Costa Rica)", desc: "Regenerative Wasseraufbereitung und Schutz der lokalen Fluss-Biodiversität in Zentralamerika." },
                 fr: { title: "Protection du Delta (Costa Rica)", desc: "Traitement d'eau régénératif et protection de la biodiversité fluviale locale en Amérique centrale." },
@@ -218,6 +522,9 @@
                 link: "#"
             },
             "Kenya": {
+                continent: "Africa",
+                topic: "Reforestation",
+                tags: ["Reforestation", "Water Management"],
                 en: { title: "Reforestation & Water Storage (Kenya)", desc: "Restoration of natural wetlands for drought prevention and support for local communities." },
                 de: { title: "Aufforstung & Wasserspeicher (Kenia)", desc: "Wiederherstellung natürlicher Feuchtgebiete zur Dürreprävention und Unterstützung lokaler Gemeinschaften." },
                 fr: { title: "Reboisement & Stockage d'eau (Kenya)", desc: "Restauration des zones humides naturelles pour la prévention de la sécheresse." },
@@ -225,6 +532,9 @@
                 link: "#"
             },
             "Germany": {
+                continent: "Europe",
+                topic: "Biodiversity",
+                tags: ["Biodiversity", "Water Management"],
                 en: { title: "Waterway Renaturation (Germany)", desc: "Locally supported project to revitalize native floodplain landscapes and river systems." },
                 de: { title: "Renaturierung Gewässer (Deutschland)", desc: "Lokal gefördertes Projekt zur Wiederbelebung heimischer Auenlandschaften und Flusssysteme." },
                 fr: { title: "Renaturation des Cours d'Eau (Allemagne)", desc: "Projet local visant à revitaliser les paysages inondables et les réseaux fluviaux." },
@@ -235,35 +545,59 @@
 
         let currentLang = 'en';
         let selectedLayer = null;
+        let lastClickedCountry = null;
 
-        const map = L.map('map').setView([15.0, 0.0], 2);
+        const bounds = L.latLngBounds(L.latLng(-60, -170), L.latLng(72, 170));
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        const map = L.map('map', {
+            minZoom: 2,
+            maxZoom: 6,
+            maxBounds: bounds,
+            maxBoundsViscosity: 1.0
+        });
+
+        map.fitBounds([[ -55, -160 ], [ 65, 160 ]]);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            minZoom: 2,
             maxZoom: 18,
-            attribution: '© OpenStreetMap contributors & CARTO'
+            noWrap: true,
+            attribution: 'Tiles &copy; Esri'
         }).addTo(map);
+
+        function isCountryMatchingFilters(countryKey) {
+            const project = countryProjects[countryKey];
+            if (!project) return false;
+
+            const selectedContinent = document.getElementById('filter-continent').value;
+            const selectedTopic = document.getElementById('filter-topic').value;
+
+            const matchContinent = (selectedContinent === 'all' || project.continent === selectedContinent);
+            const matchTopic = (selectedTopic === 'all' || project.tags.includes(selectedTopic) || project.topic === selectedTopic);
+
+            return matchContinent && matchTopic;
+        }
 
         function style(feature) {
             const countryKey = feature.properties.name || feature.properties.ADMIN;
-            const isProjectCountry = countryProjects[countryKey];
+            const matchesFilter = isCountryMatchingFilters(countryKey);
+            
             return {
-                fillColor: isProjectCountry ? '#1B4D3E' : '#999999',
-                weight: 1,
-                opacity: 1,
-                color: 'white',
-                fillOpacity: isProjectCountry ? 0.6 : 0.15
+                fillColor: matchesFilter ? '#1B4D3E' : '#B0C2B8',
+                weight: 0,
+                opacity: 0,
+                color: 'transparent',
+                fillOpacity: matchesFilter ? 0.85 : 0.25
             };
         }
-
-        let lastClickedCountry = null;
 
         function onEachFeature(feature, layer) {
             const countryKey = feature.properties.name || feature.properties.ADMIN;
 
             layer.on({
                 mouseover: function (e) {
-                    if (layer !== selectedLayer) {
-                        layer.setStyle({ fillOpacity: 0.7, weight: 2 });
+                    if (layer !== selectedLayer && isCountryMatchingFilters(countryKey)) {
+                        layer.setStyle({ fillOpacity: 0.95 });
                     }
                 },
                 mouseout: function (e) {
@@ -273,12 +607,76 @@
                 },
                 click: function (e) {
                     lastClickedCountry = countryKey;
-                    updateInfoBox(countryKey);
+                    updateInfoBoxForCountry(countryKey);
                 }
             });
         }
 
-        function updateInfoBox(countryKey) {
+        function applyFilters() {
+            if (selectedLayer) {
+                geojson.resetStyle(selectedLayer);
+                selectedLayer = null;
+            }
+            if (geojson) {
+                geojson.setStyle(style);
+            }
+            lastClickedCountry = null;
+            renderFilteredProjects();
+        }
+
+        function clearFilters() {
+            document.getElementById('filter-continent').value = 'all';
+            document.getElementById('filter-topic').value = 'all';
+            
+            if (selectedLayer) {
+                geojson.resetStyle(selectedLayer);
+                selectedLayer = null;
+            }
+            lastClickedCountry = null;
+
+            if (geojson) {
+                geojson.setStyle(style);
+            }
+            renderFilteredProjects();
+        }
+
+        function renderFilteredProjects() {
+            const t = translations[currentLang];
+            document.getElementById('project-title').innerText = t.latestTitle;
+            document.getElementById('project-desc').innerText = t.latestDesc;
+            
+            const contentContainer = document.getElementById('project-content');
+            
+            let matchingKeys = Object.keys(countryProjects).filter(key => isCountryMatchingFilters(key));
+
+            if (matchingKeys.length === 0) {
+                contentContainer.innerHTML = `<p style="text-align: center; color: #777; padding: 20px;">${t.noMatch || t.noProject}</p>`;
+                return;
+            }
+
+            let gridHTML = `<div class="projects-grid">`;
+            
+            matchingKeys.forEach(key => {
+                const proj = countryProjects[key];
+                const data = proj[currentLang] || proj['en'];
+                gridHTML += `
+                    <div class="project-card" style="cursor:pointer;" onclick="updateInfoBoxForCountry('${key}')">
+                        <div>
+                            <h3>${data.title}</h3>
+                            <p>${data.desc}</p>
+                        </div>
+                        <div class="project-tags">
+                            ${proj.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            gridHTML += `</div>`;
+            contentContainer.innerHTML = gridHTML;
+        }
+
+        function updateInfoBoxForCountry(countryKey) {
             if (selectedLayer) {
                 geojson.resetStyle(selectedLayer);
             }
@@ -288,30 +686,43 @@
                     selectedLayer = layer;
                     layer.setStyle({
                         fillColor: '#1E3A8A',
-                        fillOpacity: 0.85,
-                        weight: 2
+                        fillOpacity: 0.9,
+                        weight: 0,
+                        color: 'transparent'
                     });
                 }
             });
 
             const t = translations[currentLang];
             const project = countryProjects[countryKey];
+            const localizedName = countryNames[countryKey] ? countryNames[countryKey][currentLang] : countryKey;
+            const contentContainer = document.getElementById('project-content');
             
             if (project) {
                 const data = project[currentLang] || project['en'];
                 document.getElementById('project-title').innerText = data.title;
                 document.getElementById('project-desc').innerText = data.desc;
-                const linkBtn = document.getElementById('project-link');
-                linkBtn.href = project.link;
-                linkBtn.innerText = t.btnText;
-                linkBtn.style.display = "inline-block";
+                
+                contentContainer.innerHTML = `
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <a href="${project.link}" class="btn-more">${t.btnText}</a>
+                        <button onclick="renderFilteredProjects(); if(selectedLayer) { geojson.resetStyle(selectedLayer); selectedLayer=null; }" style="background:none; border:none; color:var(--primary-dark); font-weight:600; cursor:pointer; margin-left: 15px;">${t.backToList}</button>
+                    </div>
+                `;
             } else {
-                document.getElementById('project-title').innerText = countryKey;
+                // WENN KEIN PROJEKT VORHANDEN IST (z.B. Indien)
+                document.getElementById('project-title').innerText = localizedName;
                 document.getElementById('project-desc').innerText = t.noProject;
-                document.getElementById('project-link').style.display = "none";
+                
+                contentContainer.innerHTML = `
+                    <div style="margin-top: 15px;">
+                        <button onclick="renderFilteredProjects(); if(selectedLayer) { geojson.resetStyle(selectedLayer); selectedLayer=null; }" style="background:none; border:none; color:var(--primary-dark); font-weight:600; cursor:pointer;">${t.backToList}</button>
+                    </div>
+                `;
             }
-
-            document.getElementById('project-info').scrollIntoView({ behavior: 'smooth' });
         }
 
         function changeLanguage(lang) {
@@ -326,11 +737,19 @@
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('page-subtitle').innerText = t.subtitle;
 
+            document.getElementById('lbl-continent').innerText = t.lblContinent;
+            document.getElementById('lbl-topic').innerText = t.lblTopic;
+            document.getElementById('opt-cont-all').innerText = t.optContAll;
+            document.getElementById('opt-top-all').innerText = t.optTopAll;
+            document.getElementById('opt-top-water').innerText = t.optTopWater;
+            document.getElementById('opt-top-bio').innerText = t.optTopBio;
+            document.getElementById('opt-top-reforest').innerText = t.optTopReforest;
+            document.getElementById('btn-clear').innerText = t.btnClear;
+
             if (lastClickedCountry) {
-                updateInfoBox(lastClickedCountry);
+                updateInfoBoxForCountry(lastClickedCountry);
             } else {
-                document.getElementById('project-title').innerText = t.selectTitle;
-                document.getElementById('project-desc').innerText = t.selectDesc;
+                renderFilteredProjects();
             }
         }
 
@@ -342,6 +761,8 @@
                     style: style,
                     onEachFeature: onEachFeature
                 }).addTo(map);
+                
+                renderFilteredProjects();
             });
     </script>
 </body>
