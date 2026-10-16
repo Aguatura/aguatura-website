@@ -25,7 +25,7 @@
             color: var(--text-color);
         }
 
-        /* Header */
+        /* Einheitlicher Header */
         header {
             background-color: var(--white);
             padding: 15px 30px;
@@ -49,12 +49,135 @@
             text-decoration: none;
             color: var(--text-color);
             font-weight: bold;
+            margin-left: 15px;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a.active {
             color: var(--primary-dark);
         }
 
         /* Sprach-Dropdown */
         #language-select {
-            
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            text-align: center;
+        }
+
+        /* Map Box */
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            background-color: #e5e3df;
+        }
+
+        /* Infobox */
+        #project-info {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--primary-dark);
+        }
+
+        .btn-more {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn-more:hover {
+            background-color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EINHEITLICHER HEADER -->
+    <header>
+        <a href="index.html">
+            <img src="Logo" alt="Aguatura Logo" class="site-logo">
+        </a>
+        <div class="nav-right">
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+            </nav>
+            <!-- Sprachauswahl -->
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 id="page-title">Our Projects Worldwide</h1>
+        <p id="page-subtitle" style="text-align: center; margin-bottom: 30px;">Click on a country on the map to learn more about our local initiatives.</p>
+
+        <!-- Karte -->
+        <div id="map"></div>
+
+        <!-- Infobox -->
+        <div id="project-info">
+            <h2 id="project-title">Select a country</h2>
+            <p id="project-desc">Click on a highlighted country on the map to view information about our projects.</p>
+            <a id="project-link" href="#" class="btn-more" style="display: none;">Learn more</a>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Übersetzungen für Interface-Texte
+        const translations = {
+            en: {
+                navHome: "Home",
+                navMap: "Project Map",
+                title: "Our Projects Worldwide",
+                subtitle: "Click on a country on the map to learn more about our local initiatives.",
+                selectTitle: "Select a country",
+                selectDesc: "Click on a highlighted country on the map to view information about our projects.",
+                noProject: "No active projects are currently registered in this country.",
+                btnText: "Learn more"
+            },
+            de: {
+                navHome: "Startseite",
+                navMap: "Projektkarte",
+                title: "Unsere Projekte weltweit",
+                subtitle: "Klicke auf ein Land auf der Karte, um mehr über unsere Initiativen zu erfahren.",
+                selectTitle: "Wähle ein Land aus",
+                selectDesc: "Klicke auf ein hervorgehobenes Land auf der Karte, um Informationen zu unseren Projekten zu sehen.",
+                noProject: "In diesem Land sind aktuell noch keine aktiven Projekte hinterlegt.",
+                btnText: "Mehr erfahren"
+            },
+            fr: {
+                navHome: "Accueil",
+                navMap: "Carte des Projets",
+                title:
