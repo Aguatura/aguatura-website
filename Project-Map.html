@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +39,13 @@
             height: 40px;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         nav a {
-            margin-left: 20px;
             text-decoration: none;
             color: var(--text-color);
             font-weight: bold;
@@ -48,6 +53,17 @@
 
         nav a:hover {
             color: var(--primary-dark);
+        }
+
+        /* Sprach-Dropdown */
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
         }
 
         .container {
@@ -68,7 +84,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             margin-bottom: 30px;
-            background-color: #e5e3df; /* Hintergrundfarbe während des Ladens */
+            background-color: #e5e3df;
         }
 
         /* Infobox */
@@ -102,24 +118,33 @@
         <a href="index.html">
             <img src="Logo" alt="Aguatura Logo" class="site-logo">
         </a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="Project-Map.html" style="color: var(--primary-dark);">Project Map</a>
-        </nav>
+        <div class="nav-right">
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" style="color: var(--primary-dark);">Project Map</a>
+            </nav>
+            <!-- Sprachauswahl -->
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
     </header>
 
     <div class="container">
-        <h1>Unsere Projekte weltweit</h1>
-        <p style="text-align: center; margin-bottom: 30px;">Klicke auf ein Land oder ein Projekt auf der Karte, um mehr zu erfahren.</p>
+        <h1 id="page-title">Our Projects Worldwide</h1>
+        <p id="page-subtitle" style="text-align: center; margin-bottom: 30px;">Click on a country on the map to learn more about our local initiatives.</p>
 
         <!-- Karte -->
         <div id="map"></div>
 
         <!-- Infobox -->
         <div id="project-info">
-            <h2 id="project-title">Wähle ein Land aus</h2>
-            <p id="project-desc">Klicke auf ein hervorgehobenes Land auf der Karte, um Informationen zu unseren Projekten zu sehen.</p>
-            <a id="project-link" href="#" class="btn-more" style="display: none;">Mehr erfahren</a>
+            <h2 id="project-title">Select a country</h2>
+            <p id="project-desc">Click on a highlighted country on the map to view information about our projects.</p>
+            <a id="project-link" href="#" class="btn-more" style="display: none;">Learn more</a>
         </div>
     </div>
 
@@ -127,104 +152,190 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 1. Karte initialisieren
-            const map = L.map('map').setView([15.0, 0.0], 2);
+        // Übersetzungen für die Webseiten-Texte
+        const translations = {
+            en: {
+                navHome: "Home",
+                navMap: "Project Map",
+                title: "Our Projects Worldwide",
+                subtitle: "Click on a country on the map to learn more about our local initiatives.",
+                selectTitle: "Select a country",
+                selectDesc: "Click on a highlighted country on the map to view information about our projects.",
+                noProject: "No active projects are currently registered in this country.",
+                btnText: "Learn more"
+            },
+            de: {
+                navHome: "Startseite",
+                navMap: "Projektkarte",
+                title: "Unsere Projekte weltweit",
+                subtitle: "Klicke auf ein Land auf der Karte, um mehr über unsere Initiativen zu erfahren.",
+                selectTitle: "Wähle ein Land aus",
+                selectDesc: "Klicke auf ein hervorgehobenes Land auf der Karte, um Informationen zu unseren Projekten zu sehen.",
+                noProject: "In diesem Land sind aktuell noch keine aktiven Projekte hinterlegt.",
+                btnText: "Mehr erfahren"
+            },
+            fr: {
+                navHome: "Accueil",
+                navMap: "Carte des Projets",
+                title: "Nos Projets dans le Monde",
+                subtitle: "Cliquez sur un pays de la carte pour en savoir plus sur nos initiatives locales.",
+                selectTitle: "Sélectionnez un pays",
+                selectDesc: "Cliquez sur un pays en surbrillance sur la carte pour voir les informations sur nos projets.",
+                noProject: "Aucun projet actif n'est actuellement enregistré dans ce pays.",
+                btnText: "En savoir plus"
+            },
+            es: {
+                navHome: "Inicio",
+                navMap: "Mapa de Proyectos",
+                title: "Nuestros Proyectos en el Mundo",
+                subtitle: "Haz clic en un país del mapa para obtener más información sobre nuestras iniciativas.",
+                selectTitle: "Selecciona un país",
+                selectDesc: "Haz clic en un país resaltado en el mapa para ver información sobre nuestros proyectos.",
+                noProject: "Actualmente no hay proyectos activos registrados en este país.",
+                btnText: "Saber más"
+            }
+        };
 
-            // OpenStreetMap Kacheln laden
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
+        // Projektdaten in allen 4 Sprachen
+        const countryProjects = {
+            "Costa Rica": {
+                en: { title: "River Delta Protection (Costa Rica)", desc: "Regenerative water treatment and protection of local river biodiversity in Central America." },
+                de: { title: "Flussdelta-Schutz (Costa Rica)", desc: "Regenerative Wasseraufbereitung und Schutz der lokalen Fluss-Biodiversität in Zentralamerika." },
+                fr: { title: "Protection du Delta (Costa Rica)", desc: "Traitement d'eau régénératif et protection de la biodiversité fluviale locale en Amérique centrale." },
+                es: { title: "Protección del Delta (Costa Rica)", desc: "Tratamiento regenerativo del agua y protección de la biodiversidad fluvial local en América Central." },
+                link: "#"
+            },
+            "Kenya": {
+                en: { title: "Reforestation & Water Storage (Kenya)", desc: "Restoration of natural wetlands for drought prevention and support for local communities." },
+                de: { title: "Aufforstung & Wasserspeicher (Kenia)", desc: "Wiederherstellung natürlicher Feuchtgebiete zur Dürreprävention und Unterstützung lokaler Gemeinschaften." },
+                fr: { title: "Reboisement & Stockage d'eau (Kenya)", desc: "Restauration des zones humides naturelles pour la prévention de la sécheresse." },
+                es: { title: "Reforestación y Almacenamiento de Agua (Kenia)", desc: "Restauración de humedales naturales para la prevención de sequías." },
+                link: "#"
+            },
+            "Germany": {
+                en: { title: "Waterway Renaturation (Germany)", desc: "Locally supported project to revitalize native floodplain landscapes and river systems." },
+                de: { title: "Renaturierung Gewässer (Deutschland)", desc: "Lokal gefördertes Projekt zur Wiederbelebung heimischer Auenlandschaften und Flusssysteme." },
+                fr: { title: "Renaturation des Cours d'Eau (Allemagne)", desc: "Projet local visant à revitaliser les paysages inondables et les réseaux fluviaux." },
+                es: { title: "Renaturalización de Cauces (Alemania)", desc: "Proyecto local para revitalizar los paisajes de llanuras aluviales nativas." },
+                link: "#"
+            }
+        };
 
-            // 2. Projektdaten pro Land
-            const countryProjects = {
-                "Costa Rica": {
-                    title: "Flussdelta-Schutz (Costa Rica)",
-                    desc: "Regenerative Wasseraufbereitung und Schutz der lokalen Fluss-Biodiversität in Zentralamerika.",
-                    link: "#"
-                },
-                "Kenya": {
-                    title: "Aufforstung & Wasserspeicher (Kenia)",
-                    desc: "Wiederherstellung natürlicher Feuchtgebiete zur Dürreprävention und Unterstützung lokaler Gemeinschaften.",
-                    link: "#"
-                },
-                "Germany": {
-                    title: "Renaturierung Gewässer (Deutschland)",
-                    desc: "Lokal gefördertes Projekt zur Wiederbelebung heimischer Auenlandschaften und Flusssysteme.",
-                    link: "#"
-                }
+        let currentLang = 'en';
+        let selectedLayer = null;
+
+        // Karte initialisieren
+        const map = L.map('map').setView([15.0, 0.0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        function style(feature) {
+            const countryKey = feature.properties.name || feature.properties.ADMIN;
+            const isProjectCountry = countryProjects[countryKey];
+            return {
+                fillColor: isProjectCountry ? '#1B4D3E' : '#999999',
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: isProjectCountry ? 0.6 : 0.15
             };
+        }
 
-            let selectedLayer = null;
+        let lastClickedCountry = null;
 
-            function style(feature) {
-                const isProjectCountry = countryProjects[feature.properties.name] || countryProjects[feature.properties.ADMIN];
-                return {
-                    fillColor: isProjectCountry ? '#1B4D3E' : '#999999',
-                    weight: 1,
-                    opacity: 1,
-                    color: 'white',
-                    fillOpacity: isProjectCountry ? 0.6 : 0.15
-                };
-            }
+        function onEachFeature(feature, layer) {
+            const countryKey = feature.properties.name || feature.properties.ADMIN;
 
-            function onEachFeature(feature, layer) {
-                const countryName = feature.properties.name || feature.properties.ADMIN;
-
-                layer.on({
-                    mouseover: function (e) {
-                        if (layer !== selectedLayer) {
-                            layer.setStyle({ fillOpacity: 0.7, weight: 2 });
-                        }
-                    },
-                    mouseout: function (e) {
-                        if (layer !== selectedLayer) {
-                            geojson.resetStyle(layer);
-                        }
-                    },
-                    click: function (e) {
-                        if (selectedLayer) {
-                            geojson.resetStyle(selectedLayer);
-                        }
-
-                        selectedLayer = layer;
-                        layer.setStyle({
-                            fillColor: '#1E3A8A',
-                            fillOpacity: 0.85,
-                            weight: 2
-                        });
-
-                        const project = countryProjects[countryName];
-                        if (project) {
-                            document.getElementById('project-title').innerText = project.title;
-                            document.getElementById('project-desc').innerText = project.desc;
-                            const linkBtn = document.getElementById('project-link');
-                            linkBtn.href = project.link;
-                            linkBtn.style.display = "inline-block";
-                        } else {
-                            document.getElementById('project-title').innerText = countryName;
-                            document.getElementById('project-desc').innerText = "In diesem Land sind aktuell noch keine aktiven Projekte hinterlegt.";
-                            document.getElementById('project-link').style.display = "none";
-                        }
-
-                        document.getElementById('project-info').scrollIntoView({ behavior: 'smooth' });
+            layer.on({
+                mouseover: function (e) {
+                    if (layer !== selectedLayer) {
+                        layer.setStyle({ fillOpacity: 0.7, weight: 2 });
                     }
-                });
+                },
+                mouseout: function (e) {
+                    if (layer !== selectedLayer) {
+                        geojson.resetStyle(layer);
+                    }
+                },
+                click: function (e) {
+                    lastClickedCountry = countryKey;
+                    updateInfoBox(countryKey);
+                }
+            });
+        }
+
+        function updateInfoBox(countryKey) {
+            if (selectedLayer) {
+                geojson.resetStyle(selectedLayer);
             }
 
-            let geojson;
-            // Ausfallsicheres Laden der Ländergrenzen
-            fetch('https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json')
-                .then(response => response.json())
-                .then(data => {
-                    geojson = L.geoJson(data, {
-                        style: style,
-                        onEachFeature: onEachFeature
-                    }).addTo(map);
-                })
-                .catch(err => console.log('GeoJSON konnte nicht geladen werden, Basiskarte bleibt aktiv:', err));
-        });
+            // Finde das Layer für das angeklickte Land und markiere es
+            geojson.eachLayer(function(layer) {
+                if ((layer.feature.properties.name || layer.feature.properties.ADMIN) === countryKey) {
+                    selectedLayer = layer;
+                    layer.setStyle({
+                        fillColor: '#1E3A8A',
+                        fillOpacity: 0.85,
+                        weight: 2
+                    });
+                }
+            });
+
+            const t = translations[currentLang];
+            const project = countryProjects[countryKey];
+            
+            if (project) {
+                const data = project[currentLang] || project['en'];
+                document.getElementById('project-title').innerText = data.title;
+                document.getElementById('project-desc').innerText = data.desc;
+                const linkBtn = document.getElementById('project-link');
+                linkBtn.href = project.link;
+                linkBtn.innerText = t.btnText;
+                linkBtn.style.display = "inline-block";
+            } else {
+                document.getElementById('project-title').innerText = countryKey;
+                document.getElementById('project-desc').innerText = t.noProject;
+                document.getElementById('project-link').style.display = "none";
+            }
+
+            document.getElementById('project-info').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Sprachwechsel-Funktion
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            // HTML-Lang Attribut aktualisieren
+            document.documentElement.lang = lang;
+
+            // Texte der Navigation & UI anpassen
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('page-title').innerText = t.title;
+            document.getElementById('page-subtitle').innerText = t.subtitle;
+
+            // Wenn bereits ein Land ausgewählt war, dessen Infobox in neuer Sprache aktualisieren
+            if (lastClickedCountry) {
+                updateInfoBox(lastClickedCountry);
+            } else {
+                document.getElementById('project-title').innerText = t.selectTitle;
+                document.getElementById('project-desc').innerText = t.selectDesc;
+            }
+        }
+
+        let geojson;
+        fetch('https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json')
+            .then(response => response.json())
+            .then(data => {
+                geojson = L.geoJson(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+            });
     </script>
 </body>
 </html>
