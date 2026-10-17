@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aguatura – Protecting Nature Through Knowledge and Action</title>
+    <title>Aguatura – Learning from Local Best Practices</title>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome für Social Media Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-    :root {
-        --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
-        --accent-blue: #1E3A8A;    /* Tiefes Wasserblau */
-        --bg-light: #F4F8F6;       /* Softes Naturweiß */
-        --text-color: #1C2A39;     /* Dunkles Schiefergrau für gute Lesbarkeit */
-        --white: #FFFFFF;
-    }
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --accent-blue: #1E3A8A;    /* Tiefes Wasserblau */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
 
         * {
             margin: 0;
@@ -31,11 +34,15 @@
             color: var(--text-color);
             background-color: var(--bg-light);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* HEADER */
         header {
             background-color: var(--white);
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -45,9 +52,39 @@
             z-index: 1000;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         .logo-container img {
-            height: 60px;
+            height: 50px;
             width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .social-icons {
@@ -56,141 +93,402 @@
         }
 
         .social-icons a {
-            color: var(--accent-blue);
+            color: var(--primary-dark);
             font-size: 1.2rem;
-            transition: color 0.3s;
+            transition: color 0.3s ease, transform 0.2s ease;
         }
 
         .social-icons a:hover {
-            color: var(--primary-dark);
+            color: var(--accent-green);
+            transform: translateY(-2px);
         }
 
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* ANIMATIONEN */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO BEREICH */
         .hero {
-            background: linear-gradient(rgba(18, 53, 36, 0.7), rgba(30, 81, 104, 0.7)), url('water-bg.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(18, 53, 36, 0.85), rgba(30, 81, 104, 0.85)), url('https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg') center/cover no-repeat;
             color: var(--white);
             text-align: center;
             padding: 100px 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            border-radius: 8px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             margin-bottom: 20px;
             font-weight: 700;
+            line-height: 1.3;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.15rem;
+            opacity: 0.95;
+            line-height: 1.7;
+            margin-bottom: 12px;
         }
 
-        /* Dreikanaliges Layout (Channels Section) */
-        .channels {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .channel-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .channel-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .channel-card h3 {
+        /* SEKTION 1: HAUPTHEMEN */
+        .section-title {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .topic-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1;
+        }
+
+        .topic-card:hover .card-bg {
+            transform: scale(1.08);
+        }
+
+        .topic-card.water .card-bg {
+            background: url('https://images.unsplash.com/photo-1437482098670-0081d4cf45f6?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+        }
+
+        .topic-card.biodiversity .card-bg {
+            background: url('https://images.unsplash.com/photo-1511497584788-876761142212?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .topic-card.water .card-overlay {
+            background: linear-gradient(to top, rgba(27, 77, 62, 0.96), rgba(30, 58, 138, 0.7));
+        }
+
+        .topic-card.biodiversity .card-overlay {
+            background: linear-gradient(to top, rgba(27, 77, 62, 0.96), rgba(42, 123, 98, 0.7));
+        }
+
+        .topic-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .topic-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .topic-card p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        /* SEKTION 2: UNSER ANSATZ */
+        .approach-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+            text-align: center;
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .approach-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.8rem;
             margin-bottom: 15px;
         }
 
-        .channel-card p {
-            font-size: 0.95rem;
-            color: #666;
+        .approach-box p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
+        /* FOOTER */
         footer {
             background-color: var(--primary-dark);
             color: var(--white);
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
+            padding: 25px 20px;
+            margin-top: auto;
         }
 
         footer p {
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.1rem;
+            }
+            .topic-card {
+                height: auto;
+                min-height: 280px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header mit Logo und Social Media -->
+    <!-- HEADER -->
     <header>
-        <div class="logo-container">
-<img src="Logo" alt="Aguatura Logo">
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home" class="active">Home</a>
+                <a href="Project-Map.html" id="nav-map">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
         </div>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+
+        <div class="header-right">
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <!-- Sprachauswahl -->
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
         </div>
     </header>
 
-    <!-- Hero Bereich -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Protecting Nature Through Knowledge and Action</h1>
-            <p>Aguatura is a non-profit organization that brings together people, knowledge, and experience to protect ecosystems, promote sustainable water management, and safeguard biodiversity.</p>
-        </div>
-    </section>
+    <!-- INHALTSBEREICH -->
+    <div class="main-container animate-fade">
 
-    <!-- Dreikanaliges Layout -->
-    <section class="channels">
-        <div class="channel-card">
-            <h3>Water Management</h3>
-            <p>Developing innovative solutions for sustainable water resource conservation, clean supply, and watershed protection.</p>
-        </div>
-        <div class="channel-card">
-            <h3>Biodiversity</h3>
-            <p>Preserving natural habitats and protecting endangered species through targeted ecological research and field action.</p>
-        </div>
-        <div class="channel-card">
-            <h3>Global Collaboration</h3>
-            <p>Connecting communities, scientists, and organizations worldwide to drive collective environmental impact.</p>
-        </div>
-    </section>
+        <!-- HERO BEREICH -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 id="hero-title">Learning from local best practices to inspire action everywhere</h1>
+                <p id="hero-desc1">Around the world, countless local initiatives successfully protect nature. Yet, these valuable strategies often remain hidden from the broader public.</p>
+                <p id="hero-desc2">We bridge this gap by giving local approaches greater visibility—inspiring engagement for nature and people.</p>
+            </div>
+        </section>
 
-    <!-- Footer -->
+        <!-- SEKTION 1: HAUPTHEMEN -->
+        <h2 id="topics-heading" class="section-title">Our Core Focus Areas</h2>
+        <div class="topics-grid">
+            
+            <!-- Wasser-Karte -->
+            <div class="topic-card water">
+                <div class="card-bg"></div>
+                <div class="card-overlay"></div>
+                <div class="topic-content">
+                    <h3 id="topic1-title">Water Management</h3>
+                    <p id="topic1-desc">Advancing sustainable water resource conservation, clean supply, and watershed protection to secure our most vital resource.</p>
+                </div>
+            </div>
+
+            <!-- Biodiversitäts-Karte -->
+            <div class="topic-card biodiversity">
+                <div class="card-bg"></div>
+                <div class="card-overlay"></div>
+                <div class="topic-content">
+                    <h3 id="topic2-title">Biodiversity</h3>
+                    <p id="topic2-desc">Preserving natural habitats and protecting endangered species through targeted ecological research and field action.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SEKTION 2: UNSER ANSATZ -->
+        <section class="approach-box">
+            <h3 id="approach-title">Our Approach</h3>
+            <p id="approach-desc">We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices. Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place.</p>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
     </footer>
 
+    <!-- SKRIPT FÜR MEHRSPRACHIGKEIT -->
+    <script>
+        const translations = {
+            en: {
+                navHome: "Home",
+                navMap: "Project Map",
+                navAbout: "About us",
+                heroTitle: "Learning from local best practices to inspire action everywhere",
+                heroDesc1: "Around the world, countless local initiatives successfully protect nature. Yet, these valuable strategies often remain hidden from the broader public.",
+                heroDesc2: "We bridge this gap by giving local approaches greater visibility—inspiring engagement for nature and people.",
+                topicsHeading: "Our Core Focus Areas",
+                topic1Title: "Water Management",
+                topic1Desc: "Advancing sustainable water resource conservation, clean supply, and watershed protection to secure our most vital resource.",
+                topic2Title: "Biodiversity",
+                topic2Desc: "Preserving natural habitats and protecting endangered species through targeted ecological research and field action.",
+                approachTitle: "Our Approach",
+                approachDesc: "We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices. Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place."
+            },
+            de: {
+                navHome: "Startseite",
+                navMap: "Projektkarte",
+                navAbout: "Über uns",
+                heroTitle: "Von lokalen Projekten lernen, um überall etwas zu bewegen",
+                heroDesc1: "Weltweit schützen unzählige Menschen vor Ort die Natur – doch oft bekommt kaum jemand davon mit.",
+                heroDesc2: "Wir machen diese wertvollen Strategien sichtbar, damit sie andere inspirieren und echten Wandel anstoßen.",
+                topicsHeading: "Unsere Fokusthemen",
+                topic1Title: "Wassermanagement",
+                topic1Desc: "Sauberes Wasser sichern, Flüsse schützen und lokale Lösungen für den Erhalt unserer wichtigsten Lebensgrundlage stärken.",
+                topic2Title: "Biodiversität",
+                topic2Desc: "Artenvielfalt bewahren und Lebensräume schützen – durch handfeste Feldforschung und Initiativen direkt vor Ort.",
+                approachTitle: "Unser Weg",
+                approachDesc: "Wir sprechen mit ausgewählten NGOs und Machern aus aller Welt. Durch persönliche Besuche, Gespräche und gezielte Recherchen sammeln wir die besten Ideen und bringen sie auf unserer Plattform zusammen."
+            },
+            fr: {
+                navHome: "Accueil",
+                navMap: "Carte des Projets",
+                navAbout: "À propos",
+                heroTitle: "S'inspirer du terrain pour agir partout",
+                heroDesc1: "Partout dans le monde, des initiatives locales protègent la nature avec succès, mais restent souvent invisibles.",
+                heroDesc2: "Notre rôle est de mettre ces belles idées en lumière pour inspirer un maximum de personnes.",
+                topicsHeading: "Nos Domaines d'Action",
+                topic1Title: "Gestion de l'eau",
+                topic1Desc: "Protéger les ressources en eau, garantir l'accès à l'eau propre et préserver les rivières pour l'avenir.",
+                topic2Title: "Biodiversité",
+                topic2Desc: "Sauvegarder les habitats naturels et la faune grâce à des recherches de terrain et des actions concrètes.",
+                approachTitle: "Notre Démarche",
+                approachDesc: "Nous allons à la rencontre d'ONG et d'acteurs de terrain du monde entier. Grâce à des visites, des entretiens et des recherches approfondies, nous réunissons les meilleures solutions en un seul endroit."
+            },
+            es: {
+                navHome: "Inicio",
+                navMap: "Mapa de Proyectos",
+                navAbout: "Sobre nosotros",
+                heroTitle: "Aprender de las iniciativas locales para inspirar el cambio",
+                heroDesc1: "En todo el mundo hay proyectos locales que protegen la naturaleza con éxito, pero suelen pasar desapercibidos.",
+                heroDesc2: "Damos visibilidad a estas buenas prácticas para que inspiren a más personas y generen impacto.",
+                topicsHeading: "Nuestras Áreas Clave",
+                topic1Title: "Gestión del Agua",
+                topic1Desc: "Garantizar agua limpia, proteger cuencas y respaldar soluciones locales para cuidar nuestro recurso más vital.",
+                topic2Title: "Biodiversidad",
+                topic2Desc: "Cuidar los hábitats naturales y proteger la vida silvestre mediante investigación y acción directa sobre el terreno.",
+                approachTitle: "Cómo Trabajamos",
+                approachDesc: "Hablamos directamente con ONG y personas comprometidas de distintas culturas. Mediante visitas de campo, entrevistas y una investigación rigurosa, reunimos las mejores ideas en un solo lugar."
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-desc1').innerText = t.heroDesc1;
+            document.getElementById('hero-desc2').innerText = t.heroDesc2;
+            
+            document.getElementById('topics-heading').innerText = t.topicsHeading;
+            document.getElementById('topic1-title').innerText = t.topic1Title;
+            document.getElementById('topic1-desc').innerText = t.topic1Desc;
+            document.getElementById('topic2-title').innerText = t.topic2Title;
+            document.getElementById('topic2-desc').innerText = t.topic2Desc;
+            
+            document.getElementById('approach-title').innerText = t.approachTitle;
+            document.getElementById('approach-desc').innerText = t.approachDesc;
+        }
+    </script>
 </body>
 </html>
