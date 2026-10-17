@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – Aguatura</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome für Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* STORY SEKTION */
+        .story-section {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .story-img {
+            flex: 0 0 280px;
+            text-align: center;
+        }
+
+        .story-img img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .story-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .story-content p {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        /* PROFIL SEKTION */
+        .profile-section {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 30px;
+        }
+
+        .profile-img img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .profile-info .role {
+            font-weight: 600;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .profile-info blockquote {
+            font-style: italic;
+            color: #4A5568;
+            font-size: 1.05rem;
+            border-left: 3px solid var(--accent-green);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Dezentes LinkedIn-Icon im Corporate Green */
+        .linkedin-link {
+            display: inline-block;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .linkedin-link:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* BEREICHE UNTEREINANDER */
+        .pillars-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pillar-box {
+            background: var(--bg-light);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            border-left: 4px solid var(--primary-dark);
+        }
+
+        .pillar-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .pillar-box p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .pillar-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .story-section {
+                flex-direction: column;
+                padding: 30px;
+                text-align: center;
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-info blockquote {
+                border-left: none;
+                padding-left: 0;
+            }
+            .profile-section {
+                padding: 30px;
+            }
+            .pillar-box {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map">Project Map</a>
+                <a href="about.html" id="nav-about" class="active">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <!-- Sprachauswahl -->
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container animate-fade">
+
+        <!-- GEMEINSAME STORY -->
+        <section class="story-section">
+            <div class="story-img">
+                <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" alt="Marie and Johannes">
+            </div>
+            <div class="story-content">
+                <h1 id="story-title">We met and made each other's passion our common passion</h1>
+                <p id="story-desc1">Marie and Johannes met for the first time in April 2022 while traveling. Since then, they have explored a wide variety of countries together, discovering the beauty and diversity of nature around the world. What connects them most is their shared passion for nature and social engagement.</p>
+                <p id="story-desc2">Driven by this passion, they founded their NGO Aguatura—a way to turn their vision into reality and actively contribute to protecting the environment and supporting communities.</p>
+            </div>
+        </section>
+
+        <!-- MARIE PROFIL -->
+        <section class="profile-section">
+            <div class="profile-header">
+                <div class="profile-img">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" alt="Marie">
+                </div>
+                <div class="profile-info">
+                    <h2>Marie</h2>
+                    <div id="marie-role" class="role">Co-Founder</div>
+                    <blockquote id="marie-quote">"We founded Aguatura to unite people and knowledge, driven by the belief that protecting our planet is a shared responsibility."</blockquote>
+                    <!-- Dezentes LinkedIn-Icon -->
+                    <a href="https://www.linkedin.com/in/marie-gandouet?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="linkedin-link" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="pillars-stack">
+                <div class="pillar-box">
+                    <h3 id="marie-col1-title">Academic Background</h3>
+                    <p id="marie-col1-p1">I studied business and economics, before completing a Master's in Sustainability for Business Transformation and a second Master's in European Governance and Political Science.</p>
+                    <p id="marie-col1-p2">This highlighted the gap between theory and reality and the importance of exploring how these challenges are actually addressed on the ground.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3 id="marie-col2-title">Professional Experience</h3>
+                    <p id="marie-col2-p1">Professionally, I spent over four years working between Paris and Berlin in the energy sector as a Sustainability and Digital Analyst, gaining insight into Europe's transition toward more sustainable systems.</p>
+                    <p id="marie-col2-p2">This role allowed me to better understand how these shifts impact systems and households, highlighting the crucial role of innovation.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3 id="marie-col3-title">Social Engagement</h3>
+                    <p id="marie-col3-p1">Alongside my studies and career, I have built extensive international NGO experience (e.g., Saint Vincent de Paul in Normandy, Bridges Today in Peru, and WWF in Colombia).</p>
+                    <p id="marie-col3-p2">Curious and committed, I continue to explore how social action and environmental protection can come together to create meaningful change.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOHANNES PROFIL -->
+        <section class="profile-section">
+            <div class="profile-header">
+                <div class="profile-img">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" alt="Johannes">
+                </div>
+                <div class="profile-info">
+                    <h2>Johannes</h2>
+                    <div id="johannes-role" class="role">Co-Founder</div>
+                    <blockquote id="johannes-quote">"We believe we should see ourselves as part of nature rather than apart from it, working together to preserve its balance and beauty. Aguatura stands for this."</blockquote>
+                    <!-- Dezentes LinkedIn-Icon -->
+                    <a href="https://www.linkedin.com/in/johannes-reil?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="linkedin-link" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="pillars-stack">
+                <div class="pillar-box">
+                    <h3 id="johannes-col1-title">Academic Background</h3>
+                    <p id="johannes-col1-p1">I began studying Business and Economics for my bachelor’s degree in 2017 at the University of Passau. During a seminar, I discovered Corporate Social Responsibility, which became a turning point.</p>
+                    <p id="johannes-col1-p2">For my master’s degree, I decided to look at business through a "green" lens, equipping me with the skills to help transform companies into drivers of a sustainable future.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3 id="johannes-col2-title">Professional Experience</h3>
+                    <p id="johannes-col2-p1">For over three years, I worked in the field of climate change and sustainability across several consulting companies, helping organizations on their journey toward sustainability.</p>
+                    <p id="johannes-col2-p2">These experiences showed me how companies can tackle sustainability challenges and that organizations are not just part of the problem—they are also a crucial part of the solution.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3 id="johannes-col3-title">Social Engagement</h3>
+                    <p id="johannes-col3-p1">Over the years, I have engaged in various volunteer projects related to social and environmental topics. Being part of such environments has always been inspiring.</p>
+                    <p id="johannes-col3-p2">These experiences ultimately motivated me to co-found Aguatura, as a way to continue working toward causes I care about and to create meaningful change together.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- SKRIPT FÜR MEHRSPRACHIGKEIT -->
+    <script>
+        const translations = {
+            en: {
+                navHome: "Home",
+                navMap: "Project Map",
+                navAbout: "About us",
+                storyTitle: "We met and made each other's passion our common passion",
+                storyDesc1: "Marie and Johannes met for the first time in April 2022 while traveling. Since then, they have explored a wide variety of countries together, discovering the beauty and diversity of nature around the world. What connects them most is their shared passion for nature and social engagement.",
+                storyDesc2: "Driven by this passion, they founded their NGO Aguatura—a way to turn their vision into reality and actively contribute to protecting the environment and supporting communities.",
+                
+                marieRole: "Co-Founder",
+                marieQuote: "\"We founded Aguatura to unite people and knowledge, driven by the belief that protecting our planet is a shared responsibility.\"",
+                marieCol1Title: "Academic Background",
+                marieCol1P1: "I studied business and economics, before completing a Master's in Sustainability for Business Transformation and a second Master's in European Governance and Political Science.",
+                marieCol1P2: "This highlighted the gap between theory and reality and the importance of exploring how these challenges are actually addressed on the ground.",
+                marieCol2Title: "Professional Experience",
+                marieCol2P1: "Professionally, I spent over four years working between Paris and Berlin in the energy sector as a Sustainability and Digital Analyst, gaining insight into Europe's transition toward more sustainable systems.",
+                marieCol2P2: "This role allowed me to better understand how these shifts impact systems and households, highlighting the crucial role of innovation.",
+                marieCol3Title: "Social Engagement",
+                marieCol3P1: "Alongside my studies and career, I have built extensive international NGO experience (e.g., Saint Vincent de Paul in Normandy, Bridges Today in Peru, and WWF in Colombia).",
+                marieCol3P2: "Curious and committed, I continue to explore how social action and environmental protection can come together to create meaningful change.",
+
+                johannesRole: "Co-Founder",
+                johannesQuote: "\"We believe we should see ourselves as part of nature rather than apart from it, working together to preserve its balance and beauty. Aguatura stands for this.\"",
+                johannesCol1Title: "Academic Background",
+                johannesCol1P1: "I began studying Business and Economics for my bachelor’s degree in 2017 at the University of Passau. During a seminar, I discovered Corporate Social Responsibility, which became a turning point.",
+                johannesCol1P2: "For my master’s degree, I decided to look at business through a \"green\" lens, equipping me with the skills to help transform companies into drivers of a sustainable future.",
+                johannesCol2Title: "Professional Experience",
+                johannesCol2P1: "For over three years, I worked in the field of climate change and sustainability across several consulting companies, helping organizations on their journey toward sustainability.",
+                johannesCol2P2: "These experiences showed me how companies can tackle sustainability challenges and that organizations are not just part of the problem—they are also a crucial part of the solution.",
+                johannesCol3Title: "Social Engagement",
+                johannesCol3P1: "Over the years, I have engaged in various volunteer projects related to social and environmental topics. Being part of such environments has always been inspiring.",
+                johannesCol3P2: "These experiences ultimately motivated me to co-found Aguatura, as a way to continue working toward causes I care about and to create meaningful change together."
+            },
+            de: {
+                navHome: "Startseite",
+                navMap: "Projektkarte",
+                navAbout: "Über uns",
+                storyTitle: "Wir haben uns kennengelernt und unsere Leidenschaften verbunden",
+                storyDesc1: "Marie und Johannes trafen sich im April 2022 zum ersten Mal beim Reisen. Seitdem haben sie gemeinsam eine Vielzahl von Ländern erkundet und dabei die Schönheit und Vielfalt der Natur auf der ganzen Welt entdeckt. Was sie am meisten verbindet, ist ihre gemeinsame Begeisterung für Natur und gesellschaftliches Engagement.",
+                storyDesc2: "Angetrieben von dieser Leidenschaft gründeten sie die NGO Aguatura – ein Weg, um ihre Vision in die Tat umzusetzen und aktiv zum Schutz der Umwelt und zur Unterstützung von Gemeinschaften beizutragen.",
+                
+                marieRole: "Mitgründerin",
+                marieQuote: "\"Wir haben Aguatura gegründet, um Menschen und Wissen zu vereinen – angetrieben von der Überzeugung, dass der Schutz unseres Planeten eine gemeinsame Verantwortung ist.\"",
+                marieCol1Title: "Akademischer Hintergrund",
+                marieCol1P1: "Ich habe Wirtschaftswissenschaften studiert, gefolgt von einem Master in Sustainability for Business Transformation und einem zweiten Master in Europäischer Governance und Politikwissenschaft.",
+                marieCol1P2: "Dies hat mir die Lücke zwischen Theorie und Realität aufgezeigt und wie wichtig es ist zu verstehen, wie Herausforderungen konkret vor Ort angegangen werden.",
+                marieCol2Title: "Berufserfahrung",
+                marieCol2P1: "Beruflich war ich über vier Jahre lang in Paris und Berlin im Energiesektor als Nachhaltigkeits- und Digitalanalystin tätig und habe Einblicke in Europas Wandel hin zu nachhaltigeren Systemen gewonnen.",
+                marieCol2P2: "Diese Rolle half mir zu verstehen, wie sich diese Veränderungen auf Systeme und Haushalte auswirken, und verdeutlichte die entscheidende Rolle von Innovation.",
+                marieCol3Title: "Gesellschaftliches Engagement",
+                marieCol3P1: "Parallel zu Studium und Karriere habe ich umfangreiche internationale NGO-Erfahrung gesammelt (u.a. bei Saint Vincent de Paul, Bridges Today in Peru und dem WWF in Kolumbien).",
+                marieCol3P2: "Neugierig und engagiert erforsche ich weiterhin, wie sozialer Wandel und Umweltschutz Hand in Hand gehen können.",
+
+                johannesRole: "Mitgründer",
+                johannesQuote: "\"Wir glauben, dass wir uns als Teil der Natur sehen sollten und nicht als etwas von ihr Getrenntes, um gemeinsam ihr Gleichgewicht zu bewahren. Dafür steht Aguatura.\"",
+                johannesCol1Title: "Akademischer Hintergrund",
+                johannesCol1P1: "2017 begann ich mein Bachelorstudium der Wirtschaftswissenschaften an der Universität Passau. Während eines Seminars entdeckte ich das Konzept der CSR – ein echter Wendepunkt.",
+                johannesCol1P2: "Für meinen Master beschloss ich, die Wirtschaft durch eine „grüne“ Brille zu betrachten, was mir das Rüstzeug gab, Unternehmen zu Treibern einer nachhaltigen Zukunft zu machen.",
+                johannesCol2Title: "Berufserfahrung",
+                johannesCol2P1: "Über drei Jahre lang arbeitete ich im Bereich Klimawandel und Nachhaltigkeit bei verschiedenen Beratungsunternehmen und begleitete Organisationen auf ihrem Nachhaltigkeitsweg.",
+                johannesCol2P2: "Diese Erfahrungen zeigten mir, dass Organisationen nicht nur Teil des Problems sind, sondern vor allem auch eine entscheidende Rolle für die Lösung spielen.",
+                johannesCol3Title: "Gesellschaftliches Engagement",
+                johannesCol3P1: "Über die Jahre hinweg habe ich mich in verschiedenen sozialen und ökologischen Projekten engagiert. Solche Umgebungen waren für mich immer unglaublich inspirierend.",
+                johannesCol3P2: "Diese Erlebnisse motivierten mich schließlich dazu, Aguatura mitzuheften – um gemeinsam mit anderen echten Wandel zu gestalten."
+            },
+            fr: {
+                navHome: "Accueil",
+                navMap: "Carte des Projets",
+                navAbout: "À propos",
+                storyTitle: "Nous nous sommes rencontrés et avons uni nos passions",
+                storyDesc1: "Marie et Johannes se sont rencontrés en avril 2022 en voyageant. Depuis, ils ont exploré une multitude de pays ensemble, découvrant la beauté et la diversité de la nature. Ce qui les unit le plus, c'est leur passion commune pour la nature et l'engagement social.",
+                storyDesc2: "Portés par cette passion, ils ont fondé l'ONG Aguatura pour donner vie à leur vision et contribuer activement à la protection de l'environnement.",
+                
+                marieRole: "Co-fondatrice",
+                marieQuote: "\"Nous avons fondé Aguatura pour unir les hommes et les savoirs, convaincus que protéger notre planète est une responsabilité partagée.\"",
+                marieCol1Title: "Parcours académique",
+                marieCol1P1: "J'ai étudié l'économie avant d'obtenir un Master en Sustainability for Business Transformation et un second en Gouvernance européenne et Sciences politiques.",
+                marieCol1P2: "Cela m'a fait réaliser l'écart entre la théorie et la réalité du terrain.",
+                marieCol2Title: "Expérience professionnelle",
+                marieCol2P1: "J'ai passé plus de quatre ans à Paris et Berlin dans le secteur de l'énergie en tant qu'analyste en durabilité et numérique.",
+                marieCol2P2: "Ce rôle m'a permis de comprendre l'impact des transitions énergétiques.",
+                marieCol3Title: "Engagement social",
+                marieCol3P1: "J'ai acquis une solide expérience associative (Saint Vincent de Paul, Bridges Today au Pérou, WWF en Colombie).",
+                marieCol3P2: "Curieuse et engagée, je cherche à lier action sociale et protection de l'environnement.",
+
+                johannesRole: "Co-fondateur",
+                johannesQuote: "\"Nous devons nous considérer comme faisant partie intégrante de la nature, et non séparés d'elle. Aguatura incarne cette vision.\"",
+                johannesCol1Title: "Parcours académique",
+                johannesCol1P1: "J'ai débuté une licence en économie en 2017 à l'Université de Passau. La découverte de la RSE a été un vrai tournant.",
+                johannesCol1P2: "Pour mon master, j'ai choisi d'aborder l'économie sous un angle écologique.",
+                johannesCol2Title: "Expérience professionnelle",
+                johannesCol2P1: "Pendant plus de trois ans, j'ai travaillé dans le conseil en climat et durabilité.",
+                johannesCol2P2: "Ces expériences m'ont montré que les organisations sont indispensables à la solution.",
+                johannesCol3Title: "Engagement social",
+                johannesCol3P1: "Je me suis engagé dans divers projets bénévoles à caractère social et environnemental.",
+                johannesCol3P2: "Ces expériences m'ont poussé à co-fonder Aguatura pour créer un impact positif."
+            },
+            es: {
+                navHome: "Inicio",
+                navMap: "Mapa de Proyectos",
+                navAbout: "Sobre nosotros",
+                storyTitle: "Nos conocimos y unimos nuestras pasiones",
+                storyDesc1: "Marie y Johannes se conocieron en abril de 2022 viajando. Desde entonces, han explorado una gran variedad de países juntos, descubriendo la riqueza de la naturaleza. Les une su profunda pasión por el medio ambiente y el compromiso social.",
+                storyDesc2: "Impulsados por esta visión, fundaron la ONG Aguatura para convertir sus ideas en acciones reales y proteger nuestro entorno.",
+                
+                marieRole: "Co-fundadora",
+                marieQuote: "\"Fundamos Aguatura para unir personas y conocimientos, convencidos de que proteger nuestro planeta es una responsabilidad compartida.\"",
+                marieCol1Title: "Formación académica",
+                marieCol1P1: "Estudié economía y empresariales, completando un Máster en Transformación Sostenible y otro en Gobernanza Europea y Ciencias Políticas.",
+                marieCol1P2: "Esto evidenció la brecha entre la teoría y la realidad sobre el terreno.",
+                marieCol2Title: "Experiencia profesional",
+                marieCol2P1: "Trabajé más de cuatro años entre París y Berlín en el sector energético como analista de sostenibilidad y digitalización.",
+                marieCol2P2: "Este rol me permitió entender el impacto de las transiciones ecológicas.",
+                marieCol3Title: "Compromiso social",
+                marieCol3P1: "He colaborado con diversas ONG internacionales (Saint Vincent de Paul, Bridges Today en Perú, WWF en Colombia).",
+                marieCol3P2: "Curiosa y comprometida, sigo explorando cómo unir la acción social y ambiental.",
+
+                johannesRole: "Co-fundador",
+                johannesQuote: "\"Creemos que debemos vernos como parte de la naturaleza, no separados de ella, trabajando juntos para preservar su equilibrio. Aguatura representa esto.\"",
+                johannesCol1Title: "Formación académica",
+                johannesCol1P1: "Comencé mis estudios de economía en 2017 en la Universidad de Passau. Descubrir la Responsabilidad Social Corporativa marcó un punto de inflexión.",
+                johannesCol1P2: "Para mi máster, enfoqué los negocios desde una perspectiva 'verde'.",
+                johannesCol2Title: "Experiencia profesional",
+                johannesCol2P1: "Durante más de tres años trabajé en consultoría de cambio climático y sostenibilidad.",
+                johannesCol2P2: "Estas experiencias me demostraron que las organizaciones son clave para la solución.",
+                johannesCol3Title: "Compromiso social",
+                johannesCol3P1: "A lo largo de los años he participado en numerosos proyectos de voluntariado social y ambiental.",
+                johannesCol3P2: "Esto me motivó a co-fundar Aguatura para generar un cambio significativo."
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('story-title').innerText = t.storyTitle;
+            document.getElementById('story-desc1').innerText = t.storyDesc1;
+            document.getElementById('story-desc2').innerText = t.storyDesc2;
+            
+            document.getElementById('marie-role').innerText = t.marieRole;
+            document.getElementById('marie-quote').innerText = t.marieQuote;
+            document.getElementById('marie-col1-title').innerText = t.marieCol1Title;
+            document.getElementById('marie-col1-p1').innerText = t.marieCol1P1;
+            document.getElementById('marie-col1-p2').innerText = t.marieCol1P2;
+            document.getElementById('marie-col2-title').innerText = t.marieCol2Title;
+            document.getElementById('marie-col2-p1').innerText = t.marieCol2P1;
+            document.getElementById('marie-col2-p2').innerText = t.marieCol2P2;
+            document.getElementById('marie-col3-title').innerText = t.marieCol3Title;
+            document.getElementById('marie-col3-p1').innerText = t.marieCol3P1;
+            document.getElementById('marie-col3-p2').innerText = t.marieCol3P2;
+
+            document.getElementById('johannes-role').innerText = t.johannesRole;
+            document.getElementById('johannes-quote').innerText = t.johannesQuote;
+            document.getElementById('johannes-col1-title').innerText = t.johannesCol1Title;
+            document.getElementById('johannes-col1-p1').innerText = t.johannesCol1P1;
+            document.getElementById('johannes-col1-p2').innerText = t.johannesCol1P2;
+            document.getElementById('johannes-col2-title').innerText = t.johannesCol2Title;
+            document.getElementById('johannes-col2-p1').innerText = t.johannesCol2P1;
+            document.getElementById('johannes-col2-p2').innerText = t.johannesCol2P2;
+            document.getElementById('johannes-col3-title').innerText = t.johannesCol3Title;
+            document.getElementById('johannes-col3-p1').innerText = t.johannesCol3P1;
+            document.getElementById('johannes-col3-p2').innerText = t.johannesCol3P2;
+        }
+    </script>
+</body>
+</html>
