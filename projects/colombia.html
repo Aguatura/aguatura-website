@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWF Colombia – Aguatura Projects</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Minimap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO SEKTION */
+        .project-hero {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .project-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 30px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4A5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        /* SDG ICONS STYLING */
+        .sdg-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sdg-icons img {
+            height: 55px;
+            width: 55px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .sdg-icons img:hover {
+            transform: scale(1.08);
+        }
+
+        /* ZWEI-SPALTIGES SECTION-LAYOUT FÜR MAP & SUMMARY */
+        .map-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        /* INFO-BOX LINKS DANEBEN */
+        .map-info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .location-item:hover {
+            background-color: var(--bg-light);
+            transform: translateX(4px);
+        }
+
+        .location-icon {
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .location-item:hover .location-icon {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .location-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-text span {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        /* MAP CARD RECHTS */
+        .map-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #minimap {
+            height: 100%;
+            min-height: 250px;
+            width: 100%;
+            border-radius: 8px;
+            background-color: #EBF4F0;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        /* WEISSE MARKER PINS STANDARD (absolut fix & stabil) */
+        .custom-white-pin {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .custom-white-pin.highlight-pin {
+            transform: scale(1.3);
+            background: var(--primary-dark);
+            color: var(--white);
+            border-color: var(--accent-green);
+            z-index: 1000 !important;
+        }
+
+        .custom-white-pin.dimmed-pin {
+            opacity: 0.35;
+        }
+
+        /* LEAFLET TOOLTIP ALS WEISSER KASTEN OBEN DRÜBER */
+        .leaflet-tooltip.custom-tooltip {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+        .leaflet-tooltip.custom-tooltip::before {
+            border-top-color: #ffffff;
+        }
+
+        /* CONTENT CARD STYLING */
+        .content-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: var(--primary-dark);
+        }
+
+        /* PARTNER BOX (WWF) */
+        .partner-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--bg-light);
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .partner-box img {
+            height: 40px;
+            width: auto;
+        }
+
+        .partner-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .partner-links a {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
+        }
+
+        .partner-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* GRID FÜR TEXT & BILD */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .grid-2col.reverse {
+            direction: rtl;
+        }
+
+        .grid-2col.reverse > * {
+            direction: ltr;
+        }
+
+        .grid-text p {
+            font-size: 1.02rem;
+            color: #4A5568;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .grid-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background-color: #E2E8F0;
+        }
+
+        /* 4 LERN-BOXEN ALS MINI-GRID IN JEDER AKTIVITÄT */
+        .activity-learnings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .mini-learning-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .mini-learning-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .mini-learning-card p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        /* HELPFUL LINKS / INTERESSANTE LINKS BOX */
+        .helpful-links {
+            margin-top: 20px;
+            background: #F8FAFC;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .helpful-links h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .helpful-links ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .helpful-links li a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .helpful-links li a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* KEY FACTS GRID */
+        .key-facts-section {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 45px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .key-facts-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px 20px;
+            border-radius: 10px;
+        }
+
+        .fact-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #A3E635;
+            margin-bottom: 10px;
+        }
+
+        .fact-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* EXPLORE MORE BUTTON SEKTION AM ENDE */
+        .explore-more-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .map-section-grid {
+                grid-template-columns: 1fr;
+            }
+            #minimap {
+                min-height: 220px;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .grid-2col.reverse {
+                direction: ltr;
+            }
+            .activity-learnings-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-hero, .content-card, .key-facts-section {
+                padding: 25px;
+            }
+            .project-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="https://cdpn.io/cpe/boomboom/url?id=7" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://cdpn.io/cpe/boomboom/url?id=8" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container animate-fade">
+
+        <!-- PROJECT HERO -->
+        <section class="project-hero">
+            <h1 id="hero-title">Protecting and Conserving Colombia's Natural Ecosystems</h1>
+            <div class="hero-meta">
+                <div class="meta-details">
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Colombia, Various Locations</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span>2024</span></div>
+                </div>
+                <!-- SDG-Bilder -->
+                <div class="sdg-icons">
+                    <img src="E_SDG_PRINT-13.jpg" alt="SDG 13 Climate Action" title="SDG 13: Climate Action">
+                    <img src="E_SDG_PRINT-14.jpg" alt="SDG 14 Life Below Water" title="SDG 14: Life Below Water">
+                    <img src="E_SDG_PRINT-15.jpg" alt="SDG 15 Life on Land" title="SDG 15: Life on Land">
+                    <img src="E_SDG_PRINT-17.jpg" alt="SDG 17 Partnerships" title="SDG 17: Partnerships for the Goals">
+                </div>
+            </div>
+        </section>
+
+        <!-- ZWEI-SPALTIGES KARTE & SUMMARY LAYOUT -->
+        <div class="map-section-grid">
+            <!-- LINKE BOX: KEY LOCATIONS SUMMARY -->
+            <div class="map-info-card">
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Key Locations</h3>
+                <ul class="location-list">
+                    <li class="location-item" data-location="bogota">
+                        <div class="location-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <div class="location-text">
+                            <strong>Bogotá</strong>
+                            <span id="loc-bogota">NGO Fundraising</span>
+                        </div>
+                    </li>
+                    <li class="location-item" data-location="medellin">
+                        <div class="location-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <div class="location-text">
+                            <strong>Medellín (Antioquia)</strong>
+                            <span id="loc-medellin">Multi-stakeholder partnerships</span>
+                        </div>
+                    </li>
+                    <li class="location-item" data-location="chingaza">
+                        <div class="location-icon"><i class="fa-solid fa-water"></i></div>
+                        <div class="location-text">
+                            <strong>Chingaza National Park</strong>
+                            <span id="loc-chingaza">Water management & biodiversity</span>
+                        </div>
+                    </li>
+                    <li class="location-item" data-location="salento">
+                        <div class="location-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <div class="location-text">
+                            <strong>Salento</strong>
+                            <span id="loc-salento">Sustainable agriculture & coffee</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- RECHTE BOX: KOMPAKTE STATISCHE MAP -->
+            <div class="map-card">
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Activity Map</h3>
+                <div id="minimap"></div>
+            </div>
+        </div>
+
+        <!-- THE CHALLENGE -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="challenge-title">The Challenge</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="challenge-p1">Colombia is one of the most biodiverse countries in the world, hosting nearly 10% of the planet's biodiversity despite covering less than 1% of the Earth's land surface.</p>
+                    <p id="challenge-p2">However, its ecosystems are under growing pressure from deforestation, illegal mining, agricultural expansion, and climate change, putting many species and water reserves at risk.</p>
+                </div>
+                <div class="grid-image">
+                    <img src="YOUR_GITHUB_IMAGE_URL_HERE" alt="Colombia Landscape Placeholder" onerror="this.src='https://images.unsplash.com/photo-1511497584788-876761142212?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY FACTS -->
+        <section class="key-facts-section">
+            <h2 id="facts-title">Key Facts</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">> 53%</div>
+                    <div id="fact1-desc" class="fact-desc">of Colombia's territory is covered by forests (WWF Colombia).</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">By 2030</div>
+                    <div id="fact2-desc" class="fact-desc">27% of the Amazon biome could be treeless if deforestation trends continue.</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">10%</div>
+                    <div id="fact3-desc" class="fact-desc">of global biodiversity is hosted in Colombia, in less than 1% of global land area.</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">80%</div>
+                    <div id="fact4-desc" class="fact-desc">of Colombia's fresh water supply originates from unique high-altitude ecosystems.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. BOGOTÁ: NGO FUNDRAISING -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="bogota-title">Bogotá: NGO Fundraising & Strategic Alignment</h2>
+                <!-- WWF Partner Logo & Social Links -->
+                <div class="partner-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/de/2/22/WWF_Logo.svg" alt="WWF Logo">
+                    <div class="partner-links">
+                        <a href="https://www.wwf.org.co" target="_blank" title="WWF Colombia Main Website"><i class="fa-solid fa-globe"></i></a>
+                        <a href="https://cdpn.io/cpe/boomboom/url?id=12" target="_blank" title="WWF Colombia Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://cdpn.io/cpe/boomboom/url?id=13" target="_blank" title="WWF Colombia Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://cdpn.io/cpe/boomboom/url?id=14" target="_blank" title="WWF Colombia LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="bogota-p1">Based in Bogotá, our engagement kicked off with strategic discussions on non-profit fundraising, resource mobilization, and scaling conservation impact across national programs.</p>
+                    <p id="bogota-p2">Understanding how institutional funding connects to grassroots fieldwork is essential for ensuring long-term financial stability for environmental protection initiatives.</p>
+                </div>
+                <div class="grid-image">
+                    <img src="YOUR_GITHUB_IMAGE_URL_HERE" alt="Bogota Placeholder" onerror="this.src='https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+
+            <div class="activity-learnings-grid">
+                <div class="mini-learning-card">
+                    <h4 id="bogota-l1-title">Community First</h4>
+                    <p id="bogota-l1-desc">Conservation succeeds when local communities are active co-creators of financial and social solutions.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="bogota-l2-title">Local Solutions</h4>
+                    <p id="bogota-l2-desc">Building on traditional knowledge makes environmental funding initiatives far more resilient.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="bogota-l3-title">Collaboration</h4>
+                    <p id="bogota-l3-desc">Lasting impact requires seamless cooperation between donors, NGOs, and policy makers.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="bogota-l4-title">Nature & Livelihoods</h4>
+                    <p id="bogota-l4-desc">Protecting ecosystems must generate tangible, positive economic benefits for local people.</p>
+                </div>
+            </div>
+
+            <div class="helpful-links">
+                <h4 id="bogota-links-title"><i class="fa-solid fa-link"></i> Helpful Links</h4>
+                <ul>
+                    <li><a href="https://www.wwf.org.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="bogota-link1">WWF Colombia Official Website</span></a></li>
+                    <li><a href="https://www.wwf.org" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="bogota-link2">Global WWF Conservation Work</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. MEDELLÍN: MULTI-STAKEHOLDER PARTNERSHIPS -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="partnerships-title">Medellín & Antioquia: Unidos por el Planeta</h2>
+            </div>
+            <div class="grid-2col reverse">
+                <div class="grid-text">
+                    <p id="partnerships-p1">In Antioquia, WWF Colombia drives the initiative <strong>"Unidos por el Planeta"</strong>. This strategic approach unites diverse actors from government agencies, civil society, academic institutions, and local communities.</p>
+                    <p id="partnerships-p2">By combining the unique strengths and resources of each sector, the initiative co-creates robust, long-term climate adaptation strategies to protect critical areas.</p>
+                </div>
+                <div class="grid-image">
+                    <img src="YOUR_GITHUB_IMAGE_URL_HERE" alt="Medellin Placeholder" onerror="this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+
+            <div class="activity-learnings-grid">
+                <div class="mini-learning-card">
+                    <h4 id="medellin-l1-title">Community First</h4>
+                    <p id="medellin-l1-desc">Cross-sector frameworks place community welfare at the center of climate adaptation policies.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="medellin-l2-title">Local Solutions</h4>
+                    <p id="medellin-l2-desc">Leveraging regional expertise from Antioquia ensures practical, region-specific strategies.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="medellin-l3-title">Collaboration</h4>
+                    <p id="medellin-l3-desc">Uniting government, academia, and civil society bridges gaps for maximum impact.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="medellin-l4-title">Nature & Livelihoods</h4>
+                    <p id="medellin-l4-desc">Securing natural resources guarantees long-term economic stability for the region.</p>
+                </div>
+            </div>
+
+            <div class="helpful-links">
+                <h4 id="medellin-links-title"><i class="fa-solid fa-link"></i> Helpful Links</h4>
+                <ul>
+                    <li><a href="https://www.wwf.org.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="medellin-link1">Unidos por el Planeta Initiative</span></a></li>
+                    <li><a href="https://www.minambiente.gov.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="medellin-link2">Colombia Ministry of Environment</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. CHINGAZA NATIONAL PARK -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="chingaza-title">Chingaza National Park: Water & Biodiversity</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="chingaza-p1">Alongside WWF Colombia biologists, we explored Chingaza National Natural Park. Its high-altitude *páramo* ecosystem acts as a natural sponge, capturing and supplying nearly 80% of Bogotá's drinking water.</p>
+                    <p id="chingaza-p2">Protecting Chingaza is vital for endemic species like the spectacled bear, while securing long-term water security against climate-induced droughts.</p>
+                </div>
+                <div class="grid-image">
+                    <img src="YOUR_GITHUB_IMAGE_URL_HERE" alt="Chingaza Placeholder" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+
+            <div class="activity-learnings-grid">
+                <div class="mini-learning-card">
+                    <h4 id="chingaza-l1-title">Community First</h4>
+                    <p id="chingaza-l1-desc">Protecting water basins directly safeguards millions of urban and rural residents in Bogotá.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="chingaza-l2-title">Local Solutions</h4>
+                    <p id="chingaza-l2-desc">Conservation of high-altitude páramos preserves unique natural water filtration systems.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="chingaza-l3-title">Collaboration</h4>
+                    <p id="chingaza-l3-desc">Biologists and local authorities work hand in hand to monitor endangered fauna and flora.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="chingaza-l4-title">Nature & Livelihoods</h4>
+                    <p id="chingaza-l4-desc">Ecosystem health equals water security, connecting pristine nature directly to human survival.</p>
+                </div>
+            </div>
+
+            <div class="helpful-links">
+                <h4 id="chingaza-links-title"><i class="fa-solid fa-link"></i> Helpful Links</h4>
+                <ul>
+                    <li><a href="https://www.parquesnacionales.gov.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="chingaza-link1">Parques Nacionales Naturales de Colombia</span></a></li>
+                    <li><a href="https://www.wwf.org.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="chingaza-link2">WWF Water Stewardship Projects</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. SALENTO & NATIVE BEES -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="salento-title">Salento: Sustainable Agriculture & Native Bees</h2>
+            </div>
+            <div class="grid-2col reverse">
+                <div class="grid-text">
+                    <p id="salento-p1">In Salento, we combined a visit to a sustainable coffee finca with a meliponiculture course focusing on native stingless bees (*abejas nativas*) and their vital ecological role as pollinators.</p>
+                    <p id="salento-p2">This hands-on experience highlighted how agroforestry and fair trade support for small-scale producers safeguard both biodiversity and rural livelihoods.</p>
+                </div>
+                <div class="grid-image">
+                    <img src="YOUR_GITHUB_IMAGE_URL_HERE" alt="Salento Placeholder" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+
+            <div class="activity-learnings-grid">
+                <div class="mini-learning-card">
+                    <h4 id="salento-l1-title">Community First</h4>
+                    <p id="salento-l1-desc">Empowering coffee-farming families fosters deep-rooted community-led conservation.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="salento-l2-title">Local Solutions</h4>
+                    <p id="salento-l2-desc">Integrating native stingless bees into agriculture protects local pollination networks.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="salento-l3-title">Collaboration</h4>
+                    <p id="salento-l3-desc">Partnering with educational institutions like Campo Colombia Educa multiplies impact.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="salento-l4-title">Nature & Livelihoods</h4>
+                    <p id="salento-l4-desc">Sustainable agroforestry ensures high-quality coffee while preserving thriving ecosystems.</p>
+                </div>
+            </div>
+
+            <div class="helpful-links">
+                <h4 id="salento-links-title"><i class="fa-solid fa-link"></i> Helpful Links</h4>
+                <ul>
+                    <li><a href="https://www.campocolombiaeduca.org" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="salento-link1">Campo Colombia Educa</span></a></li>
+                    <li><a href="https://www.wwf.org.co" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="salento-link2">Sustainable Agriculture Guidelines</span></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EXPLORE MORE BUTTON -->
+        <div class="explore-more-section">
+            <a href="Project-Map.html" class="btn-explore">
+                <i class="fa-solid fa-map-location-dot"></i> <span id="explore-btn-text">Explore more projects</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- Leaflet JS für die Minimap -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('minimap', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([4.5, -73.2], 5);
+
+            var markers = {};
+
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function(feature) {
+                            var countryName = feature.properties.name;
+                            if (countryName === "Colombia") {
+                                return {
+                                    fillColor: "#1B4D3E",
+                                    fillOpacity: 0.95,
+                                    color: "#1B4D3E",
+                                    weight: 1.5
+                                };
+                            } else {
+                                return {
+                                    fillColor: "#82C3A6",
+                                    fillOpacity: 0.6,
+                                    color: "#FFFFFF",
+                                    weight: 1
+                                };
+                            }
+                        }
+                    }).addTo(map);
+
+                    var createWhiteIcon = function(iconClass) {
+                        return L.divIcon({
+                            className: 'custom-white-pin',
+                            html: `<i class="fa-solid ${iconClass}"></i>`,
+                            iconSize: [28, 28],
+                            iconAnchor: [14, 14]
+                        });
+                    };
+
+                    markers['bogota'] = L.marker([4.7110, -74.0721], { icon: createWhiteIcon('fa-hand-holding-heart') })
+                        .addTo(map)
+                        .bindTooltip('<b>Bogotá</b><br>NGO Fundraising', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] });
+                        
+                    markers['medellin'] = L.marker([6.2442, -75.5812], { icon: createWhiteIcon('fa-handshake') })
+                        .addTo(map)
+                        .bindTooltip('<b>Medellín (Antioquia)</b><br>Unidos por el Planeta', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] });
+                        
+                    markers['chingaza'] = L.marker([4.5322, -73.7431], { icon: createWhiteIcon('fa-water') })
+                        .addTo(map)
+                        .bindTooltip('<b>Chingaza National Park</b><br>Water management & biodiversity', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] });
+                        
+                    markers['salento'] = L.marker([4.6375, -75.5703], { icon: createWhiteIcon('fa-seedling') })
+                        .addTo(map)
+                        .bindTooltip('<b>Salento</b><br>Sustainable agriculture & coffee', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] });
+
+                    // HOVER LOGIK
+                    const locationItems = document.querySelectorAll('.location-item');
+
+                    locationItems.forEach(item => {
+                        const locKey = item.getAttribute('data-location');
+                        
+                        item.addEventListener('mouseenter', function() {
+                            if (markers[locKey]) {
+                                markers[locKey].openTooltip();
+
+                                Object.keys(markers).forEach(key => {
+                                    const mElement = markers[key].getElement();
+                                    if (mElement) {
+                                        if (key === locKey) {
+                                            mElement.classList.add('highlight-pin');
+                                            mElement.classList.remove('dimmed-pin');
+                                        } else {
+                                            mElement.classList.add('dimmed-pin');
+                                            mElement.classList.remove('highlight-pin');
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                        item.addEventListener('mouseleave', function() {
+                            if (markers[locKey]) {
+                                markers[locKey].closeTooltip();
+                            }
+                            Object.keys(markers).forEach(key => {
+                                const mElement = markers[key].getElement();
+                                if (mElement) {
+                                    mElement.classList.remove('highlight-pin');
+                                    mElement.classList.remove('dimmed-pin');
+                                }
+                            });
+                        });
+                    });
+                })
+                .catch(err => console.error("Fehler beim Laden der Kartendaten: ", err));
+        });
+
+        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
+        const translations = {
+            en: {
+                navHome: "Home",
+                navMap: "Project Map",
+                navAbout: "About us",
+                heroTitle: "Protecting and Conserving Colombia's Natural Ecosystems",
+                locationMeta: "Colombia, Various Locations",
+                summaryTitle: "Key Locations",
+                locBogota: "NGO Fundraising",
+                locMedellin: "Multi-stakeholder partnerships",
+                locChingaza: "Water management & biodiversity",
+                locSalento: "Sustainable agriculture & coffee",
+                mapHeading: "Activity Map",
+                challengeTitle: "The Challenge",
+                challengeP1: "Colombia is one of the most biodiverse countries in the world, hosting nearly 10% of the planet's biodiversity despite covering less than 1% of the Earth's land surface.",
+                challengeP2: "However, its ecosystems are under growing pressure from deforestation, illegal mining, agricultural expansion, and climate change, putting many species and water reserves at risk.",
+                factsTitle: "Key Facts",
+                fact1Desc: "of Colombia's territory is covered by forests (WWF Colombia).",
+                fact2Desc: "27% of the Amazon biome could be treeless if deforestation trends continue.",
+                fact3Desc: "of global biodiversity is hosted in Colombia, in less than 1% of global land area.",
+                fact4Desc: "of Colombia's fresh water supply originates from unique high-altitude ecosystems.",
+                
+                bogotaTitle: "Bogotá: NGO Fundraising & Strategic Alignment",
+                bogotaP1: "Based in Bogotá, our engagement kicked off with strategic discussions on non-profit fundraising, resource mobilization, and scaling conservation impact across national programs.",
+                bogotaP2: "Understanding how institutional funding connects to grassroots fieldwork is essential for ensuring long-term financial stability for environmental protection initiatives.",
+                bogotaL1Title: "Community First", bogotaL1Desc: "Conservation succeeds when local communities are active co-creators of financial and social solutions.",
+                bogotaL2Title: "Local Solutions", bogotaL2Desc: "Building on traditional knowledge makes environmental funding initiatives far more resilient.",
+                bogotaL3Title: "Collaboration", bogotaL3Desc: "Lasting impact requires seamless cooperation between donors, NGOs, and policy makers.",
+                bogotaL4Title: "Nature & Livelihoods", bogotaL4Desc: "Protecting ecosystems must generate tangible, positive economic benefits for local people.",
+                bogotaLinksTitle: "Helpful Links", bogotaLink1: "WWF Colombia Official Website", bogotaLink2: "Global WWF Conservation Work",
+
+                partnershipsTitle: "Medellín & Antioquia: Unidos por el Planeta",
+                partnershipsP1: "In Antioquia, WWF Colombia drives the initiative \"Unidos por el Planeta\". This strategic approach unites diverse actors from government agencies, civil society, academic institutions, and local communities.",
+                partnershipsP2: "By combining the unique strengths and resources of each sector, the initiative co-creates robust, long-term climate adaptation strategies to protect critical areas.",
+                medellinL1Title: "Community First", medellinL1Desc: "Cross-sector frameworks place community welfare at the center of climate adaptation policies.",
+                medellinL2Title: "Local Solutions", medellinL2Desc: "Leveraging regional expertise from Antioquia ensures practical, region-specific strategies.",
+                medellinL3Title: "Collaboration", medellinL3Desc: "Uniting government, academia, and civil society bridges gaps for maximum impact.",
+                medellinL4Title: "Nature & Livelihoods", medellinL4Desc: "Securing natural resources guarantees long-term economic stability for the region.",
+                medellinLinksTitle: "Helpful Links", medellinLink1: "Unidos por el Planeta Initiative", medellinLink2: "Colombia Ministry of Environment",
+
+                chingazaTitle: "Chingaza National Park: Water & Biodiversity",
+                chingazaP1: "Alongside WWF Colombia biologists, we explored Chingaza National Natural Park. Its high-altitude *páramo* ecosystem acts as a natural sponge, capturing and supplying nearly 80% of Bogotá's drinking water.",
+                chingazaP2: "Protecting Chingaza is vital for endemic species like the spectacled bear, while securing long-term water security against climate-induced droughts.",
+                chingazaL1Title: "Community First", chingazaL1Desc: "Protecting water basins directly safeguards millions of urban and rural residents in Bogotá.",
+                chingazaL2Title: "Local Solutions", chingazaL2Desc: "Conservation of high-altitude páramos preserves unique natural water filtration systems.",
+                chingazaL3Title: "Collaboration", chingazaL3Desc: "Biologists and local authorities work hand in hand to monitor endangered fauna and flora.",
+                chingazaL4Title: "Nature & Livelihoods", chingazaL4Desc: "Ecosystem health equals water security, connecting pristine nature directly to human survival.",
+                chingazaLinksTitle: "Helpful Links", chingazaLink1: "Parques Nacionales Naturales de Colombia", chingazaLink2: "WWF Water Stewardship Projects",
+
+                salentoTitle: "Salento: Sustainable Agriculture & Native Bees",
+                salentoP1: "In Salento, we combined a visit to a sustainable coffee finca with a meliponiculture course focusing on native stingless bees (*abejas nativas*) and their vital ecological role as pollinators.",
+                salentoP2: "This hands-on experience highlighted how agroforestry and fair trade support for small-scale producers safeguard both biodiversity and rural livelihoods.",
+                salentoL1Title: "Community First", salentoL1Desc: "Empowering coffee-farming families fosters deep-rooted community-led conservation.",
+                salentoL2Title: "Local Solutions", salentoL2Desc: "Integrating native stingless bees into agriculture protects local pollination networks.",
+                salentoL3Title: "Collaboration", salentoL3Desc: "Partnering with educational institutions like Campo Colombia Educa multiplies impact.",
+                salentoL4Title: "Nature & Livelihoods", salentoL4Desc: "Sustainable agroforestry ensures high-quality coffee while preserving thriving ecosystems.",
+                salentoLinksTitle: "Helpful Links", salentoLink1: "Campo Colombia Educa", salentoLink2: "Sustainable Agriculture Guidelines",
+
+                exploreBtnText: "Explore more projects"
+            },
+            de: {
+                navHome: "Startseite",
+                navMap: "Projektkarte",
+                navAbout: "Über uns",
+                heroTitle: "Schutz und Erhalt von Kolumbiens natürlichen Ökosystemen",
+                locationMeta: "Kolumbien, Verschiedene Standorte",
+                summaryTitle: "Kernstandorte",
+                locBogota: "NGO-Fundraising",
+                locMedellin: "Multi-Stakeholder-Partnerschaften",
+                locChingaza: "Wassermanagement & Biodiversität",
+                locSalento: "Nachhaltige Landwirtschaft & Kaffee",
+                mapHeading: "Aktivitätenkarte",
+                challengeTitle: "Die Herausforderung",
+                challengeP1: "Kolumbien gehört zu den artenreichsten Ländern der Welt: Es beherbergt knapp 10 % der weltweiten Biodiversität auf weniger als 1 % der Erdoberfläche.",
+                challengeP2: "Dennoch stehen die Ökosysteme unter großem Druck durch Entwaldung, Bergbau, Agrarexpansion und den Klimawandel, was Tierarten und Wasserreserven gefährdet.",
+                factsTitle: "Wichtige Fakten",
+                fact1Desc: "der Fläche Kolumbiens sind von Wäldern bedeckt (WWF Kolumbien).",
+                fact2Desc: "27 % des Amazonasgebiets könnten bis 2030 baumlos sein, wenn die Abholzung anhält.",
+                fact3Desc: "der globalen Artenvielfalt befinden sich in Kolumbien.",
+                fact4Desc: "der kolumbianischen Frischwasserversorgung stammen aus einzigartigen Ökosystemen.",
+                
+                bogotaTitle: "Bogotá: NGO-Fundraising & strategische Ausrichtung",
+                bogotaP1: "In Bogotá begann unser Engagement mit strategischen Diskussionen über Non-Profit-Fundraising, Mittelbeschaffung und die Skalierung der Naturschutzwirkung.",
+                bogotaP2: "Zu verstehen, wie institutionelle Finanzierung mit Basisarbeit vor Ort verknüpft ist, ist entscheidend für die finanzielle Stabilität von Umweltinitiativen.",
+                bogotaL1Title: "Gemeinschaft im Fokus", bogotaL1Desc: "Naturschutz gelingt, wenn lokale Gemeinschaften aktiv an finanziellen Lösungen mitwirken.",
+                bogotaL2Title: "Lokale Ansätze", bogotaL2Desc: "Traditionelles Wissen macht Umweltfinanzierungen widerstandsfähiger.",
+                bogotaL3Title: "Zusammenarbeit", bogotaL3Desc: "Nachhaltige Wirkung erfordert Kooperation zwischen Gebern, NGOs und Politik.",
+                bogotaL4Title: "Natur & Lebensgrundlagen", bogotaL4Desc: "Ökosystemschutz muss spürbare wirtschaftliche Vorteile für die Menschen bringen.",
+                bogotaLinksTitle: "Interessante Links", bogotaLink1: "WWF Kolumbien Offizielle Website", bogotaLink2: "Globale WWF Naturschutzarbeit",
+
+                partnershipsTitle: "Medellín & Antioquia: Unidos por el Planeta",
+                partnershipsP1: "In Antioquia treibt WWF Kolumbien die Initiative „Unidos por el Planeta“ voran. Dieser strategische Ansatz verbindet Behörden, Zivilgesellschaft und lokale Gemeinschaften.",
+                partnershipsP2: "Durch die Bündelung der jeweiligen Stärken und Ressourcen entwickelt die Initiative robuste Klimaanpassungsstrategien zum Schutz wichtiger Gebiete.",
+                medellinL1Title: "Gemeinschaft im Fokus", medellinL1Desc: "Branchenübergreifende Rahmenbedingungen stellen das Wohl der Gemeinschaft in den Mittelpunkt.",
+                medellinL2Title: "Lokale Ansätze", medellinL2Desc: "Die Nutzung regionaler Expertise aus Antioquia sichert praxisnahe Strategien.",
+                medellinL3Title: "Zusammenarbeit", medellinL3Desc: "Die Einbindung von Regierung, Wissenschaft und Zivilgesellschaft maximiert den Impact.",
+                medellinL4Title: "Natur & Lebensgrundlagen", medellinL4Desc: "Die Sicherung natürlicher Ressourcen garantiert langfristige wirtschaftliche Stabilität.",
+                medellinLinksTitle: "Interessante Links", medellinLink1: "Initiative Unidos por el Planeta", medellinLink2: "Kolumbianisches Umweltministerium",
+
+                chingazaTitle: "Chingaza Nationalpark: Wasser & Biodiversität",
+                chingazaP1: "Gemeinsam mit Biologen erkundeten wir den Chingaza-Nationalpark. Das Páramo-Ökosystem wirkt wie ein Schwamm und sichert fast 80 % des Trinkwassers für Bogotá.",
+                chingazaP2: "Der Schutz des Parks ist essenziell für Arten wie den Brillenbären und die langfristige Wassersicherheit.",
+                chingazaL1Title: "Gemeinschaft im Fokus", chingazaL1Desc: "Der Schutz von Wassereinzugsgebieten sichert Millionen von Menschen in Bogotá.",
+                chingazaL2Title: "Lokale Ansätze", chingazaL2Desc: "Die Erhaltung von Páramos bewahrt einzigartige natürliche Wasserfiltersysteme.",
+                chingazaL3Title: "Zusammenarbeit", chingazaL3Desc: "Biologen und Behörden arbeiten Hand in Hand zum Schutz von Fauna und Flora.",
+                chingazaL4Title: "Natur & Lebensgrundlagen", chingazaL4Desc: "Ökosystemgesundheit bedeutet Wassersicherheit und menschliches Überleben.",
+                chingazaLinksTitle: "Interessante Links", chingazaLink1: "Parques Nacionales de Colombia", chingazaLink2: "WWF Wasserschutzprojekte",
+
+                salentoTitle: "Salento: Nachhaltige Landwirtschaft & Bienen",
+                salentoP1: "In Salento besuchten wir eine Kaffeefinca und nahmen an einem Kurs über stachellose Wildbienen (abejas nativas) und deren Rolle als Bestäuber teil.",
+                salentoP2: "Diese Praxiserfahrung verdeutlichte, wie Agroforstwirtschaft und fairer Handel die Biodiversität und ländliche Lebensgrundlagen schützen.",
+                salentoL1Title: "Gemeinschaft im Fokus", salentoL1Desc: "Die Stärkung von Kaffeebauern fördert den gemeindebasierten Naturschutz.",
+                salentoL2Title: "Lokale Ansätze", salentoL2Desc: "Die Integration von Wildbienen schützt lokale Bestäubungsnetzwerke.",
+                salentoL3Title: "Zusammenarbeit", salentoL3Desc: "Partnerschaften mit Bildungseinrichtungen wie Campo Colombia Educa multiplizieren den Effekt.",
+                salentoL4Title: "Natur & Lebensgrundlagen", salentoL4Desc: "Nachhaltige Agroforstwirtschaft sichert Qualitätskaffee und intakte Ökosysteme.",
+                salentoLinksTitle: "Interessante Links", salentoLink1: "Campo Colombia Educa", salentoLink2: "Richtlinien für nachhaltige Landwirtschaft",
+
+                exploreBtnText: "Explore more projects"
+            },
+            fr: {
+                navHome: "Accueil",
+                navMap: "Carte des Projets",
+                navAbout: "À propos",
+                heroTitle: "Protection et conservation des écosystèmes naturels en Colombie",
+                locationMeta: "Colombie, Divers sites",
+                summaryTitle: "Lieux Clés",
+                locBogota: "Collecte de fonds pour les ONG",
+                locMedellin: "Partenariats multipartites",
+                locChingaza: "Gestion de l'eau et biodiversité",
+                locSalento: "Agriculture durable et café",
+                mapHeading: "Carte des Activités",
+                challengeTitle: "Le Défi",
+                challengeP1: "La Colombie est l'un des pays les plus riches en biodiversité, abritant près de 10 % des espèces mondiales sur moins de 1 % de la surface terrestre.",
+                challengeP2: "Cependant, ses écosystèmes subissent une pression croissante due à la déforestation, à l'exploitation minière et au changement climatique.",
+                factsTitle: "Faits Marquants",
+                fact1Desc: "du territoire colombien est recouvert de forêts (WWF Colombie).",
+                fact2Desc: "27 % de l'Amazonie pourrait disparaître d'ici 2030 si la déforestation continue.",
+                fact3Desc: "de la biodiversité mondiale se trouve en Colombie.",
+                fact4Desc: "de l'approvisionnement en eau douce en Colombie proviennent d'écosystèmes d'altitude uniques.",
+                
+                bogotaTitle: "Bogotá : Collecte de fonds et alignement stratégique",
+                bogotaP1: "Basé à Bogotá, notre engagement a débuté par des discussions stratégiques sur le financement des ONG et la mobilisation des ressources.",
+                bogotaP2: "Comprendre comment le financement institutionnel se connecte au travail de terrain est essentiel pour assurer une stabilité à long terme.",
+                bogotaL1Title: "Priorité aux communautés", bogotaL1Desc: "La conservation réussit lorsque les communautés locales cocréent des solutions financières.",
+                bogotaL2Title: "Solutions locales", bogotaL2Desc: "S'appuyer sur les savoirs traditionnels renforce les initiatives de financement.",
+                bogotaL3Title: "Collaboration", bogotaL3Desc: "Un impact durable nécessite une coopération étroite entre donateurs, ONG et autorités.",
+                bogotaL4Title: "Nature et moyens de subsistance", bogotaL4Desc: "Protéger la nature doit générer des avantages économiques tangibles pour la population.",
+                bogotaLinksTitle: "Liens utiles", bogotaLink1: "Site officiel du WWF Colombie", bogotaLink2: "Travaux mondiaux du WWF",
+
+                partnershipsTitle: "Medellín et Antioquia : Unidos por el Planeta",
+                partnershipsP1: "À Antioquia, le WWF Colombie impulse l'initiative « Unidos por el Planeta », unissant divers acteurs pour l'adaptation climatique.",
+                partnershipsP2: "En combinant les forces de chaque secteur, l'initiative élabore des stratégies durables pour protéger les aires protégées.",
+                medellinL1Title: "Priorité aux communautés", medellinL1Desc: "Les cadres intersectoriels placent le bien-être communautaire au cœur des politiques.",
+                medellinL2Title: "Solutions locales", medellinL2Desc: "Tirer parti de l'expertise d'Antioquia garantit des stratégies adaptées.",
+                medellinL3Title: "Collaboration", medellinL3Desc: "L'union du gouvernement, de la science et de la société civile maximise l'impact.",
+                medellinL4Title: "Nature et moyens de subsistance", medellinL4Desc: "Sécuriser les ressources garantit une stabilité économique à long terme.",
+                medellinLinksTitle: "Liens utiles", medellinLink1: "Initiative Unidos por el Planeta", medellinLink2: "Ministère de l'Environnement de Colombie",
+
+                chingazaTitle: "Parc National Chingaza : Eau et Biodiversité",
+                chingazaP1: "Aux côtés de biologistes du WWF, nous avons exploré le parc de Chingaza, dont le páramo fournit près de 80 % de l'eau potable de Bogotá.",
+                chingazaP2: "Protéger cet écosystème est crucial pour la faune endémique et la sécurité hydrique à long terme.",
+                chingazaL1Title: "Priorité aux communautés", chingazaL1Desc: "Protéger les bassins versants protège directement des millions de résidents.",
+                chingazaL2Title: "Solutions locales", chingazaL2Desc: "La conservation des páramos préserve des systèmes de filtration d'eau naturels.",
+                chingazaL3Title: "Collaboration", chingazaL3Desc: "Biologistes et autorités locales unissent leurs efforts de surveillance.",
+                chingazaL4Title: "Nature et moyens de subsistance", chingazaL4Desc: "La santé des écosystèmes équivaut à la sécurité en eau et à la survie humaine.",
+                chingazaLinksTitle: "Liens utiles", chingazaLink1: "Parcs Nationaux Naturels de Colombie", chingazaLink2: "Projets de gestion de l'eau du WWF",
+
+                salentoTitle: "Salento : Agriculture durable et abeilles",
+                salentoP1: "À Salento, nous avons visité une finca de café et suivi un cours sur les abeilles sans dards (abejas nativas) et leur rôle de pollinisateurs.",
+                salentoP2: "Cette expérience a mis en lumière comment l'agroforesterie et le commerce équitable soutiennent la biodiversité.",
+                salentoL1Title: "Priorité aux communautés", salentoL1Desc: "Autonomiser les familles de caféiculteurs favorise une conservation communautaire.",
+                salentoL2Title: "Solutions locales", salentoL2Desc: "Intégrer les abeilles indigènes protège les réseaux de pollinisation locaux.",
+                salentoL3Title: "Collaboration", salentoL3Desc: "S'associer à des institutions comme Campo Colombia Educa multiplie l'impact.",
+                salentoL4Title: "Nature et moyens de subsistance", salentoL4Desc: "L'agroforesterie garantit un café de qualité tout en préservant les écosystèmes.",
+                salentoLinksTitle: "Liens utiles", salentoLink1: "Campo Colombia Educa", salentoLink2: "Lignes directrices pour l'agriculture durable",
+
+                exploreBtnText: "Explore more projects"
+            },
+            es: {
+                navHome: "Inicio",
+                navMap: "Mapa de Proyectos",
+                navAbout: "Sobre nosotros",
+                heroTitle: "Protección y conservación de los ecosistemas naturales de Colombia",
+                locationMeta: "Colombia, Varias Ubicaciones",
+                summaryTitle: "Ubicaciones Clave",
+                locBogota: "Recaudación de fondos para ONG",
+                locMedellin: "Alianzas multiactor",
+                locChingaza: "Gestión del agua y biodiversidad",
+                locSalento: "Agricultura sostenible y café",
+                mapHeading: "Mapa de Actividades",
+                challengeTitle: "El Desafío",
+                challengeP1: "Colombia es uno de los países más megadiversos del mundo, albergando casi el 10% de la biodiversidad del planeta en menos del 1% de la superficie terrestre.",
+                challengeP2: "Sin embargo, sus ecosistemas enfrentan la deforestación, la minería ilegal y el cambio climático, poniendo en riesgo la biodiversidad y el agua.",
+                factsTitle: "Datos Clave",
+                fact1Desc: "del territorio colombiano está cubierto por bosques (WWF Colombia).",
+                fact2Desc: "El 27% del bioma amazónico podría perderse para 2030 si continúa la deforestación.",
+                fact3Desc: "de la biodiversidad mundial habita en Colombia.",
+                fact4Desc: "del suministro de agua dulce de Colombia proviene de ecosistemas de alta montaña únicos.",
+                
+                bogotaTitle: "Bogotá: Recaudación de fondos y alineación estratégica",
+                bogotaP1: "En Bogotá, nuestro compromiso comenzó con discusiones estratégicas sobre la recaudación de fondos para ONG y la movilización de recursos.",
+                bogotaP2: "Comprender cómo la financiación institucional se conecta con el trabajo de campo es esencial para garantizar la estabilidad a largo plazo.",
+                bogotaL1Title: "Comunidad Primero", bogotaL1Desc: "La conservación triunfa cuando las comunidades co-crean soluciones financieras y sociales.",
+                bogotaL2Title: "Soluciones Locales", bogotaL2Desc: "El conocimiento tradicional hace que las iniciativas de financiación sean más resilientes.",
+                bogotaL3Title: "Colaboración", bogotaL3Desc: "El impacto duradero requiere cooperación entre donantes, ONG y creadores de políticas.",
+                bogotaL4Title: "Naturaleza y Bienestar", bogotaL4Desc: "Proteger los ecosistemas debe generar beneficios económicos tangibles para la gente.",
+                bogotaLinksTitle: "Enlaces de interés", bogotaLink1: "Sitio web oficial de WWF Colombia", bogotaLink2: "Trabajo global de conservación de WWF",
+
+                partnershipsTitle: "Medellín y Antioquia: Unidos por el Planeta",
+                partnershipsP1: "En Antioquia, WWF Colombia impulsa la iniciativa «Unidos por el Planeta», uniendo a diversos actores para la adaptación al cambio climático.",
+                partnershipsP2: "Al combinar las fortalezas de cada sector, la iniciativa co-crea estrategias de adaptación sólidas para proteger las áreas clave.",
+                medellinL1Title: "Comunidad Primero", medellinL1Desc: "Los marcos intersectoriales sitúan el bienestar comunitario en el centro de las políticas.",
+                medellinL2Title: "Soluciones Locales", medellinL2Desc: "Aprovechar la experiencia regional de Antioquia garantiza estrategias prácticas.",
+                medellinL3Title: "Colaboración", medellinL3Desc: "Unir gobierno, academia y sociedad civil maximiza el impacto ambiental.",
+                medellinL4Title: "Naturaleza y Bienestar", medellinL4Desc: "Asegurar los recursos naturales garantiza la estabilidad económica a largo plazo.",
+                medellinLinksTitle: "Enlaces de interés", medellinLink1: "Iniciativa Unidos por el Planeta", medellinLink2: "Ministerio de Ambiente de Colombia",
+
+                chingazaTitle: "Parque Nacional Chingaza: Agua y Biodiversidad",
+                chingazaP1: "Junto con biólogos del WWF, exploramos el Parque Chingaza, cuyo páramo suministra casi el 80% del agua potable de Bogotá.",
+                chingazaP2: "Proteger este ecosistema es vital para la fauna endémica y para garantizar la seguridad hídrica a largo plazo.",
+                chingazaL1Title: "Comunidad Primero", chingazaL1Desc: "Proteger las cuencas hídricas salvaguarda directamente a millones de residentes.",
+                chingazaL2Title: "Soluciones Locales", chingazaL2Desc: "La conservación de páramos preserva sistemas naturales de filtración de agua.",
+                chingazaL3Title: "Colaboración", chingazaL3Desc: "Biólogos y autoridades locales trabajan mano a mano en la conservación.",
+                chingazaL4Title: "Naturaleza y Bienestar", chingazaL4Desc: "La salud del ecosistema equivale a la seguridad hídrica y la supervivencia humana.",
+                chingazaLinksTitle: "Enlaces de interés", chingazaLink1: "Parques Nacionales Naturales de Colombia", chingazaLink2: "Proyectos de gestión del agua de WWF",
+
+                salentoTitle: "Salento: Agricultura sostenible y abejas nativas",
+                salentoP1: "En Salento, visitamos una finca cafetera y participamos en un curso sobre abejas sin aguijón (abejas nativas) y su rol como polinizadores.",
+                salentoP2: "Esta experiencia práctica destacó cómo la agroforestería y el comercio justo apoyan tanto la biodiversidad como los medios de vida.",
+                salentoL1Title: "Comunidad Primero", salentoL1Desc: "Empoderar a las familias cafetaleras fomenta la conservación liderada por la comunidad.",
+                salentoL2Title: "Soluciones Locales", salentoL2Desc: "Integrar abejas nativas en la agricultura protege las redes locales de polinización.",
+                salentoL3Title: "Colaboración", salentoL3Desc: "Asociarse con instituciones como Campo Colombia Educa multiplica el impacto.",
+                salentoL4Title: "Naturaleza y Bienestar", salentoL4Desc: "La agroforestería sostenible garantiza café de calidad y ecosistemas prósperos.",
+                salentoLinksTitle: "Enlaces de interés", salentoLink1: "Campo Colombia Educa", salentoLink2: "Directrices de agricultura sostenible",
+
+                exploreBtnText: "Explore more projects"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('location-meta').innerText = t.locationMeta;
+            document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
+            document.getElementById('loc-bogota').innerText = t.locBogota;
+            document.getElementById('loc-medellin').innerText = t.locMedellin;
+            document.getElementById('loc-chingaza').innerText = t.locChingaza;
+            document.getElementById('loc-salento').innerText = t.locSalento;
+            document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
+            
+            document.getElementById('challenge-title').innerText = t.challengeTitle;
+            document.getElementById('challenge-p1').innerText = t.challengeP1;
+            document.getElementById('challenge-p2').innerText = t.challengeP2;
+            
+            document.getElementById('facts-title').innerText = t.factsTitle;
+            document.getElementById('fact1-desc').innerText = t.fact1Desc;
+            document.getElementById('fact2-desc').innerText = t.fact2Desc;
+            document.getElementById('fact3-desc').innerText = t.fact3Desc;
+            document.getElementById('fact4-desc').innerText = t.fact4Desc;
+            
+            // Bogotá
+            document.getElementById('bogota-title').innerText = t.bogotaTitle;
+            document.getElementById('bogota-p1').innerText = t.bogotaP1;
+            document.getElementById('bogota-p2').innerText = t.bogotaP2;
+            document.getElementById('bogota-l1-title').innerText = t.bogotaL1Title; document.getElementById('bogota-l1-desc').innerText = t.bogotaL1Desc;
+            document.getElementById('bogota-l2-title').innerText = t.bogotaL2Title; document.getElementById('bogota-l2-desc').innerText = t.bogotaL2Desc;
+            document.getElementById('bogota-l3-title').innerText = t.bogotaL3Title; document.getElementById('bogota-l3-desc').innerText = t.bogotaL3Desc;
+            document.getElementById('bogota-l4-title').innerText = t.bogotaL4Title; document.getElementById('bogota-l4-desc').innerText = t.bogotaL4Desc;
+            document.getElementById('bogota-links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.bogotaLinksTitle}`;
+            document.getElementById('bogota-link1').innerText = t.bogotaLink1;
+            document.getElementById('bogota-link2').innerText = t.bogotaLink2;
+
+            // Medellín
+            document.getElementById('partnerships-title').innerText = t.partnershipsTitle;
+            document.getElementById('partnerships-p1').innerText = t.partnershipsP1;
+            document.getElementById('partnerships-p2').innerText = t.partnershipsP2;
+            document.getElementById('medellin-l1-title').innerText = t.medellinL1Title; document.getElementById('medellin-l1-desc').innerText = t.medellinL1Desc;
+            document.getElementById('medellin-l2-title').innerText = t.medellinL2Title; document.getElementById('medellin-l2-desc').innerText = t.medellinL2Desc;
+            document.getElementById('medellin-l3-title').innerText = t.medellinL3Title; document.getElementById('medellin-l3-desc').innerText = t.medellinL3Desc;
+            document.getElementById('medellin-l4-title').innerText = t.medellinL4Title; document.getElementById('medellin-l4-desc').innerText = t.medellinL4Desc;
+            document.getElementById('medellin-links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.medellinLinksTitle}`;
+            document.getElementById('medellin-link1').innerText = t.medellinLink1;
+            document.getElementById('medellin-link2').innerText = t.medellinLink2;
+
+            // Chingaza
+            document.getElementById('chingaza-title').innerText = t.chingazaTitle;
+            document.getElementById('chingaza-p1').innerText = t.chingazaP1;
+            document.getElementById('chingaza-p2').innerText = t.chingazaP2;
+            document.getElementById('chingaza-l1-title').innerText = t.chingazaL1Title; document.getElementById('chingaza-l1-desc').innerText = t.chingazaL1Desc;
+            document.getElementById('chingaza-l2-title').innerText = t.chingazaL2Title; document.getElementById('chingaza-l2-desc').innerText = t.chingazaL2Desc;
+            document.getElementById('chingaza-l3-title').innerText = t.chingazaL3Title; document.getElementById('chingaza-l3-desc').innerText = t.chingazaL3Desc;
+            document.getElementById('chingaza-l4-title').innerText = t.chingazaL4Title; document.getElementById('chingaza-l4-desc').innerText = t.chingazaL4Desc;
+            document.getElementById('chingaza-links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.chingazaLinksTitle}`;
+            document.getElementById('chingaza-link1').innerText = t.chingazaLink1;
+            document.getElementById('chingaza-link2').innerText = t.chingazaLink2;
+
+            // Salento
+            document.getElementById('salento-title').innerText = t.salentoTitle;
+            document.getElementById('salento-p1').innerText = t.salentoP1;
+            document.getElementById('salento-p2').innerText = t.salentoP2;
+            document.getElementById('salento-l1-title').innerText = t.salentoL1Title; document.getElementById('salento-l1-desc').innerText = t.salentoL1Desc;
+            document.getElementById('salento-l2-title').innerText = t.salentoL2Title; document.getElementById('salento-l2-desc').innerText = t.salentoL2Desc;
+            document.getElementById('salento-l3-title').innerText = t.salentoL3Title; document.getElementById('salento-l3-desc').innerText = t.salentoL3Desc;
+            document.getElementById('salento-l4-title').innerText = t.salentoL4Title; document.getElementById('salento-l4-desc').innerText = t.salentoL4Desc;
+            document.getElementById('salento-links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.salentoLinksTitle}`;
+            document.getElementById('salento-link1').innerText = t.salentoLink1;
+            document.getElementById('salento-link2').innerText = t.salentoLink2;
+
+            // Explore Button
+            document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
+        }
+    </script>
+</body>
+</html>
