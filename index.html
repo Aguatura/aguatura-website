@@ -50,16 +50,19 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .header-left {
             display: flex;
             align-items: center;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         .logo-container img {
-            height: 50px;
+            height: 45px;
             width: auto;
             display: block;
         }
@@ -117,6 +120,7 @@
         /* MAIN CONTAINER */
         .main-container {
             max-width: 1100px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 20px;
             flex: 1;
@@ -137,7 +141,7 @@
             background: linear-gradient(rgba(18, 53, 36, 0.85), rgba(30, 81, 104, 0.85)), url('https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg') center/cover no-repeat;
             color: var(--white);
             text-align: center;
-            padding: 100px 20px;
+            padding: clamp(50px, 8vw, 100px) 20px;
             border-radius: 12px;
             margin: 30px 0;
             box-shadow: 0 6px 25px rgba(0,0,0,0.1);
@@ -150,14 +154,14 @@
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.7rem;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
             margin-bottom: 20px;
             font-weight: 700;
             line-height: 1.3;
         }
 
         .hero p {
-            font-size: 1.15rem;
+            font-size: clamp(0.98rem, 2vw, 1.15rem);
             opacity: 0.95;
             line-height: 1.7;
             margin-bottom: 12px;
@@ -167,16 +171,16 @@
         .section-title {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             text-align: center;
-            margin-top: 50px;
+            margin-top: 40px;
             margin-bottom: 30px;
         }
 
         .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-bottom: 40px;
         }
 
@@ -188,7 +192,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 35px;
+            padding: 30px;
             color: var(--white);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-decoration: none;
@@ -240,7 +244,7 @@
 
         .topic-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             margin-bottom: 12px;
             font-weight: 700;
         }
@@ -254,7 +258,7 @@
         /* SEKTION 2: UNSER ANSATZ */
         .approach-box {
             background: var(--white);
-            padding: 40px;
+            padding: clamp(25px, 5vw, 40px);
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 60px;
@@ -265,12 +269,12 @@
         .approach-box h3 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
             margin-bottom: 15px;
         }
 
         .approach-box p {
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
             color: #555;
             max-width: 850px;
             margin: 0 auto;
@@ -291,25 +295,24 @@
             opacity: 0.85;
         }
 
+        /* RESPONSIVE BREAKPOINTS (SMARTPHONES & TABLETS) */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 15px;
+                align-items: flex-start;
+                padding: 15px 20px;
             }
             .header-left {
-                flex-direction: column;
-                gap: 15px;
+                width: 100%;
+                justify-content: space-between;
             }
             .header-right {
                 width: 100%;
                 justify-content: space-between;
             }
-            .hero h1 {
-                font-size: 2.1rem;
-            }
             .topic-card {
                 height: auto;
-                min-height: 280px;
+                min-height: 260px;
             }
         }
     </style>
