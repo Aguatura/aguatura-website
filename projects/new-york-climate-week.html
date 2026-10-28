@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Week NYC 2026 – Aguatura Projects</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Minimap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1050px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO SEKTION */
+        .project-hero {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .project-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4A5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        /* SDG ICONS PLACEHOLDERS */
+        .sdg-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sdg-placeholder {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            border: 2px dashed var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* MAP & SUMMARY LAYOUT */
+        .map-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .map-info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        .location-icon {
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+        }
+
+        .location-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-text span {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .map-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #minimap {
+            height: 100%;
+            min-height: 280px;
+            width: 100%;
+            border-radius: 8px;
+            background-color: #EBF4F0;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        /* MARKER & TOOLTIPS */
+        .custom-white-pin {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+        }
+
+        .leaflet-tooltip.custom-tooltip {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        /* CONTENT CARDS & IMAGE PLACEHOLDERS */
+        .content-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--primary-dark);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .grid-text p {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .grid-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 260px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 2px dashed #A0AEC0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            text-align: center;
+            padding: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--accent-green);
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ACTIVITIES GRID */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .activity-card {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .activity-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* EXPLORE MORE BUTTON */
+        .explore-more-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 900px) {
+            .map-section-grid {
+                grid-template-columns: 1fr;
+            }
+            #minimap {
+                min-height: 250px;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container animate-fade">
+
+        <!-- HERO SEKTION -->
+        <section class="project-hero">
+            <h1 id="hero-title">Climate Week NYC 2026 – Driving Global Climate Action</h1>
+            <div class="hero-meta">
+                <div class="meta-details">
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">New York City, USA</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                </div>
+                <div class="sdg-icons">
+                    <div class="sdg-placeholder" title="SDG 13: Climate Action">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span>SDG 13</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>SDG 15</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP & SUMMARY LAYOUT -->
+        <div class="map-section-grid">
+            <div class="map-info-card">
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Event Overview</h3>
+                <ul class="location-list">
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-1-title">Global Gathering</strong>
+                            <span id="sum-1-desc">Connecting leaders, policymakers, scientists & activists</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-hand-shake"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-2-title">Multidisciplinary Impact</strong>
+                            <span id="sum-2-desc">Combining film, community action, science & education</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="map-card">
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Event Location (New York)</h3>
+                <div id="minimap"></div>
+            </div>
+        </div>
+
+        <!-- CLIMATE WEEK OVERVIEW -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="context-title">The Power of Climate Week NYC</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="context-p1">Climate Week NYC stands as one of the world's most important global climate gatherings. It serves as a vital meeting point where international leaders, policymakers, industry innovators, scientists, and grassroots activists come together from diverse fields to accelerate climate action and exchange visionary solutions.</p>
+                    <p id="context-p2">During Climate Week NYC 2026, Aguatura participated with a series of diverse events and community engagements, bridging the gap between high-level discourse and local, hands-on environmental impact.</p>
+                </div>
+                <div class="grid-image">
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-city"></i>
+                        <span>Upload Climate Week NYC Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR ACTIVITIES (IN ORDER) -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="activities-title">Our Key Activities during Climate Week</h2>
+            </div>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h4><i class="fa-solid fa-film"></i> <span id="act1-title">1. The Movie Screening</span></h4>
+                    <p id="act1-desc">We hosted a special screening of the powerful documentary film narrated by Benedict Cumberbatch, exploring humanity's profound connection with nature and inspiring a shift toward sustainable stewardship.</p>
+                </div>
+                <div class="activity-card">
+                    <h4><i class="fa-solid fa-seedling"></i> <span id="act2-title">2. Community Restoration</span></h4>
+                    <p id="act2-desc">Hands-on environmental action partnering with the local New York community around Manhattan to restore natural green spaces, enhance biodiversity, and protect urban ecosystems.</p>
+                </div>
+                <div class="activity-card">
+                    <h4><i class="fa-solid fa-water"></i> <span id="act3-title">3. WaterWays Initiative</span></h4>
+                    <p id="act3-desc">Engaging in WaterWays sessions—a local initiative uniting actors from science, art, and public sectors to promote deep water literacy and conservation awareness across New York.</p>
+                </div>
+                <div class="activity-card">
+                    <h4><i class="fa-solid fa-graduation-cap"></i> <span id="act4-title">4. Columbia University Pitch</span></h4>
+                    <p id="act4-desc">Supporting local students at Columbia University as they pitched innovative, sustainable business ideas designed to tackle modern ecological and climate challenges.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPLORE MORE BUTTON -->
+        <div class="explore-more-section">
+            <a href="Project-Map.html" class="btn-explore">
+                <i class="fa-solid fa-map-location-dot"></i> <span id="explore-btn-text">Explore more projects</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('minimap', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([40.7128, -74.0060], 11); // New York City
+
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function(feature) {
+                            var countryName = feature.properties.name;
+                            if (countryName === "United States of America" || countryName === "United States") {
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
+                            } else {
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
+                            }
+                        }
+                    }).addTo(map);
+
+                    var nycIcon = L.divIcon({
+                        className: 'custom-white-pin',
+                        html: `<i class="fa-solid fa-earth-americas"></i>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+
+                    L.marker([40.7128, -74.0060], { icon: nycIcon })
+                        .addTo(map)
+                        .bindTooltip('<b>Climate Week NYC</b><br>New York City, USA', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .openTooltip();
+                })
+                .catch(err => console.error("Kartendaten Fehler: ", err));
+        });
+
+        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
+        const translations = {
+            en: {
+                navHome: "Home", navMap: "Project Map", navAbout: "About us",
+                heroTitle: "Climate Week NYC 2026 – Driving Global Climate Action",
+                locationMeta: "New York City, USA",
+                projectYear: "2026",
+                summaryTitle: "Event Overview",
+                sum1Title: "Global Gathering", sum1Desc: "Connecting leaders, policymakers, scientists & activists",
+                sum2Title: "Multidisciplinary Impact", sum2Desc: "Combining film, community action, science & education",
+                mapHeading: "Event Location (New York)",
+                contextTitle: "The Power of Climate Week NYC",
+                contextP1: "Climate Week NYC stands as one of the world's most important global climate gatherings. It serves as a vital meeting point where international leaders, policymakers, industry innovators, scientists, and grassroots activists come together from diverse fields to accelerate climate action and exchange visionary solutions.",
+                contextP2: "During Climate Week NYC 2026, Aguatura participated with a series of diverse events and community engagements, bridging the gap between high-level discourse and local, hands-on environmental impact.",
+                activitiesTitle: "Our Key Activities during Climate Week",
+                act1Title: "1. The Movie Screening", act1Desc: "We hosted a special screening of the powerful documentary film narrated by Benedict Cumberbatch, exploring humanity's profound connection with nature and inspiring a shift toward sustainable stewardship.",
+                act2Title: "2. Community Restoration", act2Desc: "Hands-on environmental action partnering with the local New York community around Manhattan to restore natural green spaces, enhance biodiversity, and protect urban ecosystems.",
+                act3Title: "3. WaterWays Initiative", act3Desc: "Engaging in WaterWays sessions—a local initiative uniting actors from science, art, and public sectors to promote deep water literacy and conservation awareness across New York.",
+                act4Title: "4. Columbia University Pitch", act4Desc: "Supporting local students at Columbia University as they pitched innovative, sustainable business ideas designed to tackle modern ecological and climate challenges.",
+                exploreBtnText: "Explore more projects"
+            },
+            de: {
+                navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
+                heroTitle: "Climate Week NYC 2026 – Globalen Klimaschutz vorantreiben",
+                locationMeta: "New York City, USA",
+                projectYear: "2026",
+                summaryTitle: "Veranstaltungsüberblick",
+                sum1Title: "Globales Treffen", sum1Desc: "Zusammenkunft von Führungskräften, Politikern, Wissenschaftlern & Aktivisten",
+                sum2Title: "Multidisziplinäre Wirkung", sum2Desc: "Verknüpfung von Film, Community-Aktion, Wissenschaft & Bildung",
+                mapHeading: "Veranstaltungsort (New York)",
+                contextTitle: "Die Bedeutung der Climate Week NYC",
+                contextP1: "Die Climate Week NYC ist eines der weltweit wichtigsten Klimagipfeltreffen. Sie dient als zentraler Treffpunkt, bei dem internationale Entscheidungsträger, politische Lenker, Brancheninnovatoren, Wissenschaftler und Aktivisten aus verschiedensten Fachbereichen zusammenkommen, um Klimaschutzmaßnahmen zu beschleunigen.",
+                contextP2: "Während der Climate Week NYC 2026 war Aguatura mit einer Reihe von Aktivitäten und Community-Engagements vertreten, um den Brückenschlag zwischen internationalem Diskurs und direktem, lokalem Umweltschutz zu vollziehen.",
+                activitiesTitle: "Unsere Kernaktivitäten während der Climate Week",
+                act1Title: "1. Das Film-Screening", act1Desc: "Wir präsentierten eine Sonderaufführung des kraftvollen Dokumentarfilms, gesprochen von Benedict Cumberbatch, der unsere tiefe Verbundenheit mit der Natur beleuchtet.",
+                act2Title: "2. Community-Restaurierung", act2Desc: "Praktischer Umweltschutz in Partnerschaft mit der lokalen New Yorker Gemeinschaft rund um Manhattan zur Wiederherstellung von Grünflächen und zum Schutz städtischer Ökosysteme.",
+                act3Title: "3. WaterWays-Initiative", act3Desc: "Teilnahme an WaterWays-Sitzungen – einer lokalen Initiative, die Akteure aus Wissenschaft, Kunst und Öffentlichkeit vereint, um das Bewusstsein für den Wasserschutz in New York zu fördern.",
+                act4Title: "4. Columbia University Pitch", act4Desc: "Unterstützung lokaler Studierender an der Columbia University bei der Präsentation innovativer, nachhaltiger Geschäftsideen zur Bewältigung moderner ökologischer Herausforderungen.",
+                exploreBtnText: "Weitere Projekte entdecken"
+            },
+            fr: {
+                navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
+                heroTitle: "Climate Week NYC 2026 – Accélérer l'action climatique mondiale",
+                locationMeta: "New York City, USA",
+                projectYear: "2026",
+                summaryTitle: "Aperçu de l'Événement",
+                sum1Title: "Rassemblement Mondial", sum1Desc: "Connexion entre dirigeants, décideurs, scientifiques et activistes",
+                sum2Title: "Impact Multidisciplinaire", sum2Desc: "Alliance du cinéma, de l'action communautaire, de la science et de l'éducation",
+                mapHeading: "Lieu de l'Événement (New York)",
+                contextTitle: "La Puissance de la Climate Week NYC",
+                contextP1: "La Climate Week NYC est l'un des sommets climatiques mondiaux les plus importants. C'est un carrefour vital où se réunissent des leaders internationaux pour accélérer l'action climatique.",
+                contextP2: "Durant la Climate Week NYC 2026, Aguatura a participé à travers divers engagements communautaires, reliant le discours de haut niveau à l'impact environnemental local.",
+                activitiesTitle: "Nos Activités Clés pendant la Climate Week",
+                act1Title: "1. La Projection du Film", act1Desc: "Nous avons présenté une projection spéciale du puissant film documentaire narré par Benedict Cumberbatch, explorant notre lien profond avec la nature.",
+                act2Title: "2. Restauration Communautaire", act2Desc: "Action environnementale pratique en partenariat avec la communauté locale de Manhattan pour restaurer les espaces verts urbains.",
+                act3Title: "3. Initiative WaterWays", act3Desc: "Participation à WaterWays, une initiative locale unissant la science, l'art et le public pour promouvoir la sensibilisation à l'eau à New York.",
+                act4Title: "4. Pitch de l'Université Columbia", act4Desc: "Soutien aux étudiants locaux présentant des idées d'entreprise durables pour relever les défis climatiques.",
+                exploreBtnText: "Découvrir plus de projets"
+            },
+            es: {
+                navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
+                heroTitle: "Climate Week NYC 2026 – Impulsando la acción climática global",
+                locationMeta: "Nueva York, EE. UU.",
+                projectYear: "2026",
+                summaryTitle: "Resumen del Evento",
+                sum1Title: "Encuentro Global", sum1Desc: "Conectando a líderes, legisladores, científicos y activistas",
+                sum2Title: "Impacto Multidisciplinario", sum2Desc: "Combinando cine, acción comunitaria, ciencia y educación",
+                mapHeading: "Ubicación del Evento (Nueva York)",
+                contextTitle: "El Poder de la Climate Week NYC",
+                contextP1: "La Climate Week NYC es una de las cumbres climáticas globales más importantes del mundo. Sirve como punto de encuentro para acelerar la acción climática y compartir soluciones visionarias.",
+                contextP2: "Durante la Climate Week NYC 2026, Aguatura participó con diversos eventos y compromisos comunitarios, uniendo el discurso de alto nivel con el impacto ambiental local.",
+                activitiesTitle: "Nuestras Actividades Clave durante la Climate Week",
+                act1Title: "1. Proyección de la Película", act1Desc: "Organizamos una proyección especial del poderoso documental narrado por Benedict Cumberbatch, explorando nuestra conexión con la naturaleza.",
+                act2Title: "2. Restauración Comunitaria", act2Desc: "Acción ambiental práctica junto con la comunidad local de Manhattan para restaurar espacios verdes y proteger los ecosistemas urbanos.",
+                act3Title: "3. Iniciativa WaterWays", act3Desc: "Participación en WaterWays, una iniciativa local que une la ciencia, el arte y el público para promover la conciencia sobre el agua en Nueva York.",
+                act4Title: "4. Pitch de la Universidad de Columbia", act4Desc: "Apoyo a los estudiantes locales en la presentación de ideas de negocios sostenibles para abordar los desafíos climáticos.",
+                exploreBtnText: "Explorar más proyectos"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('location-meta').innerText = t.locationMeta;
+            document.getElementById('project-year').innerText = t.projectYear;
+            document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
+            document.getElementById('sum-1-title').innerText = t.sum1Title;
+            document.getElementById('sum-1-desc').innerText = t.sum1Desc;
+            document.getElementById('sum-2-title').innerText = t.sum2Title;
+            document.getElementById('sum-2-desc').innerText = t.sum2Desc;
+            document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
+            
+            document.getElementById('context-title').innerText = t.contextTitle;
+            document.getElementById('context-p1').innerText = t.contextP1;
+            document.getElementById('context-p2').innerText = t.contextP2;
+            
+            document.getElementById('activities-title').innerText = t.activitiesTitle;
+            document.getElementById('act1-title').innerText = t.act1Title; document.getElementById('act1-desc').innerText = t.act1Desc;
+            document.getElementById('act2-title').innerText = t.act2Title; document.getElementById('act2-desc').innerText = t.act2Desc;
+            document.getElementById('act3-title').innerText = t.act3Title; document.getElementById('act3-desc').innerText = t.act3Desc;
+            document.getElementById('act4-title').innerText = t.act4Title; document.getElementById('act4-desc').innerText = t.act4Desc;
+
+            document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
+        }
+    </script>
+</body>
+</html>
