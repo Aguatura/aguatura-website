@@ -49,16 +49,19 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .header-left {
             display: flex;
             align-items: center;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         .logo-container img {
-            height: 50px;
+            height: 45px;
             width: auto;
             display: block;
         }
@@ -116,8 +119,9 @@
         /* MAIN CONTAINER */
         .main-container {
             max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 20px;
             flex: 1;
         }
 
@@ -133,10 +137,10 @@
         /* STORY SEKTION */
         .story-section {
             background: var(--white);
-            padding: 50px;
+            padding: clamp(30px, 5vw, 50px);
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             gap: 40px;
@@ -144,13 +148,13 @@
         }
 
         .story-img {
-            flex: 0 0 280px;
+            flex: 0 0 240px;
             text-align: center;
         }
 
         .story-img img {
-            width: 260px;
-            height: 260px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 6px 20px rgba(0,0,0,0.1);
@@ -158,14 +162,14 @@
 
         .story-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
             color: var(--primary-dark);
             margin-bottom: 15px;
             line-height: 1.3;
         }
 
         .story-content p {
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
             color: #555;
             margin-bottom: 15px;
             line-height: 1.7;
@@ -174,7 +178,7 @@
         /* PROFIL SEKTION */
         .profile-section {
             background: var(--white);
-            padding: 50px;
+            padding: clamp(30px, 5vw, 50px);
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             margin-bottom: 40px;
@@ -184,14 +188,14 @@
             display: flex;
             align-items: center;
             gap: 35px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             border-bottom: 2px solid var(--bg-light);
-            padding-bottom: 30px;
+            padding-bottom: 25px;
         }
 
         .profile-img img {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -199,7 +203,7 @@
 
         .profile-info h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--primary-dark);
             margin-bottom: 5px;
         }
@@ -207,24 +211,24 @@
         .profile-info .role {
             font-weight: 600;
             color: var(--accent-green);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 12px;
         }
 
         .profile-info blockquote {
             font-style: italic;
             color: #4A5568;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
             border-left: 3px solid var(--accent-green);
             padding-left: 15px;
             margin-bottom: 15px;
         }
 
-        /* Dezentes LinkedIn-Icon im Corporate Green */
+        /* LinkedIn-Icon */
         .linkedin-link {
             display: inline-block;
             color: var(--primary-dark);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             transition: color 0.3s ease, transform 0.2s ease;
         }
 
@@ -237,12 +241,12 @@
         .pillars-stack {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .pillar-box {
             background: var(--bg-light);
-            padding: 35px;
+            padding: clamp(20px, 4vw, 30px);
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             border-left: 4px solid var(--primary-dark);
@@ -251,14 +255,14 @@
         .pillar-box h3 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
         }
 
         .pillar-box p {
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: #555;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.7;
         }
 
@@ -280,14 +284,16 @@
             opacity: 0.85;
         }
 
+        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 15px;
+                align-items: flex-start;
+                padding: 15px 20px;
             }
             .header-left {
-                flex-direction: column;
-                gap: 15px;
+                width: 100%;
+                justify-content: space-between;
             }
             .header-right {
                 width: 100%;
@@ -295,22 +301,23 @@
             }
             .story-section {
                 flex-direction: column;
-                padding: 30px;
                 text-align: center;
+            }
+            .story-img img {
+                width: 180px;
+                height: 180px;
             }
             .profile-header {
                 flex-direction: column;
                 text-align: center;
             }
+            .profile-img img {
+                width: 140px;
+                height: 140px;
+            }
             .profile-info blockquote {
                 border-left: none;
                 padding-left: 0;
-            }
-            .profile-section {
-                padding: 30px;
-            }
-            .pillar-box {
-                padding: 25px;
             }
         }
     </style>
@@ -378,7 +385,6 @@
                     <h2>Marie</h2>
                     <div id="marie-role" class="role">Co-Founder</div>
                     <blockquote id="marie-quote">"We founded Aguatura to unite people and knowledge, driven by the belief that protecting our planet is a shared responsibility."</blockquote>
-                    <!-- Dezentes LinkedIn-Icon -->
                     <a href="https://www.linkedin.com/in/marie-gandouet?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="linkedin-link" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
@@ -412,7 +418,6 @@
                     <h2>Johannes</h2>
                     <div id="johannes-role" class="role">Co-Founder</div>
                     <blockquote id="johannes-quote">"We believe we should see ourselves as part of nature rather than apart from it, working together to preserve its balance and beauty. Aguatura stands for this."</blockquote>
-                    <!-- Dezentes LinkedIn-Icon -->
                     <a href="https://www.linkedin.com/in/johannes-reil?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="linkedin-link" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
