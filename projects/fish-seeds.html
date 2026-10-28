@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish and Seeds – Aguatura Projects</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Minimap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1050px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO SEKTION */
+        .project-hero {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .project-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4A5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        /* SDG ICONS PLACEHOLDERS */
+        .sdg-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sdg-placeholder {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            border: 2px dashed var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* MAP & SUMMARY LAYOUT */
+        .map-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .map-info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        .location-icon {
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+        }
+
+        .location-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-text span {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .map-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #minimap {
+            height: 100%;
+            min-height: 280px;
+            width: 100%;
+            border-radius: 8px;
+            background-color: #EBF4F0;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        /* MARKER & TOOLTIPS */
+        .custom-white-pin {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+        }
+
+        .leaflet-tooltip.custom-tooltip {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        /* CONTENT CARDS & IMAGE PLACEHOLDERS */
+        .content-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--primary-dark);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .grid-text p {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .grid-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 260px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 2px dashed #A0AEC0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            text-align: center;
+            padding: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--accent-green);
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* LEARNINGS GRID */
+        .activity-learnings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .mini-learning-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .mini-learning-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .mini-learning-card p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        /* KEY FACTS SECTION */
+        .key-facts-section {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .key-facts-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            margin-bottom: 30px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 25px 18px;
+            border-radius: 10px;
+        }
+
+        .fact-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #A3E635;
+            margin-bottom: 8px;
+        }
+
+        .fact-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .fact-source {
+            font-size: 0.75rem;
+            opacity: 0.75;
+        }
+
+        /* USEFUL LINKS SECTION */
+        .links-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            border-left: 5px solid var(--primary-dark);
+        }
+
+        .links-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .useful-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .useful-links-list li {
+            font-size: 0.95rem;
+        }
+
+        .useful-links-list a {
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .useful-links-list a:hover {
+            color: var(--accent-green);
+            text-decoration: underline;
+        }
+
+        /* EXPLORE MORE BUTTON */
+        .explore-more-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 900px) {
+            .map-section-grid {
+                grid-template-columns: 1fr;
+            }
+            #minimap {
+                min-height: 250px;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .activity-learnings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container animate-fade">
+
+        <!-- HERO SEKTION -->
+        <section class="project-hero">
+            <h1 id="hero-title">Promoting Environmental Education through Aquaponics</h1>
+            <div class="hero-meta">
+                <div class="meta-details">
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">France</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2018</span></div>
+                </div>
+                <div class="sdg-icons">
+                    <div class="sdg-placeholder" title="SDG 6: Clean Water and Sanitation">
+                        <i class="fa-solid fa-droplet"></i>
+                        <span>SDG 6</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 13: Climate Action">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span>SDG 13</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 14: Life Below Water">
+                        <i class="fa-solid fa-fish"></i>
+                        <span>SDG 14</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>SDG 15</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP & SUMMARY LAYOUT -->
+        <div class="map-section-grid">
+            <div class="map-info-card">
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Project Highlights</h3>
+                <ul class="location-list">
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-school"></i></div>
+                        <div class="location-text">
+                            <strong id="high-1-title">School Workshops</strong>
+                            <span id="high-1-desc">Interactive aquaponics education for children in Roubaix</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-seedling"></i></div>
+                        <div class="location-text">
+                            <strong id="high-2-title">Sustainable Farming</strong>
+                            <span id="high-2-desc">Demonstrating water recirculation and circular food systems</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="map-card">
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Location (France)</h3>
+                <div id="minimap"></div>
+            </div>
+        </div>
+
+        <!-- THE CHALLENGE -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="challenge-title">The Challenge</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="challenge-p1">Agriculture is increasingly challenged by climate change, resource scarcity, and growing food demand. Rising temperatures, prolonged droughts, extreme weather events, and soil degradation are placing significant pressure on conventional farming systems worldwide.</p>
+                    <p id="challenge-p2">At the same time, a growing global population requires more food to be produced with fewer available natural resources. Agriculture also remains heavily dependent on freshwater and chemical inputs, raising concerns about environmental impacts and long-term sustainability. These challenges highlight the need for more resilient and resource-efficient approaches to food production.</p>
+                </div>
+                <div class="grid-image">
+                    <div class="image-placeholder">
+                        <i class="fa-regular fa-image"></i>
+                        <span>Upload Challenge Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY FACTS -->
+        <section class="key-facts-section">
+            <h2 id="facts-title">Key Facts</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">Over 90%</div>
+                    <div id="fact1-desc" class="fact-desc">Aquaponic systems can reduce water consumption by up to 90% compared with conventional soil-based agriculture thanks to water recirculation.</div>
+                    <div class="fact-source">Source: FAO, 2018</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">150+ species</div>
+                    <div id="fact2-desc" class="fact-desc">More than 150 species of vegetables, herbs, flowers, and small trees have been successfully grown in aquaponic systems worldwide.</div>
+                    <div class="fact-source">Source: FAO, 2021</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">72%</div>
+                    <div id="fact3-desc" class="fact-desc">Agriculture accounts for approximately 72% of global freshwater withdrawals, making water-efficient farming systems such as aquaponics increasingly important.</div>
+                    <div class="fact-source">Source: FAO, 2025</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR PROJECT -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="project-title">Our project</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="project-p1">Fish & Seeds was developed by five first-year students at EDHEC Business School to introduce aquaponics to primary school children in Roubaix. Through a series of interactive workshops, the project encouraged children to explore sustainable food production and innovative agricultural techniques in a fun and practical way.</p>
+                    <p id="project-p2">The main objective was to inspire environmental awareness from an early age. As the decision-makers of tomorrow, children play a key role in building a more sustainable future. By introducing them to aquaponics, the project sought to foster curiosity, environmental responsibility, and a lasting interest in sustainable development.</p>
+                    <p id="project-p3">To maximize the impact of the project, we established partnerships with several primary schools in Roubaix and worked closely with teachers to organize educational workshops on aquaponics and sustainable agriculture. We also promoted the initiative through local media to raise broader community awareness.</p>
+                </div>
+                <div class="grid-image">
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Upload Project Team Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNING FROM LIVING SYSTEMS -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="learning-title">Learning from Living Systems</h2>
+            </div>
+            <div class="activity-learnings-grid">
+                <div class="mini-learning-card">
+                    <h4 id="l1-title">Water Cycles</h4>
+                    <p id="l1-desc">Aquaponics begins with water as the central resource. Instead of being used once and wasted, water circulates through the system, connecting fish, plants, and natural filtration processes.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="l2-title">Resource Awareness</h4>
+                    <p id="l2-desc">Fish & Seeds encourages a more conscious view of food production. It highlights how much water, space, and external input conventional agriculture often requires.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="l3-title">Future Thinking</h4>
+                    <p id="l3-desc">Beyond growing food, the project is a learning space for imagining more resilient food systems inspired by nature-based principles.</p>
+                </div>
+                <div class="mini-learning-card">
+                    <h4 id="l4-title">Natural Balance</h4>
+                    <p id="l4-desc">The project shows how different living elements support each other: fish provide nutrients, plants clean the water, and beneficial bacteria transform waste.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- USEFUL LINKS & RESOURCES -->
+        <section class="links-section">
+            <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
+            <ul class="useful-links-list">
+                <li>
+                    <a href="https://www.fao.org/aquaponics/en/" target="_blank">
+                        <i class="fa-solid fa-water"></i> <span id="link1-text">FAO Aquaponics – Global Guidelines & Sustainable Food Production</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.edhec.edu/en" target="_blank">
+                        <i class="fa-solid fa-graduation-cap"></i> <span id="link2-text">EDHEC Business School – Student Initiatives & Sustainability Programs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.un.org/sustainabledevelopment/" target="_blank">
+                        <i class="fa-solid fa-globe"></i> <span id="link3-text">United Nations – Sustainable Development Goals (SDGs) Overview</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- EXPLORE MORE BUTTON -->
+        <div class="explore-more-section">
+            <a href="Project-Map.html" class="btn-explore">
+                <i class="fa-solid fa-map-location-dot"></i> <span id="explore-btn-text">Explore more projects</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('minimap', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([46.6033, 1.8883], 5); // Zentrum von Frankreich
+
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function(feature) {
+                            var countryName = feature.properties.name;
+                            if (countryName === "France") {
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
+                            } else {
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
+                            }
+                        }
+                    }).addTo(map);
+
+                    var franceIcon = L.divIcon({
+                        className: 'custom-white-pin',
+                        html: `<i class="fa-solid fa-fish"></i>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+
+                    L.marker([50.6925, 3.1746], { icon: franceIcon }) // Roubaix
+                        .addTo(map)
+                        .bindTooltip('<b>Fish & Seeds</b><br>Roubaix, France', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .openTooltip();
+                })
+                .catch(err => console.error("Kartendaten Fehler: ", err));
+        });
+
+        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
+        const translations = {
+            en: {
+                navHome: "Home", navMap: "Project Map", navAbout: "About us",
+                heroTitle: "Promoting Environmental Education through Aquaponics",
+                locationMeta: "France",
+                projectYear: "2018",
+                summaryTitle: "Project Highlights",
+                high1Title: "School Workshops", high1Desc: "Interactive aquaponics education for children in Roubaix",
+                high2Title: "Sustainable Farming", high2Desc: "Demonstrating water recirculation and circular food systems",
+                mapHeading: "Project Location (France)",
+                challengeTitle: "The Challenge",
+                challengeP1: "Agriculture is increasingly challenged by climate change, resource scarcity, and growing food demand. Rising temperatures, prolonged droughts, extreme weather events, and soil degradation are placing significant pressure on conventional farming systems worldwide.",
+                challengeP2: "At the same time, a growing global population requires more food to be produced with fewer available natural resources. Agriculture also remains heavily dependent on freshwater and chemical inputs, raising concerns about environmental impacts and long-term sustainability. These challenges highlight the need for more resilient and resource-efficient approaches to food production.",
+                factsTitle: "Key Facts",
+                fact1Desc: "Aquaponic systems can reduce water consumption by up to 90% compared with conventional soil-based agriculture thanks to water recirculation.",
+                fact2Desc: "More than 150 species of vegetables, herbs, flowers, and small trees have been successfully grown in aquaponic systems worldwide.",
+                fact3Desc: "Agriculture accounts for approximately 72% of global freshwater withdrawals, making water-efficient farming systems such as aquaponics increasingly important.",
+                projectTitle: "Our project",
+                projectP1: "Fish & Seeds was developed by five first-year students at EDHEC Business School to introduce aquaponics to primary school children in Roubaix. Through a series of interactive workshops, the project encouraged children to explore sustainable food production and innovative agricultural techniques in a fun and practical way.",
+                projectP2: "The main objective was to inspire environmental awareness from an early age. As the decision-makers of tomorrow, children play a key role in building a more sustainable future. By introducing them to aquaponics, the project sought to foster curiosity, environmental responsibility, and a lasting interest in sustainable development.",
+                projectP3: "To maximize the impact of the project, we established partnerships with several primary schools in Roubaix and worked closely with teachers to organize educational workshops on aquaponics and sustainable agriculture. We also promoted the initiative through local media to raise broader community awareness.",
+                learningTitle: "Learning from Living Systems",
+                l1Title: "Water Cycles", l1Desc: "Aquaponics begins with water as the central resource. Instead of being used once and wasted, water circulates through the system, connecting fish, plants, and natural filtration processes.",
+                l2Title: "Resource Awareness", l2Desc: "Fish & Seeds encourages a more conscious view of food production. It highlights how much water, space, and external input conventional agriculture often requires.",
+                l3Title: "Future Thinking", l3Desc: "Beyond growing food, the project is a learning space for imagining more resilient food systems inspired by nature-based principles.",
+                l4Title: "Natural Balance", l4Desc: "The project shows how different living elements support each other: fish provide nutrients, plants clean the water, and beneficial bacteria transform waste.",
+                linksTitle: "Useful Links & Resources",
+                link1Text: "FAO Aquaponics – Global Guidelines & Sustainable Food Production",
+                link2Text: "EDHEC Business School – Student Initiatives & Sustainability Programs",
+                link3Text: "United Nations – Sustainable Development Goals (SDGs) Overview",
+                exploreBtnText: "Explore more projects"
+            },
+            de: {
+                navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
+                heroTitle: "Umweltbildung durch Aquaponik fördern",
+                locationMeta: "Frankreich",
+                projectYear: "2018",
+                summaryTitle: "Projekthighlights",
+                high1Title: "Schul-Workshops", high1Desc: "Interaktive Aquaponik-Bildung für Kinder in Roubaix",
+                high2Title: "Nachhaltige Landwirtschaft", high2Desc: "Demonstration von Wasserkreisläufen und zirkulären Systemen",
+                mapHeading: "Projektstandort (Frankreich)",
+                challengeTitle: "Die Herausforderung",
+                challengeP1: "Die Landwirtschaft steht zunehmend vor Herausforderungen durch Klimawandel, Ressourcenknappheit und wachsende Nachfrage. Steigende Temperaturen, anhaltende Dürren, Extremwetter und Bodendegradation setzen konventionelle Systeme weltweit unter Druck.",
+                challengeP2: "Gleichzeitig erfordert eine wachsende Weltbevölkerung mehr Lebensmittel bei weniger verfügbaren Ressourcen. Die starke Abhängigkeit von Frischwasser und Chemikalien unterstreicht die Notwendigkeit widerstandsfähigerer Ansätze.",
+                factsTitle: "Wichtige Fakten",
+                fact1Desc: "Aquaponik-Systeme können den Wasserverbrauch dank Wasserkreislauf im Vergleich zur herkömmlichen Landwirtschaft um bis zu 90 % senken.",
+                fact2Desc: "Über 150 Arten von Gemüse, Kräutern, Blumen und kleinen Bäumen wurden weltweit erfolgreich in Aquaponik-Systemen angebaut.",
+                fact3Desc: "Die Landwirtschaft macht rund 72 % der weltweiten Süßwasserentnahme aus, weshalb wassereffiziente Systeme immer wichtiger werden.",
+                projectTitle: "Unser Projekt",
+                projectP1: "Fish & Seeds wurde von fünf Erstsemesterstudenten der EDHEC Business School entwickelt, um Grundschülern in Roubaix Aquaponik näherzubringen. Durch interaktive Workshops erkundeten Kinder nachhaltige Lebensmittelproduktion auf spielerische Weise.",
+                projectP2: "Das Hauptziel war es, frühzeitig Umweltbewusstsein zu wecken. Als Entscheidungsträger von morgen spielen Kinder eine Schlüsselrolle beim Aufbau einer nachhaltigen Zukunft.",
+                projectP3: "Um die Wirkung zu maximieren, arbeiteten wir eng mit Grundschulen in Roubaix und Lehrern zusammen und machten das Projekt über lokale Medien bekannt.",
+                learningTitle: "Von lebenden Systemen lernen",
+                l1Title: "Wasserkreisläufe", l1Desc: "Wasser ist die zentrale Ressource. Statt verschwendet zu werden, zirkuliert es und verbindet Fische, Pflanzen und natürliche Filterprozesse.",
+                l2Title: "Ressourcenbewusstsein", l2Desc: "Fish & Seeds fördert einen bewussteren Blick auf die Lebensmittelerzeugung und zeigt den hohen Bedarf konventioneller Landwirtschaft auf.",
+                l3Title: "Zukunftsorientiertes Denken", l3Desc: "Das Projekt bietet einen Lernraum, um widerstandsfähigere Nahrungsmittelsysteme nach dem Vorbild der Natur zu entwickeln.",
+                l4Title: "Natürliches Gleichgewicht", l4Desc: "Fische liefern Nährstoffe, Pflanzen reinigen das Wasser, und nützliche Bakterien wandeln Abfälle um.",
+                linksTitle: "Nützliche Links & Ressourcen",
+                link1Text: "FAO Aquaponics – Globale Leitlinien & nachhaltige Nahrungsmittelproduktion",
+                link2Text: "EDHEC Business School – Studenteninitiativen & Nachhaltigkeitsprogramme",
+                link3Text: "Vereinte Nationen – Übersicht zu den SDGs (Nachhaltigkeitszielen)",
+                exploreBtnText: "Weitere Projekte entdecken"
+            },
+            fr: {
+                navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
+                heroTitle: "Promouvoir l'éducation à l'environnement par l'aquaponie",
+                locationMeta: "France",
+                projectYear: "2018",
+                summaryTitle: "Points Clés",
+                high1Title: "Ateliers scolaires", high1Desc: "Éducation interactive à l'aquaponie pour les enfants de Roubaix",
+                high2Title: "Agriculture durable", high2Desc: "Démonstration de la recirculation de l'eau et de systèmes circulaires",
+                mapHeading: "Localisation du Projet (France)",
+                challengeTitle: "Le Défi",
+                challengeP1: "L'agriculture fait face à des défis croissants liés au changement climatique et à la raréfaction des ressources.",
+                challengeP2: "Une population mondiale croissante nécessite de produire plus avec moins de ressources naturelles disponibles.",
+                factsTitle: "Faits Marquants",
+                fact1Desc: "Les systèmes aquaponiques peuvent réduire la consommation d'eau jusqu'à 90 % grâce à la recirculation.",
+                fact2Desc: "Plus de 150 espèces de légumes, herbes et fleurs ont été cultivées avec succès en aquaponie.",
+                fact3Desc: "L'agriculture représente environ 72 % des prélèvements mondiaux d'eau douce.",
+                projectTitle: "Notre projet",
+                projectP1: "Fish & Seeds a été développé par cinq étudiants de l'EDHEC pour initier les écoliers de Roubaix à l'aquaponie.",
+                projectP2: "L'objectif principal était d'inspirer la conscience environnementale dès le plus jeune âge.",
+                projectP3: "Nous avons établi des partenariats avec des écoles primaires et communiqué via les médias.",
+                learningTitle: "Apprendre des systèmes vivants",
+                l1Title: "Cycles de l'eau", l1Desc: "L'eau circule à travers le système, connectant poissons, plantes et processus de filtration.",
+                l2Title: "Conscience des ressources", l2Desc: "Encourage une vision plus consciente de la production alimentaire.",
+                l3Title: "Pensée d'avenir", l3Desc: "Un espace d'apprentissage pour imaginer des systèmes alimentaires plus résilients.",
+                l4Title: "Équilibre naturel", l4Desc: "Les poissons fournissent des nutriments et les plantes nettoient l'eau.",
+                linksTitle: "Liens Utiles & Ressources",
+                link1Text: "FAO Aquaponie – Directives mondiales & production durable",
+                link2Text: "EDHEC Business School – Initiatives étudiantes & programmes durables",
+                link3Text: "Nations Unies – Vue d'ensemble des Objectifs de Développement Durable (ODD)",
+                exploreBtnText: "Découvrir plus de projets"
+            },
+            es: {
+                navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
+                heroTitle: "Promoviendo la educación ambiental a través de la acuaponía",
+                locationMeta: "Francia",
+                projectYear: "2018",
+                summaryTitle: "Puntos Clave",
+                high1Title: "Talleres escolares", high1Desc: "Educación interactiva en acuaponía para niños en Roubaix",
+                high2Title: "Agricultura sostenible", high2Desc: "Demostración de recirculación de agua y sistemas circulares",
+                mapHeading: "Ubicación del Proyecto (Francia)",
+                challengeTitle: "El Desafío",
+                challengeP1: "La agricultura enfrenta desafíos crecientes debido al cambio climático y la escasez de recursos.",
+                challengeP2: "Una población mundial en aumento requiere producir más alimentos con menos recursos naturales.",
+                factsTitle: "Datos Clave",
+                fact1Desc: "Los sistemas acuapónicos pueden reducir el consumo de agua hasta en un 90% gracias a la recirculación.",
+                fact2Desc: "Más de 150 especies de vegetales, hierbas y flores se han cultivado con éxito en acuaponía.",
+                fact3Desc: "La agricultura representa aproximadamente el 72% de las extracciones mundiales de agua dulce.",
+                projectTitle: "Nuestro proyecto",
+                projectP1: "Fish & Seeds fue desarrollado por cinco estudiantes de EDHEC para introducir la acuaponía en colegios.",
+                projectP2: "El objetivo principal fue inspirar conciencia ambiental desde una edad temprana.",
+                projectP3: "Establecimos alianzas con escuelas primarias y difundimos el proyecto en medios locales.",
+                learningTitle: "Aprendiendo de los sistemas vivos",
+                l1Title: "Ciclos del agua", l1Desc: "El agua circula a través del sistema conectando peces, plantas y procesos naturales.",
+                l2Title: "Conciencia de recursos", l2Desc: "Fomenta una visión más consciente de la producción de alimentos.",
+                l3Title: "Pensamiento de futuro", l3Desc: "Un espacio de aprendizaje para imaginar sistemas alimentarios resilientes.",
+                l4Title: "Equilibrio natural", l4Desc: "Los peces aportan nutrientes y las plantas limpian el agua.",
+                linksTitle: "Enlaces Útiles y Recursos",
+                link1Text: "FAO Aquaponics – Pautas globales y producción sostenible de alimentos",
+                link2Text: "EDHEC Business School – Iniciativas estudiantiles y programas sostenibles",
+                link3Text: "Naciones Unidas – Descripción general de los Objetivos de Desarrollo Sostenible (ODS)",
+                exploreBtnText: "Explorar más proyectos"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('location-meta').innerText = t.locationMeta;
+            document.getElementById('project-year').innerText = t.projectYear;
+            document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
+            document.getElementById('high-1-title').innerText = t.high1Title;
+            document.getElementById('high-1-desc').innerText = t.high1Desc;
+            document.getElementById('high-2-title').innerText = t.high2Title;
+            document.getElementById('high-2-desc').innerText = t.high2Desc;
+            document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
+            
+            document.getElementById('challenge-title').innerText = t.challengeTitle;
+            document.getElementById('challenge-p1').innerText = t.challengeP1;
+            document.getElementById('challenge-p2').innerText = t.challengeP2;
+            
+            document.getElementById('facts-title').innerText = t.factsTitle;
+            document.getElementById('fact1-desc').innerText = t.fact1Desc;
+            document.getElementById('fact2-desc').innerText = t.fact2Desc;
+            document.getElementById('fact3-desc').innerText = t.fact3Desc;
+            
+            document.getElementById('project-title').innerText = t.projectTitle;
+            document.getElementById('project-p1').innerText = t.projectP1;
+            document.getElementById('project-p2').innerText = t.projectP2;
+            document.getElementById('project-p3').innerText = t.projectP3;
+            
+            document.getElementById('learning-title').innerText = t.learningTitle;
+            document.getElementById('l1-title').innerText = t.l1Title; document.getElementById('l1-desc').innerText = t.l1Desc;
+            document.getElementById('l2-title').innerText = t.l2Title; document.getElementById('l2-desc').innerText = t.l2Desc;
+            document.getElementById('l3-title').innerText = t.l3Title; document.getElementById('l3-desc').innerText = t.l3Desc;
+            document.getElementById('l4-title').innerText = t.l4Title; document.getElementById('l4-desc').innerText = t.l4Desc;
+
+            document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
+            document.getElementById('link1-text').innerText = t.link1Text;
+            document.getElementById('link2-text').innerText = t.link2Text;
+            document.getElementById('link3-text').innerText = t.link3Text;
+
+            document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
+        }
+    </script>
+</body>
+</html>
