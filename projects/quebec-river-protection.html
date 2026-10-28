@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>River Conservation & Decentralized Energy in Québec – Aguatura Projects</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome v6.5.1 für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Minimap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1050px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO SEKTION */
+        .project-hero {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .project-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4A5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        .sdg-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sdg-placeholder {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            border: 2px dashed var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* MAP & SUMMARY LAYOUT */
+        .map-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .map-info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        .location-icon {
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+        }
+
+        .location-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-text span {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .map-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #minimap {
+            height: 100%;
+            min-height: 280px;
+            width: 100%;
+            border-radius: 8px;
+            background-color: #EBF4F0;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        .custom-white-pin {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+        }
+
+        .leaflet-tooltip.custom-tooltip {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        /* CONTENT CARDS & IMAGE PLACEHOLDERS */
+        .content-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--primary-dark);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .grid-text p {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .grid-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 260px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 2px dashed #A0AEC0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            text-align: center;
+            padding: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--accent-green);
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* FACTS & DATA GRID */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .fact-card {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid var(--accent-green);
+            text-align: center;
+        }
+
+        .fact-card .fact-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .fact-card p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .fact-source {
+            font-size: 0.75rem;
+            color: #718096;
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* INTERVIEW SECTION */
+        .interview-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .profile-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        .profile-info p {
+            font-size: 0.88rem;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .qa-item {
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 18px;
+        }
+
+        .qa-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .qa-question {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            font-size: 0.98rem;
+        }
+
+        .qa-answer {
+            color: #4A5568;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            padding-left: 24px;
+        }
+
+        .quote-box {
+            background: #EBF4F0;
+            border-left: 4px solid var(--primary-dark);
+            padding: 20px;
+            border-radius: 6px;
+            font-style: italic;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* PILLARS / INITIATIVES GRID */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pillar-card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-dark);
+        }
+
+        .pillar-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* USEFUL LINKS SECTION */
+        .links-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            border-left: 5px solid var(--primary-dark);
+        }
+
+        .links-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .useful-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .useful-links-list li {
+            font-size: 0.95rem;
+        }
+
+        .useful-links-list a {
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .useful-links-list a:hover {
+            color: var(--accent-green);
+            text-decoration: underline;
+        }
+
+        /* EXPLORE MORE BUTTON */
+        .explore-more-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 900px) {
+            .map-section-grid {
+                grid-template-columns: 1fr;
+            }
+            #minimap {
+                min-height: 250px;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .interview-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container animate-fade">
+
+        <!-- HERO SEKTION -->
+        <section class="project-hero">
+            <h1 id="hero-title">River Conservation & Decentralized Energy in Québec</h1>
+            <div class="hero-meta">
+                <div class="meta-details">
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Québec, Canada</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                </div>
+                <div class="sdg-icons">
+                    <div class="sdg-placeholder" title="SDG 6: Clean Water and Sanitation">
+                        <i class="fa-solid fa-water"></i>
+                        <span>SDG 6</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>SDG 15</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP & SUMMARY LAYOUT -->
+        <div class="map-section-grid">
+            <div class="map-info-card">
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Key Conservation Highlights</h3>
+                <ul class="location-list">
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-1-title">Decentralized Energy Solutions</strong>
+                            <span id="sum-1-desc">Challenging mega-dams and empowering local clean power generation</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-2-title">Municipal Water Data Transparency</strong>
+                            <span id="sum-2-desc">Tracking wastewater overflows via open-data reporting</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-3-title">Equitable Nature & River Access</strong>
+                            <span id="sum-3-desc">Unlocking privatized riverbanks for public enjoyment</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="map-card">
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Location (Québec)</h3>
+                <div id="minimap"></div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW / COLLABORATION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="about-title">Grassroots Conservation & Policy Reform in Québec</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="about-p1">During our North American exchange in 2026, the Aguatura team analyzed local water conservation models in Québec. The province faces unique ecological challenges: while hydro-electricity historically defined Québec's energy identity, distant mega-dams often impacted Indigenous territories and flooded massive natural basins.</p>
+                    <p id="about-p2">Unlike centralized administrative models in Europe, Québec relies heavily on municipal decentralization without always providing local authorities with the necessary tools, funds, or coordination mechanisms. Environmental organizations act as vital bridges between citizen movements, scientific data, and government decision-makers.</p>
+                </div>
+                <div class="grid-image">
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-water"></i>
+                        <span>Upload Québec Fieldwork Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACTS & DATA SECTION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="facts-heading">Key Facts & Context</h2>
+            </div>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">>90%</div>
+                    <p id="f1-text">Hydroelectric proportion of Québec's total electricity production.</p>
+                    <span class="fact-source">Source: Hydro-Québec Data</span>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">98%</div>
+                    <p id="f2-text">Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.</p>
+                    <span class="fact-source">Source: Alliance pour l'accès à la nature</span>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">28</div>
+                    <p id="f3-text">Municipalities mobilized along the Rivière du Nord for joint water management pilots.</p>
+                    <span class="fact-source">Source: Defi Eau Propre Pilot Project</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERVIEW & QUOTES SECTION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="interview-title">Field Insights & Interview Quotes</h2>
+            </div>
+
+            <div class="interview-profile">
+                <div class="profile-avatar"><i class="fa-solid fa-comments"></i></div>
+                <div class="profile-info">
+                    <h3 id="profile-name">Fondation Rivières Team</h3>
+                    <p id="profile-role">River Conservation & Environmental Policy Experts (Québec)</p>
+                    <p id="profile-bio">Exchanging perspectives on energy decentralization, municipal wastewater transparency, and public access to waterways during our 2026 field trip.</p>
+                </div>
+            </div>
+
+            <div class="qa-container">
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q1-text">On Energy Perception & Micro-Hydro:</span></div>
+                    <div class="qa-answer" id="a1-text">"Bringing energy production closer to citizens increases consciousness about consumption. Hydro-electricity in Québec was built far from consumption centers, hiding its real footprint."</div>
+                </div>
+
+                <div class="quote-box" id="quote-text">
+                    "Here, surrounding lakes and rivers are often entirely privatized. Having public water but 98% inaccessible shorelines is a major paradox we need to unlock."
+                    <br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Fondation Rivières, Québec 2026</small>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q2-text">On Wastewater Transparency & Municipal Capacity:</span></div>
+                    <div class="qa-answer" id="a2-text">"Our Audito tool and annual rankings made local mayors fully aware of overflow issues. Now, instead of pointing fingers, we actively support municipalities in securing funding and expertise."</div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q3-text">On Giving Rivers Space ('Espaces de liberté'):</span></div>
+                    <div class="qa-answer" id="a3-text">"Instead of building costly rock walls that fail over time, the real solution lies in creating 'spaces of freedom' and letting rivers follow their natural course."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE FOCUS AREAS (PILLARS) -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="pillars-heading">Core Focus Areas & Solutions</h2>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> <span id="p1-title">Decentralized Energy & Micro-Hydro</span></h4>
+                    <p id="p1-desc">Pushing back against destructive mega-dams and large-scale infrastructure projects that flood indigenous lands. By promoting local micro-hydro and energy decentralization, communities gain higher energy consciousness and resilience against grid failures during severe winter ice storms.</p>
+                </div>
+                <div class="pillar-card">
+                    <h4><i class="fa-solid fa-database"></i> <span id="p2-title">Municipal Wastewater Tracking</span></h4>
+                    <p id="p2-desc">Collecting and visualizing municipal wastewater performance data through transparent Power BI tools. The annual rankings hold local politicians accountable, shifting the focus from pointing fingers to collaborative municipal capacity-building.</p>
+                </div>
+                <div class="pillar-card">
+                    <h4><i class="fa-solid fa-person-hiking"></i> <span id="p3-title">Shoreline Access & Room for Rivers</span></h4>
+                    <p id="p3-desc">Challenging widespread privatization of riverbanks ("accès aux berges") and advocating for legislative reform. Concurrently, promoting "espaces de liberté" (room for rivers) to let natural waterways follow their course rather than blocking them with expensive rock walls.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- USEFUL LINKS SECTION -->
+        <section class="links-section">
+            <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
+            <ul class="useful-links-list">
+                <li>
+                    <a href="https://fondationrivieres.org" target="_blank">
+                        <i class="fa-solid fa-water"></i> <span id="link1-text">Fondation Rivières – Official River Conservation Portal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="url?id=9" target="_blank">
+                        <i class="fa-solid fa-chart-bar"></i> <span id="link2-text">Audito – Municipal Wastewater Overflow Tracking Platform</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://accesnature.ca" target="_blank">
+                        <i class="fa-solid fa-tree"></i> <span id="link3-text">Alliance pour l'accès à la nature – Public Nature Access Initiative</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.hydroquebec.com" target="_blank">
+                        <i class="fa-solid fa-bolt"></i> <span id="link4-text">Hydro-Québec – Energy Grid & Infrastructure Overview</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- EXPLORE MORE BUTTON -->
+        <div class="explore-more-section">
+            <a href="Project-Map.html" class="btn-explore">
+                <i class="fa-solid fa-map-location-dot"></i> <span id="explore-btn-text">Explore more projects</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('minimap', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([52.9399, -73.5491], 5); // Québec, Canada center
+
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function(feature) {
+                            var countryName = feature.properties.name;
+                            if (countryName === "Canada") {
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
+                            } else {
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
+                            }
+                        }
+                    }).addTo(map);
+
+                    var quebecIcon = L.divIcon({
+                        className: 'custom-white-pin',
+                        html: `<i class="fa-solid fa-water"></i>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+
+                    L.marker([46.8139, -71.2082], { icon: quebecIcon })
+                        .addTo(map)
+                        .bindTooltip('<b>River Conservation Québec</b><br>Québec, Canada', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .openTooltip();
+                })
+                .catch(err => console.error("Kartendaten Fehler: ", err));
+        });
+
+        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
+        const translations = {
+            en: {
+                navHome: "Home", navMap: "Project Map", navAbout: "About us",
+                heroTitle: "River Conservation & Decentralized Energy in Québec",
+                locationMeta: "Québec, Canada",
+                projectYear: "2026",
+                summaryTitle: "Key Conservation Highlights",
+                sum1Title: "Decentralized Energy Solutions", sum1Desc: "Challenging mega-dams and empowering local clean power generation",
+                sum2Title: "Municipal Water Data Transparency", sum2Desc: "Tracking wastewater overflows via open-data reporting",
+                sum3Title: "Equitable Nature & River Access", sum3Desc: "Unlocking privatized riverbanks for public enjoyment",
+                mapHeading: "Project Location (Québec)",
+                aboutTitle: "Grassroots Conservation & Policy Reform in Québec",
+                aboutP1: "During our North American exchange in 2026, the Aguatura team analyzed local water conservation models in Québec. The province faces unique ecological challenges: while hydro-electricity historically defined Québec's energy identity, distant mega-dams often impacted Indigenous territories and flooded massive natural basins.",
+                aboutP2: "Unlike centralized administrative models in Europe, Québec relies heavily on municipal decentralization without always providing local authorities with the necessary tools, funds, or coordination mechanisms. Environmental organizations act as vital bridges between citizen movements, scientific data, and government decision-makers.",
+                factsHeading: "Key Facts & Context",
+                f1Text: "Hydroelectric proportion of Québec's total electricity production.",
+                f2Text: "Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.",
+                f3Text: "Municipalities mobilized along the Rivière du Nord for joint water management pilots.",
+                interviewTitle: "Field Insights & Interview Quotes",
+                profileName: "Fondation Rivières Team",
+                profileRole: "River Conservation & Environmental Policy Experts (Québec)",
+                profileBio: "Exchanging perspectives on energy decentralization, municipal wastewater transparency, and public access to waterways during our 2026 field trip.",
+                q1Text: "On Energy Perception & Micro-Hydro:",
+                a1Text: "\"Bringing energy production closer to citizens increases consciousness about consumption. Hydro-electricity in Québec was built far from consumption centers, hiding its real footprint.\"",
+                quoteText: "\"Here, surrounding lakes and rivers are often entirely privatized. Having public water but 98% inaccessible shorelines is a major paradox we need to unlock.\"",
+                q2Text: "On Wastewater Transparency & Municipal Support:",
+                a2Text: "\"Our Audito tool and annual rankings made local mayors fully aware of overflow issues. Now, instead of pointing fingers, we actively support municipalities in securing funding and expertise.\"",
+                q3Text: "On Giving Rivers Space ('Espaces de liberté'):",
+                a3Text: "\"Instead of building costly rock walls that fail over time, the real solution lies in creating 'spaces of freedom' and letting rivers follow their natural course.\"",
+                pillarsHeading: "Core Focus Areas & Solutions",
+                p1Title: "Decentralized Energy & Micro-Hydro",
+                p1Desc: "Pushing back against destructive mega-dams and large-scale infrastructure projects that flood indigenous lands. By promoting local micro-hydro and energy decentralization, communities gain higher energy consciousness and resilience against grid failures during severe winter ice storms.",
+                p2Title: "Municipal Wastewater Tracking",
+                p2Desc: "Collecting and visualizing municipal wastewater performance data through transparent Power BI tools. The annual rankings hold local politicians accountable, shifting the focus from pointing fingers to collaborative municipal capacity-building.",
+                p3Title: "Shoreline Access & Room for Rivers",
+                p3Desc: "Challenging widespread privatization of riverbanks (\"accès aux berges\") and advocating for legislative reform. Concurrently, promoting \"espaces de liberté\" (room for rivers) to let natural waterways follow their course rather than blocking them with expensive rock walls.",
+                linksTitle: "Useful Links & Resources",
+                link1Text: "Fondation Rivières – Official River Conservation Portal",
+                link2Text: "Audito – Municipal Wastewater Overflow Tracking Platform",
+                link3Text: "Alliance pour l'accès à la nature – Public Nature Access Initiative",
+                link4Text: "Hydro-Québec – Energy Grid & Infrastructure Overview",
+                exploreBtnText: "Explore more projects"
+            },
+            de: {
+                navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
+                heroTitle: "Flussschutz & Dezentrale Energie in Québec",
+                locationMeta: "Québec, Kanada",
+                projectYear: "2026",
+                summaryTitle: "Zentrale Naturschutz-Highlights",
+                sum1Title: "Dezentrale Energielösungen", sum1Desc: "Kritik an Megastaudämmen und Förderung lokaler sauberer Energie",
+                sum2Title: "Transparenz bei kommunalen Wasserdaten", sum2Desc: "Erfassung von Abwasserüberläufen durch Open-Data-Berichte",
+                sum3Title: "Gerechter Natur- & Flusszugang", sum3Desc: "Freigabe privatisierter Flussufer für die Öffentlichkeit",
+                mapHeading: "Projektstandort (Québec)",
+                aboutTitle: "Graswurzel-Naturschutz & Politische Reformen in Québec",
+                aboutP1: "Während unseres Nordamerika-Austauschs im Jahr 2026 analysierte das Aguatura-Team lokale Wasserschutzmodelle in Québec. Die Provinz steht vor einzigartigen ökologischen Herausforderungen: Obwohl Wasserkraft die Energieidentität Québecs prägt, überfluteten große Staudämme oft indigene Gebiete.",
+                aboutP2: "Im Gegensatz zu zentralisierten Verwaltungsmodellen setzt Québec stark auf kommunale Dezentralisierung, ohne Städten immer Werkzeuge oder Mittel bereitzustellen. Umweltorganisationen schlagen die Brücke zwischen Bürgerbewegungen, Daten und der Politik.",
+                factsHeading: "Wichtige Fakten & Kontext",
+                f1Text: "Anteil der Wasserkraft an Québecs gesamter Stromproduktion.",
+                f2Text: "Geschätzter Anteil privatisierter oder unzugänglicher Ufer an Seen und Flüssen in Québec.",
+                f3Text: "Mobilisierte Gemeinden entlang des Rivière du Nord für gemeinsame Gewässerschutz-Piloten.",
+                interviewTitle: "Felderkenntnisse & Interview-Zitate",
+                profileName: "Team der Fondation Rivières",
+                profileRole: "Experten für Flussschutz & Umweltpolitik (Québec)",
+                profileBio: "Austausch über dezentrale Energie, Transparenz bei Abwässern und den öffentlichen Naturzugang während unserer Reise 2026.",
+                q1Text: "Über Energie-Wahrnehmung & Mikro-Wasserkraft:",
+                a1Text: "\"Bringt man die Energieerzeugung näher an die Bürger, schärft das das Bewusstsein für den eigenen Verbrauch. Strom wurde in Québec fernab der Zentren produziert, wodurch die realen Folgen unsichtbar blieben.\"",
+                quoteText: "\"Hier ist das Land um Seen und Flüsse oft komplett privatisiert. Öffentliches Wasser bei 98% unzugänglichen Ufern ist ein Paradoxon, das wir aufbrechen müssen.\"",
+                q2Text: "Über Abwasser-Transparenz & kommunale Hilfe:",
+                a2Text: "\"Unser Audito-Tool und das Jahresranking haben das Bewusstsein für Abwasserüberläufe geschärft. Statt nur mit dem Finger auf Kommunen zu zeigen, unterstützen wir sie heute bei Finanzierung und Expertise.\"",
+                q3Text: "Über Freiräume für Flüsse ('Espaces de liberté'):",
+                a3Text: "\"Statt teurer Steinmauern, die auf Dauer versagen, liegt die Lösung darin, Flüssen ihren natürlichen Raum ('espaces de liberté') zu lassen.\"",
+                pillarsHeading: "Kernbereiche & Lösungsansätze",
+                p1Title: "Dezentrale Energie & Mikro-Wasserkraft",
+                p1Desc: "Widerstand gegen zerstörerische Megastaudämme, die indigene Gebiete überfluten. Durch lokale Mikro-Wasserkraft gewinnen Gemeinschaften ein Bewusstsein für ihren Energieverbrauch und Schutz vor Stromausfällen im Winter.",
+                p2Title: "Kommunales Abwasser-Tracking",
+                p2Desc: "Erfassung und Visualisierung von Abwasserdaten über transparente Power-BI-Tools. Das jährliche Ranking hält Kommunen in der Verantwortung und fördert gemeinsame Lösungsansätze.",
+                p3Title: "Uferzugang & Freiraum für Flüsse",
+                p3Desc: "Bekämpfung der starken Privatisierung von Flussufern und Einsatz für gesetzliche Reformen. Gleichzeitig werden 'espaces de liberté' (Freiräume für Flüsse) gefördert, um Flüsse natürlich fließen zu lassen.",
+                linksTitle: "Nützliche Links & Ressourcen",
+                link1Text: "Fondation Rivières – Offizielles Flussschutz-Portal",
+                link2Text: "Audito – Plattform für kommunales Abwasser-Tracking",
+                link3Text: "Alliance pour l'accès à la nature – Initiative für öffentlichen Naturzugang",
+                link4Text: "Hydro-Québec – Stromnetz & Infrastruktur-Überblick",
+                exploreBtnText: "Weitere Projekte entdecken"
+            },
+            fr: {
+                navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
+                heroTitle: "Conservation des rivières et énergie décentralisée au Québec",
+                locationMeta: "Québec, Canada",
+                projectYear: "2026",
+                summaryTitle: "Points Forts de la Conservation",
+                sum1Title: "Solutions énergétiques décentralisées", sum1Desc: "Contester les méga-barrages et favoriser l'énergie locale propre",
+                sum2Title: "Transparence des données d'eau", sum2Desc: "Suivi des déversements d'eaux usées via des outils open-data",
+                sum3Title: "Accès équitable aux rivières", sum3Desc: "Libérer les rives privatisées pour un accès public à la nature",
+                mapHeading: "Lieu du Projet (Québec)",
+                aboutTitle: "Conservation citoyenne et réforme politique au Québec",
+                aboutP1: "Lors de notre échange en Amérique du Nord en 2026, l'équipe d'Aguatura a analysé les modèles de conservation de l'eau au Québec. Bien que l'hydroélectricité définisse l'identité énergétique québécoise, les méga-barrages ont souvent impacté les territoires autochtones.",
+                aboutP2: "Contrairement aux modèles centralisés, le Québec s'appuie sur une décentralisation municipale sans toujours doter les acteurs locaux des outils nécessaires. Les organisations environnementales font le pont entre mobilisation citoyenne et décisionnaires.",
+                factsHeading: "Faits Clés & Contexte",
+                f1Text: "Proportion d'hydroélectricité dans la production totale d'électricité du Québec.",
+                f2Text: "Proportion estimée des berges de lacs et rivières privatisées ou inaccessibles au Québec.",
+                f3Text: "Municipalités mobilisées le long de la rivière du Nord pour un projet pilote de gestion de l'eau.",
+                interviewTitle: "Aperçus de terrain & Citations de l'entrevue",
+                profileName: "Équipe Fondation Rivières",
+                profileRole: "Experts en conservation des rivières et politique environnementale (Québec)",
+                profileBio: "Échanges sur la décentralisation énergétique, la transparence des eaux usées et l'accès public aux cours d'eau en 2026.",
+                q1Text: "Sur la perception énergétique et la micro-hydro :",
+                a1Text: "\"Ramener l'énergie plus près des gens, ça fait en sorte qu'on a une plus grande sensibilité envers notre consommation énergétique. Au Québec, l'électricité s'est faite loin des centres de consommation, donc les gens ne voient pas l'impact.\"",
+                quoteText: "\"Ici, tout ce qui est autour des lacs et rivières est parfois entièrement privatisé. Avoir de l'eau publique mais des berges 98% inaccessibles est un vrai paradoxe que nous devons déverrouiller.\"",
+                q2Text: "Sur la transparence des eaux usées et le soutien municipal :",
+                a2Text: "\"Notre outil Audito et le palmarès annuel ont permis aux élus de prendre conscience du problème des déversements. Aujourd'hui, nous accompagnons les municipalités pour obtenir les financements et l'expertise requise.\"",
+                q3Text: "Sur les 'Espaces de liberté' pour les rivières :",
+                a3Text: "\"Au lieu de mettre du enrochement coûteux qui ne fonctionne pas à long terme, la solution passe par aménager des 'espaces de liberté' et laisser la rivière suivre son cours naturel.\"",
+                pillarsHeading: "Domaines Clés & Solutions",
+                p1Title: "Énergie décentralisée & micro-hydro",
+                p1Desc: "S'opposer aux méga-barrages destructeurs inondant les terres autochtones. En promouvant la micro-hydroélectricité locale, les communautés gagnent en résilience face aux pannes lors des tempêtes de verglas.",
+                p2Title: "Suivi des eaux usées municipales",
+                p2Desc: "Collecte et visualisation des données de performance des stations d'épuration via Power BI. Le palmarès annuel responsabilise les élus locaux et favorise l'accompagnement.",
+                p3Title: "Accès aux berges & Espaces de liberté",
+                p3Desc: "Lutter contre la privatisation des berges et plaider pour des réformes législatives. Promouvoir les espaces de liberté pour laisser les rivières suivre leur cours naturel.",
+                linksTitle: "Liens Utiles & Ressources",
+                link1Text: "Fondation Rivières – Portail Officiel de Conservation",
+                link2Text: "Audito – Plateforme de suivi des déversements d'eaux usées",
+                link3Text: "Alliance pour l'accès à la nature – Initiative pour l'accès public",
+                link4Text: "Hydro-Québec – Aperçu du réseau et des infrastructures",
+                exploreBtnText: "Découvrir plus de projets"
+            },
+            es: {
+                navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
+                heroTitle: "Conservación de ríos y energía descentralizada en Quebec",
+                locationMeta: "Quebec, Canadá",
+                projectYear: "2026",
+                summaryTitle: "Puntos Destacados",
+                sum1Title: "Energía Descentralizada", sum1Desc: "Desafiando las grandes presas y fomentando la energía limpia local",
+                sum2Title: "Transparencia de Datos de Agua", sum2Desc: "Monitoreo de desbordamientos de aguas residuales mediante datos abiertos",
+                sum3Title: "Acceso Equitativo al Agua", sum3Desc: "Recuperar riberas privatizadas para el disfrute público",
+                mapHeading: "Ubicación del Proyecto (Quebec)",
+                aboutTitle: "Conservación comunitaria y reforma política en Quebec",
+                aboutP1: "Durante nuestro intercambio en Norteamérica en 2026, el equipo de Aguatura analizó los modelos de conservación del agua en Quebec. La hidroelectricidad define la identidad de Quebec, pero las grandes presas a menudo han impactado territorios indígenas.",
+                aboutP2: "Quebec se basa en la descentralización municipal. Las organizaciones ambientales actúan como puentes vitales entre los movimientos ciudadanos, los datos científicos y los líderes políticos.",
+                factsHeading: "Datos Clave y Contexto",
+                f1Text: "Proporción hidroeléctrica de la producción total de electricidad de Quebec.",
+                f2Text: "Proporción estimada de riberas privatizadas o inaccesibles en lagos y ríos de Quebec.",
+                f3Text: "Municipios movilizados a lo largo del río du Nord para proyectos piloto de gestión del agua.",
+                interviewTitle: "Perspectivas de campo y Citas de entrevista",
+                profileName: "Equipo de Fondation Rivières",
+                profileRole: "Expertos en Conservación de Ríos y Política Ambiental (Quebec)",
+                profileBio: "Intercambio sobre descentralización energética, transparencia de aguas residuales y acceso público a los ríos durante 2026.",
+                q1Text: "Sobre percepción energética y microhidroeléctrica:",
+                a1Text: "\"Acercar la generación de energía a la ciudadanía aumenta la conciencia sobre el consumo. En Quebec la energía se produjo lejos de los centros urbanos, ocultando su impacto real.\"",
+                quoteText: "\"Aquí el terreno alrededor de lagos y ríos suele estar completamente privatizado. Tener agua pública pero 98% de riberas inaccesibles es una paradoja que debemos resolver.\"",
+                q2Text: "Sobre transparencia de aguas residuales y apoyo municipal:",
+                a2Text: "\"Nuestra herramienta Audito y el ranking anual concienciaron a los alcaldes. Hoy apoyamos activamente a los municipios para obtener fondos y capacitación técnica.\"",
+                q3Text: "Sobre dar espacio a los ríos ('Espaces de liberté'):",
+                a3Text: "\"En lugar de construir muros de piedra costosos que fallan con el tiempo, la solución es crear 'espacios de libertad' y permitir que el río siga su curso natural.\"",
+                pillarsHeading: "Áreas Clave y Soluciones",
+                p1Title: "Energía descentralizada y microhidráulica",
+                p1Desc: "Oponerse a las grandes presas que inundan tierras indígenas. Al promover la microhidráulica local, las comunidades aumentan su conciencia y resiliencia energética ante tormentas invernales.",
+                p2Title: "Monitoreo de aguas residuales",
+                p2Desc: "Recopilación y visualización de datos de rendimiento municipal mediante Power BI. El ranking anual responsabiliza a los líderes locales y fomenta el apoyo mutuo.",
+                p3Title: "Acceso a riberas y Espacios de libertad",
+                p3Desc: "Combatir la privatización masiva de las riberas de los ríos y promover 'espaces de liberté' para que los cursos de agua fluyan de forma natural.",
+                linksTitle: "Enlaces Útiles y Recursos",
+                link1Text: "Fondation Rivières – Portal Oficial de Conservación de Ríos",
+                link2Text: "Audito – Plataforma de seguimiento de aguas residuales",
+                link3Text: "Alliance pour l'accès à la nature – Iniciativa de acceso público",
+                link4Text: "Hydro-Québec – Resumen de la red e infraestructura energética",
+                exploreBtnText: "Explorar más proyectos"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('location-meta').innerText = t.locationMeta;
+            document.getElementById('project-year').innerText = t.projectYear;
+            document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
+            document.getElementById('sum-1-title').innerText = t.sum1Title; document.getElementById('sum-1-desc').innerText = t.sum1Desc;
+            document.getElementById('sum-2-title').innerText = t.sum2Title; document.getElementById('sum-2-desc').innerText = t.sum2Desc;
+            document.getElementById('sum-3-title').innerText = t.sum3Title; document.getElementById('sum-3-desc').innerText = t.sum3Desc;
+            document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
+            
+            document.getElementById('about-title').innerText = t.aboutTitle;
+            document.getElementById('about-p1').innerText = t.aboutP1;
+            document.getElementById('about-p2').innerText = t.aboutP2;
+
+            document.getElementById('facts-heading').innerText = t.factsHeading;
+            document.getElementById('f1-text').innerText = t.f1Text;
+            document.getElementById('f2-text').innerText = t.f2Text;
+            document.getElementById('f3-text').innerText = t.f3Text;
+
+            document.getElementById('interview-title').innerText = t.interviewTitle;
+            document.getElementById('profile-name').innerText = t.profileName;
+            document.getElementById('profile-role').innerText = t.profileRole;
+            document.getElementById('profile-bio').innerText = t.profileBio;
+            
+            document.getElementById('q1-text').innerText = t.q1Text; document.getElementById('a1-text').innerText = t.a1Text;
+            document.getElementById('quote-text').innerHTML = `${t.quoteText}<br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Fondation Rivières, Québec 2026</small>`;
+            document.getElementById('q2-text').innerText = t.q2Text; document.getElementById('a2-text').innerText = t.a2Text;
+            document.getElementById('q3-text').innerText = t.q3Text; document.getElementById('a3-text').innerText = t.a3Text;
+
+            document.getElementById('pillars-heading').innerText = t.pillarsHeading;
+            document.getElementById('p1-title').innerText = t.p1Title; document.getElementById('p1-desc').innerText = t.p1Desc;
+            document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2Desc;
+            document.getElementById('p3-title').innerText = t.p3Title; document.getElementById('p3-desc').innerText = t.p3Desc;
+
+            document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
+            document.getElementById('link1-text').innerText = t.link1Text;
+            document.getElementById('link2-text').innerText = t.link2Text;
+            document.getElementById('link3-text').innerText = t.link3Text;
+            document.getElementById('link4-text').innerText = t.link4Text;
+
+            document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
+        }
+    </script>
+</body>
+</html>
