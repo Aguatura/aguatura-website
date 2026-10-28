@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Creek Conservancy Conservation Effort – Aguatura Projects</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome v6.5.1 für korrekte Icon-Darstellung -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Leaflet CSS für die Minimap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root {
+            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
+            --accent-green: #2A7B62;   /* Frisches Hellgrün */
+            --bg-light: #F4F8F6;       /* Softes Naturweiß */
+            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        #language-select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 1050px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* HERO SEKTION */
+        .project-hero {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .project-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 20px;
+        }
+
+        .meta-details {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4A5568;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        .sdg-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .sdg-placeholder {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            border: 2px dashed var(--accent-green);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        /* MAP & SUMMARY LAYOUT */
+        .map-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 25px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .map-info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+
+        .location-icon {
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+        }
+
+        .location-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .location-text span {
+            font-size: 0.8rem;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .map-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #minimap {
+            height: 100%;
+            min-height: 280px;
+            width: 100%;
+            border-radius: 8px;
+            background-color: #EBF4F0;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        .custom-white-pin {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--primary-dark);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 28px !important;
+            height: 28px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 11px;
+        }
+
+        .leaflet-tooltip.custom-tooltip {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        /* CONTENT CARDS & IMAGE PLACEHOLDERS */
+        .content-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--primary-dark);
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .grid-text p {
+            font-size: 1rem;
+            color: #4A5568;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .grid-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 260px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            border: 2px dashed #A0AEC0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            text-align: center;
+            padding: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: var(--accent-green);
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* INITIATIVES LIST & CARDS */
+        .initiatives-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .initiative-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .initiative-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .initiative-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .initiative-content p {
+            font-size: 0.92rem;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+
+        /* INTERVIEW SECTION */
+        .interview-profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-dark);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .profile-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        .profile-info p {
+            font-size: 0.88rem;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .qa-item {
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 18px;
+        }
+
+        .qa-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .qa-question {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            font-size: 0.98rem;
+        }
+
+        .qa-answer {
+            color: #4A5568;
+            font-size: 0.93rem;
+            line-height: 1.6;
+            padding-left: 24px;
+        }
+
+        .quote-box {
+            background: #EBF4F0;
+            border-left: 4px solid var(--primary-dark);
+            padding: 20px;
+            border-radius: 6px;
+            font-style: italic;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* TAKEAWAYS GRID */
+        .takeaways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .takeaway-card {
+            background: var(--bg-light);
+            padding: 22px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-dark);
+        }
+
+        .takeaway-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .takeaway-card p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* USEFUL LINKS SECTION */
+        .links-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            border-left: 5px solid var(--primary-dark);
+        }
+
+        .links-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .useful-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .useful-links-list li {
+            font-size: 0.95rem;
+        }
+
+        .useful-links-list a {
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .useful-links-list a:hover {
+            color: var(--accent-green);
+            text-decoration: underline;
+        }
+
+        /* EXPLORE MORE BUTTON */
+        .explore-more-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 900px) {
+            .map-section-grid {
+                grid-template-columns: 1fr;
+            }
+            #minimap {
+                min-height: 250px;
+            }
+            .grid-2col, .initiative-row, .initiative-row.reverse {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .interview-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                </a>
+            </div>
+            <nav>
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="Project-Map.html" id="nav-map" class="active">Project Map</a>
+                <a href="about.html" id="nav-about">About us</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container animate-fade">
+
+        <!-- HERO SEKTION -->
+        <section class="project-hero">
+            <h1 id="hero-title">Urban Forest Restoration & Local Nature Conservation Efforts</h1>
+            <div class="hero-meta">
+                <div class="meta-details">
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Washington, D.C., USA</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                </div>
+                <div class="sdg-icons">
+                    <div class="sdg-placeholder" title="SDG 4: Quality Education">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>SDG 4</span>
+                    </div>
+                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>SDG 15</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP & SUMMARY LAYOUT -->
+        <div class="map-section-grid">
+            <div class="map-info-card">
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Conservation Highlights</h3>
+                <ul class="location-list">
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-1-title">Hand in Glove Collaboration</strong>
+                            <span id="sum-1-desc">Seamless alignment between local conservancies and National Park Service</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-2-title">Weed Warriors Program</strong>
+                            <span id="sum-2-desc">Training community leaders to independently remove invasive plants</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-3-title">Inclusive Conservation</strong>
+                            <span id="sum-3-desc">Targeted environmental outreach in underserved urban neighborhoods</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="map-card">
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Location (Washington, D.C.)</h3>
+                <div id="minimap"></div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW / FIELDWORK -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="about-title">On-Site Fieldwork: Rock Creek Park</h2>
+            </div>
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="about-p1">During our North American field research in 2026, the Aguatura team visited Washington, D.C., to analyze best-practice models for urban watershed and forest management. Rock Creek Park is an extraordinary natural oasis running directly through the U.S. capital.</p>
+                    <p id="about-p2">The Rock Creek Conservancy plays a pivotal role in protecting this unique ecosystem by uniting local community members, volunteers, and federal authorities into an active, long-term conservation effort.</p>
+                </div>
+                <div class="grid-image">
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>Upload Fieldwork / Park Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY INITIATIVES SECTION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="init-heading">Key Conservation Initiatives</h2>
+            </div>
+            <div class="initiatives-container">
+                <!-- Initiative 1 -->
+                <div class="initiative-row">
+                    <div class="initiative-content">
+                        <h3><i class="fa-solid fa-scissors"></i> <span id="init1-title">Weed Warriors & Invasive Plant Removal</span></h3>
+                        <p id="init1-desc">To combat aggressive invasive vines and plants that choke native trees and reduce forest canopy health, the Conservancy trains local volunteers through the "Weed Warriors" program. Certified leaders gain specialized botanical knowledge to supervise independent removal events across various park sections.</p>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>Upload Weed Warriors Picture</span>
+                    </div>
+                </div>
+
+                <!-- Initiative 2 -->
+                <div class="initiative-row reverse">
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-hands-holding-water"></i>
+                        <span>Upload Stream Cleanup Picture</span>
+                    </div>
+                    <div class="initiative-content">
+                        <h3><i class="fa-solid fa-water"></i> <span id="init2-title">Stream Cleanups & Water Protection</span></h3>
+                        <p id="init2-desc">Rock Creek flows directly into the Potomac River and Chesapeake Bay. Through annual large-scale cleanup events, thousands of community members systematically remove trash and urban waste from the creek beds, protecting aquatic ecosystems and generating critical pollution tracking data.</p>
+                    </div>
+                </div>
+
+                <!-- Initiative 3 -->
+                <div class="initiative-row">
+                    <div class="initiative-content">
+                        <h3><i class="fa-solid fa-cloud-showers-heavy"></i> <span id="init3-title">Stormwater Management & RainScapes</span></h3>
+                        <p id="init3-desc">Heavy rain runoff washes urban pollutants and oil straight into natural waterways, causing severe soil erosion. The Conservancy promotes green infrastructure solutions, such as rain gardens, cisterns, and permeable surfaces, helping neighborhoods absorb stormwater naturally before it reaches the park.</p>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fa-solid fa-faucet-drip"></i>
+                        <span>Upload RainScapes Picture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERVIEW SECTION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="interview-title">Field Interview with Ryan McIntyre</h2>
+            </div>
+
+            <div class="interview-profile">
+                <div class="profile-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="profile-info">
+                    <h3>Ryan McIntyre</h3>
+                    <p id="profile-role">Forest Resilience Manager, Rock Creek Conservancy</p>
+                    <p id="profile-bio">Former ecological researcher at the Smithsonian Institution. Currently oversees forest restoration, contractor teams, and community engagement throughout Rock Creek Park.</p>
+                </div>
+            </div>
+
+            <div class="qa-container">
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q1-text">How do you describe your collaboration with the National Park Service (NPS)?</span></div>
+                    <div class="qa-answer" id="a1-text">"We describe our partnership as being 'hand in glove'—basically moving together. Every year, we lay out an annual work plan for our volunteer projects in the park. Every Monday, I meet with park partners to establish synergies, set expectations, and ensure we share a singular vision for what's best for the park."</div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q2-text">How do you ensure volunteers correctly identify and target invasive species?</span></div>
+                    <div class="qa-answer" id="a2-text">"It's all about communication and structured training. At every event, we take 10 minutes to walk through plant identification. Furthermore, through our 'Weed Warriors' program, community members go through extensive training so they can lead groups or steward their local park sections independently."</div>
+                </div>
+
+                <div class="quote-box" id="quote-text">
+                    "Our ultimate goal is to empower community members to take true ownership of local nature, so neighborhoods can steward their own forest sections."
+                    <br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Ryan McIntyre, Forest Resilience Manager</small>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q3-text">What role does diversity and inclusion play in your urban conservation efforts?</span></div>
+                    <div class="qa-answer" id="a3-text">"We want to serve the whole community, not just wealthy neighborhoods. We intentionally direct grant funding into historically underserved areas, run summer youth programs, and build new volunteer networks where people don't know us yet."</div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q4-text">How do you measure success and handle challenges like climate change?</span></div>
+                    <div class="qa-answer" id="a4-text">"We track clear proxies: square footage of invasive plants removed, number of trees freed from choking vines to preserve the canopy, and volunteer engagement hours. To tackle climate change, we diversify funding and collaborate with regional networks like the Capital Area Natural Resources Management group to share adaptive strategies."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGUATURA TAKEAWAYS -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="takeaways-title">Aguatura Takeaways for Global Replication</h2>
+            </div>
+            <div class="takeaways-grid">
+                <div class="takeaway-card">
+                    <h4><i class="fa-solid fa-calendar-check"></i> <span id="t1-title">Consistency Builds Trust</span></h4>
+                    <p id="t1-desc">Holding regular, scheduled monthly events creates reliable community habits, even if initial turnout is small.</p>
+                </div>
+                <div class="takeaway-card">
+                    <h4><i class="fa-solid fa-sitemap"></i> <span id="t2-title">The Multiplier Model</span></h4>
+                    <p id="t2-desc">Training local 'Weed Warriors' allows conservation efforts to scale organically without requiring staff oversight at every site.</p>
+                </div>
+                <div class="takeaway-card">
+                    <h4><i class="fa-solid fa-clipboard-check"></i> <span id="t3-title">Clear Agency Alignment</span></h4>
+                    <p id="t3-desc">Structured weekly and annual planning prevents administrative friction between non-profits and public authorities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- USEFUL LINKS SECTION -->
+        <section class="links-section">
+            <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
+            <ul class="useful-links-list">
+                <li>
+                    <a href="https://www.rockcreekconservancy.org" target="_blank">
+                        <i class="fa-solid fa-water"></i> <span id="link1-text">Rock Creek Conservancy – Official Website</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.rockcreekconservancy.org/weed-warriors" target="_blank">
+                        <i class="fa-solid fa-user-gear"></i> <span id="link2-text">Weed Warriors Program – Volunteer Training & Leadership</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.nps.gov/rocr/index.htm" target="_blank">
+                        <i class="fa-solid fa-tree"></i> <span id="link3-text">National Park Service – Rock Creek Park Official Portal</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- EXPLORE MORE BUTTON -->
+        <div class="explore-more-section">
+            <a href="Project-Map.html" class="btn-explore">
+                <i class="fa-solid fa-map-location-dot"></i> <span id="explore-btn-text">Explore more projects</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aguatura. Non-Profit Organization. All rights reserved.</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('minimap', {
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([38.9296, -77.0468], 11);
+
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function(feature) {
+                            var countryName = feature.properties.name;
+                            if (countryName === "United States of America" || countryName === "United States") {
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
+                            } else {
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
+                            }
+                        }
+                    }).addTo(map);
+
+                    var rccIcon = L.divIcon({
+                        className: 'custom-white-pin',
+                        html: `<i class="fa-solid fa-tree"></i>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+
+                    L.marker([38.9296, -77.0468], { icon: rccIcon })
+                        .addTo(map)
+                        .bindTooltip('<b>Rock Creek Conservancy</b><br>Washington, D.C.', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .openTooltip();
+                })
+                .catch(err => console.error("Kartendaten Fehler: ", err));
+        });
+
+        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
+        const translations = {
+            en: {
+                navHome: "Home", navMap: "Project Map", navAbout: "About us",
+                heroTitle: "Urban Forest Restoration & Local Nature Conservation Efforts",
+                locationMeta: "Washington, D.C., USA",
+                projectYear: "2026",
+                summaryTitle: "Conservation Highlights",
+                sum1Title: "Hand in Glove Collaboration", sum1Desc: "Seamless alignment between local conservancies and National Park Service",
+                sum2Title: "Weed Warriors Program", sum2Desc: "Training community leaders to independently remove invasive plants",
+                sum3Title: "Inclusive Conservation", sum3Desc: "Targeted environmental outreach in underserved urban neighborhoods",
+                mapHeading: "Project Location (Washington, D.C.)",
+                aboutTitle: "On-Site Fieldwork: Rock Creek Park",
+                aboutP1: "During our North American field research in 2026, the Aguatura team visited Washington, D.C., to analyze best-practice models for urban watershed and forest management. Rock Creek Park is an extraordinary natural oasis running directly through the U.S. capital.",
+                aboutP2: "The Rock Creek Conservancy plays a pivotal role in protecting this unique ecosystem by uniting local community members, volunteers, and federal authorities into an active, long-term conservation effort.",
+                initHeading: "Key Conservation Initiatives",
+                init1Title: "Weed Warriors & Invasive Plant Removal",
+                init1Desc: "To combat aggressive invasive vines and plants that choke native trees and reduce forest canopy health, the Conservancy trains local volunteers through the \"Weed Warriors\" program. Certified leaders gain specialized botanical knowledge to supervise independent removal events across various park sections.",
+                init2Title: "Stream Cleanups & Water Protection",
+                init2Desc: "Rock Creek flows directly into the Potomac River and Chesapeake Bay. Through annual large-scale cleanup events, thousands of community members systematically remove trash and urban waste from the creek beds, protecting aquatic ecosystems and generating critical pollution tracking data.",
+                init3Title: "Stormwater Management & RainScapes",
+                init3Desc: "Heavy rain runoff washes urban pollutants and oil straight into natural waterways, causing severe soil erosion. The Conservancy promotes green infrastructure solutions, such as rain gardens, cisterns, and permeable surfaces, helping neighborhoods absorb stormwater naturally before it reaches the park.",
+                interviewTitle: "Field Interview with Ryan McIntyre",
+                profileRole: "Forest Resilience Manager, Rock Creek Conservancy",
+                profileBio: "Former ecological researcher at the Smithsonian Institution. Currently oversees forest restoration, contractor teams, and community engagement throughout Rock Creek Park.",
+                q1Text: "How do you describe your collaboration with the National Park Service (NPS)?",
+                a1Text: "\"We describe our partnership as being 'hand in glove'—basically moving together. Every year, we lay out an annual work plan for our volunteer projects in the park. Every Monday, I meet with park partners to establish synergies, set expectations, and ensure we share a singular vision for what's best for the park.\"",
+                q2Text: "How do you ensure volunteers correctly identify and target invasive species?",
+                a2Text: "\"It's all about communication and structured training. At every event, we take 10 minutes to walk through plant identification. Furthermore, through our 'Weed Warriors' program, community members go through extensive training so they can lead groups or steward their local park sections independently.\"",
+                quoteText: "\"Our ultimate goal is to empower community members to take true ownership of local nature, so neighborhoods can steward their own forest sections.\"",
+                q3Text: "What role does diversity and inclusion play in your urban conservation efforts?",
+                a3Text: "\"We want to serve the whole community, not just wealthy neighborhoods. We intentionally direct grant funding into historically underserved areas, run summer youth programs, and build new volunteer networks where people don't know us yet.\"",
+                q4Text: "How do you measure success and handle challenges like climate change?",
+                a4Text: "\"We track clear proxies: square footage of invasive plants removed, number of trees freed from choking vines to preserve the canopy, and volunteer engagement hours. To tackle climate change, we diversify funding and collaborate with regional networks like the Capital Area Natural Resources Management group to share adaptive strategies.\"",
+                takeawaysTitle: "Aguatura Takeaways for Global Replication",
+                t1Title: "Consistency Builds Trust", t1Desc: "Holding regular, scheduled monthly events creates reliable community habits, even if initial turnout is small.",
+                t2Title: "The Multiplier Model", t2Desc: "Training local 'Weed Warriors' allows conservation efforts to scale organically without requiring staff oversight at every site.",
+                t3Title: "Clear Agency Alignment", t3Desc: "Structured weekly and annual planning prevents administrative friction between non-profits and public authorities.",
+                linksTitle: "Useful Links & Resources",
+                link1Text: "Rock Creek Conservancy – Official Website",
+                link2Text: "Weed Warriors Program – Volunteer Training & Leadership",
+                link3Text: "National Park Service – Rock Creek Park Official Portal",
+                exploreBtnText: "Explore more projects"
+            },
+            de: {
+                navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
+                heroTitle: "Städtischer Waldschutz & Lokale Naturschutz-Initiativen",
+                locationMeta: "Washington, D.C., USA",
+                projectYear: "2026",
+                summaryTitle: "Naturschutz-Highlights",
+                sum1Title: "Hand in Glove Zusammenarbeit", sum1Desc: "Nahtlose Abstimmung zwischen Conservancy und National Park Service",
+                sum2Title: "Weed Warriors Programm", sum2Desc: "Ausbildung von Bürger-Leitfiguren zur Entfernung invasiver Pflanzen",
+                sum3Title: "Inklusiver Naturschutz", sum3Desc: "Gezielte Projekte in bisher unterversorgten Stadtvierteln",
+                mapHeading: "Projektstandort (Washington, D.C.)",
+                aboutTitle: "Feldforschung vor Ort: Rock Creek Park",
+                aboutP1: "Während unserer Nordamerika-Feldstudie im Jahr 2026 besuchte das Aguatura-Team Washington, D.C., um Best-Practice-Modelle für städtisches Gewässer- und Waldmanagement zu analysieren. Der Rock Creek Park ist eine einzigartige Natur-Oase mitten durch die US-Hauptstadt.",
+                aboutP2: "Die Rock Creek Conservancy nimmt eine Schlüsselrolle beim Schutz dieses Ökosystems ein, indem sie Anwohner, Freiwillige und staatliche Behörden zu einer aktiven Naturschutz-Initiative vereint.",
+                initHeading: "Zentrale Naturschutz-Initiativen",
+                init1Title: "Weed Warriors & Bekämpfung invasiver Pflanzen",
+                init1Desc: "Um überwuchernde invasive Schlingpflanzen zu bekämpfen, die heimische Bäume ersticken, bildet die Conservancy Bürger im 'Weed Warriors'-Programm aus. Zertifizierte Ehrenamtliche erlangen Fachwissen, um eigenständige Pflegeaktionen in verschiedenen Parkabschnitten zu leiten.",
+                init2Title: "Flussbett-Säuberungen & Gewässerschutz",
+                init2Desc: "Der Rock Creek mündet in den Potomac River und die Chesapeake Bay. Bei jährlichen Großaktionen befreien Tausende Anwohner die Flussläufe systematisch von Müll, was das Ökosystem schützt und wertvolle Daten zur Umweltverschmutzung liefert.",
+                init3Title: "Regenwassermanagement & RainScapes",
+                init3Desc: "Starkregen spült städtische Schadstoffe direkt in die Gewässer und verursacht Erosion. Die Conservancy fördert grüne Infrastrukturen wie Regengärten und Sickermulden, damit Wohnviertel Regenwasser natürlich aufnehmen, bevor es den Park erreicht.",
+                interviewTitle: "Interview vor Ort mit Ryan McIntyre",
+                profileRole: "Forest Resilience Manager, Rock Creek Conservancy",
+                profileBio: "Ehemaliger ökologischer Forscher an der Smithsonian Institution. Heute zuständig für Waldrestaurierung, Auftragnehmer-Teams und Community-Einbindung im Rock Creek Park.",
+                q1Text: "Wie beschreiben Sie die Zusammenarbeit mit dem National Park Service (NPS)?",
+                a1Text: "\"Wir beschreiben unsere Partnerschaft als 'Hand in Glove' – wir bewegen uns vollkommen gemeinsam. Jedes Jahr erstellen wir einen detaillierten Arbeitsplan für die Freiwilligenprojekte. Jeden Montag treffe ich mich mit den Partnern des NPS, um Vorhaben abzustimmen und eine gemeinsame Vision zu sichern.\"",
+                q2Text: "Wie stellen Sie sicher, dass Freiwillige die richtigen invasiven Pflanzen entfernen?",
+                a2Text: "\"Durch klare Kommunikation und Schulung. Bei allen Events nehmen wir uns 10 Minuten Zeit für Pflanzenkunde. Zudem schulen wir Bürger im 'Weed Warriors Program' intensiv. Diese führen dann selbst Gruppen an oder pflegen ihren Parkabschnitt eigenständig.\"",
+                quoteText: "\"Unsere Vision ist es, die Eigenverantwortung der Community so zu stärken, dass Nachbarschaften den Schutz ihrer lokalen Naturabschnitte selbst in die Hand nehmen.\"",
+                q3Text: "Welche Rolle spielen Diversität und Inklusion in Ihrer Arbeit?",
+                a3Text: "\"Wir möchten die gesamte Stadt ansprechen, nicht nur wohlhabende Nachbarschaften. Wir setzen Fördergelder gezielt in bisher unterversorgten Vierteln ein, bieten Sommerprogramme für Jugendliche an und bauen dort neue Freiwilligen-Netzwerke auf.\"",
+                q4Text: "Wie messen Sie Ihren Erfolg und begegnen Sie dem Klimawandel?",
+                a4Text: "\"Wir nutzen klare Indikatoren: Quadratmeter entfernter invasiver Pflanzen, von Schlingpflanzen befreite Bäume zur Sicherung des Kronendachs und Freiwilligenstunden. Beim Klimawandel setzen wir auf finanzielle Diversifizierung und den Austausch in regionalen Forschungsnetzwerken.\"",
+                takeawaysTitle: "Aguatura Takeaways für die globale Skalierung",
+                t1Title: "Kontinuität schafft Vertrauen", t1Desc: "Regelmäßige monatliche Termine bauen langfristig Vertrauen auf, selbst wenn die Teilnehmerzahl zu Beginn klein ist.",
+                t2Title: "Das Multiplikatoren-Modell", t2Desc: "Durch das Training lokaler 'Weed Warriors' skaliert der Naturschutz dezentral, ohne dass jedes Event von Hauptamtlichen geleitet werden muss.",
+                t3Title: "Klare Schnittstellen zu Behörden", t3Desc: "Fest vereinbarte Wochen- und Jahrespläne verhindern administrative Hürden zwischen NGOs und städtischen Behörden.",
+                linksTitle: "Nützliche Links & Ressourcen",
+                link1Text: "Rock Creek Conservancy – Offizielle Website",
+                link2Text: "Weed Warriors Program – Ehrenamts-Ausbildung & Leitung",
+                link3Text: "National Park Service – Offizielles Portal zum Rock Creek Park",
+                exploreBtnText: "Weitere Projekte entdecken"
+            },
+            fr: {
+                navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
+                heroTitle: "Restauration des forêts urbaines et initiatives locales de conservation",
+                locationMeta: "Washington, D.C., USA",
+                projectYear: "2026",
+                summaryTitle: "Points Forts de la Conservation",
+                sum1Title: "Collaboration Étroite", sum1Desc: "Alignement parfait entre la conservancy et le National Park Service",
+                sum2Title: "Programme Weed Warriors", sum2Desc: "Formation de citoyens pour éliminer de manière autonome les plantes invasives",
+                sum3Title: "Conservation Inclusive", sum3Desc: "Actions ciblées dans les quartiers urbains historiquement sous-déversés",
+                mapHeading: "Lieu du Projet (Washington, D.C.)",
+                aboutTitle: "Recherche sur le terrain : Rock Creek Park",
+                aboutP1: "Lors de notre recherche de terrain en 2026, l'équipe Aguatura a visité Washington, D.C., pour analyser les meilleures pratiques de gestion des bassins versants urbains. Rock Creek Park est un joyau naturel traversant la capitale.",
+                aboutP2: "La Rock Creek Conservancy joue un rôle essentiel dans la protection de cet écosystème en unissant résidents, bénévoles et autorités fédérales.",
+                initHeading: "Initiatives Clés de Conservation",
+                init1Title: "Weed Warriors & Élimination des espèces invasives",
+                init1Desc: "Pour lutter contre les plantes invasives qui étouffent les arbres indigènes, la Conservancy forme les bénévoles via le programme 'Weed Warriors'. Ces leaders certifiés supervisent des événements de nettoyage autonomes dans tout le parc.",
+                init2Title: "Nettoyage des cours d'eau & Protection de l'eau",
+                init2Desc: "Rock Creek se jette dans le fleuve Potomac. Grâce à des nettoyages annuels à grande échelle, des milliers de bénévoles retirent les déchets du lit de la rivière, protégeant ainsi les écosystèmes aquatiques.",
+                init3Title: "Gestion des eaux de pluie & RainScapes",
+                init3Desc: "Les eaux de ruissellement entraînent les polluants urbains dans les rivières. La Conservancy promeut des infrastructures vertes (jardins de pluie, citernes) permettant d'absorber l'eau de pluie avant qu'elle n'atteigne le parc.",
+                interviewTitle: "Interview de terrain avec Ryan McIntyre",
+                profileRole: "Gestionnaire de la résilience forestière, Rock Creek Conservancy",
+                profileBio: "Ancien chercheur en écologie au Smithsonian. Supervise aujourd'hui la restauration forestière et l'engagement communautaire.",
+                q1Text: "Comment décrivez-vous votre collaboration avec le National Park Service (NPS) ?",
+                a1Text: "\"Nous la décrivons comme étant 'main dans la main'. Chaque année, nous définissons un plan de travail annuel et nous nous réunissons chaque lundi pour harmoniser nos actions et maintenir une vision commune.\"",
+                q2Text: "Comment garantissez-vous que les bénévoles identifient correctement les espèces invasives ?",
+                a2Text: "\"Grâce à une communication claire et à une formation structurée. À chaque événement, nous consacrons 10 minutes à l'identification des plantes, et notre programme 'Weed Warriors' forme des leaders locaux autonomes.\"",
+                quoteText: "\"Notre objectif ultime est de donner aux membres de la communauté les moyens de prendre en main la protection de leur nature locale.\"",
+                q3Text: "Quel rôle jouent la diversité et l'inclusion dans vos efforts ?",
+                a3Text: "\"Nous voulons servir toute la communauté. Nous orientons les subventions vers les quartiers sous-représentés et développons des programmes pour les jeunes.\"",
+                q4Text: "Comment mesurez-vous le succès face au changement climatique ?",
+                a4Text: "\"Nous suivons la surface de plantes invasives retirées, le nombre d'arbres libérés des lianes et les heures de bénévolat, tout en diversifiant nos ressources financières.\"",
+                takeawaysTitle: "Enseignements Aguatura pour la réplication globale",
+                t1Title: "La régularité crée la confiance", t1Desc: "Des événements mensuels réguliers créent des habitudes durables au sein de la communauté.",
+                t2Title: "Le modèle multiplicateur", t2Desc: "Former des 'Weed Warriors' permet de démultiplier l'impact sur le terrain.",
+                t3Title: "Coordination institutionnelle", t3Desc: "Une planification hebdomadaire évite les obstacles administratifs avec les autorités publiques.",
+                linksTitle: "Liens Utiles & Ressources",
+                link1Text: "Rock Creek Conservancy – Site Officiel",
+                link2Text: "Programme Weed Warriors – Formation & Leadership",
+                link3Text: "National Park Service – Portail officiel de Rock Creek Park",
+                exploreBtnText: "Découvrir plus de projets"
+            },
+            es: {
+                navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
+                heroTitle: "Restauración forestal urbana y esfuerzos de conservación local",
+                locationMeta: "Washington D. C., EE. UU.",
+                projectYear: "2026",
+                summaryTitle: "Puntos Destacados",
+                sum1Title: "Colaboración Estrecha", sum1Desc: "Alineación continua entre la conservación local y el Servicio de Parques Nacionales",
+                sum2Title: "Programa Weed Warriors", sum2Desc: "Capacitación de líderes comunitarios para eliminar plantas invasoras",
+                sum3Title: "Conservación Inclusiva", sum3Desc: "Proyectos ambientales dirigidos a barrios urbanos desatendidos",
+                mapHeading: "Ubicación del Proyecto (Washington D. C.)",
+                aboutTitle: "Trabajo de Campo: Parque Rock Creek",
+                aboutP1: "Durante nuestra investigación de campo en 2026, el equipo de Aguatura visitó Washington D. C. para estudiar modelos de gestión de cuencas e infraestructuras verdes. Rock Creek Park es un oasis natural en la capital estadounidense.",
+                aboutP2: "Rock Creek Conservancy desempeña un papel clave en la protección de este ecosistema uniendo a vecinos, voluntarios y autoridades federales.",
+                initHeading: "Iniciativas Clave de Conservación",
+                init1Title: "Weed Warriors y Control de Plantas Invasoras",
+                init1Desc: "Para combatir las enredaderas invasoras que asfixian a los árboles autóctonos, la Conservancy capacita a voluntarios locales mediante el programa 'Weed Warriors'. Los líderes certificados dirigen actividades independientes de limpieza en varias secciones del parque.",
+                init2Title: "Limpieza de Ríos y Protección del Agua",
+                init2Desc: "Rock Creek fluye directamente hacia el río Potomac. Mediante jornadas anuales de limpieza masiva, miles de vecinos eliminan sistemáticamente residuos de los lechos de los arroyos, protegiendo los ecosistemas acuáticos.",
+                init3Title: "Gestión de Aguas Pluviales y RainScapes",
+                init3Desc: "Las lluvias intensas arrastran contaminantes urbanos hacia los ríos. La Conservancy promueve soluciones de infraestructura verde (jardines de lluvia, cisternas) que permiten a los barrios absorber el agua pluvial de forma natural.",
+                interviewTitle: "Entrevista de campo con Ryan McIntyre",
+                profileRole: "Gerente de Resiliencia Forestal, Rock Creek Conservancy",
+                profileBio: "Exinvestigador ecológico en el Instituto Smithsonian. Actualmente supervisa la restauración forestal y la participación comunitaria.",
+                q1Text: "¿Cómo describe la colaboración con el Servicio de Parques Nacionales (NPS)?",
+                a1Text: "\"La describimos como ir 'de la mano'. Cada año establecemos un plan de trabajo y nos reunimos cada lunes para coordinar proyectos y mantener una visión unificada.\"",
+                q2Text: "¿Cómo aseguran que los voluntarios identifiquen correctamente las especies invasoras?",
+                a2Text: "\"Mediante formación estructurada. En cada evento dedicamos 10 minutos a la identificación de plantas y formamos a vecinos líderes en el programa 'Weed Warriors'.\"",
+                quoteText: "\"Nuestro objetivo final es capacitar a los vecinos para que asuman la protección de sus propios espacios naturales.\"",
+                q3Text: "¿Qué papel juega la inclusión en su trabajo?",
+                a3Text: "\"Queremos servir a toda la ciudad. Invertimos fondos en áreas históricamente desatendidas y creamos programas juveniles y nuevas redes de voluntariado.\"",
+                q4Text: "¿Cómo miden el éxito y abordan el cambio climático?",
+                a4Text: "\"Medimos la superficie libre de invasoras, árboles salvados de enredaderas y horas de voluntariado, colaborando además con redes de investigación regional.\"",
+                takeawaysTitle: "Conclusiones de Aguatura para la replicación global",
+                t1Title: "La constancia genera confianza", t1Desc: "Organizar eventos mensuales fijados genera hábitos comunitarios duraderos.",
+                t2Title: "El modelo multiplicador", t2Desc: "Capacitar a 'Weed Warriors' permite escalar el impacto sin depender siempre del personal.",
+                t3Title: "Coordinación institucional", t3Desc: "La planificación compartida evita trabas administrativas con las autoridades.",
+                linksTitle: "Enlaces Útiles y Recursos",
+                link1Text: "Rock Creek Conservancy – Sitio Web Oficial",
+                link2Text: "Programa Weed Warriors – Capacitación y Liderazgo",
+                link3Text: "National Park Service – Portal Oficial del Parque Rock Creek",
+                exploreBtnText: "Explorar más proyectos"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-map').innerText = t.navMap;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('location-meta').innerText = t.locationMeta;
+            document.getElementById('project-year').innerText = t.projectYear;
+            document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
+            document.getElementById('sum-1-title').innerText = t.sum1Title; document.getElementById('sum-1-desc').innerText = t.sum1Desc;
+            document.getElementById('sum-2-title').innerText = t.sum2Title; document.getElementById('sum-2-desc').innerText = t.sum2Desc;
+            document.getElementById('sum-3-title').innerText = t.sum3Title; document.getElementById('sum-3-desc').innerText = t.sum3Desc;
+            document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
+            
+            document.getElementById('about-title').innerText = t.aboutTitle;
+            document.getElementById('about-p1').innerText = t.aboutP1;
+            document.getElementById('about-p2').innerText = t.aboutP2;
+
+            document.getElementById('init-heading').innerText = t.initHeading;
+            document.getElementById('init1-title').innerText = t.init1Title; document.getElementById('init1-desc').innerText = t.init1Desc;
+            document.getElementById('init2-title').innerText = t.init2Title; document.getElementById('init2-desc').innerText = t.init2Desc;
+            document.getElementById('init3-title').innerText = t.init3Title; document.getElementById('init3-desc').innerText = t.init3Desc;
+
+            document.getElementById('interview-title').innerText = t.interviewTitle;
+            document.getElementById('profile-role').innerText = t.profileRole;
+            document.getElementById('profile-bio').innerText = t.profileBio;
+            
+            document.getElementById('q1-text').innerText = t.q1Text; document.getElementById('a1-text').innerText = t.a1Text;
+            document.getElementById('q2-text').innerText = t.q2Text; document.getElementById('a2-text').innerText = t.a2Text;
+            document.getElementById('quote-text').innerHTML = `${t.quoteText}<br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Ryan McIntyre, Forest Resilience Manager</small>`;
+            document.getElementById('q3-text').innerText = t.q3Text; document.getElementById('a3-text').innerText = t.a3Text;
+            document.getElementById('q4-text').innerText = t.q4Text; document.getElementById('a4-text').innerText = t.a4Text;
+
+            document.getElementById('takeaways-title').innerText = t.takeawaysTitle;
+            document.getElementById('t1-title').innerText = t.t1Title; document.getElementById('t1-desc').innerText = t.t1Desc;
+            document.getElementById('t2-title').innerText = t.t2Title; document.getElementById('t2-desc').innerText = t.t2Desc;
+            document.getElementById('t3-title').innerText = t.t3Title; document.getElementById('t3-desc').innerText = t.t3Desc;
+
+            document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
+            document.getElementById('link1-text').innerText = t.link1Text;
+            document.getElementById('link2-text').innerText = t.link2Text;
+            document.getElementById('link3-text').innerText = t.link3Text;
+
+            document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
+        }
+    </script>
+</body>
+</html>
