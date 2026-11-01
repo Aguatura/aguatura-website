@@ -61,6 +61,12 @@
             flex-wrap: wrap;
         }
 
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
         .logo-container img {
             height: 45px;
             width: auto;
@@ -138,7 +144,7 @@
 
         /* HERO BEREICH */
         .hero {
-            background: linear-gradient(rgba(18, 53, 36, 0.85), rgba(30, 81, 104, 0.85)), url('https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent-blue));
             color: var(--white);
             text-align: center;
             padding: clamp(50px, 8vw, 100px) 20px;
@@ -188,14 +194,13 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 25px;
+            padding: 20px;
             color: var(--white);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .card-bg {
@@ -242,39 +247,35 @@
             z-index: 3;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .image-placeholder {
+        .topic-img-container {
             width: 100%;
             height: 120px;
-            border: 2px dashed rgba(255, 255, 255, 0.6);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.2);
-            margin-bottom: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .image-placeholder span {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            opacity: 0.9;
+        .topic-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .topic-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            font-size: clamp(1.2rem, 2.2vw, 1.5rem);
             font-weight: 700;
+            margin-top: 2px;
         }
 
         .topic-card p {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             opacity: 0.95;
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         /* SEKTION 2: UNSER ANSATZ */
@@ -336,10 +337,6 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            .topic-card {
-                height: auto;
-                min-height: 320px;
-            }
         }
     </style>
 </head>
@@ -350,9 +347,8 @@
         <div class="header-left">
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
-                         alt="Aguatura Logo" 
-                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/logo/Aguatura-logo.jpg" 
+                         alt="Aguatura Logo">
                 </a>
             </div>
             <nav>
@@ -367,7 +363,7 @@
             <div class="social-icons">
                 <a href="https://www.facebook.com/profile.php?id=61593710835186" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.instagram.com/agua.tura" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/146215872/admin/dashboard/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="url?id=9" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="mailto:aguatura.ngo@gmail.com" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
@@ -403,8 +399,8 @@
                 <div class="card-bg"></div>
                 <div class="card-overlay"></div>
                 <div class="topic-content">
-                    <div class="image-placeholder">
-                        <span id="topic1-img-text">[ Water Image Placeholder ]</span>
+                    <div class="topic-img-container">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/landscape/water%20pexel.jpg" alt="Water Management">
                     </div>
                     <h3 id="topic1-title">Water Management</h3>
                     <p id="topic1-desc">Focusing on river and marine protection alongside sustainable water use that benefits both nature and human communities.</p>
@@ -416,8 +412,8 @@
                 <div class="card-bg"></div>
                 <div class="card-overlay"></div>
                 <div class="topic-content">
-                    <div class="image-placeholder">
-                        <span id="topic2-img-text">[ Biodiversity Image Placeholder ]</span>
+                    <div class="topic-img-container">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/landscape/biodiversity%20pexel.jpg" alt="Biodiversity">
                     </div>
                     <h3 id="topic2-title">Biodiversity</h3>
                     <p id="topic2-desc">Preserving natural habitats, enhancing biodiversity, and promoting sustainable agriculture and greener cities.</p>
@@ -453,10 +449,8 @@
                 heroDesc2: "Yet, in every corner of the world, countless inspiring local initiatives are successfully protecting nature, restoring ecosystems, and building lasting resilience.",
                 heroDesc3: "We actively bridge this gap by giving these powerful local approaches greater global visibility, thereby inspiring meaningful engagement for both nature and people.",
                 topicsHeading: "Our Core Focus Areas",
-                topic1ImgText: "[ Water Image Placeholder ]",
                 topic1Title: "Water Management",
                 topic1Desc: "Focusing on river and marine protection alongside sustainable water use that benefits both nature and human communities.",
-                topic2ImgText: "[ Biodiversity Image Placeholder ]",
                 topic2Title: "Biodiversity",
                 topic2Desc: "Preserving natural habitats, enhancing biodiversity, and promoting sustainable agriculture and greener cities.",
                 approachTitle: "Our Approach",
@@ -468,21 +462,19 @@
                 navHome: "Startseite",
                 navMap: "Projektkarte",
                 navAbout: "Über uns",
-                heroTitle: "Von lokalen Projekten lernen, um überall etwas zu bewegen",
-                heroDesc1: "Unsere moderne Welt steht derzeit vor einer Reihe kritischer ökologischer und sozialer Herausforderungen, die das empfindliche Gleichgewicht unseres Lebens tiefgreifend bedrohen.",
-                heroDesc2: "Doch in jedem Winkel der Erde schützen unzählige inspirierende lokale Initiativen erfolgreich die Natur, stellen Ökosysteme wieder her und stärken dauerhaft die Resilienz.",
-                heroDesc3: "Wir schließen diese Lücke aktiv, indem wir diesen starken lokalen Ansätzen größere Sichtbarkeit verleihen und so bedeutsames Engagement für Mensch und Natur anstoßen.",
-                topicsHeading: "Unsere Fokusthemen",
-                topic1ImgText: "[ Wasser Bild-Platzhalter ]",
+                heroTitle: "Von lokalen Best Practices lernen – weltweit Zeichen setzen",
+                heroDesc1: "Unsere Welt steht vor drängenden ökologischen und sozialen Herausforderungen, die das empfindliche Gleichgewicht unserer Erde gefährden.",
+                heroDesc2: "Doch überall auf der Welt gibt es bereits inspirierende lokale Initiativen, die Natur schützen, Ökosysteme wiederbeleben und nachhaltige Lösungen schaffen.",
+                heroDesc3: "Wir schlagen die Brücke: Indem wir diesen wirkungsvollen Projekten globale Sichtbarkeit verleihen, regen wir Menschen weltweit zum Handeln an.",
+                topicsHeading: "Unsere Schwerpunkte",
                 topic1Title: "Wassermanagement",
-                topic1Desc: "Fokus auf den Schutz von Flüssen und Meeren sowie eine nachhaltige Wassernutzung, die Mensch und Natur gleichermaßen zugutekommt.",
-                topic2ImgText: "[ Biodiversität Bild-Platzhalter ]",
+                topic1Desc: "Schutz von Flüssen und Meeren sowie nachhaltige Wassernutzung zum Wohl von Mensch und Natur.",
                 topic2Title: "Biodiversität",
-                topic2Desc: "Natürliche Lebensräume bewahren, die Artenvielfalt fördern und nachhaltige Landwirtschaft sowie grünere Städte unterstützen.",
-                approachTitle: "Unser Weg",
-                approachDesc1: "Wir arbeiten eng mit ausgewählten NGOs und lokalen Machern aus verschiedenen Kulturen und Regionen zusammen, um eine Vielfalt an bewährten Praxisbeispielen zu sammeln.",
-                approachDesc2: "Durch persönliche Besuche vor Ort, Interviews und gezielte Recherchen bringen wir diese inspirierenden lokalen Strategien an einem Ort zusammen.",
-                approachDesc3: "Mit Aguatura möchten wir eine Wissensaustausch-Plattform schaffen, auf der sich Interessierte inspirieren lassen können, um in ihren eigenen Gemeinschaften etwas zu bewegen."
+                topic2Desc: "Erhalt natürlicher Lebensräume, Stärkung der Artenvielfalt und Förderung nachhaltiger Landwirtschaft sowie grünerer Städte.",
+                approachTitle: "Unser Ansatz",
+                approachDesc1: "Wir arbeiten eng mit ausgewählten NGOs und lokalen Engagierten aus unterschiedlichen Kulturen zusammen, um bewährte Lösungsansätze zu sammeln.",
+                approachDesc2: "Durch Besuche vor Ort, persönliche Interviews und fundierte Recherche führen wir diese wertvollen Erfahrungen an einem Ort zusammen.",
+                approachDesc3: "Mit Aguatura schaffen wir eine Wissensplattform, die Menschen dazu inspiriert, auch in ihrer eigenen Region etwas zu bewegen."
             },
             fr: {
                 navHome: "Accueil",
@@ -493,10 +485,8 @@
                 heroDesc2: "Pourtant, aux quatre coins du globe, d'innombrables initiatives locales inspirantes protègent avec succès la nature, restaurent les écosystèmes et renforcent notre résilience.",
                 heroDesc3: "Nous comblons activement cet écart en offrant à ces puissantes approches locales une plus grande visibilité mondiale, inspirant ainsi un engagement significatif pour la nature et l'humain.",
                 topicsHeading: "Nos Domaines d'Action",
-                topic1ImgText: "[ Emplacement Image Eau ]",
                 topic1Title: "Gestion de l'eau",
                 topic1Desc: "Protection des rivières et des océans, et utilisation durable de l'eau bénéficiant à la fois à la nature et aux populations.",
-                topic2ImgText: "[ Emplacement Image Biodiversité ]",
                 topic2Title: "Biodiversité",
                 topic2Desc: "Préservation des habitats naturels, renforcement de la biodiversité, et promotion de l'agriculture durable et de villes plus vertes.",
                 approachTitle: "Notre Démarche",
@@ -513,10 +503,8 @@
                 heroDesc2: "Sin embargo, en cada rincón del mundo, innumerables proyectos locales inspiradores protegen con éxito la naturaleza, restauran los ecosistemas y construyen una resiliencia duradera.",
                 heroDesc3: "Cubrimos activamente esta brecha dando mayor visibilidad global a estos enfoques locales, inspirando así un compromiso significativo tanto con la naturaleza como con las personas.",
                 topicsHeading: "Nuestras Áreas Clave",
-                topic1ImgText: "[ Marcador de Imagen Agua ]",
                 topic1Title: "Gestión del Agua",
                 topic1Desc: "Protección de ríos y mares junto con un uso sostenible del agua que beneficia tanto a la naturaleza como a las comunidades humanas.",
-                topic2ImgText: "[ Marcador de Imagen Biodiversidad ]",
                 topic2Title: "Biodiversidad",
                 topic2Desc: "Preservación de hábitats naturales, mejora de la biodiversidad y promoción de una agricultura sostenible y ciudades más verdes.",
                 approachTitle: "Cómo Trabajamos",
@@ -540,10 +528,8 @@
             document.getElementById('hero-desc3').innerText = t.heroDesc3;
             
             document.getElementById('topics-heading').innerText = t.topicsHeading;
-            document.getElementById('topic1-img-text').innerText = t.topic1ImgText;
             document.getElementById('topic1-title').innerText = t.topic1Title;
             document.getElementById('topic1-desc').innerText = t.topic1Desc;
-            document.getElementById('topic2-img-text').innerText = t.topic2ImgText;
             document.getElementById('topic2-title').innerText = t.topic2Title;
             document.getElementById('topic2-desc').innerText = t.topic2Desc;
             
