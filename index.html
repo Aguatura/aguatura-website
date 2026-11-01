@@ -188,11 +188,11 @@
             position: relative;
             border-radius: 12px;
             overflow: hidden;
-            height: 340px;
+            height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 30px;
+            padding: 25px;
             color: var(--white);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-decoration: none;
@@ -240,12 +240,34 @@
         .topic-content {
             position: relative;
             z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 120px;
+            border: 2px dashed rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+
+        .image-placeholder span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            opacity: 0.9;
         }
 
         .topic-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-            margin-bottom: 12px;
             font-weight: 700;
         }
 
@@ -277,8 +299,12 @@
             font-size: clamp(0.95rem, 2vw, 1.05rem);
             color: #555;
             max-width: 850px;
-            margin: 0 auto;
+            margin: 0 auto 12px auto;
             line-height: 1.7;
+        }
+
+        .approach-box p:last-child {
+            margin-bottom: 0;
         }
 
         /* FOOTER */
@@ -312,7 +338,7 @@
             }
             .topic-card {
                 height: auto;
-                min-height: 260px;
+                min-height: 320px;
             }
         }
     </style>
@@ -362,8 +388,9 @@
         <section class="hero">
             <div class="hero-content">
                 <h1 id="hero-title">Learning from local best practices to inspire action everywhere</h1>
-                <p id="hero-desc1">Around the world, countless local initiatives successfully protect nature. Yet, these valuable strategies often remain hidden from the broader public.</p>
-                <p id="hero-desc2">We bridge this gap by giving local approaches greater visibility—inspiring engagement for nature and people.</p>
+                <p id="hero-desc1">Our modern world is currently facing a series of critical environmental and social challenges that deeply threaten the delicate balance of life as we know it.</p>
+                <p id="hero-desc2">Yet, in every corner of the world, countless inspiring local initiatives are successfully protecting nature, restoring ecosystems, and building lasting resilience.</p>
+                <p id="hero-desc3">We actively bridge this gap by giving these powerful local approaches greater global visibility, thereby inspiring meaningful engagement for both nature and people.</p>
             </div>
         </section>
 
@@ -376,8 +403,11 @@
                 <div class="card-bg"></div>
                 <div class="card-overlay"></div>
                 <div class="topic-content">
+                    <div class="image-placeholder">
+                        <span id="topic1-img-text">[ Water Image Placeholder ]</span>
+                    </div>
                     <h3 id="topic1-title">Water Management</h3>
-                    <p id="topic1-desc">Advancing sustainable water resource conservation, clean supply, and watershed protection to secure our most vital resource.</p>
+                    <p id="topic1-desc">Focusing on river and marine protection alongside sustainable water use that benefits both nature and human communities.</p>
                 </div>
             </div>
 
@@ -386,8 +416,11 @@
                 <div class="card-bg"></div>
                 <div class="card-overlay"></div>
                 <div class="topic-content">
+                    <div class="image-placeholder">
+                        <span id="topic2-img-text">[ Biodiversity Image Placeholder ]</span>
+                    </div>
                     <h3 id="topic2-title">Biodiversity</h3>
-                    <p id="topic2-desc">Preserving natural habitats and protecting endangered species through targeted ecological research and field action.</p>
+                    <p id="topic2-desc">Preserving natural habitats, enhancing biodiversity, and promoting sustainable agriculture and greener cities.</p>
                 </div>
             </div>
 
@@ -396,7 +429,9 @@
         <!-- SEKTION 2: UNSER ANSATZ -->
         <section class="approach-box">
             <h3 id="approach-title">Our Approach</h3>
-            <p id="approach-desc">We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices. Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place.</p>
+            <p id="approach-desc1">We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices.</p>
+            <p id="approach-desc2">Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place.</p>
+            <p id="approach-desc3">With Aguatura, we aim to create a knowledge exchange platform where interested people can find inspiration to take positive action in their own communities.</p>
         </section>
 
     </div>
@@ -414,60 +449,80 @@
                 navMap: "Project Map",
                 navAbout: "About us",
                 heroTitle: "Learning from local best practices to inspire action everywhere",
-                heroDesc1: "Around the world, countless local initiatives successfully protect nature. Yet, these valuable strategies often remain hidden from the broader public.",
-                heroDesc2: "We bridge this gap by giving local approaches greater visibility—inspiring engagement for nature and people.",
+                heroDesc1: "Our modern world is currently facing a series of critical environmental and social challenges that deeply threaten the delicate balance of life as we know it.",
+                heroDesc2: "Yet, in every corner of the world, countless inspiring local initiatives are successfully protecting nature, restoring ecosystems, and building lasting resilience.",
+                heroDesc3: "We actively bridge this gap by giving these powerful local approaches greater global visibility, thereby inspiring meaningful engagement for both nature and people.",
                 topicsHeading: "Our Core Focus Areas",
+                topic1ImgText: "[ Water Image Placeholder ]",
                 topic1Title: "Water Management",
-                topic1Desc: "Advancing sustainable water resource conservation, clean supply, and watershed protection to secure our most vital resource.",
+                topic1Desc: "Focusing on river and marine protection alongside sustainable water use that benefits both nature and human communities.",
+                topic2ImgText: "[ Biodiversity Image Placeholder ]",
                 topic2Title: "Biodiversity",
-                topic2Desc: "Preserving natural habitats and protecting endangered species through targeted ecological research and field action.",
+                topic2Desc: "Preserving natural habitats, enhancing biodiversity, and promoting sustainable agriculture and greener cities.",
                 approachTitle: "Our Approach",
-                approachDesc: "We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices. Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place."
+                approachDesc1: "We work closely with selected NGOs and local changemakers from different cultures and regions to collect a rich variety of best practices.",
+                approachDesc2: "Through personal field trips, interviews, and hands-on research, we bring these inspiring local strategies together in one place.",
+                approachDesc3: "With Aguatura, we aim to create a knowledge exchange platform where interested people can find inspiration to take positive action in their own communities."
             },
             de: {
                 navHome: "Startseite",
                 navMap: "Projektkarte",
                 navAbout: "Über uns",
                 heroTitle: "Von lokalen Projekten lernen, um überall etwas zu bewegen",
-                heroDesc1: "Weltweit schützen unzählige Menschen vor Ort die Natur – doch oft bekommt kaum jemand davon mit.",
-                heroDesc2: "Wir machen diese wertvollen Strategien sichtbar, damit sie andere inspirieren und echten Wandel anstoßen.",
+                heroDesc1: "Unsere moderne Welt steht derzeit vor einer Reihe kritischer ökologischer und sozialer Herausforderungen, die das empfindliche Gleichgewicht unseres Lebens tiefgreifend bedrohen.",
+                heroDesc2: "Doch in jedem Winkel der Erde schützen unzählige inspirierende lokale Initiativen erfolgreich die Natur, stellen Ökosysteme wieder her und stärken dauerhaft die Resilienz.",
+                heroDesc3: "Wir schließen diese Lücke aktiv, indem wir diesen starken lokalen Ansätzen größere Sichtbarkeit verleihen und so bedeutsames Engagement für Mensch und Natur anstoßen.",
                 topicsHeading: "Unsere Fokusthemen",
+                topic1ImgText: "[ Wasser Bild-Platzhalter ]",
                 topic1Title: "Wassermanagement",
-                topic1Desc: "Sauberes Wasser sichern, Flüsse schützen und lokale Lösungen für den Erhalt unserer wichtigsten Lebensgrundlage stärken.",
+                topic1Desc: "Fokus auf den Schutz von Flüssen und Meeren sowie eine nachhaltige Wassernutzung, die Mensch und Natur gleichermaßen zugutekommt.",
+                topic2ImgText: "[ Biodiversität Bild-Platzhalter ]",
                 topic2Title: "Biodiversität",
-                topic2Desc: "Artenvielfalt bewahren und Lebensräume schützen – durch handfeste Feldforschung und Initiativen direkt vor Ort.",
+                topic2Desc: "Natürliche Lebensräume bewahren, die Artenvielfalt fördern und nachhaltige Landwirtschaft sowie grünere Städte unterstützen.",
                 approachTitle: "Unser Weg",
-                approachDesc: "Wir sprechen mit ausgewählten NGOs und Machern aus aller Welt. Durch persönliche Besuche, Gespräche und gezielte Recherchen sammeln wir die besten Ideen und bringen sie auf unserer Plattform zusammen."
+                approachDesc1: "Wir arbeiten eng mit ausgewählten NGOs und lokalen Machern aus verschiedenen Kulturen und Regionen zusammen, um eine Vielfalt an bewährten Praxisbeispielen zu sammeln.",
+                approachDesc2: "Durch persönliche Besuche vor Ort, Interviews und gezielte Recherchen bringen wir diese inspirierenden lokalen Strategien an einem Ort zusammen.",
+                approachDesc3: "Mit Aguatura möchten wir eine Wissensaustausch-Plattform schaffen, auf der sich Interessierte inspirieren lassen können, um in ihren eigenen Gemeinschaften etwas zu bewegen."
             },
             fr: {
                 navHome: "Accueil",
                 navMap: "Carte des Projets",
                 navAbout: "À propos",
                 heroTitle: "S'inspirer du terrain pour agir partout",
-                heroDesc1: "Partout dans le monde, des initiatives locales protègent la nature avec succès, mais restent souvent invisibles.",
-                heroDesc2: "Notre rôle est de mettre ces belles idées en lumière pour inspirer un maximum de personnes.",
+                heroDesc1: "Notre monde moderne fait actuellement face à une série de défis environnementaux et sociaux critiques qui menacent profondément l'équilibre fragile de notre mode de vie.",
+                heroDesc2: "Pourtant, aux quatre coins du globe, d'innombrables initiatives locales inspirantes protègent avec succès la nature, restaurent les écosystèmes et renforcent notre résilience.",
+                heroDesc3: "Nous comblons activement cet écart en offrant à ces puissantes approches locales une plus grande visibilité mondiale, inspirant ainsi un engagement significatif pour la nature et l'humain.",
                 topicsHeading: "Nos Domaines d'Action",
+                topic1ImgText: "[ Emplacement Image Eau ]",
                 topic1Title: "Gestion de l'eau",
-                topic1Desc: "Protéger les ressources en eau, garantir l'accès à l'eau propre et préserver les rivières pour l'avenir.",
+                topic1Desc: "Protection des rivières et des océans, et utilisation durable de l'eau bénéficiant à la fois à la nature et aux populations.",
+                topic2ImgText: "[ Emplacement Image Biodiversité ]",
                 topic2Title: "Biodiversité",
-                topic2Desc: "Sauvegarder les habitats naturels et la faune grâce à des recherches de terrain et des actions concrètes.",
+                topic2Desc: "Préservation des habitats naturels, renforcement de la biodiversité, et promotion de l'agriculture durable et de villes plus vertes.",
                 approachTitle: "Notre Démarche",
-                approachDesc: "Nous allons à la rencontre d'ONG et d'acteurs de terrain du monde entier. Grâce à des visites, des entretiens et des recherches approfondies, nous réunissons les meilleures solutions en un seul endroit."
+                approachDesc1: "Nous travaillons en étroite collaboration avec des ONG et des acteurs locaux de différentes cultures et régions pour rassembler de nombreuses bonnes pratiques.",
+                approachDesc2: "Grâce à des visites sur le terrain, des entretiens et des recherches approfondies, nous réunissons ces stratégies locales inspirantes en un seul endroit.",
+                approachDesc3: "Avec Aguatura, nous souhaitons créer une plateforme d'échange de connaissances où chacun peut s'inspirer pour agir dans sa propre communauté."
             },
             es: {
                 navHome: "Inicio",
                 navMap: "Mapa de Proyectos",
                 navAbout: "Sobre nosotros",
                 heroTitle: "Aprender de las iniciativas locales para inspirar el cambio",
-                heroDesc1: "En todo el mundo hay proyectos locales que protegen la naturaleza con éxito, pero suelen pasar desapercibidos.",
-                heroDesc2: "Damos visibilidad a estas buenas prácticas para que inspiren a más personas y generen impacto.",
+                heroDesc1: "Nuestro mundo moderno se enfrenta actualmente a una serie de desafíos ambientales y sociales críticos que amenazan profundamente el delicado equilibrio de la vida tal como la conocemos.",
+                heroDesc2: "Sin embargo, en cada rincón del mundo, innumerables proyectos locales inspiradores protegen con éxito la naturaleza, restauran los ecosistemas y construyen una resiliencia duradera.",
+                heroDesc3: "Cubrimos activamente esta brecha dando mayor visibilidad global a estos enfoques locales, inspirando así un compromiso significativo tanto con la naturaleza como con las personas.",
                 topicsHeading: "Nuestras Áreas Clave",
+                topic1ImgText: "[ Marcador de Imagen Agua ]",
                 topic1Title: "Gestión del Agua",
-                topic1Desc: "Garantizar agua limpia, proteger cuencas y respaldar soluciones locales para cuidar nuestro recurso más vital.",
+                topic1Desc: "Protección de ríos y mares junto con un uso sostenible del agua que beneficia tanto a la naturaleza como a las comunidades humanas.",
+                topic2ImgText: "[ Marcador de Imagen Biodiversidad ]",
                 topic2Title: "Biodiversidad",
-                topic2Desc: "Cuidar los hábitats naturales y proteger la vida silvestre mediante investigación y acción directa sobre el terreno.",
+                topic2Desc: "Preservación de hábitats naturales, mejora de la biodiversidad y promoción de una agricultura sostenible y ciudades más verdes.",
                 approachTitle: "Cómo Trabajamos",
-                approachDesc: "Hablamos directamente con ONG y personas comprometidas de distintas culturas. Mediante visitas de campo, entrevistas y una investigación rigurosa, reunimos las mejores ideas en un solo lugar."
+                approachDesc1: "Trabajamos en estrecha colaboración con ONG seleccionadas y creadores de cambio locales de diferentes culturas y regiones para recopilar una gran variedad de buenas prácticas.",
+                approachDesc2: "Mediante visitas de campo personales, entrevistas e investigación práctica, reunimos estas inspiradoras estrategias locales en un solo lugar.",
+                approachDesc3: "Con Aguatura, queremos crear una plataforma de intercambio de conocimientos donde las personas puedan inspirarse para actuar positivamente en sus propias comunidades."
             }
         };
 
@@ -482,15 +537,20 @@
             document.getElementById('hero-title').innerText = t.heroTitle;
             document.getElementById('hero-desc1').innerText = t.heroDesc1;
             document.getElementById('hero-desc2').innerText = t.heroDesc2;
+            document.getElementById('hero-desc3').innerText = t.heroDesc3;
             
             document.getElementById('topics-heading').innerText = t.topicsHeading;
+            document.getElementById('topic1-img-text').innerText = t.topic1ImgText;
             document.getElementById('topic1-title').innerText = t.topic1Title;
             document.getElementById('topic1-desc').innerText = t.topic1Desc;
+            document.getElementById('topic2-img-text').innerText = t.topic2ImgText;
             document.getElementById('topic2-title').innerText = t.topic2Title;
             document.getElementById('topic2-desc').innerText = t.topic2Desc;
             
             document.getElementById('approach-title').innerText = t.approachTitle;
-            document.getElementById('approach-desc').innerText = t.approachDesc;
+            document.getElementById('approach-desc1').innerText = t.approachDesc1;
+            document.getElementById('approach-desc2').innerText = t.approachDesc2;
+            document.getElementById('approach-desc3').innerText = t.approachDesc3;
         }
     </script>
 </body>
