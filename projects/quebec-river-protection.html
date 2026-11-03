@@ -169,6 +169,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .meta-item {
@@ -185,6 +186,14 @@
             font-size: 1.2rem;
         }
 
+        .partner-logo-inline {
+            height: 28px;
+            width: auto;
+            margin-left: 8px;
+            vertical-align: middle;
+            border-radius: 4px;
+        }
+
         .sdg-icons {
             display: flex;
             gap: 10px;
@@ -192,21 +201,17 @@
             align-items: center;
         }
 
-        .sdg-placeholder {
+        .sdg-img {
             width: 48px;
             height: 48px;
-            background: var(--bg-light);
-            border: 2px dashed var(--accent-green);
+            object-fit: cover;
             border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-align: center;
-            line-height: 1.1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .sdg-img:hover {
+            transform: scale(1.05);
         }
 
         /* MAP & SUMMARY LAYOUT */
@@ -674,9 +679,8 @@
         <div class="header-left">
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.jpg" 
-                         alt="Aguatura Logo" 
-                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/logo/Aguatura-logo.jpg" 
+                         alt="Aguatura Logo">
                 </a>
             </div>
             <nav>
@@ -703,7 +707,7 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTAINER -->
     <div class="main-container animate-fade">
 
         <!-- HERO SEKTION -->
@@ -712,17 +716,16 @@
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Québec, Canada</span></div>
-                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-calendar-days"></i> 
+                        <span id="project-year">2026</span>
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/fondation_rivieres_logo.jpeg" alt="Fondation Rivières Logo" class="partner-logo-inline">
+                    </div>
                 </div>
                 <div class="sdg-icons">
-                    <div class="sdg-placeholder" title="SDG 6: Clean Water and Sanitation">
-                        <i class="fa-solid fa-water"></i>
-                        <span>SDG 6</span>
-                    </div>
-                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
-                        <i class="fa-solid fa-tree"></i>
-                        <span>SDG 15</span>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-06.jpg" alt="SDG 6: Clean Water and Sanitation" class="sdg-img" title="SDG 6: Clean Water and Sanitation">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-14.jpg" alt="SDG 14: Life Below Water" class="sdg-img" title="SDG 14: Life Below Water">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15: Life on Land" class="sdg-img" title="SDG 15: Life on Land">
                 </div>
             </div>
         </section>
@@ -874,7 +877,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="url?id=9" target="_blank">
+                    <a href="https://cdpn.io/cpe/boomboom/https://cdpn.io/cpe/boomboom/url?id=9" target="_blank">
                         <i class="fa-solid fa-chart-bar"></i> <span id="link2-text">Audito – Municipal Wastewater Overflow Tracking Platform</span>
                     </a>
                 </li>
@@ -1104,13 +1107,13 @@
                 q2Text: "Sobre transparencia de aguas residuales y apoyo municipal:",
                 a2Text: "\"Nuestra herramienta Audito y el ranking anual concienciaron a los alcaldes. Hoy apoyamos activamente a los municipios para obtener fondos y capacitación técnica.\"",
                 q3Text: "Sobre dar espacio a los ríos ('Espaces de liberté'):",
-                a3Text: "\"En lugar de construir muros de piedra costosos que fallan con el tiempo, la solución es crear 'espacios de libertad' y permitir que el río siga su curso natural.\"",
+                a3Text: "\"En lugar de construir muros de piedra costosos que fallan con el tiempo, la solución es crear 'espaces de liberté' y permitir que el río siga su curso natural.\"",
                 pillarsHeading: "Áreas Clave y Soluciones",
                 p1Title: "Energía descentralizada y microhidráulica",
                 p1Desc: "Oponerse a las grandes presas que inundan tierras indígenas. Al promover la microhidráulica local, las comunidades aumentan su conciencia y resiliencia energética ante tormentas invernales.",
                 p2Title: "Monitoreo de aguas residuales",
                 p2Desc: "Recopilación y visualización de datos de rendimiento municipal mediante Power BI. El ranking anual responsabiliza a los líderes locales y fomenta el apoyo mutuo.",
-                p3Title: "Acceso a riberas y Espacios de libertad",
+                p3Title: "Acceso a riberas y Espaces de liberté",
                 p3Desc: "Combatir la privatización masiva de las riberas de los ríos y promover 'espaces de liberté' para que los cursos de agua fluyan de forma natural.",
                 linksTitle: "Enlaces Útiles y Recursos",
                 link1Text: "Fondation Rivières – Portal Oficial de Conservación de Ríos",
