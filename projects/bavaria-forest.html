@@ -374,7 +374,7 @@
             margin-bottom: 0;
         }
 
-        /* RESPONSIVE IMAGE STYLING: height: auto ensures no cropping */
+        /* RESPONSIVE IMAGE STYLING: height: auto preserves natural aspect ratio */
         .content-image {
             width: 100%;
             height: auto;
@@ -383,7 +383,7 @@
             display: block;
         }
 
-        /* THREE IMAGES SIDE BY SIDE (Stacks cleanly on mobile) */
+        /* THREE IMAGES SIDE BY SIDE */
         .three-image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -642,7 +642,7 @@
 
         <!-- HERO SEKTION -->
         <section class="project-hero">
-            <h1 id="hero-title">Transforming local forests towards climate resilience and biodiversity</h1>
+            <h1 id="hero-title">Transforming local forests towards climate resilience and biodiversity in Bavaria</h1>
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Pirk, Bavaria, Germany</span></div>
@@ -656,10 +656,10 @@
             </div>
         </section>
 
-        <!-- MAP & SUMMARY LAYOUT -->
+        <!-- MAP & TOPICS LAYOUT -->
         <div class="map-section-grid">
             <div class="map-info-card">
-                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Project Focus</h3>
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Project Topics</h3>
                 <ul class="location-list">
                     <li class="location-item">
                         <div class="location-icon"><i class="fa-solid fa-seedling"></i></div>
@@ -675,19 +675,26 @@
                             <span id="loc-2">Combating drought stress and bark beetle risks</span>
                         </div>
                     </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-tree"></i></div>
+                        <div class="location-text">
+                            <strong id="focus-3-title">Self-Sufficient Harvest</strong>
+                            <span id="loc-3">Combining sustainable self-sufficient harvesting with forest conservation</span>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="map-card">
-                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Location (Pirk, Bavaria)</h3>
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Map</h3>
                 <div id="minimap"></div>
             </div>
         </div>
 
-        <!-- THE CHALLENGE -->
+        <!-- MAIN CHALLENGES -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="challenge-title">The Challenge</h2>
+                <h2 id="challenge-title">Main Challenges</h2>
             </div>
             <div class="grid-2col">
                 <div class="grid-text">
@@ -723,17 +730,17 @@
             </div>
         </section>
 
-        <!-- OUR PROJECT (3 Photos Side-by-Side) -->
+        <!-- OUR APPROACH -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="project-title">Our Project & Restoration Approach</h2>
+                <h2 id="project-title">Our Approach</h2>
             </div>
             <div class="grid-text">
                 <p id="project-p1">Together with his father, Johannes has been working for several years to gradually transform “sick” forests into more resilient and biodiverse ecosystems. This is a long-term process that requires patience, continuous learning, and close observation of nature.</p>
                 <p id="project-p2">Our approach focuses on increasing diversity and strengthening the forest’s ability to adapt to future climate conditions. One key measure is the gradual replacement of vulnerable monoculture species with a wider mix of tree species, introducing native and carefully selected non-native species better adapted to heat and drought.</p>
                 <p id="project-p3">Another important aspect is allowing natural processes to take place. Leaving dead trees and plant material intentionally in the forest provides habitats and nesting opportunities for birds, insects, and wildlife while regenerating the soil.</p>
             </div>
-            <!-- 3 Images Side-by-Side (Fully Restored & Uncropped) -->
+            <!-- 3 Images Side-by-Side -->
             <div class="three-image-grid">
                 <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/IMG_4698.jpeg" alt="Restoration Photo 1" class="grid-img-item">
                 <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/8fb4306c-6534-44e9-82ad-0af31e3cdc54.JPG" alt="Restoration Photo 2" class="grid-img-item">
@@ -766,18 +773,26 @@
             </div>
         </section>
 
-        <!-- HOW OTHER OWNERS CAN TAKE ACTION -->
+        <!-- HOW CAN YOU TAKE ACTION (MICRO & MESO LEVEL) -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="action-title">How other forest owners can take action</h2>
+                <h2 id="action-title">How can you take action</h2>
             </div>
             <div class="grid-text">
-                <p id="action-p1">Transforming forests toward climate resilience is a task that many private and public forest owners face. If you own forest land and want to make a positive impact, here are practical steps you can take:</p>
-                <ul style="margin: 15px 0 15px 20px; display: flex; flex-direction: column; gap: 10px; color: #4A5568;">
-                    <li><strong id="act-li1-title">Consult Local Forestry Authorities:</strong> Contact your regional forestry office (e.g., *Ämter für Ernährung, Landwirtschaft und Forsten* in Bavaria) for professional advice and tailored management plans.</li>
-                    <li><strong id="act-li2-title">Utilize State Funding & Subsidies:</strong> Take advantage of government grants and funding programs designed to support climate-resilient forest conversion and afforestation.</li>
-                    <li><strong id="act-li3-title">Engage with Forest Owner Associations:</strong> Join local *Forstbetriebsgemeinschaften* (FBG) to share experiences, coordinate timber harvesting, and learn from peer landowners.</li>
-                    <li><strong id="act-li4-title">Promote Natural Regeneration:</strong> Allow natural succession and keep deadwood where appropriate to build healthy soil and protect local biodiversity.</li>
+                <p id="action-p1">Transforming forests toward climate resilience requires concerted efforts at multiple levels. Depending on your scope of influence, here are practical recommendations:</p>
+                
+                <h3 style="color: var(--primary-dark); margin: 20px 0 10px 0; font-family: 'Playfair Display', serif;" id="micro-heading">Micro-Level (Individual & Private Landowners)</h3>
+                <ul style="margin: 0 0 20px 20px; display: flex; flex-direction: column; gap: 8px; color: #4A5568;">
+                    <li><strong id="act-micro1">Consult Local Forestry Authorities:</strong> Contact regional forestry offices for professional advice and tailored management plans.</li>
+                    <li><strong id="act-micro2">Promote Natural Regeneration:</strong> Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
+                    <li><strong id="act-micro3">Practice Selective Harvesting:</strong> Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
+                </ul>
+
+                <h3 style="color: var(--primary-dark); margin: 20px 0 10px 0; font-family: 'Playfair Display', serif;" id="meso-heading">Meso-Level (Community, Associations & Regional Networks)</h3>
+                <ul style="margin: 0 0 15px 20px; display: flex; flex-direction: column; gap: 8px; color: #4A5568;">
+                    <li><strong id="act-meso1">Engage with Forest Owner Associations:</strong> Join local *Forstbetriebsgemeinschaften* (FBG) to coordinate regional timber harvesting and share peer expertise.</li>
+                    <li><strong id="act-meso2">Utilize State Subsidies:</strong> Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
+                    <li><strong id="act-meso3">Community Outreach & Education:</strong> Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
                 </ul>
             </div>
         </section>
@@ -849,16 +864,18 @@
         const translations = {
             en: {
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
-                heroTitle: "Transforming local forests towards climate resilience and biodiversity",
+                heroTitle: "Transforming local forests towards climate resilience and biodiversity in Bavaria",
                 locationMeta: "Pirk, Bavaria, Germany",
                 projectStatus: "2022 (ongoing)",
-                summaryTitle: "Project Focus",
+                summaryTitle: "Project Topics",
                 focus1Title: "Monoculture Conversion",
                 focus2Title: "Climate Adaptation",
+                focus3Title: "Self-Sufficient Harvest",
                 loc1: "Replacing vulnerable species with resilient mixed forests",
                 loc2: "Combating drought stress and bark beetle risks",
-                mapHeading: "Project Location (Pirk, Bavaria)",
-                challengeTitle: "The Challenge",
+                loc3: "Combining sustainable self-sufficient harvesting with forest conservation",
+                mapHeading: "Project Map",
+                challengeTitle: "Main Challenges",
                 challengeP1: "Forests around the world are already under significant pressure from climate change and environmental pollution. Rising temperatures, prolonged droughts, and increasing disturbances are weakening forest ecosystems and threatening their long-term resilience.",
                 challengeP2: "In my home region of Bavaria, one of the main challenges is rooted in the way forests were managed in the past. During the 1950s to 1970s, large areas were deliberately designed as monocultures, dominated by a few fast-growing and commercially valuable tree species such as spruce, pine, and larch.",
                 challengeP3: "While these forests performed rather well under past climate conditions, they have become highly vulnerable today. The lack of species diversity reduces their ability to adapt to changing environmental conditions. As a result, forests are increasingly affected by extreme droughts and bark beetle infestations.",
@@ -866,7 +883,7 @@
                 fact1Desc: "of Germany's land area is forest — about 11.5 million ha (~115,000 km²).",
                 fact2Desc: "trees in Germany show crown loss and drought stress — a visible sign of declining forest health.",
                 fact3Desc: "of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.",
-                projectTitle: "Our Project & Restoration Approach",
+                projectTitle: "Our Approach",
                 projectP1: "Together with his father, Johannes has been working for several years to gradually transform “sick” forests into more resilient and biodiverse ecosystems. This is a long-term process that requires patience, continuous learning, and close observation of nature.",
                 projectP2: "Our approach focuses on increasing diversity and strengthening the forest’s ability to adapt to future climate conditions. One key measure is the gradual replacement of vulnerable monoculture species with a wider mix of tree species, introducing native and carefully selected non-native species better adapted to heat and drought.",
                 projectP3: "Another important aspect is allowing natural processes to take place. Leaving dead trees and plant material intentionally in the forest provides habitats and nesting opportunities for birds, insects, and wildlife while regenerating the soil.",
@@ -875,12 +892,16 @@
                 step2Title: "2. Plan", step2Desc: "Based on the assessment results, we defined long-term restoration measures, developed an action plan, and secured funding through relevant support programs.",
                 step3Title: "3. Implement", step3Desc: "We are gradually implementing restoration activities, including planting climate-resilient trees, enhancing biodiversity habitats, and improving forest resilience.",
                 step4Title: "4. Monitor", step4Desc: "Our forest is continuously monitored to evaluate progress, maintain implemented measures, and adapt management practices where improvements are needed.",
-                actionTitle: "How other forest owners can take action",
-                actionP1: "Transforming forests toward climate resilience is a task that many private and public forest owners face. If you own forest land and want to make a positive impact, here are practical steps you can take:",
-                actLi1Title: "Consult Local Forestry Authorities:", actLi1Desc: "Contact your regional forestry office for professional advice and tailored management plans.",
-                actLi2Title: "Utilize State Funding & Subsidies:", actLi2Desc: "Take advantage of government grants designed to support climate-resilient forest conversion.",
-                actLi3Title: "Engage with Forest Owner Associations:", actLi3Desc: "Join local forestry groups to share experiences and coordinate with peer landowners.",
-                actLi4Title: "Promote Natural Regeneration:", actLi4Desc: "Allow natural succession and keep deadwood where appropriate to build healthy soil.",
+                actionTitle: "How can you take action",
+                actionP1: "Transforming forests toward climate resilience requires concerted efforts at multiple levels. Depending on your scope of influence, here are practical recommendations:",
+                microHeading: "Micro-Level (Individual & Private Landowners)",
+                actMicro1: "Consult Local Forestry Authorities:",
+                actMicro2: "Promote Natural Regeneration:",
+                actMicro3: "Practice Selective Harvesting:",
+                mesoHeading: "Meso-Level (Community, Associations & Regional Networks)",
+                actMeso1: "Engage with Forest Owner Associations:",
+                actMeso2: "Utilize State Subsidies:",
+                actMeso3: "Community Outreach & Education:",
                 linksTitle: "Useful Links & Resources",
                 links: [
                     { name: "FAO Sustainable Forest Management & Restoration Toolbox", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/en", desc: "— Global guidelines, practical tools, and technical modules for restoring degraded forest ecosystems." },
@@ -891,16 +912,18 @@
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
-                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität transformieren",
+                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität in Bayern transformieren",
                 locationMeta: "Pirk, Bayern, Deutschland",
                 projectStatus: "2022 (laufend)",
-                summaryTitle: "Projektfokus",
+                summaryTitle: "Projektthemen",
                 focus1Title: "Monokultur-Umbau",
                 focus2Title: "Klimaanpassung",
+                focus3Title: "Selbstversorgung & Schutz",
                 loc1: "Ersatz anfälliger Arten durch widerstandsfähige Mischwälder",
                 loc2: "Bekämpfung von Dürrestress und Borkenkäfer-Risiken",
-                mapHeading: "Projektstandort (Pirk, Bayern)",
-                challengeTitle: "Die Herausforderung",
+                loc3: "Kombination aus nachhaltiger Eigenversorgung und Waldnaturschutz",
+                mapHeading: "Projektkarte",
+                challengeTitle: "Hauptherausforderungen",
                 challengeP1: "Wälder weltweit stehen durch den Klimawandel und Umweltverschmutzung unter starkem Druck. Steigende Temperaturen, anhaltende Dürren und Störungen schwächen die Ökosysteme.",
                 challengeP2: "In meiner Heimatregion Bayern liegt eine der Hauptursachen in der früheren Waldbewirtschaftung. In den 1950er bis 1970er Jahren wurden große Flächen bewusst als Monokulturen angelegt, dominiert von Fichte, Kiefer und Lärche.",
                 challengeP3: "Unter früheren Klimabedingungen funktionierten diese gut, doch heute sind sie extrem anfällig. Die geringe Artenvielfalt reduziert die Anpassungsfähigkeit, was zu Dürreschäden und Borkenkäferbefall führt.",
@@ -908,7 +931,7 @@
                 fact1Desc: "von Deutschlands Landfläche ist Wald – ca. 11,5 Millionen Hektar (~115.000 km²).",
                 fact2Desc: "der Bäume in Deutschland zeigen Kronenverlichtung und Dürrestress – ein sichtbares Zeichen sinkender Gesundheit.",
                 fact3Desc: "an Baumkronen/Waldfläche gingen seit 2017 verloren (~8,5 %), angetrieben durch Hitze und Borkenkäfer.",
-                projectTitle: "Unser Projekt & Restaurierungsansatz",
+                projectTitle: "Unser Ansatz",
                 projectP1: "Gemeinsam mit seinem Vater arbeitet Johannes seit Jahren daran, ‚kranke‘ Wälder schrittweise in widerstandsfähigere und artenreichere Ökosysteme zu verwandeln.",
                 projectP2: "Unser Ansatz konzentriert sich auf die Erhöhung der Vielfalt. Verletzliche Monokulturen werden schrittweise durch hitze- und trockenheitstolerantere Baumarten ersetzt.",
                 projectP3: "Ein weiterer wichtiger Aspekt ist das Zulassen natürlicher Prozesse. Totholz wird bewusst im Wald belassen, um Lebensräume für Vögel, Insekten und Wildtiere zu schaffen.",
@@ -917,12 +940,16 @@
                 step2Title: "2. Planen (Plan)", step2Desc: "Basierend darauf haben wir langfristige Maßnahmen definiert und Fördermittel gesichert.",
                 step3Title: "3. Umsetzen (Implement)", step3Desc: "Wir pflanzen klimaresistente Bäume und fördern Lebensräume für die Biodiversität.",
                 step4Title: "4. Überwachen (Monitor)", step4Desc: "Unser Wald wird kontinuierlich überwacht, um Fortschritte zu bewerten und Maßnahmen anzupassen.",
-                actionTitle: "Wie andere Waldbesitzer aktiv werden können",
-                actionP1: "Der Umbau von Wäldern hin zur Klimaresilienz ist eine wichtige Aufgabe für private und öffentliche Waldbesitzer. Hier sind praktische Schritte:",
-                actLi1Title: "Lokale Forstämter kontaktieren:", actLi1Desc: "Holen Sie sich professionelle Beratung und maßgeschneiderte Managementpläne bei Ihrem regionalen Forstrevier oder Amt ein.",
-                actLi2Title: "Staatliche Fördermittel nutzen:", actLi2Desc: "Nutzen Sie staatliche Zuschüsse und Förderprogramme für klimaresistenten Waldumbau.",
-                actLi3Title: "Forstbetriebsgemeinschaften beitreten:", actLi3Desc: "Schließen Sie sich lokalen Zusammenschlüssen an, um Erfahrungen auszutauschen und Maßnahmen abzustimmen.",
-                actLi4Title: "Natürliche Verjüngung fördern:", actLi4Desc: "Lassen Sie natürliche Sukzession zu und behalten Sie Totholz für die Bodenregeneration bei.",
+                actionTitle: "Wie Sie aktiv werden können",
+                actionP1: "Der Umbau von Wäldern hin zur Klimaresilienz erfordert gemeinsame Anstrengungen auf mehreren Ebenen. Hier sind praktische Empfehlungen:",
+                microHeading: "Mikro-Ebene (Einzelpersonen & private Waldbesitzer)",
+                actMicro1: "Lokale Forstämter kontaktieren:",
+                actMicro2: "Natürliche Verjüngung fördern:",
+                actMicro3: "Selektive Holzentnahme praktizieren:",
+                mesoHeading: "Meso-Ebene (Gemeinden, Verbände & regionale Netzwerke)",
+                actMeso1: "Forstbetriebsgemeinschaften beitreten:",
+                actMeso2: "Staatliche Fördermittel nutzen:",
+                actMeso3: "Öffentlichkeitsarbeit & Bildung:",
                 linksTitle: "Nützliche Links & Ressourcen",
                 links: [
                     { name: "FAO Werkzeugkasten für nachhaltige Waldwirtschaft", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/de", desc: "— Internationale Leitfäden und Praxis-Module zur Wiederherstellung von Waldökosystemen." },
@@ -933,16 +960,18 @@
             },
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
-                heroTitle: "Transformer les forêts locales pour la résilience climatique",
+                heroTitle: "Transformer les forêts locales pour la résilience climatique et la biodiversité en Bavière",
                 locationMeta: "Pirk, Bavière, Allemagne",
                 projectStatus: "2022 (en cours)",
-                summaryTitle: "Objectifs du Projet",
+                summaryTitle: "Thèmes du Projet",
                 focus1Title: "Conversion de Monoculture",
                 focus2Title: "Adaptation Climatique",
+                focus3Title: "Récolte Autonome",
                 loc1: "Remplacer les espèces vulnérables par des forêts mixtes",
                 loc2: "Lutter contre le stress hydrique et les scolytes",
-                mapHeading: "Localisation (Pirk, Bavière)",
-                challengeTitle: "Le Défi",
+                loc3: "Combiner une récolte vivrière durable et la conservation des forêts",
+                mapHeading: "Carte des Projets",
+                challengeTitle: "Défis Principaux",
                 challengeP1: "Les forêts du monde entier subissent une pression considérable due au changement climatique.",
                 challengeP2: "En Bavière, l'un des principaux défis vient de la gestion passée orientée vers les monocultures.",
                 challengeP3: "Aujourd'hui, ces forêts sont très vulnérables aux sécheresses extrêmes et aux attaques de scolytes.",
@@ -950,7 +979,7 @@
                 fact1Desc: "de la superficie de l'Allemagne est couverte de forêts (~11,5 millions d'ha).",
                 fact2Desc: "des arbres en Allemagne montrent des signes de stress hydrique et dépérissement.",
                 fact3Desc: "de couvert forestier perdus depuis 2017 en raison des sécheresses et des insectes.",
-                projectTitle: "Notre Projet & Approche",
+                projectTitle: "Notre Approche",
                 projectP1: "Avec son père, Johannes œuvre depuis plusieurs années pour transformer les forêts en écosystèmes résilients.",
                 projectP2: "Notre approche mise sur la diversité en introduisant des essences adaptées au climat futur.",
                 projectP3: "Laisser le bois mort en forêt favorise la biodiversité et la régénération des sols.",
@@ -959,12 +988,16 @@
                 step2Title: "2. Planifier", step2Desc: "Définition des mesures à long terme et obtention de subventions.",
                 step3Title: "3. Mettre en œuvre", step3Desc: "Plantation d'arbres résilients et renforcement de la biodiversité.",
                 step4Title: "4. Suivre", step4Desc: "Suivi continu de l'évolution de la forêt.",
-                actionTitle: "Comment d'autres propriétaires forestiers peuvent agir",
-                actionP1: "La transformation des forêts est un défi pour de nombreux propriétaires. Voici des étapes pratiques :",
-                actLi1Title: "Consulter les autorités forestières:", actLi1Desc: "Contactez votre bureau forestier régional pour des conseils professionnels.",
-                actLi2Title: "Utiliser les subventions:", actLi2Desc: "Profitez des aides gouvernementales pour la conversion forestière.",
-                actLi3Title: "Rejoindre des associations:", actLi3Desc: "Collaborez avec d'autres propriétaires pour partager les expériences.",
-                actLi4Title: "Promouvoir la régénération naturelle:", actLi4Desc: "Laissez du bois mort pour enrichir le sol.",
+                actionTitle: "Comment pouvez-vous agir",
+                actionP1: "La transformation des forêts nécessite des efforts concertés à plusieurs niveaux. Voici des recommandations pratiques :",
+                microHeading: "Niveau Micro (Individus et propriétaires privés)",
+                actMicro1: "Consulter les autorités forestières:",
+                actMicro2: "Promouvoir la régénération naturelle:",
+                actMicro3: "Pratiquer une récolte sélective:",
+                mesoHeading: "Niveau Méso (Communautés, associations et réseaux régionaux)",
+                actMeso1: "Rejoindre des groupements forestiers:",
+                actMeso2: "Utiliser les subventions publiques:",
+                actMeso3: "Sensibilisation et éducation:",
                 linksTitle: "Liens utiles & Ressources",
                 links: [
                     { name: "FAO – Module de Restauration des Forêts", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/fr", desc: "— Directives mondiales et outils pratiques pour la gestion et la restauration forestière." },
@@ -974,16 +1007,18 @@
             },
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
-                heroTitle: "Transformar los bosques locales hacia la resiliencia climática",
+                heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad en Baviera",
                 locationMeta: "Pirk, Baviera, Alemania",
                 projectStatus: "2022 (en curso)",
-                summaryTitle: "Enfoque del Proyecto",
+                summaryTitle: "Temas del Proyecto",
                 focus1Title: "Conversión de Monocultivo",
                 focus2Title: "Adaptación Climática",
+                focus3Title: "Cosecha Autosuficiente",
                 loc1: "Reemplazar especies vulnerables por bosques mixtos resilientes",
                 loc2: "Combatir el estrés por sequía y los riesgos de plagas",
-                mapHeading: "Ubicación del Proyecto (Pirk, Baviera)",
-                challengeTitle: "El Desafío",
+                loc3: "Combinar la cosecha de subsistencia sostenible con la conservación forestal",
+                mapHeading: "Mapa de Proyectos",
+                challengeTitle: "Desafíos Principales",
                 challengeP1: "Los bosques de todo el mundo sufren una gran presión debido al cambio climático y la contaminación.",
                 challengeP2: "En Baviera, el desafío principal proviene de la gestión forestal del pasado basada en monocultivos.",
                 challengeP3: "Hoy en día, estos bosques son altamente vulnerables a sequías extremas y plagas de escarabajos.",
@@ -991,7 +1026,7 @@
                 fact1Desc: "del territorio de Alemania es bosque (~11.5 millones de ha).",
                 fact2Desc: "de los árboles en Alemania muestran signos de pérdida de copa y estrés por sequía.",
                 fact3Desc: "de superficie forestal se han perdido desde 2017 debido a la sequía y calor.",
-                projectTitle: "Nuestro Proyecto y Enfoque",
+                projectTitle: "Nuestro Enfoque",
                 projectP1: "Junto a su padre, Johannes trabaja para transformar bosques vulnerables en ecosistemas resilientes.",
                 projectP2: "Nuestro enfoque se centra en aumentar la diversidad e introducir especies adaptadas al calor.",
                 projectP3: "Permitir procesos naturales, como dejar madera muerta, regenera el suelo y la biodiversidad.",
@@ -1000,12 +1035,16 @@
                 step2Title: "2. Planificar", step2Desc: "Definición de medidas de restauración a largo plazo.",
                 step3Title: "3. Implementar", step3Desc: "Plantación de árboles resilientes al clima y mejora de hábitats.",
                 step4Title: "4. Monitorear", step4Desc: "Seguimiento continuo para evaluar el progreso y adaptar la gestión.",
-                actionTitle: "Cómo otros propietarios forestales pueden actuar",
-                actionP1: "Transformar los bosques hacia la resiliencia es una tarea clave. Aquí hay pasos prácticos:",
-                actLi1Title: "Consultar a las autoridades forestales:", actLi1Desc: "Contacte a su oficina forestal regional para recibir asesoramiento profesional.",
-                actLi2Title: "Utilizar subsidios estatales:", actLi2Desc: "Aproveche las ayudas gubernamentales para la conversión forestal.",
-                actLi3Title: "Unirse a asociaciones de propietarios:", actLi3Desc: "Colabore con otros propietarios para compartir experiencias.",
-                actLi4Title: "Promover la regeneración natural:", actLi4Desc: "Permita la sucesión natural y mantenga madera muerta para enriquecer el suelo.",
+                actionTitle: "Cómo puedes actuar",
+                actionP1: "La transformación de los bosques requiere esfuerzos concertados en múltiples niveles. Aquí hay recomendaciones prácticas:",
+                microHeading: "Nivel Micro (Individuos y propietarios privados)",
+                actMicro1: "Consultar a las autoridades forestales:",
+                actMicro2: "Promover la regeneración natural:",
+                actMicro3: "Practicar la cosecha selectiva:",
+                mesoHeading: "Nivel Meso (Comunidades, asociaciones y redes regionales)",
+                actMeso1: "Unirse a asociaciones de propietarios forestales:",
+                actMeso2: "Utilizar subsidios estatales:",
+                actMeso3: "Educación y divulgación comunitaria:",
                 linksTitle: "Enlaces útiles y Recursos",
                 links: [
                     { name: "FAO – Caja de Herramientas para la Ordenación Forestal Sostenible", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/es", desc: "— Guías internacionales y módulos técnicos para la restauración de ecosistemas forestales." },
@@ -1047,8 +1086,10 @@
             document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
             document.getElementById('focus-1-title').innerText = t.focus1Title;
             document.getElementById('focus-2-title').innerText = t.focus2Title;
+            document.getElementById('focus-3-title').innerText = t.focus3Title;
             document.getElementById('loc-1').innerText = t.loc1;
             document.getElementById('loc-2').innerText = t.loc2;
+            document.getElementById('loc-3').innerText = t.loc3;
             document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
             
             document.getElementById('challenge-title').innerText = t.challengeTitle;
@@ -1074,10 +1115,15 @@
 
             document.getElementById('action-title').innerText = t.actionTitle;
             document.getElementById('action-p1').innerText = t.actionP1;
-            document.getElementById('act-li1-title').innerText = t.actLi1Title;
-            document.getElementById('act-li2-title').innerText = t.actLi2Title;
-            document.getElementById('act-li3-title').innerText = t.actLi3Title;
-            document.getElementById('act-li4-title').innerText = t.actLi4Title;
+            document.getElementById('micro-heading').innerText = t.microHeading;
+            document.getElementById('act-micro1').innerText = t.actMicro1;
+            document.getElementById('act-micro2').innerText = t.actMicro2;
+            document.getElementById('act-micro3').innerText = t.actMicro3;
+
+            document.getElementById('meso-heading').innerText = t.mesoHeading;
+            document.getElementById('act-meso1').innerText = t.actMeso1;
+            document.getElementById('act-meso2').innerText = t.actMeso2;
+            document.getElementById('act-meso3').innerText = t.actMeso3;
 
             document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.linksTitle}`;
             updateLocalizedLinks(lang);
