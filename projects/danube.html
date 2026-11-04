@@ -655,7 +655,7 @@
             <h1 id="hero-title">Following rivers as sustainable means of travel</h1>
             <div class="hero-meta">
                 <div class="meta-details">
-                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Danube River Expedition</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Danube River, Several countries</span></div>
                     <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span>2024</span></div>
                 </div>
                 <!-- SDG Icons including SDG 6 -->
@@ -676,7 +676,7 @@
                     <li class="location-item">
                         <div class="location-icon"><i class="fa-solid fa-water"></i></div>
                         <div class="location-text">
-                            <strong id="topic-1-title">Zero-Emission Mobility</strong>
+                            <strong id="topic-1-title">Low-Emission Traveling</strong>
                             <span id="loc-1">Traveling entirely by muscle power to minimize carbon footprints</span>
                         </div>
                     </li>
@@ -698,7 +698,7 @@
             </div>
 
             <div class="map-card">
-                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Expedition Route Map</h3>
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Map</h3>
                 <div id="minimap"></div>
             </div>
         </div>
@@ -714,10 +714,10 @@
                     <p id="challenge-p2">Despite connecting ten countries and supporting more than 80 million people, the Danube remains a fragile ecosystem. Urbanization, hydropower development, and the loss of wetlands have altered many of its natural habitats.</p>
                 </div>
                 <div class="grid-image">
-                    <img src="Pics/Kayak-Danube/Johannes puting kayak in water.HEIC" 
-                         alt="Putting kayak in water" 
+                    <img src="Pics/Kayak-Danube/Danube-sunrise.jpg" 
+                         alt="Danube Sunrise" 
                          class="project-image"
-                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Johannes%20puting%20kayak%20in%20water.HEIC';">
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Danube-sunrise.jpg';">
                 </div>
             </div>
         </section>
@@ -753,20 +753,19 @@
                 <p id="project-p1">Our journey from Budapest to the Black Sea was designed around the core philosophy of sustainable adventure. Traveling strictly by muscle power on water allowed us to experience Europe's lifeline intimately.</p>
                 <p id="project-p2">By keeping our footprint minimal, we proved that long-distance travel can actively support environmental protection and rural communities rather than straining them.</p>
             </div>
-            <!-- Three Images from Kayak-Danube repository folder -->
             <div class="three-image-grid">
-                <img src="Pics/Kayak-Danube/Johannes FACESTONE KAYAK.HEIC" 
-                     alt="Johannes on Kayak Expedition" 
+                <img src="Pics/Kayak-Danube/Danube-Fire.jpg" 
+                     alt="Danube Fire" 
                      class="grid-img-item"
-                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Johannes%20FACESTONE%20KAYAK.HEIC';">
-                <img src="Pics/Kayak-Danube/Johannes and Marie arrival.HEIC" 
-                     alt="Johannes and Marie arrival" 
+                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Danube-Fire.jpg';">
+                <img src="Pics/Kayak-Danube/Danube-sunset.jpg" 
+                     alt="Danube Sunset" 
                      class="grid-img-item"
-                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Johannes%20and%20Marie%20arrival.HEIC';">
+                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Danube-sunset.jpg';">
                 <img src="Pics/Kayak-Danube/Marie KAYAK.JPG" 
-                     alt="Kayak Danube Marie Kayak" 
+                     alt="Marie Kayak" 
                      class="grid-img-item"
-                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/pics/Kayak-Danube/Marie KAYAK.JPG;">
+                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Marie%20KAYAK.JPG';">
             </div>
         </section>
 
@@ -795,7 +794,7 @@
             </div>
         </section>
 
-        <!-- USEFUL LINKS & RESOURCES SECTION (International & Language Specific) -->
+        <!-- USEFUL LINKS & RESOURCES SECTION -->
         <section class="useful-links-card">
             <h2 id="links-title"><i class="fa-solid fa-link"></i> Useful Links & Resources</h2>
             <ul class="links-list" id="links-list-container">
@@ -826,7 +825,7 @@
                 zoomControl: true,
                 dragging: true,
                 scrollWheelZoom: false
-            }).setView([45.0, 24.0], 5);
+            }).setView([45.0, 24.0], 4);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -834,7 +833,6 @@
                     L.geoJSON(data, {
                         style: function(feature) {
                             var countryName = feature.properties.name;
-                            // Exclude Germany and Austria; highlight Danube corridor countries
                             if (["Hungary", "Serbia", "Republic of Serbia", "Croatia", "Bulgaria", "Romania"].includes(countryName)) {
                                 return { fillColor: "#1B4D3E", fillOpacity: 0.8, color: "#1B4D3E", weight: 1.5 };
                             } else {
@@ -843,19 +841,29 @@
                         }
                     }).addTo(map);
 
-                    // Danube polyline path
                     var danubeCoordinates = [
-                        [47.4979, 19.0402], // Budapest
-                        [45.2551, 19.8452], // Novi Sad
-                        [44.8125, 20.4612], // Belgrade
-                        [45.1667, 28.8000]  // Tulcea / Delta
+                        [47.4979, 19.0402], // 1. Budapest (Start)
+                        [47.0125, 18.9321], // 2. Solt / Paks area
+                        [46.1823, 18.9555], // 3. Baja / Mohács
+                        [45.5511, 19.6521], // 4. Apatin
+                        [45.2551, 19.8452], // 5. Novi Sad
+                        [44.8205, 20.2801], // 6. Zemun / Surčin
+                        [44.8125, 20.4612], // 7. Belgrade
+                        [44.6512, 20.9234], // 8. Smederevo
+                        [44.6644, 21.3411], // 9. Veliko Gradište / Iron Gates entry
+                        [44.5789, 22.0123], // 10. Donji Milanovac (Iron Gates)
+                        [44.4123, 22.5312], // 11. Orșova / Drobeta-Turnu Severin
+                        [43.8567, 23.9789], // 12. Calafat / Vidin
+                        [43.7543, 25.9612], // 13. Ruse / Giurgiu
+                        [44.1823, 27.2891], // 14. Călărași / Brăila
+                        [45.1667, 28.8000]  // 15. Tulcea / Danube Delta (End)
                     ];
 
                     L.polyline(danubeCoordinates, {
                         color: '#1E3A8A', 
                         weight: 4,
-                        opacity: 0.8,
-                        dashArray: '5, 5'
+                        opacity: 0.85,
+                        dashArray: '6, 4'
                     }).addTo(map);
 
                     var routeIcon = L.divIcon({
@@ -866,7 +874,7 @@
                     });
 
                     L.marker([47.4979, 19.0402], { icon: routeIcon }).addTo(map).bindTooltip('<b>Budapest</b><br>Start', { direction: 'top', className: 'custom-tooltip' });
-                    L.marker([44.8125, 20.4612], { icon: routeIcon }).addTo(map).bindTooltip('<b>Belgrade</b><br>Midpoint', { direction: 'top', className: 'custom-tooltip' });
+                    // Belgrade marker removed as requested
                     L.marker([45.1667, 28.8000], { icon: routeIcon }).addTo(map).bindTooltip('<b>Tulcea</b><br>Delta', { direction: 'top', className: 'custom-tooltip' });
                 })
                 .catch(err => console.error("Map data error: ", err));
@@ -874,20 +882,19 @@
             updateLocalizedLinks('en');
         });
 
-        // MULTILINGUAL DICTIONARY & INTERNATIONAL RESOURCES
         const translations = {
             en: {
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
                 heroTitle: "Following rivers as sustainable means of travel",
-                locationMeta: "Danube River Expedition",
+                locationMeta: "Danube River, Several countries",
                 summaryTitle: "Project Topics",
-                topic1Title: "Zero-Emission Mobility",
+                topic1Title: "Low-Emission Traveling",
                 topic2Title: "Community Empowerment",
                 topic3Title: "Ecosystem Protection",
                 loc1: "Traveling entirely by muscle power to minimize carbon footprints",
                 loc2: "Connecting with local river guardians and grassroots networks",
                 loc3: "Documenting water quality and wetland biodiversity",
-                mapHeading: "Expedition Route Map",
+                mapHeading: "Project Map",
                 challengeTitle: "The Challenge",
                 challengeP1: "The Danube, Europe's second-longest river, is facing increasing environmental and social challenges. Climate change has led to more frequent droughts and record-low water levels, disrupting ecosystems, navigation, and access to freshwater.",
                 challengeP2: "Despite connecting ten countries and supporting more than 80 million people, the Danube remains a fragile ecosystem. Urbanization, hydropower development, and the loss of wetlands have altered many of its natural habitats.",
@@ -914,15 +921,15 @@
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
                 heroTitle: "Flüsse als nachhaltige Reisewege entdecken",
-                locationMeta: "Donau-Expedition",
+                locationMeta: "Donau, Mehrere Länder",
                 summaryTitle: "Projekt-Themen",
-                topic1Title: "Emissionsfreie Mobilität",
+                topic1Title: "Emissionsarmes Reisen",
                 topic2Title: "Stärkung lokaler Gemeinschaften",
                 topic3Title: "Ökosystemschutz",
                 loc1: "Reisen ausschließlich mit Muskelkraft zur Minimierung des CO₂-Fußabdrucks",
                 loc2: "Vernetzung mit lokalen Fluss-Schützern und Initiativen vor Ort",
                 loc3: "Dokumentation von Wasserqualität und Auen-Biodiversität",
-                mapHeading: "Expeditions-Routenkarte",
+                mapHeading: "Projektkarte",
                 challengeTitle: "Die Herausforderung",
                 challengeP1: "Die Donau als zweitlängster Fluss Europas steht vor massiven ökologischen Herausforderungen. Der Klimawandel führt zu Dürren und Rekordtiefstständen.",
                 challengeP2: "Obwohl sie zehn Länder verbindet und über 80 Millionen Menschen versorgt, ist sie durch Urbanisierung und Lebensraumverlust stark gefährdet.",
@@ -949,21 +956,21 @@
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
                 heroTitle: "Les fleuves comme moyen de voyage durable",
-                locationMeta: "Expédition sur le Danube",
+                locationMeta: "Danube, Plusieurs pays",
                 summaryTitle: "Thèmes du Projet",
-                topic1Title: "Mobilité Zéro Émission",
+                topic1Title: "Voyage à faible émission",
                 topic2Title: "Autonomisation des Communautés",
                 topic3Title: "Protection des Écosystèmes",
                 loc1: "Voyager entièrement à la force musculaire pour minimiser l'empreinte carbone",
                 loc2: "Se connecter avec les gardiens locaux des rivières et réseaux citoyens",
                 loc3: "Documenter la qualité de l'eau et la biodiversité des zones humides",
-                mapHeading: "Carte de l'Expédition",
+                mapHeading: "Carte du Projet",
                 challengeTitle: "Le Défi",
                 challengeP1: "Le Danube, deuxième fleuve d'Europe, fait face à des défis environnementaux croissants dus au changement climatique.",
                 challengeP2: "Bien qu'il relie dix pays, son écosystème reste fragile face à l'urbanisation et la perte d'habitats.",
                 factsTitle: "Faits Marquants",
                 fact1Desc: "Le bassin du Danube abrite plus de 5 000 espèces animales.",
-                fact2Desc: "Plus de 80 % des plaines inondables ont disparu au cours des 150 dernières années.",
+                fact2Desc: "Plus de 80 % des plaines inondables au cours des 150 dernières années.",
                 fact3Desc: "Espèces végétales, un haut lieu de la biodiversité européenne.",
                 projectTitle: "Notre Projet & Principes du Voyage Durable",
                 projectP1: "Notre voyage de Budapest à la mer Noire a été conçu autour de l'aventure durable.",
@@ -983,15 +990,15 @@
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
                 heroTitle: "Los ríos como medios de viaje sostenible",
-                locationMeta: "Expedición por el Danubio",
+                locationMeta: "Danubio, Varios países",
                 summaryTitle: "Temas del Proyecto",
-                topic1Title: "Movilidad de Cero Emisiones",
+                topic1Title: "Viajes de bajas emisiones",
                 topic2Title: "Empoderamiento Comunitario",
                 topic3Title: "Protección de Ecosistemas",
                 loc1: "Viajar enteramente a tracción humana para minimizar la huella de carbono",
                 loc2: "Conectar con guardianes locales de los ríos y redes comunitarias",
                 loc3: "Documentar la calidad del agua y la biodiversidad de humedales",
-                mapHeading: "Mapa de Expedición",
+                mapHeading: "Mapa del Proyecto",
                 challengeTitle: "El Desafío",
                 challengeP1: "El Danubio enfrenta crecientes desafíos ambientales debido al cambio climático y la escasez de agua.",
                 challengeP2: "A pesar de conectar diez países, es un ecosistema frágil afectado por la urbanización.",
