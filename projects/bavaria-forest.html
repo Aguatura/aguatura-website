@@ -374,18 +374,16 @@
             margin-bottom: 0;
         }
 
-        /* FULLY RESPONSIVE IMAGE FIX: height: auto preserves natural aspect ratio without cropping */
+        /* RESPONSIVE IMAGE STYLING: height: auto ensures no cropping */
         .content-image {
             width: 100%;
             height: auto;
-            max-height: none;
-            object-fit: unset;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
         }
 
-        /* THREE IMAGES SIDE BY SIDE (Stacked fully on mobile without cropping) */
+        /* THREE IMAGES SIDE BY SIDE (Stacks cleanly on mobile) */
         .three-image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -396,8 +394,6 @@
         .grid-img-item {
             width: 100%;
             height: auto;
-            max-height: none;
-            object-fit: unset;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
@@ -590,7 +586,7 @@
 
         @media (max-width: 768px) {
             .three-image-grid {
-                grid-template-columns: 1fr; /* Stacks images cleanly on mobile without cropping */
+                grid-template-columns: 1fr;
             }
         }
 
@@ -737,7 +733,7 @@
                 <p id="project-p2">Our approach focuses on increasing diversity and strengthening the forest’s ability to adapt to future climate conditions. One key measure is the gradual replacement of vulnerable monoculture species with a wider mix of tree species, introducing native and carefully selected non-native species better adapted to heat and drought.</p>
                 <p id="project-p3">Another important aspect is allowing natural processes to take place. Leaving dead trees and plant material intentionally in the forest provides habitats and nesting opportunities for birds, insects, and wildlife while regenerating the soil.</p>
             </div>
-            <!-- 3 Images Side-by-Side -->
+            <!-- 3 Images Side-by-Side (Fully Restored & Uncropped) -->
             <div class="three-image-grid">
                 <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/IMG_4698.jpeg" alt="Restoration Photo 1" class="grid-img-item">
                 <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/8fb4306c-6534-44e9-82ad-0af31e3cdc54.JPG" alt="Restoration Photo 2" class="grid-img-item">
