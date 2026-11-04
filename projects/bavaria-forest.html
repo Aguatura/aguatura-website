@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome für Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome v6.5.1 für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Leaflet CSS für die Minimap -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -169,6 +169,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .meta-item {
@@ -185,7 +186,6 @@
             font-size: 1.2rem;
         }
 
-        /* SDG ICONS IMAGES */
         .sdg-icons {
             display: flex;
             gap: 10px;
@@ -196,14 +196,20 @@
         .sdg-img {
             width: 48px;
             height: 48px;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .sdg-img:hover {
+            transform: scale(1.05);
         }
 
         /* MAP & SUMMARY LAYOUT */
         .map-section-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 25px;
             margin-bottom: 35px;
             align-items: stretch;
@@ -242,13 +248,6 @@
             gap: 12px;
             padding: 8px 10px;
             border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .location-item:hover {
-            background-color: var(--bg-light);
-            transform: translateX(4px);
         }
 
         .location-icon {
@@ -305,7 +304,6 @@
             box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
         }
 
-        /* MARKER & TOOLTIPS */
         .custom-white-pin {
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid var(--primary-dark);
@@ -332,7 +330,7 @@
             font-weight: 500;
         }
 
-        /* CONTENT CARDS & IMAGES */
+        /* CONTENT CARDS & IMAGE STYLES */
         .content-card {
             background: var(--white);
             padding: 35px;
@@ -374,8 +372,40 @@
             margin-bottom: 0;
         }
 
-        /* RESPONSIVE IMAGE STYLING: height: auto preserves natural aspect ratio */
-        .content-image {
+        /* CHALLENGES LIST */
+        .challenges-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 15px;
+        }
+
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.5;
+        }
+
+        .challenge-icon {
+            background: var(--bg-light);
+            color: var(--accent-green);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+            margin-top: 2px;
+        }
+
+        .grid-image img {
             width: 100%;
             height: auto;
             border-radius: 10px;
@@ -399,137 +429,144 @@
             display: block;
         }
 
-        /* STEPS GRID */
-        .steps-grid {
+        /* FACTS & DATA GRID */
+        .facts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
 
+        .fact-card {
+            background: var(--primary-dark);
+            padding: 22px;
+            border-radius: 8px;
+            border: 2px solid var(--accent-green);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .fact-card .fact-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .fact-card p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .fact-source {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .fact-source:hover {
+            color: var(--white);
+        }
+
+        /* STEPS LIST */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
         .step-card {
             background: var(--bg-light);
-            padding: 20px;
+            padding: 22px;
             border-radius: 8px;
-            border-left: 4px solid var(--primary-dark);
+            border-left: 4px solid var(--accent-green);
         }
 
         .step-card h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
             font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .step-card p {
-            font-size: 0.85rem;
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        /* KEY FACTS SECTION */
-        .key-facts-section {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 40px 30px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .key-facts-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 3.5vw, 2rem);
-            margin-bottom: 30px;
-        }
-
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .fact-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 25px 18px;
-            border-radius: 10px;
-        }
-
-        .fact-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #A3E635;
-            margin-bottom: 8px;
-        }
-
-        .fact-desc {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-
-        .fact-source {
-            font-size: 0.75rem;
-            opacity: 0.75;
-        }
-
-        /* USEFUL LINKS & RESOURCES SECTION */
-        .useful-links-card {
-            background: var(--white);
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            margin-bottom: 35px;
-            border-left: 5px solid var(--accent-green);
-        }
-
-        .useful-links-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 3vw, 1.8rem);
-            color: var(--primary-dark);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .links-list {
+        .step-card ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
         }
 
-        .links-list li {
+        .step-card li {
+            font-size: 0.88rem;
+            color: #4A5568;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .step-card li::before {
+            content: "•";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* USEFUL LINKS SECTION */
+        .links-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            border-left: 5px solid var(--primary-dark);
+        }
+
+        .links-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .useful-links-list {
+            list-style: none;
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
             gap: 12px;
         }
 
-        .links-list i {
-            color: var(--accent-green);
-            font-size: 1.1rem;
-            margin-top: 4px;
+        .useful-links-list li {
+            font-size: 0.95rem;
         }
 
-        .links-list a {
+        .useful-links-list a {
             color: var(--primary-dark);
             font-weight: 600;
-            text-decoration: underline;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             transition: color 0.2s ease;
         }
 
-        .links-list a:hover {
+        .useful-links-list a:hover {
             color: var(--accent-green);
-        }
-
-        .links-list span {
-            color: #4A5568;
-            font-size: 0.95rem;
+            text-decoration: underline;
         }
 
         /* EXPLORE MORE BUTTON */
@@ -622,9 +659,9 @@
 
         <div class="header-right">
             <div class="social-icons">
-                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
@@ -646,9 +683,8 @@
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Pirk, Bavaria, Germany</span></div>
-                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-status">2022 (ongoing)</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2022 (ongoing)</span></div>
                 </div>
-                <!-- Repository SDG Images -->
                 <div class="sdg-icons">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13 - Climate Action" class="sdg-img" title="SDG 13: Climate Action">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15 - Life on Land" class="sdg-img" title="SDG 15: Life on Land">
@@ -703,29 +739,31 @@
                     <p id="challenge-p3">While these forests performed rather well under past climate conditions, they have become highly vulnerable today. The lack of species diversity reduces their ability to adapt to changing environmental conditions. As a result, forests are increasingly affected by extreme droughts and bark beetle infestations.</p>
                 </div>
                 <div class="grid-image">
-                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/pexels-phirigodfrey-33829802.jpg" alt="Forest Challenge - Bavaria Forest" class="content-image">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/Bavaria-forest/pexels-phirigodfrey-33829802.jpg" alt="Forest Challenge - Bavaria Forest">
                 </div>
             </div>
         </section>
 
         <!-- KEY FACTS -->
-        <section class="key-facts-section">
-            <h2 id="facts-title">Key Facts</h2>
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="facts-title">Key Facts</h2>
+            </div>
             <div class="facts-grid">
                 <div class="fact-card">
                     <div class="fact-number">Over 30%</div>
-                    <div id="fact1-desc" class="fact-desc">of Germany's land area is forest — about 11.5 million ha (~115,000 km²).</div>
-                    <div class="fact-source">Source: BMLEH – Waldzustandsbericht 2025</div>
+                    <p id="fact1-desc">of Germany's land area is forest — about 11.5 million ha (~115,000 km²).</p>
+                    <span class="fact-source" id="f1-source">Source: BMLEH – Waldzustandsbericht 2025</span>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">4 out of 5</div>
-                    <div id="fact2-desc" class="fact-desc">trees in Germany show crown loss and drought stress — a visible sign of declining forest health.</div>
-                    <div class="fact-source">Source: BMLEH – Waldzustandsbericht 2025</div>
+                    <p id="fact2-desc">trees in Germany show crown loss and drought stress — a visible sign of declining forest health.</p>
+                    <span class="fact-source" id="f2-source">Source: BMLEH – Waldzustandsbericht 2025</span>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">~900,000 ha</div>
-                    <div id="fact3-desc" class="fact-desc">of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.</div>
-                    <div class="fact-source">Source: DLR – German Aerospace Center, 2025</div>
+                    <p id="fact3-desc">of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.</p>
+                    <span class="fact-source" id="f3-source">Source: DLR – German Aerospace Center, 2025</span>
                 </div>
             </div>
         </section>
@@ -755,52 +793,61 @@
             </div>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h4 id="step1-title">1. Assess</h4>
-                    <p id="step1-desc">Together with local forestry experts, we assessed the condition of our forest, identified key challenges, and established a baseline for future restoration measures.</p>
+                    <h4 id="step1-title"><i class="fa-solid fa-clipboard-check"></i> 1. Assess</h4>
+                    <ul>
+                        <li id="step1-desc">Together with local forestry experts, we assessed the condition of our forest, identified key challenges, and established a baseline for future restoration measures.</li>
+                    </ul>
                 </div>
                 <div class="step-card">
-                    <h4 id="step2-title">2. Plan</h4>
-                    <p id="step2-desc">Based on the assessment results, we defined long-term restoration measures, developed an action plan, and secured funding through relevant support programs.</p>
+                    <h4 id="step2-title"><i class="fa-solid fa-map"></i> 2. Plan</h4>
+                    <ul>
+                        <li id="step2-desc">Based on the assessment results, we defined long-term restoration measures, developed an action plan, and secured funding through relevant support programs.</li>
+                    </ul>
                 </div>
                 <div class="step-card">
-                    <h4 id="step3-title">3. Implement</h4>
-                    <p id="step3-desc">We are gradually implementing restoration activities, including planting climate-resilient trees, enhancing biodiversity habitats, and improving forest resilience.</p>
+                    <h4 id="step3-title"><i class="fa-solid fa-seedling"></i> 3. Implement</h4>
+                    <ul>
+                        <li id="step3-desc">We are gradually implementing restoration activities, including planting climate-resilient trees, enhancing biodiversity habitats, and improving forest resilience.</li>
+                    </ul>
                 </div>
                 <div class="step-card">
-                    <h4 id="step4-title">4. Monitor</h4>
-                    <p id="step4-desc">Our forest is continuously monitored to evaluate progress, maintain implemented measures, and adapt management practices where improvements are needed.</p>
+                    <h4 id="step4-title"><i class="fa-solid fa-chart-line"></i> 4. Monitor</h4>
+                    <ul>
+                        <li id="step4-desc">Our forest is continuously monitored to evaluate progress, maintain implemented measures, and adapt management practices where improvements are needed.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- HOW CAN YOU TAKE ACTION (MICRO & MESO LEVEL) -->
+        <!-- HOW CAN YOU TAKE ACTION -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="action-title">How can you take action</h2>
             </div>
-            <div class="grid-text">
-                <p id="action-p1">Transforming forests toward climate resilience requires concerted efforts at multiple levels. Depending on your scope of influence, here are practical recommendations:</p>
-                
-                <h3 style="color: var(--primary-dark); margin: 20px 0 10px 0; font-family: 'Playfair Display', serif;" id="micro-heading">Micro-Level (Individual & Private Landowners)</h3>
-                <ul style="margin: 0 0 20px 20px; display: flex; flex-direction: column; gap: 8px; color: #4A5568;">
-                    <li><strong id="act-micro1">Consult Local Forestry Authorities:</strong> Contact regional forestry offices for professional advice and tailored management plans.</li>
-                    <li><strong id="act-micro2">Promote Natural Regeneration:</strong> Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
-                    <li><strong id="act-micro3">Practice Selective Harvesting:</strong> Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
-                </ul>
-
-                <h3 style="color: var(--primary-dark); margin: 20px 0 10px 0; font-family: 'Playfair Display', serif;" id="meso-heading">Meso-Level (Community, Associations & Regional Networks)</h3>
-                <ul style="margin: 0 0 15px 20px; display: flex; flex-direction: column; gap: 8px; color: #4A5568;">
-                    <li><strong id="act-meso1">Engage with Forest Owner Associations:</strong> Join local *Forstbetriebsgemeinschaften* (FBG) to coordinate regional timber harvesting and share peer expertise.</li>
-                    <li><strong id="act-meso2">Utilize State Subsidies:</strong> Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
-                    <li><strong id="act-meso3">Community Outreach & Education:</strong> Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
-                </ul>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h4 id="micro-title"><i class="fa-solid fa-user"></i> Micro Level</h4>
+                    <ul>
+                        <li id="mi-1">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
+                        <li id="mi-2">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
+                        <li id="mi-3">Practice Selective Harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
+                    </ul>
+                </div>
+                <div class="step-card">
+                    <h4 id="meso-title"><i class="fa-solid fa-people-group"></i> Meso Level</h4>
+                    <ul>
+                        <li id="me-1">Engage with Forest Owner Associations: Join local *Forstbetriebsgemeinschaften* (FBG) to coordinate regional timber harvesting and share peer expertise.</li>
+                        <li id="me-2">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
+                        <li id="me-3">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- USEFUL LINKS & RESOURCES SECTION -->
-        <section class="useful-links-card">
-            <h2 id="links-title"><i class="fa-solid fa-link"></i> Useful Links & Resources</h2>
-            <ul class="links-list" id="links-list-container">
+        <!-- USEFUL LINKS SECTION -->
+        <section class="links-section">
+            <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
+            <ul class="useful-links-list" id="links-list-container">
                 <!-- Loaded dynamically by updateLocalizedLinks() -->
             </ul>
         </section>
@@ -825,10 +872,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var map = L.map('minimap', {
-                zoomControl: true,
-                dragging: true,
-                scrollWheelZoom: false
-            }).setView([51.1657, 10.4515], 4.5);
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                boxZoom: false,
+                keyboard: false,
+                attributionControl: false
+            }).setView([49.635, 12.117], 6);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -837,9 +888,9 @@
                         style: function(feature) {
                             var countryName = feature.properties.name;
                             if (countryName === "Germany") {
-                                return { fillColor: "#1B4D3E", fillOpacity: 0.8, color: "#1B4D3E", weight: 1.5 };
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
                             } else {
-                                return { fillColor: "#82C3A6", fillOpacity: 0.25, color: "#FFFFFF", weight: 1 };
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
                             }
                         }
                     }).addTo(map);
@@ -866,23 +917,23 @@
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
                 heroTitle: "Transforming local forests towards climate resilience and biodiversity in Bavaria",
                 locationMeta: "Pirk, Bavaria, Germany",
-                projectStatus: "2022 (ongoing)",
+                projectYear: "2022 (ongoing)",
                 summaryTitle: "Project Topics",
-                focus1Title: "Monoculture Conversion",
-                focus2Title: "Climate Adaptation",
-                focus3Title: "Self-Sufficient Harvest",
-                loc1: "Replacing vulnerable species with resilient mixed forests",
-                loc2: "Combating drought stress and bark beetle risks",
-                loc3: "Combining sustainable self-sufficient harvesting with forest conservation",
+                sum1Title: "Monoculture Conversion", sum1Desc: "Replacing vulnerable species with resilient mixed forests",
+                sum2Title: "Climate Adaptation", sum2Desc: "Combating drought stress and bark beetle risks",
+                sum3Title: "Self-Sufficient Harvest", sum3Desc: "Combining sustainable self-sufficient harvesting with forest conservation",
                 mapHeading: "Project Map",
                 challengeTitle: "Main Challenges",
                 challengeP1: "Forests around the world are already under significant pressure from climate change and environmental pollution. Rising temperatures, prolonged droughts, and increasing disturbances are weakening forest ecosystems and threatening their long-term resilience.",
                 challengeP2: "In my home region of Bavaria, one of the main challenges is rooted in the way forests were managed in the past. During the 1950s to 1970s, large areas were deliberately designed as monocultures, dominated by a few fast-growing and commercially valuable tree species such as spruce, pine, and larch.",
                 challengeP3: "While these forests performed rather well under past climate conditions, they have become highly vulnerable today. The lack of species diversity reduces their ability to adapt to changing environmental conditions. As a result, forests are increasingly affected by extreme droughts and bark beetle infestations.",
                 factsTitle: "Key Facts",
-                fact1Desc: "of Germany's land area is forest — about 11.5 million ha (~115,000 km²).",
-                fact2Desc: "trees in Germany show crown loss and drought stress — a visible sign of declining forest health.",
-                fact3Desc: "of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.",
+                f1Text: "of Germany's land area is forest — about 11.5 million ha (~115,000 km²).",
+                f1Source: "Source: BMLEH – Waldzustandsbericht 2025",
+                f2Text: "trees in Germany show crown loss and drought stress — a visible sign of declining forest health.",
+                f2Source: "Source: BMLEH – Waldzustandsbericht 2025",
+                f3Text: "of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.",
+                f3Source: "Source: DLR – German Aerospace Center, 2025",
                 projectTitle: "Our Approach",
                 projectP1: "Together with his father, Johannes has been working for several years to gradually transform “sick” forests into more resilient and biodiverse ecosystems. This is a long-term process that requires patience, continuous learning, and close observation of nature.",
                 projectP2: "Our approach focuses on increasing diversity and strengthening the forest’s ability to adapt to future climate conditions. One key measure is the gradual replacement of vulnerable monoculture species with a wider mix of tree species, introducing native and carefully selected non-native species better adapted to heat and drought.",
@@ -893,15 +944,14 @@
                 step3Title: "3. Implement", step3Desc: "We are gradually implementing restoration activities, including planting climate-resilient trees, enhancing biodiversity habitats, and improving forest resilience.",
                 step4Title: "4. Monitor", step4Desc: "Our forest is continuously monitored to evaluate progress, maintain implemented measures, and adapt management practices where improvements are needed.",
                 actionTitle: "How can you take action",
-                actionP1: "Transforming forests toward climate resilience requires concerted efforts at multiple levels. Depending on your scope of influence, here are practical recommendations:",
-                microHeading: "Micro-Level (Individual & Private Landowners)",
-                actMicro1: "Consult Local Forestry Authorities:",
-                actMicro2: "Promote Natural Regeneration:",
-                actMicro3: "Practice Selective Harvesting:",
-                mesoHeading: "Meso-Level (Community, Associations & Regional Networks)",
-                actMeso1: "Engage with Forest Owner Associations:",
-                actMeso2: "Utilize State Subsidies:",
-                actMeso3: "Community Outreach & Education:",
+                microTitle: "Micro Level",
+                mi1: "Consult Local Forestry Authorities: Contact regional forestry office for professional advice and tailored management plans.",
+                mi2: "Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.",
+                mi3: "Practice Selective Harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.",
+                mesoTitle: "Meso Level",
+                me1: "Engage with Forest Owner Associations: Join local Forstbetriebsgemeinschaften (FBG) to coordinate regional timber harvesting and share peer expertise.",
+                me2: "Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.",
+                me3: "Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.",
                 linksTitle: "Useful Links & Resources",
                 links: [
                     { name: "FAO Sustainable Forest Management & Restoration Toolbox", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/en", desc: "— Global guidelines, practical tools, and technical modules for restoring degraded forest ecosystems." },
@@ -914,42 +964,41 @@
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
                 heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität in Bayern transformieren",
                 locationMeta: "Pirk, Bayern, Deutschland",
-                projectStatus: "2022 (laufend)",
+                projectYear: "2022 (laufend)",
                 summaryTitle: "Projektthemen",
-                focus1Title: "Monokultur-Umbau",
-                focus2Title: "Klimaanpassung",
-                focus3Title: "Selbstversorgung & Schutz",
-                loc1: "Ersatz anfälliger Arten durch widerstandsfähige Mischwälder",
-                loc2: "Bekämpfung von Dürrestress und Borkenkäfer-Risiken",
-                loc3: "Kombination aus nachhaltiger Eigenversorgung und Waldnaturschutz",
+                sum1Title: "Monokultur-Umbau", sum1Desc: "Ersatz anfälliger Arten durch widerstandsfähige Mischwälder",
+                sum2Title: "Klimaanpassung", sum2Desc: "Bekämpfung von Dürrestress und Borkenkäfer-Risiken",
+                sum3Title: "Selbstversorgung & Schutz", sum3Desc: "Kombination aus nachhaltiger Eigenversorgung und Waldnaturschutz",
                 mapHeading: "Projektkarte",
                 challengeTitle: "Hauptherausforderungen",
                 challengeP1: "Wälder weltweit stehen durch den Klimawandel und Umweltverschmutzung unter starkem Druck. Steigende Temperaturen, anhaltende Dürren und Störungen schwächen die Ökosysteme.",
                 challengeP2: "In meiner Heimatregion Bayern liegt eine der Hauptursachen in der früheren Waldbewirtschaftung. In den 1950er bis 1970er Jahren wurden große Flächen bewusst als Monokulturen angelegt, dominiert von Fichte, Kiefer und Lärche.",
                 challengeP3: "Unter früheren Klimabedingungen funktionierten diese gut, doch heute sind sie extrem anfällig. Die geringe Artenvielfalt reduziert die Anpassungsfähigkeit, was zu Dürreschäden und Borkenkäferbefall führt.",
                 factsTitle: "Wichtige Fakten",
-                fact1Desc: "von Deutschlands Landfläche ist Wald – ca. 11,5 Millionen Hektar (~115.000 km²).",
-                fact2Desc: "der Bäume in Deutschland zeigen Kronenverlichtung und Dürrestress – ein sichtbares Zeichen sinkender Gesundheit.",
-                fact3Desc: "an Baumkronen/Waldfläche gingen seit 2017 verloren (~8,5 %), angetrieben durch Hitze und Borkenkäfer.",
+                f1Text: "von Deutschlands Landfläche ist Wald – ca. 11,5 Millionen Hektar (~115.000 km²).",
+                f1Source: "Quelle: BMLEH – Waldzustandsbericht 2025",
+                f2Text: "der Bäume in Deutschland zeigen Kronenverlichtung und Dürrestress – ein sichtbares Zeichen sinkender Gesundheit.",
+                f2Source: "Quelle: BMLEH – Waldzustandsbericht 2025",
+                f3Text: "an Baumkronen/Waldfläche gingen seit 2017 verloren (~8,5 %), angetrieben durch Hitze und Borkenkäfer.",
+                f3Source: "Quelle: DLR – Deutsches Zentrum für Luft- und Raumfahrt, 2025",
                 projectTitle: "Unser Ansatz",
                 projectP1: "Gemeinsam mit seinem Vater arbeitet Johannes seit Jahren daran, ‚kranke‘ Wälder schrittweise in widerstandsfähigere und artenreichere Ökosysteme zu verwandeln.",
                 projectP2: "Unser Ansatz konzentriert sich auf die Erhöhung der Vielfalt. Verletzliche Monokulturen werden schrittweise durch hitze- und trockenheitstolerantere Baumarten ersetzt.",
                 projectP3: "Ein weiterer wichtiger Aspekt ist das Zulassen natürlicher Prozesse. Totholz wird bewusst im Wald belassen, um Lebensräume für Vögel, Insekten und Wildtiere zu schaffen.",
                 stepsTitle: "Hauptschritte unseres Waldor-Projekts",
-                step1Title: "1. Analysieren (Assess)", step1Desc: "Gemeinsam mit Forstexperten haben wir den Zustand unseres Waldes analysiert und Herausforderungen ermittelt.",
-                step2Title: "2. Planen (Plan)", step2Desc: "Basierend darauf haben wir langfristige Maßnahmen definiert und Fördermittel gesichert.",
-                step3Title: "3. Umsetzen (Implement)", step3Desc: "Wir pflanzen klimaresistente Bäume und fördern Lebensräume für die Biodiversität.",
-                step4Title: "4. Überwachen (Monitor)", step4Desc: "Unser Wald wird kontinuierlich überwacht, um Fortschritte zu bewerten und Maßnahmen anzupassen.",
+                step1Title: "1. Analysieren", step1Desc: "Gemeinsam mit Forstexperten haben wir den Zustand unseres Waldes analysiert und Herausforderungen ermittelt.",
+                step2Title: "2. Planen", step2Desc: "Basierend darauf haben wir langfristige Maßnahmen definiert und Fördermittel gesichert.",
+                step3Title: "3. Umsetzen", step3Desc: "Wir pflanzen klimaresistente Bäume und fördern Lebensräume für die Biodiversität.",
+                step4Title: "4. Überwachen", step4Desc: "Unser Wald wird kontinuierlich überwacht, um Fortschritte zu bewerten und Maßnahmen anzupassen.",
                 actionTitle: "Wie Sie aktiv werden können",
-                actionP1: "Der Umbau von Wäldern hin zur Klimaresilienz erfordert gemeinsame Anstrengungen auf mehreren Ebenen. Hier sind praktische Empfehlungen:",
-                microHeading: "Mikro-Ebene (Einzelpersonen & private Waldbesitzer)",
-                actMicro1: "Lokale Forstämter kontaktieren:",
-                actMicro2: "Natürliche Verjüngung fördern:",
-                actMicro3: "Selektive Holzentnahme praktizieren:",
-                mesoHeading: "Meso-Ebene (Gemeinden, Verbände & regionale Netzwerke)",
-                actMeso1: "Forstbetriebsgemeinschaften beitreten:",
-                actMeso2: "Staatliche Fördermittel nutzen:",
-                actMeso3: "Öffentlichkeitsarbeit & Bildung:",
+                microTitle: "Mikro-Ebene",
+                mi1: "Lokale Forstämter kontaktieren: Holen Sie sich professionelle Beratung und maßgeschneiderte Managementpläne bei Ihrem regionalen Amt ein.",
+                mi2: "Natürliche Verjüngung fördern: Lassen Sie natürliche Sukzession zu und behalten Sie Totholz für die Bodenregeneration bei.",
+                mi3: "Selektive Holzentnahme: Balancieren Sie die Eigenversorgung sorgfältig mit dem Schutz des Kronendachs aus.",
+                mesoTitle: "Meso-Ebene",
+                me1: "Forstbetriebsgemeinschaften beitreten: Schließen Sie sich lokalen FBG-Gruppen an, um Erfahrungen auszutauschen.",
+                me2: "Staatliche Fördermittel nutzen: Nutzen Sie staatliche Zuschüsse für den klimaresistenten Waldumbau.",
+                me3: "Öffentlichkeitsarbeit & Bildung: Organisieren Sie regionale Workshops zur Biodiversität.",
                 linksTitle: "Nützliche Links & Ressourcen",
                 links: [
                     { name: "FAO Werkzeugkasten für nachhaltige Waldwirtschaft", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/de", desc: "— Internationale Leitfäden und Praxis-Module zur Wiederherstellung von Waldökosystemen." },
@@ -962,23 +1011,23 @@
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
                 heroTitle: "Transformer les forêts locales pour la résilience climatique et la biodiversité en Bavière",
                 locationMeta: "Pirk, Bavière, Allemagne",
-                projectStatus: "2022 (en cours)",
+                projectYear: "2022 (en cours)",
                 summaryTitle: "Thèmes du Projet",
-                focus1Title: "Conversion de Monoculture",
-                focus2Title: "Adaptation Climatique",
-                focus3Title: "Récolte Autonome",
-                loc1: "Remplacer les espèces vulnérables par des forêts mixtes",
-                loc2: "Lutter contre le stress hydrique et les scolytes",
-                loc3: "Combiner une récolte vivrière durable et la conservation des forêts",
+                sum1Title: "Conversion de Monoculture", sum1Desc: "Remplacer les espèces vulnérables par des forêts mixtes",
+                sum2Title: "Adaptation Climatique", sum2Desc: "Lutter contre le stress hydrique et les scolytes",
+                sum3Title: "Récolte Autonome", sum3Desc: "Combiner une récolte vivrière durable et la conservation des forêts",
                 mapHeading: "Carte des Projets",
                 challengeTitle: "Défis Principaux",
                 challengeP1: "Les forêts du monde entier subissent une pression considérable due au changement climatique.",
                 challengeP2: "En Bavière, l'un des principaux défis vient de la gestion passée orientée vers les monocultures.",
                 challengeP3: "Aujourd'hui, ces forêts sont très vulnérables aux sécheresses extrêmes et aux attaques de scolytes.",
-                factsTitle: "Faits Marquants",
-                fact1Desc: "de la superficie de l'Allemagne est couverte de forêts (~11,5 millions d'ha).",
-                fact2Desc: "des arbres en Allemagne montrent des signes de stress hydrique et dépérissement.",
-                fact3Desc: "de couvert forestier perdus depuis 2017 en raison des sécheresses et des insectes.",
+                factsTitle: "Faits Clés",
+                f1Text: "de la superficie de l'Allemagne est couverte de forêts (~11,5 millions d'ha).",
+                f1Source: "Source : BMLEH – Waldzustandsbericht 2025",
+                f2Text: "des arbres en Allemagne montrent des signes de stress hydrique et dépérissement.",
+                f2Source: "Source : BMLEH – Waldzustandsbericht 2025",
+                f3Text: "de couvert forestier perdus depuis 2017 en raison des sécheresses et des insectes.",
+                f3Source: "Source : DLR – Centre allemand de l'aérospatiale, 2025",
                 projectTitle: "Notre Approche",
                 projectP1: "Avec son père, Johannes œuvre depuis plusieurs années pour transformer les forêts en écosystèmes résilients.",
                 projectP2: "Notre approche mise sur la diversité en introduisant des essences adaptées au climat futur.",
@@ -986,19 +1035,18 @@
                 stepsTitle: "Étapes clés du projet",
                 step1Title: "1. Évaluer", step1Desc: "Évaluation de l'état de la forêt avec des experts forestiers.",
                 step2Title: "2. Planifier", step2Desc: "Définition des mesures à long terme et obtention de subventions.",
-                step3Title: "3. Mettre en œuvre", step3Desc: "Plantation d'arbres résilients et renforcement de la biodiversité.",
-                step4Title: "4. Suivre", step4Desc: "Suivi continu de l'évolution de la forêt.",
+                step3Title: "3. Mettre en œuvre", step3Desc: "Plantation d'arbres résilients au climat et amélioration des habitats.",
+                step4Title: "4. Suivre", step4Desc: "Suivi continu pour évaluer les progrès et adapter la gestion.",
                 actionTitle: "Comment pouvez-vous agir",
-                actionP1: "La transformation des forêts nécessite des efforts concertés à plusieurs niveaux. Voici des recommandations pratiques :",
-                microHeading: "Niveau Micro (Individus et propriétaires privés)",
-                actMicro1: "Consulter les autorités forestières:",
-                actMicro2: "Promouvoir la régénération naturelle:",
-                actMicro3: "Pratiquer une récolte sélective:",
-                mesoHeading: "Niveau Méso (Communautés, associations et réseaux régionaux)",
-                actMeso1: "Rejoindre des groupements forestiers:",
-                actMeso2: "Utiliser les subventions publiques:",
-                actMeso3: "Sensibilisation et éducation:",
-                linksTitle: "Liens utiles & Ressources",
+                microTitle: "Niveau Micro",
+                mi1: "Consulter les autorités forestières : Contactez votre bureau forestier régional pour des conseils professionnels.",
+                mi2: "Promouvoir la régénération naturelle : Laissez la succession naturelle et préservez le bois mort.",
+                mi3: "Pratiquer une récolte sélective : Équilibrez l'autosuffisance en bois et la protection du couvert.",
+                mesoTitle: "Niveau Méso",
+                me1: "Rejoindre des groupements forestiers : Collaborez avec les associations locales FBG.",
+                me2: "Utiliser les subventions publiques : Profitez des aides gouvernementales.",
+                me3: "Sensibilisation et éducation : Organisez des ateliers régionaux sur la biodiversité.",
+                linksTitle: "Liens Utiles & Ressources",
                 links: [
                     { name: "FAO – Module de Restauration des Forêts", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/fr", desc: "— Directives mondiales et outils pratiques pour la gestion et la restauration forestière." },
                     { name: "IUFRO – Union internationale des instituts de recherches forestières", url: "https://www.iufro.org/", desc: "— Réseau scientifique international dédié à la recherche et l'adaptation des forêts au climat." }
@@ -1009,23 +1057,23 @@
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
                 heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad en Baviera",
                 locationMeta: "Pirk, Baviera, Alemania",
-                projectStatus: "2022 (en curso)",
+                projectYear: "2022 (en curso)",
                 summaryTitle: "Temas del Proyecto",
-                focus1Title: "Conversión de Monocultivo",
-                focus2Title: "Adaptación Climática",
-                focus3Title: "Cosecha Autosuficiente",
-                loc1: "Reemplazar especies vulnerables por bosques mixtos resilientes",
-                loc2: "Combatir el estrés por sequía y los riesgos de plagas",
-                loc3: "Combinar la cosecha de subsistencia sostenible con la conservación forestal",
+                sum1Title: "Conversión de Monocultivo", sum1Desc: "Reemplazar especies vulnerables por bosques mixtos resilientes",
+                sum2Title: "Adaptación Climática", sum2Desc: "Combatir el estrés por sequía y los riesgos de plagas",
+                sum3Title: "Cosecha Autosuficiente", sum3Desc: "Combinar la cosecha de subsistencia sostenible con la conservación forestal",
                 mapHeading: "Mapa de Proyectos",
                 challengeTitle: "Desafíos Principales",
                 challengeP1: "Los bosques de todo el mundo sufren una gran presión debido al cambio climático y la contaminación.",
                 challengeP2: "En Baviera, el desafío principal proviene de la gestión forestal del pasado basada en monocultivos.",
                 challengeP3: "Hoy en día, estos bosques son altamente vulnerables a sequías extremas y plagas de escarabajos.",
                 factsTitle: "Datos Clave",
-                fact1Desc: "del territorio de Alemania es bosque (~11.5 millones de ha).",
-                fact2Desc: "de los árboles en Alemania muestran signos de pérdida de copa y estrés por sequía.",
-                fact3Desc: "de superficie forestal se han perdido desde 2017 debido a la sequía y calor.",
+                f1Text: "del territorio de Alemania es bosque (~11.5 millones de ha).",
+                f1Source: "Fuente: BMLEH – Waldzustandsbericht 2025",
+                f2Text: "de los árboles en Alemania muestran signos de pérdida de copa y estrés por sequía.",
+                f2Source: "Fuente: BMLEH – Waldzustandsbericht 2025",
+                f3Text: "de superficie forestal se han perdido desde 2017 debido a la sequía y calor.",
+                f3Source: "Fuente: DLR – Centro Aeroespacial Alemán, 2025",
                 projectTitle: "Nuestro Enfoque",
                 projectP1: "Junto a su padre, Johannes trabaja para transformar bosques vulnerables en ecosistemas resilientes.",
                 projectP2: "Nuestro enfoque se centra en aumentar la diversidad e introducir especies adaptadas al calor.",
@@ -1036,16 +1084,15 @@
                 step3Title: "3. Implementar", step3Desc: "Plantación de árboles resilientes al clima y mejora de hábitats.",
                 step4Title: "4. Monitorear", step4Desc: "Seguimiento continuo para evaluar el progreso y adaptar la gestión.",
                 actionTitle: "Cómo puedes actuar",
-                actionP1: "La transformación de los bosques requiere esfuerzos concertados en múltiples niveles. Aquí hay recomendaciones prácticas:",
-                microHeading: "Nivel Micro (Individuos y propietarios privados)",
-                actMicro1: "Consultar a las autoridades forestales:",
-                actMicro2: "Promover la regeneración natural:",
-                actMicro3: "Practicar la cosecha selectiva:",
-                mesoHeading: "Nivel Meso (Comunidades, asociaciones y redes regionales)",
-                actMeso1: "Unirse a asociaciones de propietarios forestales:",
-                actMeso2: "Utilizar subsidios estatales:",
-                actMeso3: "Educación y divulgación comunitaria:",
-                linksTitle: "Enlaces útiles y Recursos",
+                microTitle: "Nivel Micro",
+                mi1: "Consultar a las autoridades forestales: Contacte a su oficina regional para asesoramiento profesional.",
+                mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta.",
+                mi3: "Practicar la cosecha selectiva: Equilibre la subsistencia sostenible con la protección del dosel.",
+                mesoTitle: "Nivel Meso",
+                me1: "Unirse a asociaciones de propietarios: Colabore con grupos locales FBG.",
+                me2: "Utilizar subsidios estatales: Aproveche las ayudas gubernamentales para la conversión.",
+                me3: "Educación y divulgación: Organice talleres regionales sobre biodiversidad.",
+                linksTitle: "Enlaces Útiles y Recursos",
                 links: [
                     { name: "FAO – Caja de Herramientas para la Ordenación Forestal Sostenible", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/es", desc: "— Guías internacionales y módulos técnicos para la restauración de ecosistemas forestales." },
                     { name: "IUFRO – Unión Internacional de Organizaciones de Investigación Forestal", url: "https://www.iufro.org/", desc: "— Red global de investigación científica forestal y silvicultura adaptativa." }
@@ -1062,11 +1109,10 @@
             t.links.forEach(link => {
                 const li = document.createElement('li');
                 li.innerHTML = `
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    <div>
-                        <a href="${link.url}" target="_blank" rel="noopener">${link.name}</a>
-                        <span>${link.desc}</span>
-                    </div>
+                    <a href="${link.url}" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${link.name}</span>
+                    </a>
+                    <span style="color: #4A5568; font-size: 0.9rem; display: block; margin-top: 2px;">${link.desc}</span>
                 `;
                 container.appendChild(li);
             });
@@ -1082,14 +1128,11 @@
             
             document.getElementById('hero-title').innerText = t.heroTitle;
             document.getElementById('location-meta').innerText = t.locationMeta;
-            document.getElementById('project-status').innerText = t.projectStatus;
+            document.getElementById('project-year').innerText = t.projectYear;
             document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
-            document.getElementById('focus-1-title').innerText = t.focus1Title;
-            document.getElementById('focus-2-title').innerText = t.focus2Title;
-            document.getElementById('focus-3-title').innerText = t.focus3Title;
-            document.getElementById('loc-1').innerText = t.loc1;
-            document.getElementById('loc-2').innerText = t.loc2;
-            document.getElementById('loc-3').innerText = t.loc3;
+            document.getElementById('focus-1-title').innerText = t.sum1Title; document.getElementById('loc-1').innerText = t.sum1Desc;
+            document.getElementById('focus-2-title').innerText = t.sum2Title; document.getElementById('loc-2').innerText = t.sum2Desc;
+            document.getElementById('focus-3-title').innerText = t.sum3Title; document.getElementById('loc-3').innerText = t.sum3Desc;
             document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
             
             document.getElementById('challenge-title').innerText = t.challengeTitle;
@@ -1098,9 +1141,12 @@
             document.getElementById('challenge-p3').innerText = t.challengeP3;
             
             document.getElementById('facts-title').innerText = t.factsTitle;
-            document.getElementById('fact1-desc').innerText = t.fact1Desc;
-            document.getElementById('fact2-desc').innerText = t.fact2Desc;
-            document.getElementById('fact3-desc').innerText = t.fact3Desc;
+            document.getElementById('fact1-desc').innerText = t.f1Text;
+            document.getElementById('f1-source').innerText = t.f1Source;
+            document.getElementById('fact2-desc').innerText = t.f2Text;
+            document.getElementById('f2-source').innerText = t.f2Source;
+            document.getElementById('fact3-desc').innerText = t.f3Text;
+            document.getElementById('f3-source').innerText = t.f3Source;
             
             document.getElementById('project-title').innerText = t.projectTitle;
             document.getElementById('project-p1').innerText = t.projectP1;
@@ -1108,24 +1154,23 @@
             document.getElementById('project-p3').innerText = t.projectP3;
             
             document.getElementById('steps-title').innerText = t.stepsTitle;
-            document.getElementById('step1-title').innerText = t.step1Title; document.getElementById('step1-desc').innerText = t.step1Desc;
-            document.getElementById('step2-title').innerText = t.step2Title; document.getElementById('step2-desc').innerText = t.step2Desc;
-            document.getElementById('step3-title').innerText = t.step3Title; document.getElementById('step3-desc').innerText = t.step3Desc;
-            document.getElementById('step4-title').innerText = t.step4Title; document.getElementById('step4-desc').innerText = t.step4Desc;
+            document.getElementById('step1-title').innerHTML = `<i class="fa-solid fa-clipboard-check"></i> ${t.step1Title}`; document.getElementById('step1-desc').innerText = t.step1Desc;
+            document.getElementById('step2-title').innerHTML = `<i class="fa-solid fa-map"></i> ${t.step2Title}`; document.getElementById('step2-desc').innerText = t.step2Desc;
+            document.getElementById('step3-title').innerHTML = `<i class="fa-solid fa-seedling"></i> ${t.step3Title}`; document.getElementById('step3-desc').innerText = t.step3Desc;
+            document.getElementById('step4-title').innerHTML = `<i class="fa-solid fa-chart-line"></i> ${t.step4Title}`; document.getElementById('step4-desc').innerText = t.step4Desc;
 
             document.getElementById('action-title').innerText = t.actionTitle;
-            document.getElementById('action-p1').innerText = t.actionP1;
-            document.getElementById('micro-heading').innerText = t.microHeading;
-            document.getElementById('act-micro1').innerText = t.actMicro1;
-            document.getElementById('act-micro2').innerText = t.actMicro2;
-            document.getElementById('act-micro3').innerText = t.actMicro3;
+            document.getElementById('micro-title').innerHTML = `<i class="fa-solid fa-user"></i> ${t.microTitle}`;
+            document.getElementById('mi-1').innerText = t.mi1;
+            document.getElementById('mi-2').innerText = t.mi2;
+            document.getElementById('mi-3').innerText = t.mi3;
 
-            document.getElementById('meso-heading').innerText = t.mesoHeading;
-            document.getElementById('act-meso1').innerText = t.actMeso1;
-            document.getElementById('act-meso2').innerText = t.actMeso2;
-            document.getElementById('act-meso3').innerText = t.actMeso3;
+            document.getElementById('meso-title').innerHTML = `<i class="fa-solid fa-people-group"></i> ${t.mesoTitle}`;
+            document.getElementById('me-1').innerText = t.me1;
+            document.getElementById('me-2').innerText = t.me2;
+            document.getElementById('me-3').innerText = t.me3;
 
-            document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-link"></i> ${t.linksTitle}`;
+            document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
             updateLocalizedLinks(lang);
 
             document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
