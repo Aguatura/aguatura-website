@@ -417,13 +417,13 @@
             width: 100%;
             height: 260px;
             object-fit: cover;
-            object-position: bottom; /* Ajustement pour focaliser sur le bas (les rivières) et couper le ciel */
+            object-position: bottom;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
         }
 
-        /* FACTS & DATA GRID */
+        /* FACTS & DATA GRID (Mis à jour : fond vert foncé, texte en blanc, bordure verte) */
         .facts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -432,31 +432,37 @@
         }
 
         .fact-card {
-            background: var(--bg-light);
-            padding: 20px;
+            background: var(--primary-dark);
+            padding: 22px;
             border-radius: 8px;
-            border-top: 4px solid var(--accent-green);
+            border: 2px solid var(--accent-green);
             text-align: center;
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-2px);
         }
 
         .fact-card .fact-number {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 5px;
+            color: var(--white);
+            margin-bottom: 8px;
         }
 
         .fact-card p {
             font-size: 0.88rem;
-            color: #555;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.4;
         }
 
         .fact-source {
             font-size: 0.75rem;
-            color: #718096;
-            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
             display: block;
         }
 
@@ -574,6 +580,23 @@
             color: #555;
             line-height: 1.6;
             margin-bottom: 15px;
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 160px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-top: auto;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .card-image-placeholder {
@@ -961,7 +984,7 @@
         <!-- FONDATION RIVIÈRES PROJECTS & APPROACH -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="pillars-heading">3) Fondation Rivières Projects & Approach</h2>
+                <h2 id="pillars-heading">Fondation Rivières Projects & Approach</h2>
             </div>
             
             <div style="margin-bottom: 25px; background: var(--bg-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary-dark);">
@@ -976,9 +999,8 @@
                         <h4><i class="fa-solid fa-bolt"></i> <span id="p1-title">Smart Microgrids Project</span></h4>
                         <p id="p1-desc">A project exploring community-based energy production through smart microgrids. The initiative promotes local renewable energy, energy efficiency, and alternatives to large-scale hydroelectric developments, while seeking to strengthen collaboration with Indigenous communities.</p>
                     </div>
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image"></i>
-                        <span id="img1-label">Upload Microgrids Picture</span>
+                    <div class="card-image-container">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/microgreeds.png" alt="Smart Microgrids">
                     </div>
                 </div>
 
@@ -987,9 +1009,8 @@
                         <h4><i class="fa-solid fa-water"></i> <span id="p2-title">Rivière du Nord Pilot Project</span></h4>
                         <p id="p2-desc">An innovative pilot project bringing together municipalities across the Rivière du Nord watershed to improve water quality, identify pollution sources, and coordinate river management at the watershed scale rather than through fragmented municipal governance.</p>
                     </div>
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image"></i>
-                        <span id="img2-label">Upload Rivière du Nord Picture</span>
+                    <div class="card-image-container">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/RIVIERE%20DU%20NORD.jpg" alt="Rivière du Nord">
                     </div>
                 </div>
 
@@ -1009,9 +1030,8 @@
                         <h4><i class="fa-solid fa-users"></i> <span id="p4-title">La Grande Descente</span></h4>
                         <p id="p4-desc">A large citizen mobilization event organized on the Rivière du Nord to raise awareness about river conservation, water quality, and public access to waterways.</p>
                     </div>
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image"></i>
-                        <span id="img4-label">Upload Grande Descente Picture</span>
+                    <div class="card-image-container">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/grande-descente-teaser.jpg" alt="La Grande Descente">
                     </div>
                 </div>
 
@@ -1195,20 +1215,17 @@
                 a2Text: "\"Our Audito tool and annual rankings made local mayors fully aware of overflow issues. Now, instead of pointing fingers, we actively support municipalities in securing funding and expertise.\"",
                 q3Text: "On Giving Rivers Space ('Espaces de liberté'):",
                 a3Text: "\"Instead of building costly rock walls that fail over time, the real solution lies in creating 'spaces of freedom' and letting rivers follow their natural course.\"",
-                pillarsHeading: "3) Fondation Rivières Projects & Approach",
+                pillarsHeading: "Fondation Rivières Projects & Approach",
                 roleDesc: "Acting as a vital bridge between grassroots citizens, scientific data, and policy decision-makers, Fondation Rivières operates right in the middle to advocate for sustainable water management.",
                 p1Title: "Smart Microgrids Project",
                 p1Desc: "A project exploring community-based energy production through smart microgrids. The initiative promotes local renewable energy, energy efficiency, and alternatives to large-scale hydroelectric developments, while seeking to strengthen collaboration with Indigenous communities.",
-                img1Label: "Upload Microgrids Picture",
                 p2Title: "Rivière du Nord Pilot Project",
                 p2Desc: "An innovative pilot project bringing together municipalities across the Rivière du Nord watershed to improve water quality, identify pollution sources, and coordinate river management at the watershed scale rather than through fragmented municipal governance.",
-                img2Label: "Upload Rivière du Nord Picture",
                 p3Title: "Alliance for Access to Nature",
                 p3Desc: "A coalition advocating for better public access to rivers, lakes, and natural areas. The initiative addresses shoreline privatization and promotes legislative changes to ensure equitable access to nature for all residents.",
                 img3Label: "Upload Nature Access Picture",
                 p4Title: "La Grande Descente",
                 p4Desc: "A large citizen mobilization event organized on the Rivière du Nord to raise awareness about river conservation, water quality, and public access to waterways.",
-                img4Label: "Upload Grande Descente Picture",
                 p5Title: "Solutions Rivières",
                 p5desc: "A climate adaptation project helping riverside communities address flooding and erosion through citizen workshops, nature-based solutions, and river restoration approaches that allow rivers more space to function naturally.",
                 img5Label: "Upload Solutions Rivières Picture",
@@ -1271,20 +1288,17 @@
                 a2Text: "\"Unser Audito-Tool und das Jahresranking haben das Bewusstsein für Abwasserüberläufe geschärft.\"",
                 q3Text: "Über Freiräume für Flüsse ('Espaces de liberté'):",
                 a3Text: "\"Statt teurer Steinmauern liegt die Lösung darin, Flüssen ihren natürlichen Raum zu lassen.\"",
-                pillarsHeading: "3) Fondation Rivières Projekte & Ansatz",
+                pillarsHeading: "Fondation Rivières Projekte & Ansatz",
                 roleDesc: "Als zentrales Bindeglied zwischen engagierten Bürgern, wissenschaftlichen Daten und politischen Entscheidungsträgern vermittelt die Fondation Rivières für ein nachhaltiges Wassermanagement.",
                 p1Title: "Smart Microgrids Projekt",
                 p1Desc: "Ein Projekt zur gemeinschaftlichen Energieerzeugung durch intelligente Microgrids, das lokale erneuerbare Energien und Alternativen zu Großstaudämmen fördert.",
-                img1Label: "Microgrids-Bild hochladen",
                 p2Title: "Rivière du Nord Pilotprojekt",
                 p2Desc: "Ein innovatives Projekt, das Kommunen entlang des Rivière du Nord zusammenbringt, um die Wasserqualität und das Management im Einzugsgebiet zu verbessern.",
-                img2Label: "Rivière du Nord Bild hochladen",
                 p3Title: "Alliance pour l'accès à la nature",
                 p3Desc: "Eine Koalition, die sich für einen besseren öffentlichen Zugang zu Flüssen, Seen und Naturgebieten stark macht.",
                 img3Label: "Naturzugang-Bild hochladen",
                 p4Title: "La Grande Descente",
                 p4Desc: "Eine große Bürgermobilisierungsveranstaltung am Rivière du Nord zur Sensibilisierung für den Flussschutz.",
-                img4Label: "Grande Descente Bild hochladen",
                 p5Title: "Solutions Rivières",
                 p5desc: "Ein Klimaanpassungsprojekt, das Gemeinden bei Überschwemmungen und Erosion durch natur basierte Lösungen und Flussrenaturierung unterstützt.",
                 img5Label: "Solutions Rivières Bild hochladen",
@@ -1347,24 +1361,21 @@
                 a2Text: "\"Notre outil Audito et le palmarès annuel ont permis aux élus de prendre conscience du problème des déversements.\"",
                 q3Text: "Sur les 'Espaces de liberté' pour les rivières :",
                 a3Text: "\"La solution passe par aménager des espaces de liberté et laisser la rivière suivre son cours naturel.\"",
-                pillarsHeading: "3) Projets & Approche de la Fondation Rivières",
+                pillarsHeading: "Projets & Approche de la Fondation Rivières",
                 roleDesc: "Agissant comme un pont essentiel entre les citoyens, les données scientifiques et les décideurs politiques, la Fondation Rivières se positionne au cœur de l'action pour plaider en faveur d'une gestion durable de l'eau.",
                 p1Title: "Projet de Micro-réseaux Intelligents",
                 p1Desc: "Un projet explorant la production d'énergie communautaire via des micro-réseaux intelligents. Il promeut l'énergie renouvelable locale, l'efficacité énergétique et des alternatives aux grands barrages, tout en renforçant la collaboration avec les communautés autochtones.",
-                img1Label: "Ajouter une image (Micro-réseaux)",
                 p2Title: "Projet Pilote de la Rivière du Nord",
                 p2Desc: "Un projet pilote novateur réunissant les municipalités du bassin versant de la Rivière du Nord pour améliorer la qualité de l'eau, identifier les sources de pollution et coordonner la gestion à l'échelle du bassin versant.",
-                img2Label: "Ajouter une image (Rivière du Nord)",
                 p3Title: "Alliance pour l'Accès à la Nature",
                 p3Desc: "Une coalition plaidant pour un meilleur accès public aux rivières, lacs et espaces naturels, luttant contre la privatisation des berges et promouvant des réformes législatives.",
                 img3Label: "Ajouter une image (Accès à la nature)",
                 p4Title: "La Grande Descente",
                 p4Desc: "Un grand événement de mobilisation citoyenne organisé sur la Rivière du Nord pour sensibiliser à la conservation des rivières, à la qualité de l'eau et à l'accès public.",
-                img4Label: "Ajouter une image (La Grande Descente)",
                 p5Title: "Solutions Rivières",
                 p5desc: "Un projet d'adaptation climatique aidant les communautés riveraines face aux inondations et à l'érosion grâce à des ateliers citoyens, des solutions fondées sur la nature et la redynamisation des rivières (espaces de liberté).",
                 img5Label: "Ajouter une image (Solutions Rivières)",
-                stepsHeading: "Étapes Clés pour la Protection des Rivières : Comment les Communautés Locales Peuvent Agir",
+                stepsHeading: "Étapes Clés pour la Protection de l'Environnement et des Rivières",
                 step1Title: "1. Prévenir de nouveaux barrages hydroélectriques",
                 s1_1: "Promouvoir des solutions d'énergies renouvelables alternatives telles que le solaire et l'éolien à l'échelle communautaire.",
                 s1_2: "Soutenir les communautés autochtones dans la protection des rivières contre les futurs projets de barrages.",
@@ -1423,20 +1434,17 @@
                 a2Text: "\"Nuestra herramienta Audito y los rankings anuales concienciaron a los alcaldes.\"",
                 q3Text: "Sobre dar espacio a los ríos ('Espaces de liberté'):",
                 a3Text: "\"La solución radica en crear espacios de libertad y permitir que el río siga su curso natural.\"",
-                pillarsHeading: "3) Proyectos y Enfoque de Fondation Rivières",
+                pillarsHeading: "Proyectos y Enfoque de Fondation Rivières",
                 roleDesc: "Actuando como un puente vital entre los ciudadanos, los datos científicos y los tomadores de decisiones políticas, Fondation Rivières se sitúa justo en el medio para abogar por una gestión sostenible del agua.",
                 p1Title: "Proyecto de Microredes Inteligentes",
                 p1Desc: "Un proyecto que explora la producción de energía comunitaria a través de microredes inteligentes, promoviendo energías renovables locales y alternativas a grandes presas.",
-                img1Label: "Subir imagen (Microredes)",
                 p2Title: "Proyecto Piloto del Río du Nord",
                 p2Desc: "Un proyecto piloto innovador que reúne a municipios de la cuenca del río du Nord para mejorar la calidad del agua y coordinar la gestión a escala de cuenca.",
-                img2Label: "Subir imagen (Río du Nord)",
                 p3Title: "Alliance pour l'accès à la nature",
                 p3Desc: "Una coalición que aboga por un mejor acceso público a ríos, lagos y áreas naturales, abordando la privatización de riberas.",
                 img3Label: "Subir imagen (Acceso a la naturaleza)",
                 p4Title: "La Grande Descente",
                 p4Desc: "Un gran evento de movilización ciudadana organizado en el río du Nord para crear conciencia sobre la conservación fluvial.",
-                img4Label: "Subir imagen (La Grande Descente)",
                 p5Title: "Solutions Rivières",
                 p5desc: "Un proyecto de adaptación climática que ayuda a las comunidades ribereñas frente a inundaciones y erosión mediante soluciones basadas en la naturaleza (espaces de liberté).",
                 img5Label: "Subir imagen (Solutions Rivières)",
@@ -1454,7 +1462,7 @@
                 s3_3: "Implementar soluciones basadas en la naturaleza para reducir la erosión y los riesgos de inundación.",
                 step4Title: "4. Proteger el acceso público a los ríos",
                 s4_1: "Oponerse a la privatización excesiva de las riberas.",
-                s4_2: "Crear mecanismos legales y políticos que garanticen el acceso público a lagos y ríos.",
+                s4_2: "Crear mecanismos legales y politiques que garanticen el acceso público a lagos y ríos.",
                 s4_3: "Apoyar campañas locales para espacios naturales accesibles.",
                 step5Title: "5. Fortalecer el compromiso ciudadano",
                 s5_1: "Educar a los residentes sobre los riesgos de inundación y los ecosistemas fluviales.",
@@ -1512,13 +1520,10 @@
             document.getElementById('pillars-heading').innerText = t.pillarsHeading;
             document.getElementById('role-desc').innerText = t.roleDesc;
             document.getElementById('p1-title').innerText = t.p1Title; document.getElementById('p1-desc').innerText = t.p1Desc;
-            document.getElementById('img1-label').innerText = t.img1Label;
             document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2Desc;
-            document.getElementById('img2-label').innerText = t.img2Label;
             document.getElementById('p3-title').innerText = t.p3Title; document.getElementById('p3-desc').innerText = t.p3Desc;
             document.getElementById('img3-label').innerText = t.img3Label;
             document.getElementById('p4-title').innerText = t.p4Title; document.getElementById('p4-desc').innerText = t.p4Desc;
-            document.getElementById('img4-label').innerText = t.img4Label;
             document.getElementById('p5-title').innerText = t.p5Title; document.getElementById('p5-desc').innerText = t.p5desc;
             document.getElementById('img5-label').innerText = t.img5Label;
 
