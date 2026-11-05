@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>River Conservation & Decentralized Energy in Québec – Aguatura Projects</title>
+    <title>Climate Week NYC 2026 – Aguatura Projects</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome v6.5.1 für Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Leaflet CSS für die Minimap -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -186,14 +186,7 @@
             font-size: 1.2rem;
         }
 
-        .partner-logo-inline {
-            height: 28px;
-            width: auto;
-            margin-left: 8px;
-            vertical-align: middle;
-            border-radius: 4px;
-        }
-
+        /* SDG ICONS */
         .sdg-icons {
             display: flex;
             gap: 10px;
@@ -201,27 +194,18 @@
             align-items: center;
         }
 
-        .sdg-placeholder {
+        .sdg-img {
             width: 48px;
             height: 48px;
-            background: var(--bg-light);
-            border: 2px dashed var(--accent-green);
+            object-fit: contain;
             border-radius: 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-align: center;
-            line-height: 1.1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
         /* MAP & SUMMARY LAYOUT */
         .map-section-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 25px;
             margin-bottom: 35px;
             align-items: stretch;
@@ -316,6 +300,7 @@
             box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
         }
 
+        /* MARKER & TOOLTIPS */
         .custom-white-pin {
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid var(--primary-dark);
@@ -339,10 +324,10 @@
             padding: 6px 12px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* CONTENT CARDS & IMAGE PLACEHOLDERS */
+        /* CONTENT CARDS & LAYOUTS */
         .content-card {
             background: var(--white);
             padding: 35px;
@@ -384,6 +369,39 @@
             margin-bottom: 0;
         }
 
+        /* CHALLENGES LIST */
+        .challenges-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 15px;
+        }
+
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.5;
+        }
+
+        .challenge-icon {
+            background: var(--bg-light);
+            color: var(--accent-green);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            border: 1px solid #E2E8F0;
+            margin-top: 2px;
+        }
+
         .image-placeholder {
             width: 100%;
             height: 260px;
@@ -415,7 +433,7 @@
             font-weight: 600;
         }
 
-        /* FACTS & DATA GRID */
+        /* FACTS GRID */
         .facts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -424,145 +442,148 @@
         }
 
         .fact-card {
-            background: var(--bg-light);
-            padding: 20px;
+            background: var(--primary-dark);
+            padding: 22px;
             border-radius: 8px;
-            border-top: 4px solid var(--accent-green);
+            border: 2px solid var(--accent-green);
             text-align: center;
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-2px);
         }
 
         .fact-card .fact-number {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 5px;
+            color: var(--white);
+            margin-bottom: 8px;
         }
 
         .fact-card p {
             font-size: 0.88rem;
-            color: #555;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.4;
         }
 
         .fact-source {
             font-size: 0.75rem;
-            color: #718096;
-            margin-top: 8px;
-            display: block;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s ease;
         }
 
-        /* INTERVIEW SECTION */
-        .interview-profile {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--bg-light);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .profile-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: var(--primary-dark);
+        .fact-source:hover {
             color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            flex-shrink: 0;
         }
 
-        .profile-info h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-dark);
-            font-size: 1.2rem;
-        }
-
-        .profile-info p {
-            font-size: 0.88rem;
-            color: #555;
-            margin-top: 3px;
-        }
-
-        .qa-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .qa-item {
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 18px;
-        }
-
-        .qa-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .qa-question {
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 8px;
-            display: flex;
-            gap: 10px;
-            font-size: 0.98rem;
-        }
-
-        .qa-answer {
-            color: #4A5568;
-            font-size: 0.93rem;
-            line-height: 1.6;
-            padding-left: 24px;
-        }
-
-        .quote-box {
-            background: #EBF4F0;
-            border-left: 4px solid var(--primary-dark);
-            padding: 20px;
-            border-radius: 6px;
-            font-style: italic;
-            color: var(--primary-dark);
-            font-size: 1.05rem;
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* PILLARS / INITIATIVES GRID */
+        /* OUR APPROACH - 4 COLUMNS GRID */
         .pillars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin-top: 20px;
         }
 
         .pillar-card {
             background: var(--bg-light);
-            padding: 25px;
+            padding: 22px;
             border-radius: 8px;
             border-top: 4px solid var(--primary-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .pillar-card h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.15rem;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pillar-card p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 140px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* EXPERTS INSIGHTS GRID */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            padding: 22px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .step-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .pillar-card p {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 0;
+        .step-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-card li {
+            font-size: 0.88rem;
+            color: #4A5568;
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.5;
+        }
+
+        .step-card li::before {
+            content: "•";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
         /* USEFUL LINKS SECTION */
@@ -648,6 +669,12 @@
             opacity: 0.85;
         }
 
+        @media (max-width: 1000px) {
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 900px) {
             .map-section-grid {
                 grid-template-columns: 1fr;
@@ -669,9 +696,8 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            .interview-profile {
-                flex-direction: column;
-                text-align: center;
+            .pillars-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -683,8 +709,9 @@
         <div class="header-left">
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/logo/Aguatura-logo.jpg" 
-                         alt="Aguatura Logo">
+                    <img src="Aguatura Pics/logo/Aguatura-logo.jpg" 
+                         alt="Aguatura Logo" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
                 </a>
             </div>
             <nav>
@@ -696,9 +723,9 @@
 
         <div class="header-right">
             <div class="social-icons">
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="#" title="E-Mail"><i class="fa-solid fa-envelope"></i></a>
             </div>
 
@@ -714,190 +741,250 @@
     <!-- MAIN CONTAINER -->
     <div class="main-container animate-fade">
 
-        <!-- HERO SEKTION -->
+        <!-- HERO SECTION -->
         <section class="project-hero">
-            <h1 id="hero-title">River Conservation & Decentralized Energy in Québec</h1>
+            <h1 id="hero-title">Climate Week NYC 2026 – Driving Global Climate Action</h1>
             <div class="hero-meta">
                 <div class="meta-details">
-                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Québec, Canada</span></div>
-                    <div class="meta-item">
-                        <i class="fa-solid fa-calendar-days"></i> 
-                        <span id="project-year">2026</span>
-                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/fondation_rivieres_logo.jpeg" alt="Fondation Rivières Logo" class="partner-logo-inline">
-                    </div>
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">New York City, USA</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
                 </div>
                 <div class="sdg-icons">
-                    <div class="sdg-placeholder" title="SDG 6: Clean Water and Sanitation">
-                        <i class="fa-solid fa-water"></i>
-                        <span>SDG 6</span>
-                    </div>
-                    <div class="sdg-placeholder" title="SDG 15: Life on Land">
-                        <i class="fa-solid fa-tree"></i>
-                        <span>SDG 15</span>
-                    </div>
+                    <img src="Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13: Climate Action" class="sdg-img" title="SDG 13: Climate Action">
+                    <img src="Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15: Life on Land" class="sdg-img" title="SDG 15: Life on Land">
                 </div>
             </div>
         </section>
 
-        <!-- MAP & SUMMARY LAYOUT -->
+        <!-- 1. PROJECT TOPICS & MAP -->
         <div class="map-section-grid">
             <div class="map-info-card">
-                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Key Conservation Highlights</h3>
+                <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Project Topics</h3>
                 <ul class="location-list">
-                    <li class="location-item">
-                        <div class="location-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <div class="location-text">
-                            <strong id="sum-1-title">Decentralized Energy Solutions</strong>
-                            <span id="sum-1-desc">Challenging mega-dams and empowering local clean power generation</span>
-                        </div>
-                    </li>
-                    <li class="location-item">
-                        <div class="location-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="location-text">
-                            <strong id="sum-2-title">Municipal Water Data Transparency</strong>
-                            <span id="sum-2-desc">Tracking wastewater overflows via open-data reporting</span>
-                        </div>
-                    </li>
                     <li class="location-item">
                         <div class="location-icon"><i class="fa-solid fa-users"></i></div>
                         <div class="location-text">
-                            <strong id="sum-3-title">Equitable Nature & River Access</strong>
-                            <span id="sum-3-desc">Unlocking privatized riverbanks for public enjoyment</span>
+                            <strong id="sum-1-title">Global Gathering</strong>
+                            <span id="sum-1-desc">Connecting leaders, policymakers, scientists & activists</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                        <div class="location-text">
+                            <strong id="sum-2-title">Multidisciplinary Impact</strong>
+                            <span id="sum-2-desc">Combining film, community action, science & education</span>
                         </div>
                     </li>
                 </ul>
             </div>
 
             <div class="map-card">
-                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Location (Québec)</h3>
+                <h3 id="map-heading"><i class="fa-solid fa-map-location-dot"></i> Project Map</h3>
                 <div id="minimap"></div>
             </div>
         </div>
 
-        <!-- OVERVIEW / COLLABORATION -->
+        <!-- 3. MAIN CHALLENGES -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="about-title">Grassroots Conservation & Policy Reform in Québec</h2>
+                <h2 id="about-title">Main Challenges</h2>
             </div>
             <div class="grid-2col">
                 <div class="grid-text">
-                    <p id="about-p1">During our North American exchange in 2026, the Aguatura team analyzed local water conservation models in Québec. The province faces unique ecological challenges: while hydro-electricity historically defined Québec's energy identity, distant mega-dams often impacted Indigenous territories and flooded massive natural basins.</p>
-                    <p id="about-p2">Unlike centralized administrative models in Europe, Québec relies heavily on municipal decentralization without always providing local authorities with the necessary tools, funds, or coordination mechanisms. Environmental organizations act as vital bridges between citizen movements, scientific data, and government decision-makers.</p>
+                    <p id="about-p1">Global climate initiatives face mounting pressures from escalating emissions, resource depletion, and fragmented policies, threatening global ecosystems and urban resilience.</p>
+                    <ul class="challenges-list">
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+                            <span id="ch-1">Accelerating global temperature anomalies and extreme weather disruptions affecting vulnerable regions.</span>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-droplet-slash"></i></div>
+                            <span id="ch-2">Growing freshwater scarcity and degradation of critical natural water resources worldwide.</span>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                            <span id="ch-3">Widespread ecosystem degradation and loss of biodiversity in both rural and urban landscapes.</span>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-users-line"></i></div>
+                            <span id="ch-4">Disconnect between high-level policy commitments and grassroots community action.</span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="grid-image">
                     <div class="image-placeholder">
-                        <i class="fa-solid fa-water"></i>
-                        <span>Upload Québec Fieldwork Picture</span>
+                        <i class="fa-solid fa-city"></i>
+                        <span>Upload Climate Challenge Picture</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FACTS & DATA SECTION -->
+        <!-- 4. KEY FACTS -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="facts-heading">Key Facts & Context</h2>
+                <h2 id="facts-heading">Key Facts</h2>
             </div>
             <div class="facts-grid">
                 <div class="fact-card">
-                    <div class="fact-number">>90%</div>
-                    <p id="f1-text">Hydroelectric proportion of Québec's total electricity production.</p>
-                    <span class="fact-source">Source: Hydro-Québec Data</span>
+                    <div class="fact-number">Over 500+</div>
+                    <p id="f1-text">Climate Week NYC brings together hundreds of independent events and thousands of global leaders annually.</p>
+                    <a href="https://www.climateweeknyc.org/" target="_blank" class="fact-source" id="f1-source">Source: Climate Week NYC, 2026</a>
                 </div>
                 <div class="fact-card">
-                    <div class="fact-number">98%</div>
-                    <p id="f2-text">Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.</p>
-                    <span class="fact-source">Source: Alliance pour l'accès à la nature</span>
+                    <div class="fact-number">1.5°C Goal</div>
+                    <p id="f2-text">Global efforts focus heavily on aligning policies with the Paris Agreement target to prevent catastrophic warming.</p>
+                    <a href="https://unfccc.int/" target="_blank" class="fact-source" id="f2-source">Source: UNFCCC, 2025</a>
                 </div>
                 <div class="fact-card">
-                    <div class="fact-number">28</div>
-                    <p id="f3-text">Municipalities mobilized along the Rivière du Nord for joint water management pilots.</p>
-                    <span class="fact-source">Source: Defi Eau Propre Pilot Project</span>
+                    <div class="fact-number">Billions</div>
+                    <p id="f3-text">Urban areas account for over 70% of global carbon emissions, making city-level action essential for sustainability.</p>
+                    <a href="https://www.unep.org/" target="_blank" class="fact-source" id="f3-source">Source: UNEP, 2025</a>
                 </div>
             </div>
         </section>
 
-        <!-- INTERVIEW & QUOTES SECTION -->
+        <!-- 5. OUR APPROACH -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="interview-title">Field Insights & Interview Quotes</h2>
+                <h2 id="approach-heading">Our Approach</h2>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <p id="approach-desc" style="font-size: 1rem; color: #4A5568; line-height: 1.7;">
+                    Our strategic framework merges high-level international dialogue with grassroots engagement. By combining storytelling, community restoration, water literacy, and academic innovation, we bridge the gap between global policy and tangible local impact.
+                </p>
             </div>
 
-            <div class="interview-profile">
-                <div class="profile-avatar"><i class="fa-solid fa-comments"></i></div>
-                <div class="profile-info">
-                    <h3 id="profile-name">Fondation Rivières Team</h3>
-                    <p id="profile-role">River Conservation & Environmental Policy Experts (Québec)</p>
-                    <p id="profile-bio">Exchanging perspectives on energy decentralization, municipal wastewater transparency, and public access to waterways during our 2026 field trip.</p>
-                </div>
-            </div>
-
-            <div class="qa-container">
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q1-text">On Energy Perception & Micro-Hydro:</span></div>
-                    <div class="qa-answer" id="a1-text">"Bringing energy production closer to citizens increases consciousness about consumption. Hydro-electricity in Québec was built far from consumption centers, hiding its real footprint."</div>
-                </div>
-
-                <div class="quote-box" id="quote-text">
-                    "Here, surrounding lakes and rivers are often entirely privatized. Having public water but 98% inaccessible shorelines is a major paradox we need to unlock."
-                    <br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Fondation Rivières, Québec 2026</small>
-                </div>
-
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q2-text">On Wastewater Transparency & Municipal Capacity:</span></div>
-                    <div class="qa-answer" id="a2-text">"Our Audito tool and annual rankings made local mayors fully aware of overflow issues. Now, instead of pointing fingers, we actively support municipalities in securing funding and expertise."</div>
-                </div>
-
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-quote-left"></i> <span id="q3-text">On Giving Rivers Space ('Espaces de liberté'):</span></div>
-                    <div class="qa-answer" id="a3-text">"Instead of building costly rock walls that fail over time, the real solution lies in creating 'spaces of freedom' and letting rivers follow their natural course."</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CORE FOCUS AREAS (PILLARS) -->
-        <section class="content-card">
-            <div class="section-header">
-                <h2 id="pillars-heading">Core Focus Areas & Solutions</h2>
-            </div>
             <div class="pillars-grid">
+                <!-- Movie Screening mis à jour avec movie.png -->
                 <div class="pillar-card">
-                    <h4><i class="fa-solid fa-lightbulb"></i> <span id="p1-title">Decentralized Energy & Micro-Hydro</span></h4>
-                    <p id="p1-desc">Pushing back against destructive mega-dams and large-scale infrastructure projects that flood indigenous lands. By promoting local micro-hydro and energy decentralization, communities gain higher energy consciousness and resilience against grid failures during severe winter ice storms.</p>
+                    <div>
+                        <h4><i class="fa-solid fa-film"></i> <span id="p1-title">The Movie Screening</span></h4>
+                        <p id="p1-desc">Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.</p>
+                    </div>
+                    <div class="card-image-container">
+                        <img src="Pics/new-york-climate-week/movie.png" alt="Movie Screening">
+                    </div>
                 </div>
+
                 <div class="pillar-card">
-                    <h4><i class="fa-solid fa-database"></i> <span id="p2-title">Municipal Wastewater Tracking</span></h4>
-                    <p id="p2-desc">Collecting and visualizing municipal wastewater performance data through transparent Power BI tools. The annual rankings hold local politicians accountable, shifting the focus from pointing fingers to collaborative municipal capacity-building.</p>
+                    <div>
+                        <h4><i class="fa-solid fa-seedling"></i> <span id="p2-title">Community Restoration</span></h4>
+                        <p id="p2-desc">Hands-on environmental action partnering with local communities to restore green spaces.</p>
+                    </div>
+                    <div class="card-image-container">
+                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
+                            <i class="fa-solid fa-image"></i>
+                            <span style="font-size: 0.75rem;">Upload Image</span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="pillar-card">
-                    <h4><i class="fa-solid fa-person-hiking"></i> <span id="p3-title">Shoreline Access & Room for Rivers</span></h4>
-                    <p id="p3-desc">Challenging widespread privatization of riverbanks ("accès aux berges") and advocating for legislative reform. Concurrently, promoting "espaces de liberté" (room for rivers) to let natural waterways follow their course rather than blocking them with expensive rock walls.</p>
+                    <div>
+                        <h4><i class="fa-solid fa-water"></i> <span id="p3-title">WaterWays Initiative</span></h4>
+                        <p id="p3-desc">Engaging sessions uniting science and art to promote deep water literacy and conservation.</p>
+                    </div>
+                    <div class="card-image-container">
+                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
+                            <i class="fa-solid fa-image"></i>
+                            <span style="font-size: 0.75rem;">Upload Image</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <div>
+                        <h4><i class="fa-solid fa-graduation-cap"></i> <span id="p4-title">Columbia Pitch</span></h4>
+                        <p id="p4-desc">Supporting students at Columbia University as they pitch innovative sustainable business ideas.</p>
+                    </div>
+                    <div class="card-image-container">
+                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
+                            <i class="fa-solid fa-image"></i>
+                            <span style="font-size: 0.75rem;">Upload Image</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- USEFUL LINKS SECTION -->
+        <!-- 6. EXPERTS INSIGHTS -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="learning-heading">Experts Insights</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> <span id="l1-title">Systemic Integration</span></h4>
+                    <ul>
+                        <li id="l1-desc">Experts emphasize that tackling climate change requires cross-sector collaboration, uniting finance, technology, and grassroots activism.</li>
+                    </ul>
+                </div>
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-water"></i> <span id="l2-title">Water Security</span></h4>
+                    <ul>
+                        <li id="l2-desc">Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.</li>
+                    </ul>
+                </div>
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-bullseye"></i> <span id="l3-title">Actionable Accountability</span></h4>
+                    <ul>
+                        <li id="l3-desc">Global commitments must be paired with measurable local targets to ensure accountability and authentic long-term progress.</li>
+                    </ul>
+                </div>
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-users"></i> <span id="l4-title">Youth Empowerment</span></h4>
+                    <ul>
+                        <li id="l4-desc">Academic incubation and student pitch initiatives are critical for fostering next-generation environmental leadership.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. HOW CAN YOU TAKE ACTION (MICRO, MESO) -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="action-heading">How can you take Action?</h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-user-graduate"></i> <span id="micro-title">Micro Level</span></h4>
+                    <ul>
+                        <li id="mi-1">Participate in local community cleanups and urban green space restoration projects.</li>
+                        <li id="mi-2">Adopt water-saving and energy-efficient habits in your daily routine.</li>
+                        <li id="mi-3">Educate peers and share climate awareness initiatives within your local network.</li>
+                    </ul>
+                </div>
+                <div class="step-card">
+                    <h4><i class="fa-solid fa-city"></i> <span id="meso-title">Meso Level</span></h4>
+                    <ul>
+                        <li id="me-1">Partner with municipal organizations to support local watershed protection policies.</li>
+                        <li id="me-2">Integrate climate literacy programs into local educational institutions and universities.</li>
+                        <li id="me-3">Support regional sustainability initiatives and green-collar business incubators.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. USEFUL LINKS AND RESOURCES -->
         <section class="links-section">
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
             <ul class="useful-links-list">
                 <li>
-                    <a href="https://fondationrivieres.org" target="_blank">
-                        <i class="fa-solid fa-water"></i> <span id="link1-text">Fondation Rivières – Official River Conservation Portal</span>
+                    <a href="https://www.climateweeknyc.org/" target="_blank">
+                        <i class="fa-solid fa-globe"></i> <span id="link1-text">Climate Week NYC – Official Website & Global Program</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://cdpn.io/cpe/boomboom/url?id=9" target="_blank">
-                        <i class="fa-solid fa-chart-bar"></i> <span id="link2-text">Audito – Municipal Wastewater Overflow Tracking Platform</span>
+                    <a href="https://unfccc.int/" target="_blank">
+                        <i class="fa-solid fa-leaf"></i> <span id="link2-text">UNFCCC – United Nations Framework Convention on Climate Change</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://accesnature.ca" target="_blank">
-                        <i class="fa-solid fa-tree"></i> <span id="link3-text">Alliance pour l'accès à la nature – Public Nature Access Initiative</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.hydroquebec.com" target="_blank">
-                        <i class="fa-solid fa-bolt"></i> <span id="link4-text">Hydro-Québec – Energy Grid & Infrastructure Overview</span>
+                    <a href="https://www.un.org/sustainabledevelopment/" target="_blank">
+                        <i class="fa-solid fa-bullseye"></i> <span id="link3-text">United Nations – Sustainable Development Goals (SDGs) Overview</span>
                     </a>
                 </li>
             </ul>
@@ -930,7 +1017,7 @@
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([52.9399, -73.5491], 5); // Québec, Canada center
+            }).setView([39.8283, -98.5795], 3.5);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -938,197 +1025,220 @@
                     L.geoJSON(data, {
                         style: function(feature) {
                             var countryName = feature.properties.name;
-                            if (countryName === "Canada") {
+                            if (countryName === "United States of America" || countryName === "United States") {
                                 return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
                             } else {
-                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
+                                return { fillColor: "#82C3A6", fillOpacity: 0.25, color: "#FFFFFF", weight: 1 };
                             }
                         }
                     }).addTo(map);
 
-                    var quebecIcon = L.divIcon({
+                    var nycIcon = L.divIcon({
                         className: 'custom-white-pin',
-                        html: `<i class="fa-solid fa-water"></i>`,
+                        html: `<i class="fa-solid fa-earth-americas"></i>`,
                         iconSize: [28, 28],
                         iconAnchor: [14, 14]
                     });
 
-                    L.marker([46.8139, -71.2082], { icon: quebecIcon })
+                    L.marker([40.7128, -74.0060], { icon: nycIcon })
                         .addTo(map)
-                        .bindTooltip('<b>River Conservation Québec</b><br>Québec, Canada', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .bindTooltip('<b>Climate Week NYC</b><br>New York City, USA', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
                         .openTooltip();
                 })
                 .catch(err => console.error("Kartendaten Fehler: ", err));
         });
 
-        // MEHRSPRACHIGKEIT (EN, DE, FR, ES)
         const translations = {
             en: {
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
-                heroTitle: "River Conservation & Decentralized Energy in Québec",
-                locationMeta: "Québec, Canada",
+                heroTitle: "Climate Week NYC 2026 – Driving Global Climate Action",
+                locationMeta: "New York City, USA",
                 projectYear: "2026",
-                summaryTitle: "Key Conservation Highlights",
-                sum1Title: "Decentralized Energy Solutions", sum1Desc: "Challenging mega-dams and empowering local clean power generation",
-                sum2Title: "Municipal Water Data Transparency", sum2Desc: "Tracking wastewater overflows via open-data reporting",
-                sum3Title: "Equitable Nature & River Access", sum3Desc: "Unlocking privatized riverbanks for public enjoyment",
-                mapHeading: "Project Location (Québec)",
-                aboutTitle: "Grassroots Conservation & Policy Reform in Québec",
-                aboutP1: "During our North American exchange in 2026, the Aguatura team analyzed local water conservation models in Québec. The province faces unique ecological challenges: while hydro-electricity historically defined Québec's energy identity, distant mega-dams often impacted Indigenous territories and flooded massive natural basins.",
-                aboutP2: "Unlike centralized administrative models in Europe, Québec relies heavily on municipal decentralization without always providing local authorities with the necessary tools, funds, or coordination mechanisms. Environmental organizations act as vital bridges between citizen movements, scientific data, and government decision-makers.",
-                factsHeading: "Key Facts & Context",
-                f1Text: "Hydroelectric proportion of Québec's total electricity production.",
-                f2Text: "Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.",
-                f3Text: "Municipalities mobilized along the Rivière du Nord for joint water management pilots.",
-                interviewTitle: "Field Insights & Interview Quotes",
-                profileName: "Fondation Rivières Team",
-                profileRole: "River Conservation & Environmental Policy Experts (Québec)",
-                profileBio: "Exchanging perspectives on energy decentralization, municipal wastewater transparency, and public access to waterways during our 2026 field trip.",
-                q1Text: "On Energy Perception & Micro-Hydro:",
-                a1Text: "\"Bringing energy production closer to citizens increases consciousness about consumption. Hydro-electricity in Québec was built far from consumption centers, hiding its real footprint.\"",
-                quoteText: "\"Here, surrounding lakes and rivers are often entirely privatized. Having public water but 98% inaccessible shorelines is a major paradox we need to unlock.\"",
-                q2Text: "On Wastewater Transparency & Municipal Support:",
-                a2Text: "\"Our Audito tool and annual rankings made local mayors fully aware of overflow issues. Now, instead of pointing fingers, we actively support municipalities in securing funding and expertise.\"",
-                q3Text: "On Giving Rivers Space ('Espaces de liberté'):",
-                a3Text: "\"Instead of building costly rock walls that fail over time, the real solution lies in creating 'spaces of freedom' and letting rivers follow their natural course.\"",
-                pillarsHeading: "Core Focus Areas & Solutions",
-                p1Title: "Decentralized Energy & Micro-Hydro",
-                p1Desc: "Pushing back against destructive mega-dams and large-scale infrastructure projects that flood indigenous lands. By promoting local micro-hydro and energy decentralization, communities gain higher energy consciousness and resilience against grid failures during severe winter ice storms.",
-                p2Title: "Municipal Wastewater Tracking",
-                p2Desc: "Collecting and visualizing municipal wastewater performance data through transparent Power BI tools. The annual rankings hold local politicians accountable, shifting the focus from pointing fingers to collaborative municipal capacity-building.",
-                p3Title: "Shoreline Access & Room for Rivers",
-                p3Desc: "Challenging widespread privatization of riverbanks (\"accès aux berges\") and advocating for legislative reform. Concurrently, promoting \"espaces de liberté\" (room for rivers) to let natural waterways follow their course rather than blocking them with expensive rock walls.",
+                summaryTitle: "Project Topics",
+                sum1Title: "Global Gathering", sum1Desc: "Connecting leaders, policymakers, scientists & activists",
+                sum2Title: "Multidisciplinary Impact", sum2Desc: "Combining film, community action, science & education",
+                mapHeading: "Project Map",
+                aboutTitle: "Main Challenges",
+                aboutP1: "Global climate initiatives face mounting pressures from escalating emissions, resource depletion, and fragmented policies, threatening global ecosystems and urban resilience.",
+                ch1: "Accelerating global temperature anomalies and extreme weather disruptions affecting vulnerable regions.",
+                ch2: "Growing freshwater scarcity and degradation of critical natural water resources worldwide.",
+                ch3: "Widespread ecosystem degradation and loss of biodiversity in both rural and urban landscapes.",
+                ch4: "Disconnect between high-level policy commitments and grassroots community action.",
+                factsHeading: "Key Facts",
+                f1Text: "Climate Week NYC brings together hundreds of independent events and thousands of global leaders annually.",
+                f1Source: "Source: Climate Week NYC, 2026",
+                f2Text: "Global efforts focus heavily on aligning policies with the Paris Agreement target to prevent catastrophic warming.",
+                f2Source: "Source: UNFCCC, 2025",
+                f3Text: "Urban areas account for over 70% of global carbon emissions, making city-level action essential for sustainability.",
+                f3Source: "Source: UNEP, 2025",
+                approachHeading: "Our Approach",
+                approachDesc: "Our strategic framework merges high-level international dialogue with grassroots engagement. By combining storytelling, community restoration, water literacy, and academic innovation, we bridge the gap between global policy and tangible local impact.",
+                p1Title: "The Movie Screening", p1Desc: "Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.",
+                p2Title: "Community Restoration", p2Desc: "Hands-on environmental action partnering with local communities to restore green spaces.",
+                p3Title: "WaterWays Initiative", p3Desc: "Engaging sessions uniting science and art to promote deep water literacy and conservation.",
+                p4Title: "Columbia Pitch", p4Desc: "Supporting students at Columbia University as they pitch innovative sustainable business ideas.",
+                learningHeading: "Experts Insights",
+                l1Title: "Systemic Integration", l1Desc: "Experts emphasize that tackling climate change requires cross-sector collaboration, uniting finance, technology, and grassroots activism.",
+                l2Title: "Water Security", l2Desc: "Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.",
+                l3Title: "Actionable Accountability", l3Desc: "Global commitments must be paired with measurable local targets to ensure accountability and authentic long-term progress.",
+                l4Title: "Youth Empowerment", l4Desc: "Academic incubation and student pitch initiatives are critical for fostering next-generation environmental leadership.",
+                actionHeading: "How can you take Action?",
+                microTitle: "Micro Level",
+                mi1: "Participate in local community cleanups and urban green space restoration projects.",
+                mi2: "Adopt water-saving and energy-efficient habits in your daily routine.",
+                mi3: "Educate peers and share climate awareness initiatives within your local network.",
+                mesoTitle: "Meso Level",
+                me1: "Partner with municipal organizations to support local watershed protection policies.",
+                me2: "Integrate climate literacy programs into local educational institutions and universities.",
+                me3: "Support regional sustainability initiatives and green-collar business incubators.",
                 linksTitle: "Useful Links & Resources",
-                link1Text: "Fondation Rivières – Official River Conservation Portal",
-                link2Text: "Audito – Municipal Wastewater Overflow Tracking Platform",
-                link3Text: "Alliance pour l'accès à la nature – Public Nature Access Initiative",
-                link4Text: "Hydro-Québec – Energy Grid & Infrastructure Overview",
+                link1Text: "Climate Week NYC – Official Website & Global Program",
+                link2Text: "UNFCCC – United Nations Framework Convention on Climate Change",
+                link3Text: "United Nations – Sustainable Development Goals (SDGs) Overview",
                 exploreBtnText: "Explore more projects"
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
-                heroTitle: "Flussschutz & Dezentrale Energie in Québec",
-                locationMeta: "Québec, Kanada",
+                heroTitle: "Climate Week NYC 2026 – Globalen Klimaschutz vorantreiben",
+                locationMeta: "New York City, USA",
                 projectYear: "2026",
-                summaryTitle: "Zentrale Naturschutz-Highlights",
-                sum1Title: "Dezentrale Energielösungen", sum1Desc: "Kritik an Megastaudämmen und Förderung lokaler sauberer Energie",
-                sum2Title: "Transparenz bei kommunalen Wasserdaten", sum2Desc: "Erfassung von Abwasserüberläufen durch Open-Data-Berichte",
-                sum3Title: "Gerechter Natur- & Flusszugang", sum3Desc: "Freigabe privatisierter Flussufer für die Öffentlichkeit",
-                mapHeading: "Projektstandort (Québec)",
-                aboutTitle: "Graswurzel-Naturschutz & Politische Reformen in Québec",
-                aboutP1: "Während unseres Nordamerika-Austauschs im Jahr 2026 analysierte das Aguatura-Team lokale Wasserschutzmodelle in Québec. Die Provinz steht vor einzigartigen ökologischen Herausforderungen: Obwohl Wasserkraft die Energieidentität Québecs prägt, überfluteten große Staudämme oft indigene Gebiete.",
-                aboutP2: "Im Gegensatz zu zentralisierten Verwaltungsmodellen setzt Québec stark auf kommunale Dezentralisierung, ohne Städten immer Werkzeuge oder Mittel bereitzustellen. Umweltorganisationen schlagen die Brücke zwischen Bürgerbewegungen, Daten und der Politik.",
-                factsHeading: "Wichtige Fakten & Kontext",
-                f1Text: "Anteil der Wasserkraft an Québecs gesamter Stromproduktion.",
-                f2Text: "Geschätzter Anteil privatisierter oder unzugänglicher Ufer an Seen und Flüssen in Québec.",
-                f3Text: "Mobilisierte Gemeinden entlang des Rivière du Nord für gemeinsame Gewässerschutz-Piloten.",
-                interviewTitle: "Felderkenntnisse & Interview-Zitate",
-                profileName: "Team der Fondation Rivières",
-                profileRole: "Experten für Flussschutz & Umweltpolitik (Québec)",
-                profileBio: "Austausch über dezentrale Energie, Transparenz bei Abwässern und den öffentlichen Naturzugang während unserer Reise 2026.",
-                q1Text: "Über Energie-Wahrnehmung & Mikro-Wasserkraft:",
-                a1Text: "\"Bringt man die Energieerzeugung näher an die Bürger, schärft das das Bewusstsein für den eigenen Verbrauch. Strom wurde in Québec fernab der Zentren produziert, wodurch die realen Folgen unsichtbar blieben.\"",
-                quoteText: "\"Hier ist das Land um Seen und Flüsse oft komplett privatisiert. Öffentliches Wasser bei 98% unzugänglichen Ufern ist ein Paradoxon, das wir aufbrechen müssen.\"",
-                q2Text: "Über Abwasser-Transparenz & kommunale Hilfe:",
-                a2Text: "\"Unser Audito-Tool und das Jahresranking haben das Bewusstsein für Abwasserüberläufe geschärft. Statt nur mit dem Finger auf Kommunen zu zeigen, unterstützen wir sie heute bei Finanzierung und Expertise.\"",
-                q3Text: "Über Freiräume für Flüsse ('Espaces de liberté'):",
-                a3Text: "\"Statt teurer Steinmauern, die auf Dauer versagen, liegt die Lösung darin, Flüssen ihren natürlichen Raum ('espaces de liberté') zu lassen.\"",
-                pillarsHeading: "Kernbereiche & Lösungsansätze",
-                p1Title: "Dezentrale Energie & Mikro-Wasserkraft",
-                p1Desc: "Widerstand gegen zerstörerische Megastaudämme, die indigene Gebiete überfluten. Durch lokale Mikro-Wasserkraft gewinnen Gemeinschaften ein Bewusstsein für ihren Energieverbrauch und Schutz vor Stromausfällen im Winter.",
-                p2Title: "Kommunales Abwasser-Tracking",
-                p2Desc: "Erfassung und Visualisierung von Abwasserdaten über transparente Power-BI-Tools. Das jährliche Ranking hält Kommunen in der Verantwortung und fördert gemeinsame Lösungsansätze.",
-                p3Title: "Uferzugang & Freiraum für Flüsse",
-                p3Desc: "Bekämpfung der starken Privatisierung von Flussufern und Einsatz für gesetzliche Reformen. Gleichzeitig werden 'espaces de liberté' (Freiräume für Flüsse) gefördert, um Flüsse natürlich fließen zu lassen.",
+                summaryTitle: "Projekt-Themen",
+                sum1Title: "Globales Treffen", sum1Desc: "Zusammenkunft von Führungskräften, Politikern, Wissenschaftlern & Aktivisten",
+                sum2Title: "Multidisziplinäre Wirkung", sum2Desc: "Verknüpfung von Film, Community-Aktion, Wissenschaft & Bildung",
+                mapHeading: "Projektkarte",
+                aboutTitle: "Hauptherausforderungen",
+                aboutP1: "Globale Klimainitiativen stehen unter wachsendem Druck durch steigende Emissionen, Ressourcenknappheit und fragmentierte Richtlinien.",
+                ch1: "Beschleunigte globale Temperaturveränderungen und Extremwetterereignisse.",
+                ch2: "Wachsende Süßwasserknappheit und Verschlechterung natürlicher Wasserressourcen.",
+                ch3: "Weitverbreitete Ökosystemschäden und Biodiversitätsverlust.",
+                ch4: "Diskrepanz zwischen politischen Zusagen und lokalem Engagement.",
+                factsHeading: "Wichtige Fakten",
+                f1Text: "Die Climate Week NYC bringt jährlich hunderte Veranstaltungen und tausende Führungskräfte zusammen.",
+                f1Source: "Quelle: Climate Week NYC, 2026",
+                f2Text: "Globale Anstrengungen konzentrieren sich auf das 1,5-Grad-Ziel des Pariser Abkommens.",
+                f2Source: "Quelle: UNFCCC, 2025",
+                f3Text: "Städtische Gebiete verursachen über 70 % der weltweiten Kohlenstoffemissionen.",
+                f3Source: "Quelle: UNEP, 2025",
+                approachHeading: "Unser Ansatz",
+                approachDesc: "Unser strategischer Rahmen verbindet internationalen Dialog mit lokalem Engagement durch Storytelling, Renaturierung, Wasserkompetenz und Innovation.",
+                p1Title: "Das Film-Screening", p1Desc: "Sonderaufführung des Dokumentarfilms, gesprochen von Benedict Cumberbatch.",
+                p2Title: "Community-Restaurierung", p2Desc: "Praktischer Umweltschutz zur Wiederherstellung von Grünflächen.",
+                p3Title: "WaterWays-Initiative", p3Desc: "Sitzungen zur Förderung des Bewusstseins für Wasserschutz.",
+                p4Title: "Columbia Pitch", p4Desc: "Unterstützung von Studierenden bei nachhaltigen Geschäftsideen.",
+                learningHeading: "Experteneinblicke",
+                l1Title: "Systemische Integration", l1Desc: "Klimaschutz erfordert branchenübergreifende Zusammenarbeit.",
+                l2Title: "Wassersicherheit", l2Desc: "Wassersysteme sind Frühindikatoren für ökologische Veränderungen.",
+                l3Title: "Messbare Verantwortung", l3Desc: "Globale Verpflichtungen müssen durch lokale Ziele ergänzt werden.",
+                l4Title: "Jugendförderung", l4Desc: "Studenteninitiativen sind entscheidend für zukünftige Führungspersönlichkeiten.",
+                actionHeading: "Wie können Sie aktiv werden?",
+                microTitle: "Mikro-Ebene",
+                mi1: "An lokalen Aufräumaktionen und Grünflächenprojekten teilnehmen.",
+                mi2: "Wassersparende und energieeffiziente Gewohnheiten etablieren.",
+                mi3: "Klimabewusstsein im Freundeskreis teilen.",
+                mesoTitle: "Meso-Ebene",
+                me1: "Mit Kommunen bei Wasserschutzrichtlinien zusammenarbeiten.",
+                me2: "Klimabildung in Bildungseinrichtungen integrieren.",
+                me3: "Regionale Nachhaltigkeitsinitiativen unterstützen.",
                 linksTitle: "Nützliche Links & Ressourcen",
-                link1Text: "Fondation Rivières – Offizielles Flussschutz-Portal",
-                link2Text: "Audito – Plattform für kommunales Abwasser-Tracking",
-                link3Text: "Alliance pour l'accès à la nature – Initiative für öffentlichen Naturzugang",
-                link4Text: "Hydro-Québec – Stromnetz & Infrastruktur-Überblick",
+                link1Text: "Climate Week NYC – Offizielle Website",
+                link2Text: "UNFCCC – Klimarahmenkonvention der Vereinten Nationen",
+                link3Text: "Vereinte Nationen – Übersicht zu den SDGs",
                 exploreBtnText: "Weitere Projekte entdecken"
             },
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
-                heroTitle: "Conservation des rivières et énergie décentralisée au Québec",
-                locationMeta: "Québec, Canada",
+                heroTitle: "Climate Week NYC 2026 – Accélérer l'action climatique mondiale",
+                locationMeta: "New York City, USA",
                 projectYear: "2026",
-                summaryTitle: "Points Forts de la Conservation",
-                sum1Title: "Solutions énergétiques décentralisées", sum1Desc: "Contester les méga-barrages et favoriser l'énergie locale propre",
-                sum2Title: "Transparence des données d'eau", sum2Desc: "Suivi des déversements d'eaux usées via des outils open-data",
-                sum3Title: "Accès équitable aux rivières", sum3Desc: "Libérer les rives privatisées pour un accès public à la nature",
-                mapHeading: "Lieu du Projet (Québec)",
-                aboutTitle: "Conservation citoyenne et réforme politique au Québec",
-                aboutP1: "Lors de notre échange en Amérique du Nord en 2026, l'équipe d'Aguatura a analysé les modèles de conservation de l'eau au Québec. Bien que l'hydroélectricité définisse l'identité énergétique québécoise, les méga-barrages ont souvent impacté les territoires autochtones.",
-                aboutP2: "Contrairement aux modèles centralisés, le Québec s'appuie sur une décentralisation municipale sans toujours doter les acteurs locaux des outils nécessaires. Les organisations environnementales font le pont entre mobilisation citoyenne et décisionnaires.",
-                factsHeading: "Faits Clés & Contexte",
-                f1Text: "Proportion d'hydroélectricité dans la production totale d'électricité du Québec.",
-                f2Text: "Proportion estimée des berges de lacs et rivières privatisées ou inaccessibles au Québec.",
-                f3Text: "Municipalités mobilisées le long de la rivière du Nord pour un projet pilote de gestion de l'eau.",
-                interviewTitle: "Aperçus de terrain & Citations de l'entrevue",
-                profileName: "Équipe Fondation Rivières",
-                profileRole: "Experts en conservation des rivières et politique environnementale (Québec)",
-                profileBio: "Échanges sur la décentralisation énergétique, la transparence des eaux usées et l'accès public aux cours d'eau en 2026.",
-                q1Text: "Sur la perception énergétique et la micro-hydro :",
-                a1Text: "\"Ramener l'énergie plus près des gens, ça fait en sorte qu'on a une plus grande sensibilité envers notre consommation énergétique. Au Québec, l'électricité s'est faite loin des centres de consommation, donc les gens ne voient pas l'impact.\"",
-                quoteText: "\"Ici, tout ce qui est autour des lacs et rivières est parfois entièrement privatisé. Avoir de l'eau publique mais des berges 98% inaccessibles est un vrai paradoxe que nous devons déverrouiller.\"",
-                q2Text: "Sur la transparence des eaux usées et le soutien municipal :",
-                a2Text: "\"Notre outil Audito et le palmarès annuel ont permis aux élus de prendre conscience du problème des déversements. Aujourd'hui, nous accompagnons les municipalités pour obtenir les financements et l'expertise requise.\"",
-                q3Text: "Sur les 'Espaces de liberté' pour les rivières :",
-                a3Text: "\"Au lieu de mettre du enrochement coûteux qui ne fonctionne pas à long terme, la solution passe par aménager des 'espaces de liberté' et laisser la rivière suivre son cours naturel.\"",
-                pillarsHeading: "Domaines Clés & Solutions",
-                p1Title: "Énergie décentralisée & micro-hydro",
-                p1Desc: "S'opposer aux méga-barrages destructeurs inondant les terres autochtones. En promouvant la micro-hydroélectricité locale, les communautés gagnent en résilience face aux pannes lors des tempêtes de verglas.",
-                p2Title: "Suivi des eaux usées municipales",
-                p2Desc: "Collecte et visualisation des données de performance des stations d'épuration via Power BI. Le palmarès annuel responsabilise les élus locaux et favorise l'accompagnement.",
-                p3Title: "Accès aux berges & Espaces de liberté",
-                p3Desc: "Lutter contre la privatisation des berges et plaider pour des réformes législatives. Promouvoir les espaces de liberté pour laisser les rivières suivre leur cours naturel.",
+                summaryTitle: "Sujets du Projet",
+                sum1Title: "Rassemblement Mondial", sum1Desc: "Connexion entre dirigeants, décideurs, scientifiques et activistes",
+                sum2Title: "Impact Multidisciplinaire", sum2Desc: "Alliance du cinéma, de l'action communautaire, de la science et de l'éducation",
+                mapHeading: "Carte du Projet",
+                aboutTitle: "Principaux Défis",
+                aboutP1: "Les initiatives climatiques mondiales font face à des pressions croissantes dues aux émissions, à l'épuisement des ressources et à des politiques fragmentées.",
+                ch1: "Accélération des anomalies de température mondiale et des perturbations climatiques.",
+                ch2: "Pénurie croissante d'eau douce et dégradation des ressources hydriques.",
+                ch3: "Dégradation généralisée des écosystèmes et perte de biodiversité.",
+                ch4: "Décalage entre les engagements politiques et l'action communautaire locale.",
+                factsHeading: "Faits Clés",
+                f1Text: "La Climate Week NYC rassemble chaque année des centaines d'événements indépendants et des milliers de leaders.",
+                f1Source: "Source : Climate Week NYC, 2026",
+                f2Text: "Les efforts mondiaux se concentrent sur l'alignement avec l'objectif de l'Accord de Paris.",
+                f2Source: "Source : CCNUCC, 2025",
+                f3Text: "Les zones urbaines représentent plus de 70 % des émissions mondiales de carbone.",
+                f3Source: "Source : PNUE, 2025",
+                approachHeading: "Notre Approche",
+                approachDesc: "Notre cadre stratégique fusionne le dialogue international de haut niveau et l'engagement de terrain à travers la narration, la restauration et l'innovation.",
+                p1Title: "La Projection du Film", p1Desc: "Projection spéciale du documentaire narré par Benedict Cumberbatch.",
+                p2Title: "Restauration Communautaire", p2Desc: "Action environnementale pratique pour restaurer les espaces verts urbains.",
+                p3Title: "Initiative WaterWays", p3Desc: "Sessions unissant science et art pour promouvoir la sensibilisation à l'eau.",
+                p4Title: "Columbia Pitch", p4Desc: "Soutien aux étudiants présentant des idées d'entreprise durables.",
+                learningHeading: "Avis d'Experts",
+                l1Title: "Intégration Systémique", l1Desc: "L'action climatique nécessite une collaboration intersectorielle unissant finance et activisme.",
+                l2Title: "Sécurité de l'Eau", l2Desc: "Les systèmes hydriques sont les premiers indicateurs de perturbation écologique.",
+                l3Title: "Responsabilité Mesurable", l3Desc: "Les engagements mondiaux doivent s'associer à des objectifs locaux tangibles.",
+                l4Title: "Autonomisation des Jeunes", l4Desc: "L'incubation académique est essentielle pour encourager le leadership environnemental.",
+                actionHeading: "Comment pouvez-vous agir ?",
+                microTitle: "Niveau Micro",
+                mi1: "Participer aux nettoyages communautaires locaux et projets de restauration.",
+                mi2: "Adopter des habitudes économes en eau et en énergie au quotidien.",
+                mi3: "Sensibiliser son entourage aux enjeux climatiques.",
+                mesoTitle: "Niveau Méso",
+                me1: "S'associer aux municipalités pour soutenir les politiques de protection des bassins versants.",
+                me2: "Intégrer l'éducation climatique dans les établissements scolaires et universités.",
+                me3: "Soutenir les initiatives régionales de développement durable.",
                 linksTitle: "Liens Utiles & Ressources",
-                link1Text: "Fondation Rivières – Portail Officiel de Conservation",
-                link2Text: "Audito – Plateforme de suivi des déversements d'eaux usées",
-                link3Text: "Alliance pour l'accès à la nature – Initiative pour l'accès public",
-                link4Text: "Hydro-Québec – Aperçu du réseau et des infrastructures",
+                link1Text: "Climate Week NYC – Site Officiel et Programme",
+                link2Text: "CCNUCC – Convention-cadre des Nations Unies sur les changements climatiques",
+                link3Text: "Nations Unies – Vue d'ensemble des ODD",
                 exploreBtnText: "Découvrir plus de projets"
             },
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
-                heroTitle: "Conservación de ríos y energía descentralizada en Quebec",
-                locationMeta: "Quebec, Canadá",
+                heroTitle: "Climate Week NYC 2026 – Impulsando la acción climática global",
+                locationMeta: "Nueva York, EE. UU.",
                 projectYear: "2026",
-                summaryTitle: "Puntos Destacados",
-                sum1Title: "Energía Descentralizada", sum1Desc: "Desafiando las grandes presas y fomentando la energía limpia local",
-                sum2Title: "Transparencia de Datos de Agua", sum2Desc: "Monitoreo de desbordamientos de aguas residuales mediante datos abiertos",
-                sum3Title: "Acceso Equitativo al Agua", sum3Desc: "Recuperar riberas privatizadas para el disfrute público",
-                mapHeading: "Ubicación del Proyecto (Quebec)",
-                aboutTitle: "Conservación comunitaria y reforma política en Quebec",
-                aboutP1: "Durante nuestro intercambio en Norteamérica en 2026, el equipo de Aguatura analizó los modelos de conservación del agua en Quebec. La hidroelectricidad define la identidad de Quebec, pero las grandes presas a menudo han impactado territorios indígenas.",
-                aboutP2: "Quebec se basa en la descentralización municipal. Las organizaciones ambientales actúan como puentes vitales entre los movimientos ciudadanos, los datos científicos y los líderes políticos.",
-                factsHeading: "Datos Clave y Contexto",
-                f1Text: "Proporción hidroeléctrica de la producción total de electricidad de Quebec.",
-                f2Text: "Proporción estimada de riberas privatizadas o inaccesibles en lagos y ríos de Quebec.",
-                f3Text: "Municipios movilizados a lo largo del río du Nord para proyectos piloto de gestión del agua.",
-                interviewTitle: "Perspectivas de campo y Citas de entrevista",
-                profileName: "Equipo de Fondation Rivières",
-                profileRole: "Expertos en Conservación de Ríos y Política Ambiental (Quebec)",
-                profileBio: "Intercambio sobre descentralización energética, transparencia de aguas residuales y acceso público a los ríos durante 2026.",
-                q1Text: "Sobre percepción energética y microhidroeléctrica:",
-                a1Text: "\"Acercar la generación de energía a la ciudadanía aumenta la conciencia sobre el consumo. En Quebec la energía se produjo lejos de los centros urbanos, ocultando su impacto real.\"",
-                quoteText: "\"Aquí el terreno alrededor de lagos y ríos suele estar completamente privatizado. Tener agua pública pero 98% de riberas inaccesibles es una paradoja que debemos resolver.\"",
-                q2Text: "Sobre transparencia de aguas residuales y apoyo municipal:",
-                a2Text: "\"Nuestra herramienta Audito y el ranking anual concienciaron a los alcaldes. Hoy apoyamos activamente a los municipios para obtener fondos y capacitación técnica.\"",
-                q3Text: "Sobre dar espacio a los ríos ('Espaces de liberté'):",
-                a3Text: "\"En lugar de construir muros de piedra costosos que fallan con el tiempo, la solución es crear 'espacios de libertad' y permitir que el río siga su curso natural.\"",
-                pillarsHeading: "Áreas Clave y Soluciones",
-                p1Title: "Energía descentralizada y microhidráulica",
-                p1Desc: "Oponerse a las grandes presas que inundan tierras indígenas. Al promover la microhidráulica local, las comunidades aumentan su conciencia y resiliencia energética ante tormentas invernales.",
-                p2Title: "Monitoreo de aguas residuales",
-                p2Desc: "Recopilación y visualización de datos de rendimiento municipal mediante Power BI. El ranking anual responsabiliza a los líderes locales y fomenta el apoyo mutuo.",
-                p3Title: "Acceso a riberas y Espacios de libertad",
-                p3Desc: "Combatir la privatización masiva de las riberas de los ríos y promover 'espaces de liberté' para que los cursos de agua fluyan de forma natural.",
+                summaryTitle: "Temas del Proyecto",
+                sum1Title: "Encuentro Global", sum1Desc: "Conectando a líderes, legisladores, científicos y activistas",
+                sum2Title: "Impacto Multidisciplinario", sum2Desc: "Combinando cine, acción comunitaria, ciencia y educación",
+                mapHeading: "Mapa del Proyecto",
+                aboutTitle: "Principales Desafíos",
+                aboutP1: "Las iniciativas climáticas globales enfrentan crecientes presiones debido a las emisiones y la escasez de recursos.",
+                ch1: "Aceleración de anomalías de temperatura y eventos climáticos extremos.",
+                ch2: "Creciente escasez de agua dulce y degradación de recursos naturales.",
+                ch3: "Degradación generalizada de ecosistemas y pérdida de biodiversidad.",
+                ch4: "Desconexión entre compromisos políticos y acción comunitaria.",
+                factsHeading: "Datos Clave",
+                f1Text: "La Climate Week NYC reúne anualmente cientos de eventos y miles de líderes globales.",
+                f1Source: "Fuente: Climate Week NYC, 2026",
+                f2Text: "Los esfuerzos globales se centran en cumplir la meta del Acuerdo de París.",
+                f2Source: "Fuente: CMNUCC, 2025",
+                f3Text: "Las zonas urbanas generan más del 70% de las emisiones globales de carbono.",
+                f3Source: "Fuente: PNUMA, 2025",
+                approachHeading: "Nuestro Enfoque",
+                approachDesc: "Nuestro marco estratégico fusiona el diálogo internacional con el compromiso comunitario mediante la narración, restauración e innovación.",
+                p1Title: "Proyección de la Película", p1Desc: "Proyección especial del documental narrado por Benedict Cumberbatch.",
+                p2Title: "Restauración Comunitaria", p2Desc: "Acción ambiental práctica para restaurar espacios verdes.",
+                p3Title: "Iniciativa WaterWays", p3Desc: "Sesiones que unen ciencia y arte para promover la conservación.",
+                p4Title: "Columbia Pitch", p4Desc: "Apoyo a estudiantes en la presentación de ideas sostenibles.",
+                learningHeading: "Perspectivas de Expertos",
+                l1Title: "Integración Sistémica", l1Desc: "La acción climática requiere colaboración intersectorial.",
+                l2Title: "Seguridad del Agua", l2Desc: "Los sistemas hídricos son los primeros indicadores de alteración ecológica.",
+                l3Title: "Responsabilidad Mensurable", l3Desc: "Los compromisos globales deben vincularse a objetivos locales.",
+                l4Title: "Empoderamiento Juvenil", l4Desc: "La incubación académica fomenta el liderazgo ambiental.",
+                actionHeading: "Cómo puedes actuar",
+                microTitle: "Nivel Micro",
+                mi1: "Participar en limpiezas comunitarias y proyectos de espacios verdes.",
+                mi2: "Adoptar hábitos de ahorro de agua y energía.",
+                mi3: "Educare a pares compartiendo iniciativas de conciencia climática.",
+                mesoTitle: "Nivel Meso",
+                me1: "Colaborar con municipios para proteger cuencas hidrográficas.",
+                me2: "Integrar programas de educación climática en instituciones educativas.",
+                me3: "Apoyar iniciativas regionales de sostenibilidad.",
                 linksTitle: "Enlaces Útiles y Recursos",
-                link1Text: "Fondation Rivières – Portal Oficial de Conservación de Ríos",
-                link2Text: "Audito – Plataforma de seguimiento de aguas residuales",
-                link3Text: "Alliance pour l'accès à la nature – Iniciativa de acceso público",
-                link4Text: "Hydro-Québec – Resumen de la red e infraestructura energética",
+                link1Text: "Climate Week NYC – Sitio Web Oficial",
+                link2Text: "CMNUCC – Convención Marco de las Naciones Unidas sobre el Cambio Climático",
+                link3Text: "Naciones Unidas – Descripción general de los ODS",
                 exploreBtnText: "Explorar más proyectos"
             }
         };
@@ -1147,38 +1257,50 @@
             document.getElementById('summary-title').innerHTML = `<i class="fa-solid fa-list-check"></i> ${t.summaryTitle}`;
             document.getElementById('sum-1-title').innerText = t.sum1Title; document.getElementById('sum-1-desc').innerText = t.sum1Desc;
             document.getElementById('sum-2-title').innerText = t.sum2Title; document.getElementById('sum-2-desc').innerText = t.sum2Desc;
-            document.getElementById('sum-3-title').innerText = t.sum3Title; document.getElementById('sum-3-desc').innerText = t.sum3Desc;
             document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
             
             document.getElementById('about-title').innerText = t.aboutTitle;
             document.getElementById('about-p1').innerText = t.aboutP1;
-            document.getElementById('about-p2').innerText = t.aboutP2;
+            document.getElementById('ch-1').innerText = t.ch1;
+            document.getElementById('ch-2').innerText = t.ch2;
+            document.getElementById('ch-3').innerText = t.ch3;
+            document.getElementById('ch-4').innerText = t.ch4;
 
             document.getElementById('facts-heading').innerText = t.factsHeading;
             document.getElementById('f1-text').innerText = t.f1Text;
+            document.getElementById('f1-source').innerText = t.f1Source;
             document.getElementById('f2-text').innerText = t.f2Text;
+            document.getElementById('f2-source').innerText = t.f2Source;
             document.getElementById('f3-text').innerText = t.f3Text;
+            document.getElementById('f3-source').innerText = t.f3Source;
 
-            document.getElementById('interview-title').innerText = t.interviewTitle;
-            document.getElementById('profile-name').innerText = t.profileName;
-            document.getElementById('profile-role').innerText = t.profileRole;
-            document.getElementById('profile-bio').innerText = t.profileBio;
-            
-            document.getElementById('q1-text').innerText = t.q1Text; document.getElementById('a1-text').innerText = t.a1Text;
-            document.getElementById('quote-text').innerHTML = `${t.quoteText}<br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Fondation Rivières, Québec 2026</small>`;
-            document.getElementById('q2-text').innerText = t.q2Text; document.getElementById('a2-text').innerText = t.a2Text;
-            document.getElementById('q3-text').innerText = t.q3Text; document.getElementById('a3-text').innerText = t.a3Text;
-
-            document.getElementById('pillars-heading').innerText = t.pillarsHeading;
+            document.getElementById('approach-heading').innerText = t.approachHeading;
+            document.getElementById('approach-desc').innerText = t.approachDesc;
             document.getElementById('p1-title').innerText = t.p1Title; document.getElementById('p1-desc').innerText = t.p1Desc;
             document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2Desc;
             document.getElementById('p3-title').innerText = t.p3Title; document.getElementById('p3-desc').innerText = t.p3Desc;
+            document.getElementById('p4-title').innerText = t.p4Title; document.getElementById('p4-desc').innerText = t.p4Desc;
+
+            document.getElementById('learning-heading').innerText = t.learningHeading;
+            document.getElementById('l1-title').innerText = t.l1Title; document.getElementById('l1-desc').innerText = t.l1Desc;
+            document.getElementById('l2-title').innerText = t.l2Title; document.getElementById('l2-desc').innerText = t.l2Desc;
+            document.getElementById('l3-title').innerText = t.l3Title; document.getElementById('l3-desc').innerText = t.l3Desc;
+            document.getElementById('l4-title').innerText = t.l4Title; document.getElementById('l4-desc').innerText = t.l4Desc;
+
+            document.getElementById('action-heading').innerText = t.actionHeading;
+            document.getElementById('micro-title').innerText = t.microTitle;
+            document.getElementById('mi-1').innerText = t.mi1;
+            document.getElementById('mi-2').innerText = t.mi2;
+            document.getElementById('mi-3').innerText = t.mi3;
+            document.getElementById('meso-title').innerText = t.mesoTitle;
+            document.getElementById('me-1').innerText = t.me1;
+            document.getElementById('me-2').innerText = t.me2;
+            document.getElementById('me-3').innerText = t.me3;
 
             document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
             document.getElementById('link1-text').innerText = t.link1Text;
             document.getElementById('link2-text').innerText = t.link2Text;
             document.getElementById('link3-text').innerText = t.link3Text;
-            document.getElementById('link4-text').innerText = t.link4Text;
 
             document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
         }
