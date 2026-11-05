@@ -147,29 +147,12 @@
             border-top: 5px solid var(--accent-green);
         }
 
-        .hero-title-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-
         .project-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.6rem, 4vw, 2.4rem);
             color: var(--primary-dark);
+            margin-bottom: 25px;
             line-height: 1.3;
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .hero-wwf-logo {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
-            flex-shrink: 0;
         }
 
         .hero-meta {
@@ -203,6 +186,17 @@
             font-size: 1.2rem;
         }
 
+        /* Meta-Logo (WWF Logo Badge im Meta-Bereich) */
+        .meta-partner-logo {
+            height: 26px;
+            width: auto;
+            object-fit: contain;
+            background: var(--bg-light);
+            padding: 3px 6px;
+            border-radius: 6px;
+            border: 1px solid #E2E8F0;
+        }
+
         .sdg-icons {
             display: flex;
             gap: 10px;
@@ -223,7 +217,7 @@
             transform: scale(1.05);
         }
 
-        /* MAP & SUMMARY LAYOUT */
+        /* MAP & TOPICS LAYOUT */
         .map-section-grid {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -741,14 +735,14 @@
 
         <!-- HERO SEKTION -->
         <section class="project-hero">
-            <div class="hero-title-wrapper">
-                <h1 id="hero-title">Protecting and Conserving Colombia's Natural Ecosystems</h1>
-                <img src="https://upload.wikimedia.org/wikipedia/de/2/22/WWF_Logo.svg" alt="WWF Logo" class="hero-wwf-logo">
-            </div>
+            <h1 id="hero-title">Protecting and Conserving Colombia's Natural Ecosystems</h1>
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Colombia, Various Locations</span></div>
                     <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2024</span></div>
+                    <div class="meta-item">
+                        <img src="Pics/Colombia/wwf_logo_large_rgb_72dpi_1.jpg" alt="WWF Logo" class="meta-partner-logo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Colombia/wwf_logo_large_rgb_72dpi_1.jpg';">
+                    </div>
                 </div>
                 <div class="sdg-icons">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11" class="sdg-img" title="SDG 11: Sustainable Cities & Communities">
@@ -857,7 +851,7 @@
             <div class="section-header">
                 <h2 id="pillars-heading">Our Approach</h2>
                 <div class="partner-box">
-                    <img src="https://upload.wikimedia.org/wikipedia/de/2/22/WWF_Logo.svg" alt="WWF Logo">
+                    <img src="Pics/Colombia/wwf_logo_large_rgb_72dpi_1.jpg" alt="WWF Logo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Colombia/wwf_logo_large_rgb_72dpi_1.jpg';">
                     <span style="font-size: 0.85rem; font-weight: 600; color: var(--primary-dark);">Partner</span>
                 </div>
             </div>
@@ -1170,7 +1164,7 @@
                 p3Desc: "Intégration de la méliponiculture (abeilles sans dards) et de la culture du café sous ombrage à Salento.",
                 stepsTitle: "Étapes clés de notre initiative",
                 step1Title: "1. Mobiliser", step1Desc: "Aligner les financements institutionnels avec les priorités de conservation sur le terrain.",
-                step2Title: "2. S'associer", step2Desc: "Réunir les communautés locales et les autorités via « Unidos por el Planeta ».",
+                step2Title: "2. S'associer", step2Desc: "Réunir les communautés locales et les autorités via « Unidos por le Planeta ».",
                 step3Title: "3. Protéger", step3Desc: "Surveiller les écosystèmes de páramo et établir des zones de protection stricte.",
                 step4Title: "4. Pérenniser", step4Desc: "Promouvoir le commerce équitable du café et l'écotourisme communautaire.",
                 actionHeading: "Comment pouvez-vous agir",
