@@ -10,18 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome für Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Leaflet CSS für die Minimap -->
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
         :root {
-            --primary-dark: #1B4D3E;   /* Tiefes Waldgrün */
-            --accent-green: #2A7B62;   /* Frisches Hellgrün */
-            --bg-light: #F4F8F6;       /* Softes Naturweiß */
-            --text-color: #1C2A39;     /* Dunkles Schiefergrau */
+            --primary-dark: #1B4D3E;   
+            --accent-green: #2A7B62;   
+            --bg-light: #F4F8F6;       
+            --text-color: #1C2A39;     
             --white: #FFFFFF;
         }
 
@@ -137,7 +137,7 @@
             animation: fadeIn 0.8s ease-out forwards;
         }
 
-        /* HERO SEKTION */
+        /* HERO SECTION */
         .project-hero {
             background: var(--white);
             padding: 35px;
@@ -184,6 +184,15 @@
         .meta-item i {
             color: var(--accent-green);
             font-size: 1.2rem;
+        }
+
+        .partner-logo-inline {
+            height: 50px;
+            width: auto;
+            margin-left: 12px;
+            vertical-align: middle;
+            background: transparent !important;
+            mix-blend-mode: multiply;
         }
 
         /* SDG ICONS */
@@ -402,35 +411,13 @@
             margin-top: 2px;
         }
 
-        .image-placeholder {
+        .grid-image img {
             width: 100%;
             height: 260px;
+            object-fit: cover;
             border-radius: 10px;
-            background: var(--bg-light);
-            border: 2px dashed #A0AEC0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #718096;
-            text-align: center;
-            padding: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        .image-placeholder:hover {
-            border-color: var(--accent-green);
-        }
-
-        .image-placeholder i {
-            font-size: 2.5rem;
-            color: var(--accent-green);
-            margin-bottom: 10px;
-        }
-
-        .image-placeholder span {
-            font-size: 0.9rem;
-            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: block;
         }
 
         /* FACTS GRID */
@@ -529,13 +516,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
-        .card-image-container img {
+        .card-image-container a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-image-container img.cover-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image-container:hover img.cover-photo {
+            transform: scale(1.05);
         }
 
         /* EXPERTS INSIGHTS GRID */
@@ -709,9 +708,8 @@
         <div class="header-left">
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="Aguatura Pics/logo/Aguatura-logo.jpg" 
-                         alt="Aguatura Logo" 
-                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Logo.png';">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/logo/Aguatura-logo.jpg" 
+                         alt="Aguatura Logo">
                 </a>
             </div>
             <nav>
@@ -747,11 +745,20 @@
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">New York City, USA</span></div>
-                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-calendar-days"></i> 
+                        <span id="project-year">2026</span>
+                        <img src="Pics/climateweek/logocw.png" 
+                             alt="Climate Week NYC Logo" 
+                             class="partner-logo-inline"
+                             onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/climateweek/logocw.png';">
+                    </div>
                 </div>
                 <div class="sdg-icons">
-                    <img src="Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13: Climate Action" class="sdg-img" title="SDG 13: Climate Action">
-                    <img src="Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15: Life on Land" class="sdg-img" title="SDG 15: Life on Land">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11: Sustainable Cities and Communities" class="sdg-img" title="SDG 11: Sustainable Cities and Communities">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-12.jpg" alt="SDG 12: Responsible Consumption and Production" class="sdg-img" title="SDG 12: Responsible Consumption and Production">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13: Climate Action" class="sdg-img" title="SDG 13: Climate Action">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-17.jpg" alt="SDG 17: Partnerships for the Goals" class="sdg-img" title="SDG 17: Partnerships for the Goals">
                 </div>
             </div>
         </section>
@@ -812,10 +819,7 @@
                     </ul>
                 </div>
                 <div class="grid-image">
-                    <div class="image-placeholder">
-                        <i class="fa-solid fa-city"></i>
-                        <span>Upload Climate Challenge Picture</span>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/Capture%20d%E2%80%99e%CC%81cran%202026-11-03%20a%CC%80%2019.00.39.png" alt="Climate Action Image">
                 </div>
             </div>
         </section>
@@ -863,20 +867,19 @@
                         <p id="p1-desc">Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="Pics/new-york-climate-week/movie.png" alt="Movie Screening">
+                        <a href="https://www.youtube.com/watch?v=h3mRsvFmWi0" target="_blank" title="Watch Movie Screening on YouTube">
+                            <img src="Pics/new-york-climate-week/Capture d’écran 2026-11-05 à 13.33.14.png" alt="Movie Screening" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Capture%20d%E2%80%99e%CC%81cran%202026-11-05%20a%CC%80%2013.33.14.png';">
+                        </a>
                     </div>
                 </div>
 
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-seedling"></i> <span id="p2-title">Community Restoration</span></h4>
-                        <p id="p2-desc">Hands-on environmental action partnering with local communities to restore green spaces.</p>
+                        <p id="p2-desc">Hands-on environmental action partnering with association LES ECO to restore green spaces.</p>
                     </div>
                     <div class="card-image-container">
-                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
-                            <i class="fa-solid fa-image"></i>
-                            <span style="font-size: 0.75rem;">Upload Image</span>
-                        </div>
+                        <img src="Pics/new-york-climate-week/LES ECO marie gardening.jpg" alt="Community Restoration with LES ECO" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/LES%20ECO%20marie%20gardening.jpg';">
                     </div>
                 </div>
 
@@ -886,23 +889,17 @@
                         <p id="p3-desc">Engaging sessions uniting science and art to promote deep water literacy and conservation.</p>
                     </div>
                     <div class="card-image-container">
-                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
-                            <i class="fa-solid fa-image"></i>
-                            <span style="font-size: 0.75rem;">Upload Image</span>
-                        </div>
+                        <img src="Pics/new-york-climate-week/Capture d’écran 2026-11-05 à 13.39.38.png" alt="WaterWays Initiative" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Capture%20d%E2%80%99e%CC%81cran%202026-11-05%20a%CC%80%2013.39.38.png';">
                     </div>
                 </div>
 
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-graduation-cap"></i> <span id="p4-title">Columbia Pitch</span></h4>
-                        <p id="p4-desc">Supporting students at Columbia University as they pitch innovative sustainable business ideas.</p>
+                        <p id="p4-desc">A grant was awarded to the best student project aiming to create a student second-hand furniture platform.</p>
                     </div>
                     <div class="card-image-container">
-                        <div class="image-placeholder" style="width: 100%; height: 100%; border: 2px dashed #A0AEC0; background: var(--bg-light); border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718096;">
-                            <i class="fa-solid fa-image"></i>
-                            <span style="font-size: 0.75rem;">Upload Image</span>
-                        </div>
+                        <img src="Pics/new-york-climate-week/Columbia winner.jpg" alt="Columbia Pitch Winner" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Columbia%20winner.jpg';">
                     </div>
                 </div>
             </div>
@@ -922,7 +919,7 @@
                     </ul>
                 </div>
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-water"></i> <span id="l2-title">Water Security</span></h4>
+                    <h4><i class="fa-solid fa-water"></i> <span id="l2-title">WaterSecurity</span></h4>
                     <ul>
                         <li id="l2-desc">Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.</li>
                     </ul>
@@ -972,6 +969,21 @@
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
             <ul class="useful-links-list">
                 <li>
+                    <a href="https://www.youtube.com/watch?v=h3mRsvFmWi0" target="_blank">
+                        <i class="fa-brands fa-youtube"></i> <span id="link4-text">Documentary Movie Screening – Watch on YouTube</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.lesecologycenter.org/" target="_blank">
+                        <i class="fa-solid fa-seedling"></i> <span id="link5-text">LES Ecology Center – Community Restoration Partner</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.waterways.org/" target="_blank">
+                        <i class="fa-solid fa-water"></i> <span id="link6-text">WaterWays – Official Website & Resources</span>
+                    </a>
+                </li>
+                <li>
                     <a href="https://www.climateweeknyc.org/" target="_blank">
                         <i class="fa-solid fa-globe"></i> <span id="link1-text">Climate Week NYC – Official Website & Global Program</span>
                     </a>
@@ -1008,7 +1020,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Vue de la carte dézoomée (zoom: 1.8, latitude centrée à 45.0)
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -1074,9 +1085,9 @@
                 approachHeading: "Our Approach",
                 approachDesc: "Our strategic framework merges high-level international dialogue with grassroots engagement. By combining storytelling, community restoration, water literacy, and academic innovation, we bridge the gap between global policy and tangible local impact.",
                 p1Title: "The Movie Screening", p1Desc: "Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.",
-                p2Title: "Community Restoration", p2Desc: "Hands-on environmental action partnering with local communities to restore green spaces.",
+                p2Title: "Community Restoration", p2Desc: "Hands-on environmental action partnering with association LES ECO to restore green spaces.",
                 p3Title: "WaterWays Initiative", p3Desc: "Engaging sessions uniting science and art to promote deep water literacy and conservation.",
-                p4Title: "Columbia Pitch", p4Desc: "Supporting students at Columbia University as they pitch innovative sustainable business ideas.",
+                p4Title: "Columbia Pitch", p4Desc: "A grant was awarded to the best student project aiming to create a student second-hand furniture platform.",
                 learningHeading: "Experts Insights",
                 l1Title: "Systemic Integration", l1Desc: "Experts emphasize that tackling climate change requires cross-sector collaboration, uniting finance, technology, and grassroots activism.",
                 l2Title: "Water Security", l2Desc: "Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.",
@@ -1092,6 +1103,9 @@
                 me2: "Integrate climate literacy programs into local educational institutions and universities.",
                 me3: "Support regional sustainability initiatives and green-collar business incubators.",
                 linksTitle: "Useful Links & Resources",
+                link4Text: "Documentary Movie Screening – Watch on YouTube",
+                link5Text: "LES Ecology Center – Community Restoration Partner",
+                link6Text: "WaterWays – Official Website & Resources",
                 link1Text: "Climate Week NYC – Official Website & Global Program",
                 link2Text: "UNFCCC – United Nations Framework Convention on Climate Change",
                 link3Text: "United Nations – Sustainable Development Goals (SDGs) Overview",
@@ -1117,14 +1131,12 @@
                 f1Source: "Quelle: Climate Week NYC, 2026",
                 f2Text: "Globale Anstrengungen konzentrieren sich auf das 1,5-Grad-Ziel des Pariser Abkommens.",
                 f2Source: "Quelle: UNFCCC, 2025",
-                f3Text: "Städtische Gebiete verursachen über 70 % der weltweiten Kohlenstoffemissionen.",
-                f3Source: "Quelle: UNEP, 2025",
                 approachHeading: "Unser Ansatz",
                 approachDesc: "Unser strategischer Rahmen verbindet internationalen Dialog mit lokalem Engagement durch Storytelling, Renaturierung, Wasserkompetenz und Innovation.",
                 p1Title: "Das Film-Screening", p1Desc: "Sonderaufführung des Dokumentarfilms, gesprochen von Benedict Cumberbatch.",
-                p2Title: "Community-Restaurierung", p2Desc: "Praktischer Umweltschutz zur Wiederherstellung von Grünflächen.",
+                p2Title: "Community-Restaurierung", p2Desc: "Praktischer Umweltschutz in Partnerschaft mit dem Verein LES ECO zur Wiederherstellung von Grünflächen.",
                 p3Title: "WaterWays-Initiative", p3Desc: "Sitzungen zur Förderung des Bewusstseins für Wasserschutz.",
-                p4Title: "Columbia Pitch", p4Desc: "Unterstützung von Studierenden bei nachhaltigen Geschäftsideen.",
+                p4Title: "Columbia Pitch", p4Desc: "Ein Stipendium wurde an das beste Studentenprojekt zur Erstellung einer Second-Hand-Möbelplattform vergeben.",
                 learningHeading: "Experteneinblicke",
                 l1Title: "Systemische Integration", l1Desc: "Klimaschutz erfordert branchenübergreifende Zusammenarbeit.",
                 l2Title: "Wassersicherheit", l2Desc: "Wassersysteme sind Frühindikatoren für ökologische Veränderungen.",
@@ -1140,6 +1152,9 @@
                 me2: "Klimabildung in Bildungseinrichtungen integrieren.",
                 me3: "Regionale Nachhaltigkeitsinitiativen unterstützen.",
                 linksTitle: "Nützliche Links & Ressourcen",
+                link4Text: "Dokumentarfilm-Screening – Auf YouTube ansehen",
+                link5Text: "LES Ecology Center – Partner für Gemeinschaftsrestaurierung",
+                link6Text: "WaterWays – Offizielle Website & Ressourcen",
                 link1Text: "Climate Week NYC – Offizielle Website",
                 link2Text: "UNFCCC – Klimarahmenkonvention der Vereinten Nationen",
                 link3Text: "Vereinte Nationen – Übersicht zu den SDGs",
@@ -1170,9 +1185,9 @@
                 approachHeading: "Notre Approche",
                 approachDesc: "Notre cadre stratégique fusionne le dialogue international de haut niveau et l'engagement de terrain à travers la narration, la restauration et l'innovation.",
                 p1Title: "La Projection du Film", p1Desc: "Projection spéciale du documentaire narré par Benedict Cumberbatch.",
-                p2Title: "Restauration Communautaire", p2Desc: "Action environnementale pratique pour restaurer les espaces verts urbains.",
+                p2Title: "Restauration Communautaire", p2Desc: "Action environnementale pratique en partenariat avec l'association LES ECO pour restaurer les espaces verts.",
                 p3Title: "Initiative WaterWays", p3Desc: "Sessions unissant science et art pour promouvoir la sensibilisation à l'eau.",
-                p4Title: "Columbia Pitch", p4Desc: "Soutien aux étudiants présentant des idées d'entreprise durables.",
+                p4Title: "Columbia Pitch", p4Desc: "Une bourse a été attribuée au meilleur projet étudiant visant à créer une plateforme de seconde main pour le mobilier étudiant.",
                 learningHeading: "Avis d'Experts",
                 l1Title: "Intégration Systémique", l1Desc: "L'action climatique nécessite une collaboration intersectorielle unissant finance et activisme.",
                 l2Title: "Sécurité de l'Eau", l2Desc: "Les systèmes hydriques sont les premiers indicateurs de perturbation écologique.",
@@ -1188,6 +1203,9 @@
                 me2: "Intégrer l'éducation climatique dans les établissements scolaires et universités.",
                 me3: "Soutenir les initiatives régionales de développement durable.",
                 linksTitle: "Liens Utiles & Ressources",
+                link4Text: "Projection du Documentaire – Regarder sur YouTube",
+                link5Text: "LES Ecology Center – Partenaire de restauration communautaire",
+                link6Text: "WaterWays – Site officiel et ressources",
                 link1Text: "Climate Week NYC – Site Officiel et Programme",
                 link2Text: "CCNUCC – Convention-cadre des Nations Unies sur les changements climatiques",
                 link3Text: "Nations Unies – Vue d'ensemble des ODD",
@@ -1218,9 +1236,9 @@
                 approachHeading: "Nuestro Enfoque",
                 approachDesc: "Nuestro marco estratégico fusiona el diálogo internacional con el compromiso comunitario mediante la narración, restauración e innovación.",
                 p1Title: "Proyección de la Película", p1Desc: "Proyección especial del documental narrado por Benedict Cumberbatch.",
-                p2Title: "Restauración Comunitaria", p2Desc: "Acción ambiental práctica para restaurar espacios verdes.",
+                p2Title: "Restauración Comunitaria", p2Desc: "Acción ambiental práctica en colaboración con la asociación LES ECO para restaurar espacios verdes.",
                 p3Title: "Iniciativa WaterWays", p3Desc: "Sesiones que unen ciencia y arte para promover la conservación.",
-                p4Title: "Columbia Pitch", p4Desc: "Apoyo a estudiantes en la presentación de ideas sostenibles.",
+                p4Title: "Columbia Pitch", p4Desc: "Se otorgó una beca al mejor proyecto estudiantil para crear una plataforma de muebles de segunda mano.",
                 learningHeading: "Perspectivas de Expertos",
                 l1Title: "Integración Sistémica", l1Desc: "La acción climática requiere colaboración intersectorial.",
                 l2Title: "Seguridad del Agua", l2Desc: "Los sistemas hídricos son los primeros indicadores de alteración ecológica.",
@@ -1236,6 +1254,9 @@
                 me2: "Integrar programas de educación climática en instituciones educativas.",
                 me3: "Apoyar iniciativas regionales de sostenibilidad.",
                 linksTitle: "Enlaces Útiles y Recursos",
+                link4Text: "Proyección del Documental – Ver en YouTube",
+                link5Text: "LES Ecology Center – Socio de restauración comunitaria",
+                link6Text: "WaterWays – Sitio web oficial y recursos",
                 link1Text: "Climate Week NYC – Sitio Web Oficial",
                 link2Text: "CMNUCC – Convención Marco de las Naciones Unidas sobre el Cambio Climático",
                 link3Text: "Naciones Unidas – Descripción general de los ODS",
@@ -1298,6 +1319,9 @@
             document.getElementById('me-3').innerText = t.me3;
 
             document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
+            document.getElementById('link4-text').innerText = t.link4Text;
+            document.getElementById('link5-text').innerText = t.link5Text;
+            document.getElementById('link6-text').innerText = t.link6Text;
             document.getElementById('link1-text').innerText = t.link1Text;
             document.getElementById('link2-text').innerText = t.link2Text;
             document.getElementById('link3-text').innerText = t.link3Text;
