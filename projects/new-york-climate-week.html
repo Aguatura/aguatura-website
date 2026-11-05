@@ -857,7 +857,6 @@
             </div>
 
             <div class="pillars-grid">
-                <!-- Movie Screening mis à jour avec movie.png -->
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-film"></i> <span id="p1-title">The Movie Screening</span></h4>
@@ -1009,6 +1008,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Niveau de zoom réduit à 2.5 pour dézoomer encore plus la carte
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -1017,7 +1017,7 @@
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([39.8283, -98.5795], 3.5);
+            }).setView([39.8283, -98.5795], 2.5);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -1238,7 +1238,7 @@
                 linksTitle: "Enlaces Útiles y Recursos",
                 link1Text: "Climate Week NYC – Sitio Web Oficial",
                 link2Text: "CMNUCC – Convención Marco de las Naciones Unidas sobre el Cambio Climático",
-                link3Text: "Naciones Unidas – Descripción general de los ODS",
+                link3Text: "Nations Unidas – Descripción general de los ODS",
                 exploreBtnText: "Explorar más proyectos"
             }
         };
