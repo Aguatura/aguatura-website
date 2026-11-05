@@ -408,12 +408,9 @@
         .grid-image img {
             width: 100%;
             height: auto;
-            max-height: 320px;
-            object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
-            background-color: #f9f9f9;
         }
 
         /* PILLARS / APPROACH GRID */
@@ -454,22 +451,18 @@
         .card-image-container {
             width: 100%;
             height: auto;
-            max-height: 220px;
             border-radius: 6px;
             overflow: hidden;
             background: var(--white);
             box-shadow: 0 2px 6px rgba(0,0,0,0.06);
             margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .card-image-container img {
             width: 100%;
             height: auto;
-            max-height: 220px;
-            object-fit: contain;
+            max-height: 240px;
+            object-fit: cover;
             display: block;
         }
 
@@ -720,7 +713,7 @@
             <h1 id="hero-title">Transforming local forests towards climate resilience and biodiversity in Bavaria</h1>
             <div class="hero-meta">
                 <div class="meta-details">
-                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Pirk, Bavaria, Germany</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Pirk, Germany</span></div>
                     <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2022 (ongoing)</span></div>
                 </div>
                 <div class="sdg-icons">
@@ -911,13 +904,14 @@
                     <ul>
                         <li id="mi-1">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
                         <li id="mi-2">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
-                        <li id="mi-3">Practice Selective Harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
+                        <li id="mi-3">Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.</li>
+                        <li id="mi-4">Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <h4><i class="fa-solid fa-people-group"></i> <span id="meso-title">Meso Level</span></h4>
                     <ul>
-                        <li id="me-1">Engage with Forest Owner Associations: Join local *Forstbetriebsgemeinschaften* (FBG) to coordinate regional timber harvesting and share peer expertise.</li>
+                        <li id="me-1">Connect our forest groups with owners and other institutions: Coordinate regional timber harvesting and share peer expertise.</li>
                         <li id="me-2">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
                         <li id="me-3">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
                     </ul>
@@ -985,7 +979,7 @@
 
                     L.marker([49.635, 12.117], { icon: pirkIcon })
                         .addTo(map)
-                        .bindTooltip('<b>Forest Restoration Pirk</b><br>Bavaria, Germany', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
+                        .bindTooltip('<b>Forest Restoration Pirk</b><br>Germany', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
                         .openTooltip();
                 })
                 .catch(err => console.error("Kartendaten Fehler: ", err));
@@ -997,7 +991,7 @@
             en: {
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
                 heroTitle: "Transforming local forests towards climate resilience and biodiversity in Bavaria",
-                locationMeta: "Pirk, Bavaria, Germany",
+                locationMeta: "Pirk, Germany",
                 projectYear: "2022 (ongoing)",
                 summaryTitle: "Project Topics",
                 sum1Title: "Monoculture Conversion", sum1Desc: "Replacing vulnerable species with resilient mixed forests",
@@ -1034,15 +1028,13 @@
                 microTitle: "Micro Level",
                 mi1: "Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.",
                 mi2: "Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.",
-                mi3: "Practice Selective Harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.",
+                mi3: "Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.",
+                mi4: "Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.",
                 mesoTitle: "Meso Level",
-                me1: "Engage with Forest Owner Associations: Join local *Forstbetriebsgemeinschaften* (FBG) to coordinate regional timber harvesting and share peer expertise.",
+                me1: "Connect our forest groups with owners and other institutions: Coordinate regional timber harvesting and share peer expertise.",
                 me2: "Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.",
                 me3: "Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.",
                 linksTitle: "Useful Links & Resources",
-                link1Text: "FAO Sustainable Forest Management & Restoration Toolbox",
-                link2Text: "IUFRO – International Union of Forest Research Organizations",
-                link3Text: "WRI Forest Landscape Restoration & Global Forest Watch",
                 links: [
                     { name: "FAO Sustainable Forest Management & Restoration Toolbox", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/en", desc: "— Global guidelines, practical tools, and technical modules for restoring degraded forest ecosystems." },
                     { name: "IUFRO – International Union of Forest Research Organizations", url: "https://www.iufro.org/", desc: "— Global network for forest science, silvicultural research, and climate-adaptive forestry." },
@@ -1052,8 +1044,8 @@
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
-                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität in Bayern transformieren",
-                locationMeta: "Pirk, Bayern, Deutschland",
+                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität transformieren",
+                locationMeta: "Pirk, Deutschland",
                 projectYear: "2022 (laufend)",
                 summaryTitle: "Projektthemen",
                 sum1Title: "Monokultur-Umbau", sum1Desc: "Ersatz anfälliger Arten durch widerstandsfähige Mischwälder",
@@ -1090,9 +1082,10 @@
                 microTitle: "Mikro-Ebene",
                 mi1: "Lokale Forstämter kontaktieren: Holen Sie sich professionelle Beratung und maßgeschneiderte Managementpläne bei Ihrem regionalen Amt ein.",
                 mi2: "Natürliche Verjüngung fördern: Lassen Sie natürliche Sukzession zu und behalten Sie Totholz für die Bodenregeneration bei.",
-                mi3: "Selektive Holzentnahme: Balancieren Sie die Eigenversorgung sorgfältig mit dem Schutz des Kronendachs aus.",
+                mi3: "Selektive Pflanzung diverser und klimaresistenter Arten: Wählen Sie widerstandsfähige heimische Mischungen.",
+                mi4: "Selektive und nachhaltige Holzentnahme: Balancieren Sie die Eigenversorgung sorgfältig mit dem Kronendachschutz aus.",
                 mesoTitle: "Meso-Ebene",
-                me1: "Forstbetriebsgemeinschaften beitreten: Schließen Sie sich lokalen FBG-Gruppen an, um Erfahrungen auszutauschen.",
+                me1: "Verbindung unserer Forstgruppen mit Eigentümern und anderen Institutionen: Regionale Holsernte koordinieren und Fachwissen austauschen.",
                 me2: "Staatliche Fördermittel nutzen: Nutzen Sie staatliche Zuschüsse für den klimaresistenten Waldumbau.",
                 me3: "Öffentlichkeitsarbeit & Bildung: Organisieren Sie regionale Workshops zur Biodiversität.",
                 linksTitle: "Nützliche Links & Ressourcen",
@@ -1105,8 +1098,8 @@
             },
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
-                heroTitle: "Transformer les forêts locales pour la résilience climatique et la biodiversité en Bavière",
-                locationMeta: "Pirk, Bavière, Allemagne",
+                heroTitle: "Transformer les forêts locales pour la résilience climatique et la biodiversité",
+                locationMeta: "Pirk, Allemagne",
                 projectYear: "2022 (en cours)",
                 summaryTitle: "Thèmes du Projet",
                 sum1Title: "Conversion de Monoculture", sum1Desc: "Remplacer les espèces vulnérables par des forêts mixtes",
@@ -1139,13 +1132,14 @@
                 step2Title: "2. Planifier", step2Desc: "Définition des plannings de restauration à long terme et obtention des subventions.",
                 step3Title: "3. Mettre en œuvre", step3Desc: "Plantation d'arbres résilients, promotion de la succession naturelle et préservation du bois mort.",
                 step4Title: "4. Suivre", step4Desc: "Évaluation continue de la croissance de la forêt et adaptation de la gestion.",
-                actionTitle: "Comment pouvez-vous agir",
+                actionHeading: "Comment pouvez-vous agir",
                 microTitle: "Niveau Micro",
                 mi1: "Consulter les autorités forestières : Contactez votre bureau forestier régional pour des conseils professionnels.",
                 mi2: "Promouvoir la régénération naturelle : Laissez la succession naturelle et préservez le bois mort.",
-                mi3: "Pratiquer une récolte sélective : Équilibrez l'autosuffisance en bois et la protection du couvert.",
+                mi3: "Plantation sélective d'espèces diverses et résilientes au climat.",
+                mi4: "Récolte sélective et durable.",
                 mesoTitle: "Niveau Méso",
-                me1: "Rejoindre des groupements forestiers : Collaborez avec les associations locales FBG.",
+                me1: "Connecter nos groupes forestiers avec les propriétaires et d'autres institutions.",
                 me2: "Utiliser les subventions publiques : Profitez des aides gouvernementales.",
                 me3: "Sensibilisation et éducation : Organisez des ateliers régionaux sur la biodiversité.",
                 linksTitle: "Liens Utiles & Ressources",
@@ -1157,8 +1151,8 @@
             },
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
-                heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad en Baviera",
-                locationMeta: "Pirk, Baviera, Alemania",
+                heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad",
+                locationMeta: "Pirk, Alemania",
                 projectYear: "2022 (en curso)",
                 summaryTitle: "Temas del Proyecto",
                 sum1Title: "Conversión de Monocultivo", sum1Desc: "Reemplazar especies vulnerables por bosques mixtos resilientes",
@@ -1191,14 +1185,14 @@
                 step2Title: "2. Planificar", step2Desc: "Definición de plazos de restauración y obtención de programas de apoyo regional.",
                 step3Title: "3. Implementar", step3Desc: "Plantación de árboles resilientes, promoción de la sucesión natural y conservación de madera muerta.",
                 step4Title: "4. Monitorear", step4Desc: "Evaluación continua del crecimiento forestal y adaptación de prácticas de gestión.",
-                actionTitle: "Cómo puedes actuar",
+                actionHeading: "Cómo puedes actuar",
                 microTitle: "Nivel Micro",
                 mi1: "Consultar a las autoridades forestales: Contacte a su oficina regional para asesoramiento profesional.",
                 mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta.",
-                mi3: "Practicar la cosecha selectiva: Equilibre la subsistencia sostenible con la protección del dosel.",
+                mi3: "Plantación selectiva de especies diversas y resilientes al clima.",
+                mi4: "Cosecha selectiva y sostenible.",
                 mesoTitle: "Nivel Meso",
-                mesoTitle: "Nivel Meso",
-                me1: "Unirse a asociaciones de propietarios: Colabore con grupos locales FBG.",
+                me1: "Conectar nuestros grupos forestales con propietarios y otras instituciones.",
                 me2: "Utilizar subsidios estatales: Aproveche las ayudas gubernamentales para la conversión.",
                 me3: "Educación y divulgación: Organice talleres regionales sobre biodiversidad.",
                 linksTitle: "Enlaces Útiles y Recursos",
@@ -1271,11 +1265,12 @@
             document.getElementById('step3-title').innerHTML = `<i class="fa-solid fa-seedling"></i> ${t.step3Title}`; document.getElementById('step3-desc').innerText = t.step3Desc;
             document.getElementById('step4-title').innerHTML = `<i class="fa-solid fa-chart-line"></i> ${t.step4Title}`; document.getElementById('step4-desc').innerText = t.step4Desc;
 
-            document.getElementById('action-heading').innerText = t.actionTitle;
+            document.getElementById('action-heading').innerText = t.actionHeading;
             document.getElementById('micro-title').innerHTML = `<i class="fa-solid fa-user"></i> ${t.microTitle}`;
             document.getElementById('mi-1').innerText = t.mi1;
             document.getElementById('mi-2').innerText = t.mi2;
             document.getElementById('mi-3').innerText = t.mi3;
+            document.getElementById('mi-4').innerText = t.mi4;
 
             document.getElementById('meso-title').innerHTML = `<i class="fa-solid fa-people-group"></i> ${t.mesoTitle}`;
             document.getElementById('me-1').innerText = t.me1;
