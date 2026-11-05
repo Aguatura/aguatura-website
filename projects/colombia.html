@@ -147,12 +147,29 @@
             border-top: 5px solid var(--accent-green);
         }
 
+        .hero-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
         .project-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.6rem, 4vw, 2.4rem);
             color: var(--primary-dark);
-            margin-bottom: 25px;
             line-height: 1.3;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-wwf-logo {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .hero-meta {
@@ -206,7 +223,7 @@
             transform: scale(1.05);
         }
 
-        /* MAP & SUMMARY LAYOUT */
+        /* MAP & TOPICS LAYOUT */
         .map-section-grid {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -352,6 +369,21 @@
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.4rem, 3vw, 1.8rem);
             color: var(--primary-dark);
+        }
+
+        .partner-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-light);
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .partner-box img {
+            height: 30px;
+            width: auto;
         }
 
         .grid-2col {
@@ -709,11 +741,14 @@
 
         <!-- HERO SEKTION -->
         <section class="project-hero">
-            <h1 id="hero-title">Protecting and Conserving Colombia's Natural Ecosystems</h1>
+            <div class="hero-title-wrapper">
+                <h1 id="hero-title">Protecting and Conserving Colombia's Natural Ecosystems</h1>
+                <img src="https://upload.wikimedia.org/wikipedia/de/2/22/WWF_Logo.svg" alt="WWF Logo" class="hero-wwf-logo">
+            </div>
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Colombia, Various Locations</span></div>
-                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2024 (ongoing)</span></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2024</span></div>
                 </div>
                 <div class="sdg-icons">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11" class="sdg-img" title="SDG 11: Sustainable Cities & Communities">
@@ -821,6 +856,10 @@
         <section class="content-card">
             <div class="section-header">
                 <h2 id="pillars-heading">Our Approach</h2>
+                <div class="partner-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/de/2/22/WWF_Logo.svg" alt="WWF Logo">
+                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--primary-dark);">Partner</span>
+                </div>
             </div>
             
             <div style="margin-bottom: 25px; background: var(--bg-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary-dark);">
@@ -994,7 +1033,7 @@
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
                 heroTitle: "Protecting and Conserving Colombia's Natural Ecosystems",
                 locationMeta: "Colombia, Various Locations",
-                projectYear: "2024 (ongoing)",
+                projectYear: "2024",
                 summaryTitle: "Project Topics",
                 sum1Title: "Water Security & Páramos", sum1Desc: "Protecting high-altitude sponges like Chingaza National Park",
                 sum2Title: "Multi-Stakeholder Partnerships", sum2Desc: "Aligning NGOs, civil society, and government (\"Unidos por el Planeta\")",
@@ -1048,7 +1087,7 @@
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
                 heroTitle: "Schutz und Erhalt von Kolumbiens natürlichen Ökosystemen",
                 locationMeta: "Kolumbien, Verschiedene Standorte",
-                projectYear: "2024 (laufend)",
+                projectYear: "2024",
                 summaryTitle: "Projektthemen",
                 sum1Title: "Wassersicherheit & Páramos", sum1Desc: "Schutz von Hochland-Wasserspeichern wie dem Chingaza Nationalpark",
                 sum2Title: "Multi-Stakeholder-Partnerschaften", sum2Desc: "Vernetzung von NGOs, Zivilgesellschaft und Politik („Unidos por el Planeta“)",
@@ -1102,10 +1141,10 @@
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
                 heroTitle: "Protection et conservation des écosystèmes naturels en Colombie",
                 locationMeta: "Colombie, Divers sites",
-                projectYear: "2024 (en cours)",
+                projectYear: "2024",
                 summaryTitle: "Thèmes du Projet",
                 sum1Title: "Sécurité de l'Eau & Páramos", sum1Desc: "Protection des réservoirs naturels d'altitude comme le parc Chingaza",
-                sum2Title: "Partenariats Multipartites", sum2Desc: "Alignement des ONG, de la société civile et de l'État (« Unidos por el Planeta »)",
+                sum2Title: "Partenariats Multipartites", sum2Desc: "Alignement des ONG, de la société civile et de l'État (« Unidos por le Planeta »)",
                 sum3Title: "Agroforesterie Durable", sum3Desc: "Promotion du café sous ombrage et de la méliponiculture",
                 mapHeading: "Carte du Projet",
                 challengeTitle: "Défis Principaux",
@@ -1142,7 +1181,7 @@
                 mi4: "Partage de compétences : Offrez un soutien technique aux initiatives locales de conservation.",
                 mesoTitle: "Niveau Méso",
                 me1: "Connecter les bailleurs au terrain : Créer des circuits courts de financement vers les ONG locales.",
-                me2: "Alliances multipartites : Rejoignez des réseaux régionaux comme « Unidos por el Planeta ».",
+                me2: "Alliances multipartites : Rejoignez des réseaux régionaux comme « Unidos por le Planeta ».",
                 me3: "Éducation et sensibilisation : Organisez des ateliers sur la protection de l'eau.",
                 linksTitle: "Liens Utiles & Ressources",
                 links: [
@@ -1155,7 +1194,7 @@
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
                 heroTitle: "Protección y conservación de los ecosistemas naturales de Colombia",
                 locationMeta: "Colombia, Varias Ubicaciones",
-                projectYear: "2024 (en curso)",
+                projectYear: "2024",
                 summaryTitle: "Temas del Proyecto",
                 sum1Title: "Seguridad Hídrica y Páramos", sum1Desc: "Protección de fábricas naturales de agua como el Parque Chingaza",
                 sum2Title: "Alianzas Multiactor", sum2Desc: "Uniendo a ONG, sociedad civil y gobierno («Unidos por el Planeta»)",
