@@ -407,12 +407,13 @@
 
         .grid-image img {
             width: 100%;
-            height: 260px;
-            object-fit: cover;
-            object-position: center;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
+            background-color: #f9f9f9;
         }
 
         /* PILLARS / APPROACH GRID */
@@ -452,18 +453,23 @@
 
         .card-image-container {
             width: 100%;
-            height: 160px;
+            height: auto;
+            max-height: 220px;
             border-radius: 6px;
             overflow: hidden;
             background: var(--white);
             box-shadow: 0 2px 6px rgba(0,0,0,0.06);
             margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .card-image-container img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
             display: block;
         }
 
@@ -1190,6 +1196,7 @@
                 mi1: "Consultar a las autoridades forestales: Contacte a su oficina regional para asesoramiento profesional.",
                 mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta.",
                 mi3: "Practicar la cosecha selectiva: Equilibre la subsistencia sostenible con la protección del dosel.",
+                mesoTitle: "Nivel Meso",
                 mesoTitle: "Nivel Meso",
                 me1: "Unirse a asociaciones de propietarios: Colabore con grupos locales FBG.",
                 me2: "Utilizar subsidios estatales: Aproveche las ayudas gubernamentales para la conversión.",
