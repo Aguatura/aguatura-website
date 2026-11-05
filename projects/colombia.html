@@ -186,15 +186,12 @@
             font-size: 1.2rem;
         }
 
-        /* Meta-Logo (WWF Logo Badge im Meta-Bereich) */
+        /* Meta-Logo (Ohne Rahmen, direkt eingefügt) */
         .meta-partner-logo {
-            height: 26px;
+            height: 24px;
             width: auto;
             object-fit: contain;
-            background: var(--bg-light);
-            padding: 3px 6px;
-            border-radius: 6px;
-            border: 1px solid #E2E8F0;
+            display: block;
         }
 
         .sdg-icons {
@@ -774,10 +771,17 @@
                         </div>
                     </li>
                     <li class="location-item">
+                        <div class="location-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <div class="location-text">
+                            <strong id="focus-3-title">Multi-Stakeholder Partnerships</strong>
+                            <span id="loc-3">Aligning NGOs, civil society, and government ("Unidos por el Planeta")</span>
+                        </div>
+                    </li>
+                    <li class="location-item">
                         <div class="location-icon"><i class="fa-solid fa-seedling"></i></div>
                         <div class="location-text">
-                            <strong id="focus-3-title">Sustainable Agroforestry</strong>
-                            <span id="loc-3">Promoting shade-grown coffee and native bee meliponiculture</span>
+                            <strong id="focus-4-title">Sustainable Agroforestry</strong>
+                            <span id="loc-4">Promoting shade-grown coffee and native bee meliponiculture</span>
                         </div>
                     </li>
                 </ul>
@@ -1031,7 +1035,8 @@
                 summaryTitle: "Project Topics",
                 sum1Title: "NGO Fundraising & Alignment", sum1Desc: "Resource mobilization and strategic alignment in Bogotá",
                 sum2Title: "Water Security & Páramos", sum2Desc: "Protecting high-altitude sponges like Chingaza National Park",
-                sum3Title: "Sustainable Agroforestry", sum3Desc: "Promoting shade-grown coffee and native bee meliponiculture",
+                sum3Title: "Multi-Stakeholder Partnerships", sum3Desc: "Aligning NGOs, civil society, and government (\"Unidos por el Planeta\")",
+                sum4Title: "Sustainable Agroforestry", sum4Desc: "Promoting shade-grown coffee and native bee meliponiculture",
                 mapHeading: "Project Map",
                 challengeTitle: "Main Challenges",
                 challengeP1: "Colombia hosts nearly 10% of global biodiversity on less than 1% of the Earth's land surface. However, rapid land-use changes and environmental pressures threaten critical natural ecosystems across the country.",
@@ -1085,7 +1090,8 @@
                 summaryTitle: "Projektthemen",
                 sum1Title: "NGO-Fundraising & Ausrichtung", sum1Desc: "Mittelbeschaffung und strategische Ausrichtung in Bogotá",
                 sum2Title: "Wassersicherheit & Páramos", sum2Desc: "Schutz von Hochland-Wasserspeichern wie dem Chingaza Nationalpark",
-                sum3Title: "Nachhaltige Agroforstwirtschaft", sum3Desc: "Förderung von Schattenkaffee und Haltung stachelloser Wildbienen",
+                sum3Title: "Multi-Stakeholder-Partnerschaften", sum3Desc: "Vernetzung von NGOs, Zivilgesellschaft und Politik („Unidos por el Planeta“)",
+                sum4Title: "Nachhaltige Agroforstwirtschaft", sum4Desc: "Förderung von Schattenkaffee und Haltung stachelloser Wildbienen",
                 mapHeading: "Projektkarte",
                 challengeTitle: "Hauptherausforderungen",
                 challengeP1: "Kolumbien beherbergt knapp 10 % der weltweiten Artenvielfalt auf weniger als 1 % der Erdoberfläche. Schnelle Landnutzungsänderungen und Umweltbelastungen bedrohen jedoch wichtige Ökosysteme.",
@@ -1139,7 +1145,8 @@
                 summaryTitle: "Thèmes du Projet",
                 sum1Title: "Collecte de Fonds ONG & Alignement", sum1Desc: "Mobilisation des ressources et alignement stratégique à Bogotá",
                 sum2Title: "Sécurité de l'Eau & Páramos", sum2Desc: "Protection des réservoirs naturels d'altitude comme le parc Chingaza",
-                sum3Title: "Agroforesterie Durable", sum3Desc: "Promotion du café sous ombrage et de la méliponiculture",
+                sum3Title: "Partenariats Multipartites", sum3Desc: "Alignement des ONG, de la société civile et de l'État (« Unidos por le Planeta »)",
+                sum4Title: "Agroforesterie Durable", sum4Desc: "Promotion du café sous ombrage et de la méliponiculture",
                 mapHeading: "Carte du Projet",
                 challengeTitle: "Défis Principaux",
                 challengeP1: "La Colombie abrite près de 10 % de la biodiversité mondiale. Cependant, la déforestation et les pressions environnementales menacent ses écosystèmes.",
@@ -1192,7 +1199,8 @@
                 summaryTitle: "Temas del Proyecto",
                 sum1Title: "Recaudación de Fondos y Alineación", sum1Desc: "Movilización de recursos y alineación estratégica en Bogotá",
                 sum2Title: "Seguridad Hídrica y Páramos", sum2Desc: "Protección de fábricas naturales de agua como el Parque Chingaza",
-                sum3Title: "Agroforestería Sostenible", sum3Desc: "Impulso al café bajo sombra y meliponicultura con abejas nativas",
+                sum3Title: "Alianzas Multiactor", sum3Desc: "Uniendo a ONG, sociedad civil y gobierno («Unidos por el Planeta»)",
+                sum4Title: "Agroforestería Sostenible", sum4Desc: "Impulso al café bajo sombra y meliponicultura con abejas nativas",
                 mapHeading: "Mapa del Proyecto",
                 challengeTitle: "Desafíos Principales",
                 challengeP1: "Colombia alberga casi el 10% de la biodiversidad global en menos del 1% de la superficie terrestre. Sin embargo, presiones ambientales amenazan ecosistemas clave.",
@@ -1271,6 +1279,7 @@
             document.getElementById('focus-1-title').innerText = t.sum1Title; document.getElementById('loc-1').innerText = t.sum1Desc;
             document.getElementById('focus-2-title').innerText = t.sum2Title; document.getElementById('loc-2').innerText = t.sum2Desc;
             document.getElementById('focus-3-title').innerText = t.sum3Title; document.getElementById('loc-3').innerText = t.sum3Desc;
+            document.getElementById('focus-4-title').innerText = t.sum4Title; document.getElementById('loc-4').innerText = t.sum4Desc;
             document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
             
             document.getElementById('challenge-title').innerText = t.challengeTitle;
