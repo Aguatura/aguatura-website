@@ -470,7 +470,7 @@
             color: var(--white);
         }
 
-        /* OUR APPROACH - 4 COLUMNS GRID */
+        /* OUR APPROACH */
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -480,8 +480,8 @@
 
         .pillar-card {
             background: var(--bg-light);
-            padding: 22px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             border-top: 4px solid var(--primary-dark);
             display: flex;
             flex-direction: column;
@@ -507,15 +507,12 @@
 
         .card-image-container {
             width: 100%;
-            height: 140px;
-            border-radius: 6px;
+            height: 180px;
+            border-radius: 8px;
             overflow: hidden;
-            background: var(--white);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            background: #f0f4f2;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
             margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
         }
 
@@ -529,15 +526,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Recadrage optimisé pour le Columbia Pitch (pour mieux voir le PPT et les étudiants) */
+            object-position: center 40%;
             display: block;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .card-image-container:hover img.cover-photo {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
-        /* EXPERTS INSIGHTS GRID */
+        /* ACTION SECTION GRID */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -801,16 +800,16 @@
                     <p id="about-p1">Global climate initiatives face mounting pressures from escalating emissions, resource depletion, and fragmented policies, threatening global ecosystems and urban resilience.</p>
                     <ul class="challenges-list">
                         <li class="challenge-item">
-                            <div class="challenge-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
-                            <span id="ch-1">Accelerating global temperature anomalies and extreme weather disruptions affecting vulnerable regions.</span>
+                            <div class="challenge-icon"><i class="fa-solid fa-water"></i></div>
+                            <span id="ch-1">Severe coastal flooding and storm surges threatening the NYC metropolitan area due to rising sea levels and extreme precipitation.</span>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <span id="ch-2">Climate change as a meta-risk: acting as a threat multiplier that triggers cascading failures across transportation, energy, and urban infrastructure.</span>
                         </li>
                         <li class="challenge-item">
                             <div class="challenge-icon"><i class="fa-solid fa-droplet-slash"></i></div>
-                            <span id="ch-2">Growing freshwater scarcity and degradation of critical natural water resources worldwide.</span>
-                        </li>
-                        <li class="challenge-item">
-                            <div class="challenge-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-                            <span id="ch-3">Widespread ecosystem degradation and loss of biodiversity in both rural and urban landscapes.</span>
+                            <span id="ch-3">Growing freshwater scarcity and degradation of critical natural water resources worldwide.</span>
                         </li>
                         <li class="challenge-item">
                             <div class="challenge-icon"><i class="fa-solid fa-users-line"></i></div>
@@ -819,7 +818,7 @@
                     </ul>
                 </div>
                 <div class="grid-image">
-                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/Capture%20d%E2%80%99e%CC%81cran%202026-11-03%20a%CC%80%2019.00.39.png" alt="Climate Action Image">
+                    <img src="Pics/new-york-climate-week/NYC.png" alt="New York City Climate Challenges" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/NYC.png';">
                 </div>
             </div>
         </section>
@@ -856,7 +855,7 @@
             
             <div style="margin-bottom: 25px;">
                 <p id="approach-desc" style="font-size: 1rem; color: #4A5568; line-height: 1.7;">
-                    Our strategic framework merges high-level international dialogue with grassroots engagement. By combining storytelling, community restoration, water literacy, and academic innovation, we bridge the gap between global policy and tangible local impact.
+                    Our participation in Climate Week NYC showed us how important it is to connect global discussions with local action. Through exchanges with experts, researchers, NGOs, and community leaders from around the world, we gained new perspectives on climate resilience and water sustainability. These conversations strengthened our commitment to promoting dialogue, sharing knowledge, and working closely with local communities. We believe that global ideas create the greatest impact when they are translated into meaningful action on the ground.
                 </p>
             </div>
 
@@ -864,7 +863,7 @@
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-film"></i> <span id="p1-title">The Movie Screening</span></h4>
-                        <p id="p1-desc">Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.</p>
+                        <p id="p1-desc">Special documentary screening narrated by Benedict Cumberbatch, raising awareness on human connection with nature and aquatic ecosystems.</p>
                     </div>
                     <div class="card-image-container">
                         <a href="https://www.youtube.com/watch?v=h3mRsvFmWi0" target="_blank" title="Watch Movie Screening on YouTube">
@@ -876,17 +875,17 @@
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-seedling"></i> <span id="p2-title">Community Restoration</span></h4>
-                        <p id="p2-desc">Hands-on environmental action partnering with association LES ECO to restore green spaces.</p>
+                        <p id="p2-desc">Hands-on environmental action partnering with the <strong>LES Ecological Center</strong> to actively restore local urban green spaces and foster grassroots ecological stewardship.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="Pics/new-york-climate-week/LES ECO marie gardening.jpg" alt="Community Restoration with LES ECO" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/LES%20ECO%20marie%20gardening.jpg';">
+                        <img src="Pics/new-york-climate-week/LES ECO marie gardening.jpg" alt="Community Restoration with LES Ecological Center" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/LES%20ECO%20marie%20gardening.jpg';">
                     </div>
                 </div>
 
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-water"></i> <span id="p3-title">WaterWays Initiative</span></h4>
-                        <p id="p3-desc">Engaging sessions uniting science and art to promote deep water literacy and conservation.</p>
+                        <p id="p3-desc">Engaging sessions uniting scientific insight and artistic expression to promote deep water literacy, watershed protection, and long-term conservation.</p>
                     </div>
                     <div class="card-image-container">
                         <img src="Pics/new-york-climate-week/Capture d’écran 2026-11-05 à 13.39.38.png" alt="WaterWays Initiative" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Capture%20d%E2%80%99e%CC%81cran%202026-11-05%20a%CC%80%2013.39.38.png';">
@@ -896,50 +895,16 @@
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-graduation-cap"></i> <span id="p4-title">Columbia Pitch</span></h4>
-                        <p id="p4-desc">A grant was awarded to the best student project aiming to create a student second-hand furniture platform.</p>
+                        <p id="p4-desc">Academic innovation grant awarded to the winning student project: the <strong>Circular Marketplace</strong>, a dedicated platform promoting college student resource-sharing and second-hand furniture reuse.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="Pics/new-york-climate-week/Columbia winner.jpg" alt="Columbia Pitch Winner" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Columbia%20winner.jpg';">
+                        <img src="Pics/new-york-climate-week/Columbia winner.jpg" alt="Columbia Pitch Winner - Circular Marketplace" class="cover-photo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/new-york-climate-week/Columbia%20winner.jpg';">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. EXPERTS INSIGHTS -->
-        <section class="content-card">
-            <div class="section-header">
-                <h2 id="learning-heading">Experts Insights</h2>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <h4><i class="fa-solid fa-lightbulb"></i> <span id="l1-title">Systemic Integration</span></h4>
-                    <ul>
-                        <li id="l1-desc">Experts emphasize that tackling climate change requires cross-sector collaboration, uniting finance, technology, and grassroots activism.</li>
-                    </ul>
-                </div>
-                <div class="step-card">
-                    <h4><i class="fa-solid fa-water"></i> <span id="l2-title">WaterSecurity</span></h4>
-                    <ul>
-                        <li id="l2-desc">Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.</li>
-                    </ul>
-                </div>
-                <div class="step-card">
-                    <h4><i class="fa-solid fa-bullseye"></i> <span id="l3-title">Actionable Accountability</span></h4>
-                    <ul>
-                        <li id="l3-desc">Global commitments must be paired with measurable local targets to ensure accountability and authentic long-term progress.</li>
-                    </ul>
-                </div>
-                <div class="step-card">
-                    <h4><i class="fa-solid fa-users"></i> <span id="l4-title">Youth Empowerment</span></h4>
-                    <ul>
-                        <li id="l4-desc">Academic incubation and student pitch initiatives are critical for fostering next-generation environmental leadership.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. HOW CAN YOU TAKE ACTION (MICRO, MESO) -->
+        <!-- 6. HOW CAN YOU TAKE ACTION (MICRO, MESO) -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="action-heading">How can you take Action?</h2>
@@ -948,23 +913,24 @@
                 <div class="step-card">
                     <h4><i class="fa-solid fa-user-graduate"></i> <span id="micro-title">Micro Level</span></h4>
                     <ul>
-                        <li id="mi-1">Participate in local community cleanups and urban green space restoration projects.</li>
-                        <li id="mi-2">Adopt water-saving and energy-efficient habits in your daily routine.</li>
-                        <li id="mi-3">Educate peers and share climate awareness initiatives within your local network.</li>
+                        <li id="mi-1">Participating in local restoration and conservation initiatives.</li>
+                        <li id="mi-2">Reducing water and energy consumption through sustainable daily practices.</li>
+                        <li id="mi-3">Engaging in workshops, educational programs, and community dialogues on climate and water challenges.</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <h4><i class="fa-solid fa-city"></i> <span id="meso-title">Meso Level</span></h4>
                     <ul>
-                        <li id="me-1">Partner with municipal organizations to support local watershed protection policies.</li>
-                        <li id="me-2">Integrate climate literacy programs into local educational institutions and universities.</li>
-                        <li id="me-3">Support regional sustainability initiatives and green-collar business incubators.</li>
+                        <li id="me-1">Developing partnerships between NGOs, universities, local authorities, and community groups.</li>
+                        <li id="me-2">Organizing webinars, conferences, and knowledge-sharing events.</li>
+                        <li id="me-3">Supporting research and innovation on water and climate resilience.</li>
+                        <li id="me-4">Turning global discussions, such as those held during NY Climate Week, into concrete projects adapted to local realities.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 8. USEFUL LINKS AND RESOURCES -->
+        <!-- 7. USEFUL LINKS AND RESOURCES -->
         <section class="links-section">
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
             <ul class="useful-links-list">
@@ -986,16 +952,6 @@
                 <li>
                     <a href="https://www.climateweeknyc.org/" target="_blank">
                         <i class="fa-solid fa-globe"></i> <span id="link1-text">Climate Week NYC – Official Website & Global Program</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://unfccc.int/" target="_blank">
-                        <i class="fa-solid fa-leaf"></i> <span id="link2-text">UNFCCC – United Nations Framework Convention on Climate Change</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.un.org/sustainabledevelopment/" target="_blank">
-                        <i class="fa-solid fa-bullseye"></i> <span id="link3-text">United Nations – Sustainable Development Goals (SDGs) Overview</span>
                     </a>
                 </li>
             </ul>
@@ -1071,9 +1027,9 @@
                 mapHeading: "Project Map",
                 aboutTitle: "Main Challenges",
                 aboutP1: "Global climate initiatives face mounting pressures from escalating emissions, resource depletion, and fragmented policies, threatening global ecosystems and urban resilience.",
-                ch1: "Accelerating global temperature anomalies and extreme weather disruptions affecting vulnerable regions.",
-                ch2: "Growing freshwater scarcity and degradation of critical natural water resources worldwide.",
-                ch3: "Widespread ecosystem degradation and loss of biodiversity in both rural and urban landscapes.",
+                ch1: "Severe coastal flooding and storm surges threatening the NYC metropolitan area due to rising sea levels and extreme precipitation.",
+                ch2: "Climate change as a meta-risk: acting as a threat multiplier that triggers cascading failures across transportation, energy, and urban infrastructure.",
+                ch3: "Growing freshwater scarcity and degradation of critical natural water resources worldwide.",
                 ch4: "Disconnect between high-level policy commitments and grassroots community action.",
                 factsHeading: "Key Facts",
                 f1Text: "Climate Week NYC brings together hundreds of independent events and thousands of global leaders annually.",
@@ -1083,32 +1039,26 @@
                 f3Text: "Urban areas account for over 70% of global carbon emissions, making city-level action essential for sustainability.",
                 f3Source: "Source: UNEP, 2025",
                 approachHeading: "Our Approach",
-                approachDesc: "Our strategic framework merges high-level international dialogue with grassroots engagement. By combining storytelling, community restoration, water literacy, and academic innovation, we bridge the gap between global policy and tangible local impact.",
-                p1Title: "The Movie Screening", p1Desc: "Special documentary screening narrated by Benedict Cumberbatch, exploring human connection with nature.",
-                p2Title: "Community Restoration", p2Desc: "Hands-on environmental action partnering with association LES ECO to restore green spaces.",
-                p3Title: "WaterWays Initiative", p3Desc: "Engaging sessions uniting science and art to promote deep water literacy and conservation.",
-                p4Title: "Columbia Pitch", p4Desc: "A grant was awarded to the best student project aiming to create a student second-hand furniture platform.",
-                learningHeading: "Experts Insights",
-                l1Title: "Systemic Integration", l1Desc: "Experts emphasize that tackling climate change requires cross-sector collaboration, uniting finance, technology, and grassroots activism.",
-                l2Title: "Water Security", l2Desc: "Water systems serve as the earliest indicators of ecological disruption, making watershed protection a top priority for urban planners.",
-                l3Title: "Actionable Accountability", l3Desc: "Global commitments must be paired with measurable local targets to ensure accountability and authentic long-term progress.",
-                l4Title: "Youth Empowerment", l4Desc: "Academic incubation and student pitch initiatives are critical for fostering next-generation environmental leadership.",
+                approachDesc: "Our participation in Climate Week NYC showed us how important it is to connect global discussions with local action. Through exchanges with experts, researchers, NGOs, and community leaders from around the world, we gained new perspectives on climate resilience and water sustainability. These conversations strengthened our commitment to promoting dialogue, sharing knowledge, and working closely with local communities. We believe that global ideas create the greatest impact when they are translated into meaningful action on the ground.",
+                p1Title: "The Movie Screening", p1Desc: "Special documentary screening narrated by Benedict Cumberbatch, raising awareness on human connection with nature and aquatic ecosystems.",
+                p2Title: "Community Restoration", p2Desc: "Hands-on environmental action partnering with the LES Ecological Center to actively restore local urban green spaces and foster grassroots ecological stewardship.",
+                p3Title: "WaterWays Initiative", p3Desc: "Engaging sessions uniting scientific insight and artistic expression to promote deep water literacy, watershed protection, and long-term conservation.",
+                p4Title: "Columbia Pitch", p4Desc: "Academic innovation grant awarded to the winning student project: the Circular Marketplace, a dedicated platform promoting college student resource-sharing and second-hand furniture reuse.",
                 actionHeading: "How can you take Action?",
                 microTitle: "Micro Level",
-                mi1: "Participate in local community cleanups and urban green space restoration projects.",
-                mi2: "Adopt water-saving and energy-efficient habits in your daily routine.",
-                mi3: "Educate peers and share climate awareness initiatives within your local network.",
+                mi1: "Participating in local restoration and conservation initiatives.",
+                mi2: "Reducing water and energy consumption through sustainable daily practices.",
+                mi3: "Engaging in workshops, educational programs, and community dialogues on climate and water challenges.",
                 mesoTitle: "Meso Level",
-                me1: "Partner with municipal organizations to support local watershed protection policies.",
-                me2: "Integrate climate literacy programs into local educational institutions and universities.",
-                me3: "Support regional sustainability initiatives and green-collar business incubators.",
+                me1: "Developing partnerships between NGOs, universities, local authorities, and community groups.",
+                me2: "Organizing webinars, conferences, and knowledge-sharing events.",
+                me3: "Supporting research and innovation on water and climate resilience.",
+                me4: "Turning global discussions, such as those held during NY Climate Week, into concrete projects adapted to local realities.",
                 linksTitle: "Useful Links & Resources",
                 link4Text: "Documentary Movie Screening – Watch on YouTube",
                 link5Text: "LES Ecology Center – Community Restoration Partner",
                 link6Text: "WaterWays – Official Website & Resources",
                 link1Text: "Climate Week NYC – Official Website & Global Program",
-                link2Text: "UNFCCC – United Nations Framework Convention on Climate Change",
-                link3Text: "United Nations – Sustainable Development Goals (SDGs) Overview",
                 exploreBtnText: "Explore more projects"
             },
             de: {
@@ -1122,9 +1072,9 @@
                 mapHeading: "Projektkarte",
                 aboutTitle: "Hauptherausforderungen",
                 aboutP1: "Globale Klimainitiativen stehen unter wachsendem Druck durch steigende Emissionen, Ressourcenknappheit und fragmentierte Richtlinien.",
-                ch1: "Beschleunigte globale Temperaturveränderungen und Extremwetterereignisse.",
-                ch2: "Wachsende Süßwasserknappheit und Verschlechterung natürlicher Wasserressourcen.",
-                ch3: "Weitverbreitete Ökosystemschäden und Biodiversitätsverlust.",
+                ch1: "Schwere Küstenüberschwemmungen und Sturmfluten bedrohen den Großraum New York aufgrund des Meeresspiegelanstiegs und extremer Niederschläge.",
+                ch2: "Klimawandel als Meta-Risiko: Ein Bedrohungsmultiplikator, der Kaskadenausfälle in Verkehr, Energie und städtischer Infrastruktur auslöst.",
+                ch3: "Wachsende Süßwasserknappheit und Verschlechterung natürlicher Wasserressourcen.",
                 ch4: "Diskrepanz zwischen politischen Zusagen und lokalem Engagement.",
                 factsHeading: "Wichtige Fakten",
                 f1Text: "Die Climate Week NYC bringt jährlich hunderte Veranstaltungen und tausende Führungskräfte zusammen.",
@@ -1132,32 +1082,26 @@
                 f2Text: "Globale Anstrengungen konzentrieren sich auf das 1,5-Grad-Ziel des Pariser Abkommens.",
                 f2Source: "Quelle: UNFCCC, 2025",
                 approachHeading: "Unser Ansatz",
-                approachDesc: "Unser strategischer Rahmen verbindet internationalen Dialog mit lokalem Engagement durch Storytelling, Renaturierung, Wasserkompetenz und Innovation.",
-                p1Title: "Das Film-Screening", p1Desc: "Sonderaufführung des Dokumentarfilms, gesprochen von Benedict Cumberbatch.",
-                p2Title: "Community-Restaurierung", p2Desc: "Praktischer Umweltschutz in Partnerschaft mit dem Verein LES ECO zur Wiederherstellung von Grünflächen.",
-                p3Title: "WaterWays-Initiative", p3Desc: "Sitzungen zur Förderung des Bewusstseins für Wasserschutz.",
-                p4Title: "Columbia Pitch", p4Desc: "Ein Stipendium wurde an das beste Studentenprojekt zur Erstellung einer Second-Hand-Möbelplattform vergeben.",
-                learningHeading: "Experteneinblicke",
-                l1Title: "Systemische Integration", l1Desc: "Klimaschutz erfordert branchenübergreifende Zusammenarbeit.",
-                l2Title: "Wassersicherheit", l2Desc: "Wassersysteme sind Frühindikatoren für ökologische Veränderungen.",
-                l3Title: "Messbare Verantwortung", l3Desc: "Globale Verpflichtungen müssen durch lokale Ziele ergänzt werden.",
-                l4Title: "Jugendförderung", l4Desc: "Studenteninitiativen sind entscheidend für zukünftige Führungspersönlichkeiten.",
+                approachDesc: "Unsere Teilnahme an der Climate Week NYC zeigte uns, wie wichtig es ist, globale Diskussionen mit lokalem Handeln zu verknüpfen. Durch den Austausch mit Experten, Forschern, NGOs und Gemeindeleitern aus aller Welt gewannen wir neue Perspektiven zur Klimaresilienz und Wassernachhaltigkeit.",
+                p1Title: "Das Film-Screening", p1Desc: "Sonderaufführung des Dokumentarfilms mit Benedict Cumberbatch zur Bewusstseinsbildung.",
+                p2Title: "Community-Restaurierung", p2Desc: "Umweltschutz in Partnerschaft mit dem LES Ecological Center zur Wiederherstellung von Grünflächen.",
+                p3Title: "WaterWays-Initiative", p3Desc: "Sitzungen, die Wissenschaft und Kunst vereinen, um Wasserkompetenz und Schutz zu fördern.",
+                p4Title: "Columbia Pitch", p4Desc: "Akademischer Innovationspreis für das Gewinnerprojekt: der Circular Marketplace für studentisches Teilen.",
                 actionHeading: "Wie können Sie aktiv werden?",
                 microTitle: "Mikro-Ebene",
-                mi1: "An lokalen Aufräumaktionen und Grünflächenprojekten teilnehmen.",
-                mi2: "Wassersparende und energieeffiziente Gewohnheiten etablieren.",
-                mi3: "Klimabewusstsein im Freundeskreis teilen.",
+                mi1: "An lokalen Restaurierungs- und Naturschutzinitiativen teilnehmen.",
+                mi2: "Wasser- und Energieverbrauch durch nachhaltige Alltagspraktiken reduzieren.",
+                mi3: "Sich an Workshops, Bildungsprogrammen und Gemeinschaftsgesprächen zu Klima- und Wasserherausforderungen beteiligen.",
                 mesoTitle: "Meso-Ebene",
-                me1: "Mit Kommunen bei Wasserschutzrichtlinien zusammenarbeiten.",
-                me2: "Klimabildung in Bildungseinrichtungen integrieren.",
-                me3: "Regionale Nachhaltigkeitsinitiativen unterstützen.",
+                me1: "Partnerschaften zwischen NGOs, Universitäten, lokalen Behörden und Gemeindegruppen entwickeln.",
+                me2: "Webinare, Konferenzen und Wissensaustausch-Veranstaltungen organisieren.",
+                me3: "Forschung und Innovation zu Wasser und Klimaresilienz unterstützen.",
+                me4: "Globale Diskussionen in konkrete, an die lokale Realität angepasste Projekte umwandeln.",
                 linksTitle: "Nützliche Links & Ressourcen",
                 link4Text: "Dokumentarfilm-Screening – Auf YouTube ansehen",
                 link5Text: "LES Ecology Center – Partner für Gemeinschaftsrestaurierung",
                 link6Text: "WaterWays – Offizielle Website & Ressourcen",
                 link1Text: "Climate Week NYC – Offizielle Website",
-                link2Text: "UNFCCC – Klimarahmenkonvention der Vereinten Nationen",
-                link3Text: "Vereinte Nationen – Übersicht zu den SDGs",
                 exploreBtnText: "Weitere Projekte entdecken"
             },
             fr: {
@@ -1170,10 +1114,10 @@
                 sum2Title: "Impact Multidisciplinaire", sum2Desc: "Alliance du cinéma, de l'action communautaire, de la science et de l'éducation",
                 mapHeading: "Carte du Projet",
                 aboutTitle: "Principaux Défis",
-                aboutP1: "Les initiatives climatiques mondiales font face à des pressions croissantes dues aux émissions, à l'épuisement des ressources et à des politiques fragmentées.",
-                ch1: "Accélération des anomalies de température mondiale et des perturbations climatiques.",
-                ch2: "Pénurie croissante d'eau douce et dégradation des ressources hydriques.",
-                ch3: "Dégradation généralisée des écosystèmes et perte de biodiversité.",
+                aboutP1: "La lutte contre le changement climatique est aujourd’hui confrontée à de multiples défis : notamment l’augmentation des émissions, la pression croissante sur les ressources naturelles et l’insuffisante harmonisation des politiques publiques.",
+                ch1: "Inondations côtières sévères et tempêtes menaçant la région de NYC en raison de l'élévation de la mer et des précipitations extrêmes.",
+                ch2: "Le changement climatique comme méta-risque : un multiplicateur de menaces provoquant des défaillances en cascade (transports, énergie, infrastructures).",
+                ch3: "Pénurie croissante d'eau douce et dégradation des ressources hydriques.",
                 ch4: "Décalage entre les engagements politiques et l'action communautaire locale.",
                 factsHeading: "Faits Clés",
                 f1Text: "La Climate Week NYC rassemble chaque année des centaines d'événements indépendants et des milliers de leaders.",
@@ -1183,32 +1127,26 @@
                 f3Text: "Les zones urbaines représentent plus de 70 % des émissions mondiales de carbone.",
                 f3Source: "Source : PNUE, 2025",
                 approachHeading: "Notre Approche",
-                approachDesc: "Notre cadre stratégique fusionne le dialogue international de haut niveau et l'engagement de terrain à travers la narration, la restauration et l'innovation.",
-                p1Title: "La Projection du Film", p1Desc: "Projection spéciale du documentaire narré par Benedict Cumberbatch.",
-                p2Title: "Restauration Communautaire", p2Desc: "Action environnementale pratique en partenariat avec l'association LES ECO pour restaurer les espaces verts.",
-                p3Title: "Initiative WaterWays", p3Desc: "Sessions unissant science et art pour promouvoir la sensibilisation à l'eau.",
-                p4Title: "Columbia Pitch", p4Desc: "Une bourse a été attribuée au meilleur projet étudiant visant à créer une plateforme de seconde main pour le mobilier étudiant.",
-                learningHeading: "Avis d'Experts",
-                l1Title: "Intégration Systémique", l1Desc: "L'action climatique nécessite une collaboration intersectorielle unissant finance et activisme.",
-                l2Title: "Sécurité de l'Eau", l2Desc: "Les systèmes hydriques sont les premiers indicateurs de perturbation écologique.",
-                l3Title: "Responsabilité Mesurable", l3Desc: "Les engagements mondiaux doivent s'associer à des objectifs locaux tangibles.",
-                l4Title: "Autonomisation des Jeunes", l4Desc: "L'incubation académique est essentielle pour encourager le leadership environnemental.",
+                approachDesc: "Notre participation à la Climate Week NYC nous a montré l'importance de connecter les discussions mondiales avec l'action locale. À travers des échanges avec des experts, des chercheurs et des ONG du monde entier, nous avons acquis de nouvelles perspectives sur la résilience climatique et la durabilité de l'eau. Ces conversations ont renforcé notre engagement à promouvoir le dialogue, le partage des connaissances et la collaboration avec les communautés locales. Les idées mondiales ont le plus grand impact lorsqu'elles se traduisent par des actions concrètes sur le terrain.",
+                p1Title: "La Projection du Film", p1Desc: "Projection spéciale du documentaire narré par Benedict Cumberbatch, sensibilisant à notre lien avec la nature et l'eau.",
+                p2Title: "Restauration Communautaire", p2Desc: "Action environnementale concrète en partenariat avec le LES Ecological Center pour restaurer les espaces verts urbains.",
+                p3Title: "Initiative WaterWays", p3Desc: "Sessions unissant science et art pour promouvoir la culture de l'eau, la protection des bassins versants et la conservation.",
+                p4Title: "Columbia Pitch", p4Desc: "Bourse d'innovation académique attribuée au projet gagnant : le Circular Marketplace, une plateforme de partage et de réemploi de mobilier pour étudiants.",
                 actionHeading: "Comment pouvez-vous agir ?",
                 microTitle: "Niveau Micro",
-                mi1: "Participer aux nettoyages communautaires locaux et projets de restauration.",
-                mi2: "Adopter des habitudes économes en eau et en énergie au quotidien.",
-                mi3: "Sensibiliser son entourage aux enjeux climatiques.",
+                mi1: "Participer à des initiatives locales de restauration et de conservation.",
+                mi2: "Réduire la consommation d'eau et d'énergie grâce à des pratiques quotidiennes durables.",
+                mi3: "S'engager dans des ateliers, des programmes éducatifs et des dialogues communautaires sur les défis liés à l'eau et au climat.",
                 mesoTitle: "Niveau Méso",
-                me1: "S'associer aux municipalités pour soutenir les politiques de protection des bassins versants.",
-                me2: "Intégrer l'éducation climatique dans les établissements scolaires et universités.",
-                me3: "Soutenir les initiatives régionales de développement durable.",
+                me1: "Développer des partenariats entre ONG, universités, autorités locales et groupes communautaires.",
+                me2: "Organiser des webinaires, des conférences et des événements de partage des connaissances.",
+                me3: "Soutenir la recherche et l'innovation sur la résilience de l'eau et du climat.",
+                me4: "Transformer les discussions mondiales, telles que celles menées lors de la NY Climate Week, en projets concrets adaptés aux réalités locales.",
                 linksTitle: "Liens Utiles & Ressources",
                 link4Text: "Projection du Documentaire – Regarder sur YouTube",
                 link5Text: "LES Ecology Center – Partenaire de restauration communautaire",
                 link6Text: "WaterWays – Site officiel et ressources",
                 link1Text: "Climate Week NYC – Site Officiel et Programme",
-                link2Text: "CCNUCC – Convention-cadre des Nations Unies sur les changements climatiques",
-                link3Text: "Nations Unies – Vue d'ensemble des ODD",
                 exploreBtnText: "Découvrir plus de projets"
             },
             es: {
@@ -1222,9 +1160,9 @@
                 mapHeading: "Mapa del Proyecto",
                 aboutTitle: "Principales Desafíos",
                 aboutP1: "Las iniciativas climáticas globales enfrentan crecientes presiones debido a las emisiones y la escasez de recursos.",
-                ch1: "Aceleración de anomalías de temperatura y eventos climáticos extremos.",
-                ch2: "Creciente escasez de agua dulce y degradación de recursos naturales.",
-                ch3: "Degradación generalizada de ecosistemas y pérdida de biodiversidad.",
+                ch1: "Inundaciones costeras severas y marejadas ciclónicas amenazan la región de Nueva York por el aumento del nivel del mar y precipitaciones extremas.",
+                ch2: "El cambio climático como meta-riesgo: actúa como un multiplicador de amenazas que desencadena fallos en cascada en transporte y energía.",
+                ch3: "Creciente escasez de agua dulce y degradación de recursos naturales.",
                 ch4: "Desconexión entre compromisos políticos y acción comunitaria.",
                 factsHeading: "Datos Clave",
                 f1Text: "La Climate Week NYC reúne anualmente cientos de eventos y miles de líderes globales.",
@@ -1234,32 +1172,26 @@
                 f3Text: "Las zonas urbanas generan más del 70% de las emisiones globales de carbono.",
                 f3Source: "Fuente: PNUMA, 2025",
                 approachHeading: "Nuestro Enfoque",
-                approachDesc: "Nuestro marco estratégico fusiona el diálogo internacional con el compromiso comunitario mediante la narración, restauración e innovación.",
-                p1Title: "Proyección de la Película", p1Desc: "Proyección especial del documental narrado por Benedict Cumberbatch.",
-                p2Title: "Restauración Comunitaria", p2Desc: "Acción ambiental práctica en colaboración con la asociación LES ECO para restaurar espacios verdes.",
-                p3Title: "Iniciativa WaterWays", p3Desc: "Sesiones que unen ciencia y arte para promover la conservación.",
-                p4Title: "Columbia Pitch", p4Desc: "Se otorgó una beca al mejor proyecto estudiantil para crear una plataforma de muebles de segunda mano.",
-                learningHeading: "Perspectivas de Expertos",
-                l1Title: "Integración Sistémica", l1Desc: "La acción climática requiere colaboración intersectorial.",
-                l2Title: "Seguridad del Agua", l2Desc: "Los sistemas hídricos son los primeros indicadores de alteración ecológica.",
-                l3Title: "Responsabilidad Mensurable", l3Desc: "Los compromisos globales deben vincularse a objetivos locales.",
-                l4Title: "Empoderamiento Juvenil", l4Desc: "La incubación académica fomenta el liderazgo ambiental.",
+                approachDesc: "Nuestra participación en la Climate Week NYC nos mostró la importancia de conectar los debates globales con la acción local. A través de intercambios con expertos, investigadores, ONGs y líderes comunitarios de todo el mundo, obtuvimos nuevas perspectivas sobre la resiliencia climática y la sostenibilidad del agua.",
+                p1Title: "Proyección de la Película", p1Desc: "Proyección especial del documental narrado por Benedict Cumberbatch sobre la naturaleza.",
+                p2Title: "Restauración Comunitaria", p2Desc: "Acción ambiental en colaboración con el LES Ecological Center para restaurar espacios verdes urbanos.",
+                p3Title: "Iniciativa WaterWays", p3Desc: "Sesiones que unen ciencia y arte para promover la alfabetización del agua y la conservación.",
+                p4Title: "Columbia Pitch", p4Desc: "Premio de innovación académica otorgado al proyecto ganador: Circular Marketplace, una plataforma estudiantil de reutilización.",
                 actionHeading: "Cómo puedes actuar",
                 microTitle: "Nivel Micro",
-                mi1: "Participar en limpiezas comunitarias y proyectos de espacios verdes.",
-                mi2: "Adoptar hábitos de ahorro de agua y energía.",
-                mi3: "Educare a pares compartiendo iniciativas de conciencia climática.",
+                mi1: "Participar en iniciativas locales de restauración y conservación.",
+                mi2: "Reducir el consumo de agua y energía mediante prácticas diarias sostenibles.",
+                mi3: "Participar en talleres, programas educativos y diálogos comunitarios sobre desafíos climáticos y del agua.",
                 mesoTitle: "Nivel Meso",
-                me1: "Colaborar con municipios para proteger cuencas hidrográficas.",
-                me2: "Integrar programas de educación climática en instituciones educativas.",
-                me3: "Apoyar iniciativas regionales de sostenibilidad.",
+                me1: "Desarrollar alianzas entre ONGs, universidades, autoridades locales y grupos comunitarios.",
+                me2: "Organizar seminarios web, conferencias y eventos de intercambio de conocimientos.",
+                me3: "Apoyar la investigación y la innovación en resiliencia hídrica y climática.",
+                me4: "Transformar las discusiones globales en proyectos concretos adaptados a las realidades locales.",
                 linksTitle: "Enlaces Útiles y Recursos",
                 link4Text: "Proyección del Documental – Ver en YouTube",
                 link5Text: "LES Ecology Center – Socio de restauración comunitaria",
                 link6Text: "WaterWays – Sitio web oficial y recursos",
                 link1Text: "Climate Week NYC – Sitio Web Oficial",
-                link2Text: "CMNUCC – Convención Marco de las Naciones Unidas sobre el Cambio Climático",
-                link3Text: "Naciones Unidas – Descripción general de los ODS",
                 exploreBtnText: "Explorar más proyectos"
             }
         };
@@ -1302,12 +1234,6 @@
             document.getElementById('p3-title').innerText = t.p3Title; document.getElementById('p3-desc').innerText = t.p3Desc;
             document.getElementById('p4-title').innerText = t.p4Title; document.getElementById('p4-desc').innerText = t.p4Desc;
 
-            document.getElementById('learning-heading').innerText = t.learningHeading;
-            document.getElementById('l1-title').innerText = t.l1Title; document.getElementById('l1-desc').innerText = t.l1Desc;
-            document.getElementById('l2-title').innerText = t.l2Title; document.getElementById('l2-desc').innerText = t.l2Desc;
-            document.getElementById('l3-title').innerText = t.l3Title; document.getElementById('l3-desc').innerText = t.l3Desc;
-            document.getElementById('l4-title').innerText = t.l4Title; document.getElementById('l4-desc').innerText = t.l4Desc;
-
             document.getElementById('action-heading').innerText = t.actionHeading;
             document.getElementById('micro-title').innerText = t.microTitle;
             document.getElementById('mi-1').innerText = t.mi1;
@@ -1317,14 +1243,13 @@
             document.getElementById('me-1').innerText = t.me1;
             document.getElementById('me-2').innerText = t.me2;
             document.getElementById('me-3').innerText = t.me3;
+            document.getElementById('me-4').innerText = t.me4;
 
             document.getElementById('links-title').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${t.linksTitle}`;
             document.getElementById('link4-text').innerText = t.link4Text;
             document.getElementById('link5-text').innerText = t.link5Text;
             document.getElementById('link6-text').innerText = t.link6Text;
             document.getElementById('link1-text').innerText = t.link1Text;
-            document.getElementById('link2-text').innerText = t.link2Text;
-            document.getElementById('link3-text').innerText = t.link3Text;
 
             document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
         }
