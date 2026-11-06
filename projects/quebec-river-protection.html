@@ -884,7 +884,7 @@
                             <span id="ch-2">Persistent wastewater overflows contaminating local rivers and aquatic habitats.</span>
                         </li>
                         <li class="challenge-item">
-                            <div class="challenge-icon"><i class="fa-solid fa-tree"></i></div>
+                            <div class="challenge-icon"><i class="fa-solid fa-ban"></i></div>
                             <span id="ch-3">Massive privatization of lake and river shorelines cutting off public access to nature.</span>
                         </li>
                         <li class="challenge-item">
@@ -917,12 +917,12 @@
                 <div class="fact-card">
                     <div class="fact-number">98%</div>
                     <p id="f2-text">Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.</p>
-                    <a href="https://alliancenature.ca/" target="_blank" class="fact-source" id="f2-source">Source: Alliance pour l'accès à la nature</a>
+                    <a href="https://accesnature.ca/" target="_blank" class="fact-source" id="f2-source">Source: Alliance pour l'accès à la nature</a>
                 </div>
                 <div class="fact-card">
-                    <div class="fact-number">28</div>
-                    <p id="f3-text">Municipalities mobilized along the Rivière du Nord for joint water management pilots.</p>
-                    <a href="https://fondationrivieres.org/defi-eau-propre/" target="_blank" class="fact-source" id="f3-source">Source: Defi Eau Propre Pilot Project</a>
+                    <div class="fact-number">3%</div>
+                    <p id="f3-text">Of Earth's renewable freshwater reserves held across Québec's 3 million bodies of water.</p>
+                    <a href="https://www.environnement.gouv.qc.ca/eau/inter_en.htm" target="_blank" class="fact-source" id="f3-source">Source: Gov. of Québec (MELCCFP)</a>
                 </div>
             </div>
         </section>
@@ -1056,7 +1056,7 @@
                     <h4><i class="fa-solid fa-user"></i> <span id="micro-title">Micro Level</span></h4>
                     <ul>
                         <li id="mi-1">Avoid pouring oils, chemicals, or harsh household products down the drain to protect local waterways.</li>
-                        <li id="mi-2">Monitor and reduce daily water consumption at home.</li>
+                        <li id="mi-2">Monitor and reduce daily water and energy consumption at home.</li>
                         <li id="mi-3">Support local public awareness initiatives and share water conservation tips.</li>
                     </ul>
                 </div>
@@ -1074,25 +1074,25 @@
         <!-- USEFUL LINKS SECTION -->
         <section class="links-section">
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
-            <ul class="useful-links-list">
+            <ul class="useful-links-list" id="useful-links-list">
                 <li>
-                    <a href="https://fondationrivieres.org" target="_blank">
+                    <a href="https://fondationrivieres.org" target="_blank" id="link-1-a">
                         <i class="fa-solid fa-water"></i> <span id="link1-text">Fondation Rivières – Official River Conservation Portal</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://cdpn.io/cpe/boomboom/https://cdpn.io/cpe/boomboom/https://cdpn.io/cpe/boomboom/https://alliancenature.ca/" target="_blank">
-                        <i class="fa-solid fa-chart-bar"></i> <span id="link2-text">Audito – Municipal Wastewater Overflow Tracking Platform</span>
+                    <a href="https://accesnature.ca" target="_blank" id="link-2-a">
+                        <i class="fa-solid fa-tree"></i> <span id="link2-text">Alliance pour l'accès à la nature – Public Nature Access Initiative</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://accesnature.ca" target="_blank">
-                        <i class="fa-solid fa-tree"></i> <span id="link3-text">Alliance pour l'accès à la nature – Public Nature Access Initiative</span>
+                    <a href="https://livinglakescanada.ca" target="_blank" id="link-3-a">
+                        <i class="fa-solid fa-shield-halved"></i> <span id="link3-text">Living Lakes Canada – Individual Watershed Protection & Stewardship Guide</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.hydroquebec.com" target="_blank">
-                        <i class="fa-solid fa-bolt"></i> <span id="link4-text">Hydro-Québec – Energy Grid & Infrastructure Overview</span>
+                    <a href="https://www.wwf.ca" target="_blank" id="link-4-a">
+                        <i class="fa-solid fa-book-open"></i> <span id="link4-text">WWF Canada – Municipal & Community River Conservation Action Plan</span>
                     </a>
                 </li>
             </ul>
@@ -1117,6 +1117,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Zoom level set to 2 to show all of Canada clearly
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -1125,7 +1126,7 @@
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([56.0, -96.0], 3);
+            }).setView([56.0, -96.0], 2);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -1179,8 +1180,8 @@
                 f1Source: "Source: Hydro-Québec Data",
                 f2Text: "Estimated proportion of privatized or inaccessible lake and river shorelines in Québec.",
                 f2Source: "Source: Alliance pour l'accès à la nature",
-                f3Text: "Municipalities mobilized along the Rivière du Nord for joint water management pilots.",
-                f3Source: "Source: Defi Eau Propre Pilot Project",
+                f3Text: "Of Earth's renewable freshwater reserves held across Québec's 3 million bodies of water.",
+                f3Source: "Source: Gov. of Québec (MELCCFP)",
                 interviewTitle: "Experts Insights",
                 profileName: "Fondation Rivières Team",
                 profileRole: "André Bélanger (Executive Director) & David Beauchamp (Communications)",
@@ -1213,7 +1214,7 @@
                 actionHeading: "How can You take Action?",
                 microTitle: "Micro Level",
                 mi1: "Avoid pouring oils, chemicals, or harsh household products down the drain to protect local waterways.",
-                mi2: "Monitor and reduce daily water consumption at home.",
+                mi2: "Monitor and reduce daily water and energy consumption at home.",
                 mi3: "Support local public awareness initiatives and share water conservation tips.",
                 mesoTitle: "Meso Level",
                 me1: "Adopt a river through Fondation Rivières to help protect and monitor its ecosystem.",
@@ -1221,10 +1222,12 @@
                 me3: "Engage with municipal authorities to advocate for better wastewater management and public access.",
                 linksTitle: "Useful Links & Resources",
                 link1Text: "Fondation Rivières – Official River Conservation Portal",
-                link2Text: "Audito – Municipal Wastewater Overflow Tracking Platform",
-                link3Text: "Alliance pour l'accès à la nature – Public Nature Access Initiative",
-                link4Text: "Hydro-Québec – Energy Grid & Infrastructure Overview",
-                exploreBtnText: "Explore more projects"
+                link2Text: "Alliance pour l'accès à la nature – Public Nature Access Initiative",
+                link3Text: "Living Lakes Canada – Individual Watershed Protection & Stewardship Guide",
+                link4Text: "WWF Canada – Municipal & Community River Conservation Action Plan",
+                exploreBtnText: "Explore more projects",
+                link1Href: "https://fondationrivieres.org",
+                link2Href: "https://accesnature.ca"
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
@@ -1248,8 +1251,8 @@
                 f1Source: "Quelle: Hydro-Québec",
                 f2Text: "Anteil der Ufer an Seen und Flüssen, die privat oder versperrt sind.",
                 f2Source: "Quelle: Alliance pour l'accès à la nature",
-                f3Text: "Städte am Rivière du Nord, die beim Wasserschutz zusammenarbeiten.",
-                f3Source: "Quelle: Projekt Défi Eau Propre",
+                f3Text: "Anteil der weltweiten Süßwasserreserven in den 3 Millionen Gewässern Québecs.",
+                f3Source: "Quelle: Gov. Québec (MELCCFP)",
                 interviewTitle: "Experten im Gespräch",
                 profileName: "Team der Fondation Rivières",
                 profileRole: "André Bélanger (Leitung) & David Beauchamp (Kommunikation)",
@@ -1282,18 +1285,20 @@
                 actionHeading: "So kannst du mitmachen",
                 microTitle: "Im Alltag",
                 mi1: "Keine Öle, Chemikalien oder scharfe Reiniger in den Abfluss kippen.",
-                mi2: "Zuhause bewusst auf den Wasserverbrauch achten.",
+                mi2: "Achte zuhause bewusst auf deinen Wasser- und Energieverbrauch.",
                 mi3: "Umwelt-Tipps teilen und lokale Aktionen unterstützen.",
                 mesoTitle: "Gemeinsam stark",
                 me1: "Übernimm eine Fluss-Patenschaft bei der Fondation Rivières.",
                 me2: "Mach bei Aktionen und Fluss-Komitees in deiner Nähe mit.",
                 me3: "Fordere von deiner Stadt besseren Gewässerschutz.",
                 linksTitle: "Nützliche Links & Infos",
-                link1Text: "Fondation Rivières – Offizielle Website",
-                link2Text: "Audito – Plattform für Abwasser-Tracking",
-                link3Text: "Alliance pour l'accès à la nature – Initiative für Uferzugang",
-                link4Text: "Hydro-Québec – Stromnetz im Überblick",
-                exploreBtnText: "Mehr Projekte entdecken"
+                link1Text: "Fondation Rivières – Offizielles Portal",
+                link2Text: "Alliance pour l'accès à la nature – Initiative für Uferzugang",
+                link3Text: "Living Lakes Canada – Leitfaden zum Schutz von Gewässern",
+                link4Text: "WWF Canada – Aktionsplan für kommunalen Flussschutz",
+                exploreBtnText: "Mehr Projekte entdecken",
+                link1Href: "https://fondationrivieres.org",
+                link2Href: "https://accesnature.ca"
             },
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
@@ -1317,8 +1322,8 @@
                 f1Source: "Source : Données Hydro-Québec",
                 f2Text: "Proportion estimée des berges de lacs et rivières privatisées ou inaccessibles au Québec.",
                 f2Source: "Source : Alliance pour l'accès à la nature",
-                f3Text: "Municipalités mobilisées le long de la rivière du Nord pour un projet pilote de gestion de l'eau.",
-                f3Source: "Source : Projet Pilote Défi Eau Propre",
+                f3Text: "Des réserves mondiales d'eau douce renouvelable détenues à travers les 3 millions de plans d'eau du Québec.",
+                f3Source: "Source : Gouvernement du Québec (MELCCFP)",
                 interviewTitle: "Aperçus des Experts",
                 profileName: "Équipe Fondation Rivières",
                 profileRole: "André Bélanger (Directeur général) & David Beauchamp (Communications)",
@@ -1351,18 +1356,20 @@
                 actionHeading: "Comment passer à l'action ?",
                 microTitle: "Niveau Micro",
                 mi1: "Éviter de jeter des huiles, des produits chimiques ou des produits ménagers forts dans les égouts pour protéger les cours d'eau.",
-                mi2: "Faire attention à sa consommation d'eau quotidienne à la maison.",
+                mi2: "Surveiller et réduire sa consommation quotidienne d'eau et d'énergie à la maison.",
                 mi3: "Soutenir les initiatives locales de sensibilisation et partager les bonnes pratiques.",
                 mesoTitle: "Niveau Méso",
                 me1: "Adopter une rivière auprès de la Fondation Rivières pour contribuer à la protection et au suivi de son écosystème.",
                 me2: "Participer aux événements de mobilisation et aux comités de bassins versants.",
                 me3: "S'engager auprès des autorités municipales pour plaider en faveur d'une meilleure gestion des eaux usées.",
                 linksTitle: "Liens Utiles & Ressources",
-                link1Text: "Fondation Rivières – Portail Officiel de Conservation",
-                link2Text: "Audito – Plateforme de suivi des déversements d'eaux usées",
-                link3Text: "Alliance pour l'accès à la nature – Initiative pour l'accès public",
-                link4Text: "Hydro-Québec – Aperçu du réseau et des infrastructures",
-                exploreBtnText: "Découvrir plus de projets"
+                link1Text: "Fondation Rivières – Site Officiel",
+                link2Text: "Alliance pour l'accès à la nature – Initiative pour l'accès public",
+                link3Text: "Living Lakes Canada – Guide de protection des bassins versants",
+                link4Text: "WWF Canada – Plan d'action pour la conservation des rivières",
+                exploreBtnText: "Découvrir plus de projets",
+                link1Href: "https://fondationrivieres.org",
+                link2Href: "https://accesnature.ca"
             },
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
@@ -1386,8 +1393,8 @@
                 f1Source: "Fuente: Hydro-Québec",
                 f2Text: "Porcentaje de orillas de lagos y ríos privatizadas o inaccesibles.",
                 f2Source: "Fuente: Alliance pour l'accès à la nature",
-                f3Text: "Ciudades unidas en el río du Nord para cuidar el agua juntas.",
-                f3Source: "Fuente: Proyecto Défi Eau Propre",
+                f3Text: "De las reservas mundiales de agua dulce renovable en los 3 millones de cuerpos de agua de Quebec.",
+                f3Source: "Fuente: Gov. de Quebec (MELCCFP)",
                 interviewTitle: "Entrevista a Expertos",
                 profileName: "Equipo de Fondation Rivières",
                 profileRole: "André Bélanger (Director) y David Beauchamp (Comunicación)",
@@ -1420,18 +1427,20 @@
                 actionHeading: "¿Cómo puedes actuar?",
                 microTitle: "En tu día a día",
                 mi1: "No tires aceites, químicos ni productos de limpieza fuertes al desagüe.",
-                mi2: "Haz un uso responsable del agua en casa.",
+                mi2: "Controla y reduce el consumo diario de agua y energía en casa.",
                 mi3: "Apoya iniciativas locales y comparte consejos de ahorro.",
                 mesoTitle: "En comunidad",
                 me1: "Adopta un río con Fondation Rivières para ayudar a cuidarlo.",
                 me2: "Súmate a eventos locales y comités de cuenca.",
                 me3: "Exige a tu ayuntamiento una mejor gestión de las aguas residuales.",
                 linksTitle: "Enlaces Útiles y Recursos",
-                link1Text: "Fondation Rivières – Web oficial",
-                link2Text: "Audito – Rastreo de vertidos de aguas residuales",
-                link3Text: "Alliance pour l'accès à la nature – Iniciativa por el acceso público",
-                link4Text: "Hydro-Québec – Red e infraestructura de energía",
-                exploreBtnText: "Descubrir más proyectos"
+                link1Text: "Fondation Rivières – Sitio Web Oficial",
+                link2Text: "Alliance pour l'accès à la nature – Iniciativa de Acceso Público",
+                link3Text: "Living Lakes Canada – Guía de Protección y Gestión de Cuencas",
+                link4Text: "WWF Canada – Plan de Acción para la Conservación de Ríos",
+                exploreBtnText: "Descubrir más proyectos",
+                link1Href: "https://fondationrivieres.org",
+                link2Href: "https://accesnature.ca"
             }
         };
 
@@ -1493,10 +1502,10 @@
             document.getElementById('pillars-heading').innerText = t.pillarsHeading;
             document.getElementById('role-desc').innerText = t.roleDesc;
             document.getElementById('p1-title').innerText = t.p1Title; document.getElementById('p1-desc').innerText = t.p1Desc;
-            document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2Desc;
+            document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2desc;
             document.getElementById('p3-title').innerText = t.p3Title; document.getElementById('p3-desc').innerText = t.p3Desc;
-            document.getElementById('p4-title').innerText = t.p4Title; document.getElementById('p4-desc').innerText = t.p4Desc;
-            document.getElementById('p5-title').innerText = t.p5Title; document.getElementById('p5-desc').innerText = t.p5Desc;
+            document.getElementById('p4-title').innerText = t.p4Title; document.getElementById('p4-desc').innerText = t.p4desc;
+            document.getElementById('p5-title').innerText = t.p5Title; document.getElementById('p5-desc').innerText = t.p5desc;
 
             document.getElementById('action-heading').innerText = t.actionHeading;
             document.getElementById('micro-title').innerText = t.microTitle;
