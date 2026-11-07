@@ -188,14 +188,15 @@
         }
 
         .partner-logo-inline {
-            height: 32px;
+            height: 48px;
             width: auto;
-            margin-left: 8px;
+            margin-left: 10px;
             vertical-align: middle;
-            border-radius: 4px;
+            border-radius: 6px;
             background: #fff;
-            padding: 2px;
-            border: 1px solid #E2E8F0;
+            padding: 4px;
+            border: 1px solid #CBD5E1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
         }
 
         .sdg-icons {
@@ -417,7 +418,13 @@
             margin-top: 2px;
         }
 
-        .grid-image img {
+        .grid-images-horiz {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .grid-images-horiz img {
             width: 100%;
             height: 260px;
             object-fit: cover;
@@ -521,6 +528,7 @@
             height: 180px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             background: #fff;
+            position: relative;
         }
 
         .gallery-item img {
@@ -894,14 +902,14 @@
                     <div class="meta-item">
                         <i class="fa-solid fa-calendar-days"></i> 
                         <span id="project-year">2026</span>
-                        <img src="Pics/Miami-botanical-garden/FTBG_stacked_logo_black.png" alt="FTBG Logo" class="partner-logo-inline">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/FTBG_stacked_logo_black.png" alt="FTBG Logo" class="partner-logo-inline">
                     </div>
                 </div>
                 <div class="sdg-icons">
-                    <img src="Pics/SDGs/E_SDG_PRINT-04.jpg" alt="SDG 4" class="sdg-img" title="SDG 4: Quality Education">
-                    <img src="Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11" class="sdg-img" title="SDG 11: Sustainable Cities">
-                    <img src="Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13" class="sdg-img" title="SDG 13: Climate Action">
-                    <img src="Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15" class="sdg-img" title="SDG 15: Life on Land">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-04.jpg" alt="SDG 4" class="sdg-img" title="SDG 4: Quality Education">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11" class="sdg-img" title="SDG 11: Sustainable Cities">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-13.jpg" alt="SDG 13" class="sdg-img" title="SDG 13: Climate Action">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/SDGs/E_SDG_PRINT-15.jpg" alt="SDG 15" class="sdg-img" title="SDG 15: Life on Land">
                 </div>
             </div>
         </section>
@@ -950,7 +958,6 @@
                 <div class="grid-text">
                     <p id="about-p1">South Florida's subtropical ecosystems face severe risks from rapid urban growth, habitat loss, and climate pressures.</p>
                     <ul class="challenges-list">
-                        <link rel="stylesheet" href="">
                         <li class="challenge-item">
                             <div class="challenge-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
                             <span id="ch-1">Rapid loss of native tropical plants due to invasive species and urban sprawl.</span>
@@ -973,8 +980,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="grid-image">
-                    <img src="Pics/Miami-botanical-garden/palm trees.jpeg" alt="Fairchild Palm Trees">
+                <div class="grid-images-horiz">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/palm%20trees.jpeg" alt="Fairchild Palm Trees">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/tropical%20plant.jpeg" alt="Tropical Plant">
                 </div>
             </div>
         </section>
@@ -991,9 +999,9 @@
                     <a href="https://fairchildgarden.org/" target="_blank" class="fact-source" id="f1-source">Source: Fairchild Tropical Botanic Garden</a>
                 </div>
                 <div class="fact-card">
-                    <div class="fact-number">3B Pairs</div>
-                    <p id="f2-text">Genomic sequencing data tracking billions of base pairs for research.</p>
-                    <a href="https://fairchildgarden.org/" target="_blank" class="fact-source" id="f2-source">Source: Fairchild Science Lab</a>
+                    <div class="fact-number">3,000+</div>
+                    <p id="f2-text">Native & exotic plant species protected in South Florida's biodiversity sanctuary.</p>
+                    <a href="https://fairchildgarden.org/science-conservation/" target="_blank" class="fact-source" id="f2-source">Source: Florida Flora Conservation</a>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">100+</div>
@@ -1019,17 +1027,17 @@
             <div class="feature-card nasa-card">
                 <h3><i class="fa-solid fa-rocket" style="color: #0B3D91;"></i> <span id="nasa-block-title">NASA Partnership: Botanical Labs & Space Agriculture</span></h3>
                 <p id="nasa-block-desc" style="font-size: 0.95rem; color: #4A5568; line-height: 1.6; margin-bottom: 12px;">
-                    Partnering directly with NASA, Fairchild operates specialized labs to test plants for space missions. Using custom chambers, tissue culture, and 360-degree gravity simulators, scientists study plant responses to microgravity.
+                    In a groundbreaking collaboration with NASA's Kennedy Space Center, Fairchild operates specialized botany labs to identify and evaluate edible plant species suitable for space exploration. Through the "Growing Beyond Earth" project, middle and high school students test hundreds of crop varieties in custom chambers (Veggie & Advanced Plant Habitat units). Using tissue culture micropropagation, automated environmental controls, and 360-degree gravity simulators, researchers study plant growth dynamics, stress tolerance, and microgravity responses to provide essential nutrition and psychological benefits for future long-duration missions to the Moon and Mars.
                 </p>
                 <div class="gallery-grid-3">
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/nasa lab.jpeg" alt="NASA Lab at Fairchild">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/nasa%20lab.jpeg" alt="NASA Lab at Fairchild">
                     </div>
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/nasa lab 2.jpeg" alt="Growth Chamber Research">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/nasa%20lab%202.jpeg" alt="Growth Chamber Research">
                     </div>
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/NASA 360 plant gravity.png" alt="360 Gravity Simulator">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/NASA%20360%20plant%20gravity.png" alt="360 Gravity Simulator">
                     </div>
                 </div>
             </div>
@@ -1038,20 +1046,20 @@
             <div class="feature-card">
                 <h3><i class="fa-solid fa-tree" style="color: var(--accent-green);"></i> <span id="orchid-block-title">The Million Orchid Project: Urban Restoration & Citizen Science</span></h3>
                 <p id="orchid-block-desc" style="font-size: 0.95rem; color: #4A5568; line-height: 1.6; margin-bottom: 12px;">
-                    A pioneering urban ecology initiative to reintroduce millions of native orchids into Miami's public trees. Through sterile plant culture taught in schools, students and citizens help restore urban biodiversity.
+                    The Million Orchid Project is a landmark urban ecology restoration initiative designed to re-establish millions of native orchid species into South Florida's urban landscape. Historically over-collected to near-extinction, native orchids are micropropagated in sterile laboratory environments. Through partnerships with local schools and community organizations, students learn sterile tissue culture techniques, germinating microscopic seeds in specialized media flasks before transplanting young seedlings onto urban canopy trees. This initiative restores key mycorrhizal fungal associations and natural insect pollination networks while empowering local communities as active environmental stewards.
                 </p>
                 <div class="gallery-grid-4">
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/million orchid projecy bby pplant.jpeg" alt="Orchid seedling">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2016.57.18.png" alt="Orchid Microscopic Seeds Flask">
                     </div>
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/million orchid prohect.jpeg" alt="Million Orchid Workshop">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/million%20orchid%20prohect.jpeg" alt="Million Orchid Workshop">
                     </div>
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/million orchids porject.jpeg" alt="Urban Orchid Reintroduction">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/million%20orchids%20porject.jpeg" alt="Urban Orchid Reintroduction">
                     </div>
                     <div class="gallery-item">
-                        <img src="Pics/Miami-botanical-garden/orchidz.png" alt="Blooming Orchids">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/orchidz.png" alt="Blooming Orchids">
                     </div>
                 </div>
             </div>
@@ -1063,17 +1071,17 @@
                         <p id="p2-desc">Propagating wild-collected species, managing seed banks, and protecting plants against invasive threats like iguanas.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/RIVIERE%20DU%20NORD.jpg" alt="Rare Plant Conservation">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/lab%20seeds.jpeg" alt="Rare Plant Conservation Lab Seeds">
                     </div>
                 </div>
 
                 <div class="pillar-card">
                     <div>
                         <h4><i class="fa-solid fa-palette"></i> <span id="p4-title">Art & Science Collaborations</span></h4>
-                        <p id="p4-desc">Uniting artists and scientists through sculpture and endangered species print shows to boost environmental literacy.</p>
+                        <p id="p4-desc">Uniting artists such as Lauren Shapiro with scientists through botanical sculptures and artwork to boost environmental literacy.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/grande-descente-teaser.jpg" alt="Art & Science">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2016.39.00.png" alt="Art & Science - Lauren Shapiro Artwork">
                     </div>
                 </div>
 
@@ -1083,7 +1091,7 @@
                         <p id="p5-desc">Using adaptive management for fire-adapted habitats, ecological corridors, and urban cooling strategies.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/quebec-river-protection/solution%20river.png" alt="Climate Resilience">
+                        <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2016.59.21.png" alt="Climate Resilience & Restoration">
                     </div>
                 </div>
             </div>
@@ -1092,54 +1100,62 @@
         <!-- EXPERTS INSIGHTS -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="interview-title">Expert Insights</h2>
+                <h2 id="interview-title">Making Conservation a Public Movement</h2>
             </div>
 
             <div class="interview-profile">
                 <div class="profile-avatar">
-                    <img src="Pics/Miami-botanical-garden/Jason Downing director research .jpeg" alt="Dr. Jason Downing">
+                    <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Miami-botanical-garden/Jason%20Downing%20director%20research%20.jpeg" alt="Dr. Jason Downing">
                 </div>
                 <div class="profile-info">
                     <h3 id="profile-name">Dr. Jason Downing</h3>
                     <p id="profile-role">Director of Research, Fairchild Tropical Botanic Garden</p>
-                    <p id="profile-bio">Meeting in Miami on tropical plant preservation, genomics, NASA space farming, and ecological restoration.</p>
+                    <p id="profile-bio">Leading research on micropropagation, citizen science, and urban ecosystem restoration in Miami.</p>
                 </div>
             </div>
 
             <div class="journalistic-interview">
                 <p id="int-intro" class="interview-intro-text">
-                    For decades, Fairchild has led plant research. Today, connecting field conservation, NASA technology, and genomic data is essential for zero extinction goals.
+                    At Fairchild, conservation is no longer confined to scientists and laboratories. Through initiatives like the Million Orchid Project, researchers are combining science, education, and citizen participation to restore endangered species while transforming public engagement.
                 </p>
 
                 <div class="qa-card-modern">
-                    <h4><i class="fa-solid fa-seedling"></i> <span id="q1-title">Field Challenges & Management</span></h4>
-                    <p id="q1-desc">Subtropical ecosystems face heavy pressures. Managers often struggle with budget limits rather than lack of intent.</p>
+                    <h4><i class="fa-solid fa-eye"></i> <span id="q1-title">Citizen Science & Public Engagement</span></h4>
+                    <p id="q1-desc">By encouraging residents, schools, and volunteers to observe and monitor orchids planted across South Florida, researchers gain valuable data while fostering a deeper connection to nature.</p>
                     <div class="verbatim-quote" id="v1">
-                        "If habitats are mismanaged, it's due to a lack of funds, not intent. Managers need clear data to track invasive plants."
+                        "We cannot monitor every orchid ourselves, but thousands of residents can. The community becomes our eyes on the ground."
                     </div>
                 </div>
 
                 <div class="qa-card-modern">
-                    <h4><i class="fa-solid fa-users"></i> <span id="q2-title">Community Stewardship</span></h4>
-                    <p id="q2-desc">Regional meetings involving local tribes help blend cultural fire traditions with modern conservation needs.</p>
+                    <h4><i class="fa-solid fa-shield-halved"></i> <span id="q2-title">Combating Poaching Through Abundance</span></h4>
+                    <p id="q2-desc">Increasing the legal availability of native orchids dramatically reduces illegal collection pressure in fragile wild habitats.</p>
                     <div class="verbatim-quote" id="v2">
-                        "When we bring communities and local tribes together, we bridge the gap. Education and collaboration are key."
+                        "If we grow a million orchids, we destroy the black market for that species. There is no reason to poach a plant from the wild when anyone can obtain one legally."
                     </div>
                 </div>
 
                 <div class="qa-card-modern">
-                    <h4><i class="fa-solid fa-tree"></i> <span id="q3-title">Urban Greening</span></h4>
-                    <p id="q3-desc">Using tissue culture and school outreach to bring native orchids back into city trees.</p>
+                    <h4><i class="fa-solid fa-graduation-cap"></i> <span id="q3-title">Education as Conservation</span></h4>
+                    <p id="q3-desc">Over 6,000 students actively participate in planting, tissue culture, and data collection, placing youth empowerment at the core of biodiversity protection.</p>
                     <div class="verbatim-quote" id="v3">
-                        "Restoration never stops. We started with schools, giving students sterile plant material to become active stewards."
+                        "We have more than 6,000 students involved in the project. Education is not a side benefit of conservation. Education is conservation."
                     </div>
                 </div>
 
                 <div class="qa-card-modern">
-                    <h4><i class="fa-solid fa-dna"></i> <span id="q4-title">Genomics & Big Data</span></h4>
-                    <p id="q4-desc">Advanced sequencers track billions of base pairs to provide precise genetic mapping for fragile species.</p>
+                    <h4><i class="fa-solid fa-wand-magic-sparkles"></i> <span id="q4-title">Inspiring Action Through Beauty</span></h4>
+                    <p id="q4-desc">The visual appeal of orchids serves as an engaging entry point to spark environmental awareness among diverse communities.</p>
                     <div class="verbatim-quote" id="v4">
-                        "Modern sequencers process three billion pairs, giving us exact genetic maps to protect fragile species."
+                        "People may not care about conservation at first, but they care about beauty. You can lead with beautification and end up achieving conservation."
+                    </div>
+                </div>
+
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-infinity"></i> <span id="q5-title">A Continuous Process of Restoration</span></h4>
+                    <p id="q5-desc">In an era marked by climate change and urban expansion, ecological restoration requires ongoing adaptation rather than one-time fixes.</p>
+                    <div class="verbatim-quote" id="v5">
+                        "Restoration is not a destination. Restoration is a process that never truly ends. When people feel ownership of nature, restoration moves from being a project to becoming a movement."
                     </div>
                 </div>
             </div>
@@ -1187,6 +1203,11 @@
                 <li>
                     <a href="https://fairchildgarden.org/million-orchid-project/" target="_blank" id="link-3-a">
                         <i class="fa-solid fa-tree"></i> <span id="link3-text">The Million Orchid Project – Urban Ecology</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.laurenshapirostudio.com/garden-portals" target="_blank" id="link-5-a">
+                        <i class="fa-solid fa-palette"></i> <span id="link5-text">Lauren Shapiro Studio – Garden Portals Artwork</span>
                     </a>
                 </li>
                 <li>
@@ -1276,37 +1297,40 @@
                 factsHeading: "Key Figures",
                 f1Text: "Of botanical collections, labs, and lush tropical landscapes in Miami (83 acres).",
                 f1Source: "Source: Fairchild Tropical Botanic Garden",
-                f2Text: "Genomic sequencing data tracking billions of base pairs for research.",
-                f2Source: "Source: Fairchild Science Lab",
+                f2Text: "Native & exotic plant species protected in South Florida's biodiversity sanctuary.",
+                f2Source: "Source: Florida Flora Conservation",
                 f3Text: "Years of combined dedication to tropical plant science and conservation.",
                 f3Source: "Source: Fairchild History",
                 nasaBlockTitle: "NASA Partnership: Botanical Labs & Space Agriculture",
-                nasaBlockDesc: "Partnering directly with NASA, Fairchild operates specialized labs to test plants for space missions. Using custom chambers, tissue culture, and 360-degree gravity simulators, scientists study plant responses to microgravity.",
+                nasaBlockDesc: "In a groundbreaking collaboration with NASA's Kennedy Space Center, Fairchild operates specialized botany labs to identify and evaluate edible plant species suitable for space exploration. Through the \"Growing Beyond Earth\" project, middle and high school students test hundreds of crop varieties in custom chambers (Veggie & Advanced Plant Habitat units). Using tissue culture micropropagation, automated environmental controls, and 360-degree gravity simulators, researchers study plant growth dynamics, stress tolerance, and microgravity responses to provide essential nutrition and psychological benefits for future long-duration missions to the Moon and Mars.",
                 orchidBlockTitle: "The Million Orchid Project: Urban Restoration & Citizen Science",
-                orchidBlockDesc: "A pioneering urban ecology initiative to reintroduce millions of native orchids into Miami's public trees. Through sterile plant culture taught in schools, students and citizens help restore urban biodiversity.",
-                interviewTitle: "Expert Insights",
+                orchidBlockDesc: "The Million Orchid Project is a landmark urban ecology restoration initiative designed to re-establish millions of native orchid species into South Florida's urban landscape. Historically over-collected to near-extinction, native orchids are micropropagated in sterile laboratory environments. Through partnerships with local schools and community organizations, students learn sterile tissue culture techniques, germinating microscopic seeds in specialized media flasks before transplanting young seedlings onto urban canopy trees. This initiative restores key mycorrhizal fungal associations and natural insect pollination networks while empowering local communities as active environmental stewards.",
+                interviewTitle: "Making Conservation a Public Movement",
                 profileName: "Dr. Jason Downing",
                 profileRole: "Director of Research, Fairchild Tropical Botanic Garden",
-                profileBio: "Meeting in Miami on tropical plant preservation, genomics, NASA space farming, and ecological restoration.",
-                intIntro: "For decades, Fairchild has led plant research. Today, connecting field conservation, NASA technology, and genomic data is essential for zero extinction goals.",
-                q1Title: "Field Challenges & Management",
-                q1Desc: "Subtropical ecosystems face heavy pressures. Managers often struggle with budget limits rather than lack of intent.",
-                v1: "\"If habitats are mismanaged, it's due to a lack of funds, not intent. Managers need clear data to track invasive plants.\"",
-                q2Title: "Community Stewardship",
-                q2Desc: "Regional meetings involving local tribes help blend cultural fire traditions with modern conservation needs.",
-                v2: "\"When we bring communities and local tribes together, we bridge the gap. Education and collaboration are key.\"",
-                q3Title: "Urban Greening",
-                q3Desc: "Using tissue culture and school outreach to bring native orchids back into city trees.",
-                v3: "\"Restoration never stops. We started with schools, giving students sterile plant material to become active stewards.\"",
-                q4Title: "Genomics & Big Data",
-                q4Desc: "Advanced sequencers track billions of base pairs to provide precise genetic mapping for fragile species.",
-                v4: "\"Modern sequencers process three billion pairs, giving us exact genetic maps to protect fragile species.\"",
+                profileBio: "Leading research on micropropagation, citizen science, and urban ecosystem restoration in Miami.",
+                intIntro: "At Fairchild, conservation is no longer confined to scientists and laboratories. Through initiatives like the Million Orchid Project, researchers are combining science, education, and citizen participation to restore endangered species while transforming public engagement.",
+                q1Title: "Citizen Science & Public Engagement",
+                q1Desc: "By encouraging residents, schools, and volunteers to observe and monitor orchids planted across South Florida, researchers gain valuable data while fostering a deeper connection to nature.",
+                v1: "\"We cannot monitor every orchid ourselves, but thousands of residents can. The community becomes our eyes on the ground.\"",
+                q2Title: "Combating Poaching Through Abundance",
+                q2Desc: "Increasing the legal availability of native orchids dramatically reduces illegal collection pressure in fragile wild habitats.",
+                v2: "\"If we grow a million orchids, we destroy the black market for that species. There is no reason to poach a plant from the wild when anyone can obtain one legally.\"",
+                q3Title: "Education as Conservation",
+                q3Desc: "Over 6,000 students actively participate in planting, tissue culture, and data collection, placing youth empowerment at the core of biodiversity protection.",
+                v3: "\"We have more than 6,000 students involved in the project. Education is not a side benefit of conservation. Education is conservation.\"",
+                q4Title: "Inspiring Action Through Beauty",
+                q4Desc: "The visual appeal of orchids serves as an engaging entry point to spark environmental awareness among diverse communities.",
+                v4: "\"People may not care about conservation at first, but they care about beauty. You can lead with beautification and end up achieving conservation.\"",
+                q5Title: "A Continuous Process of Restoration",
+                q5Desc: "In an era marked by climate change and urban expansion, ecological restoration requires ongoing adaptation rather than one-time fixes.",
+                v5: "\"Restoration is not a destination. Restoration is a process that never truly ends. When people feel ownership of nature, restoration moves from being a project to becoming a movement.\"",
                 pillarsHeading: "Fairchild Approach",
                 roleDesc: "Combining world-class horticulture, advanced science, NASA space partnerships, the Million Orchid Project, and community education, Fairchild leads biodiversity preservation.",
                 p2Title: "Rare Plant Conservation",
                 p2Desc: "Propagating wild-collected species, managing seed banks, and protecting plants against invasive threats like iguanas.",
                 p4Title: "Art & Science Collaborations",
-                p4Desc: "Uniting artists and scientists through sculpture and endangered species print shows to boost environmental literacy.",
+                p4Desc: "Uniting artists such as Lauren Shapiro with scientists through botanical sculptures and artwork to boost environmental literacy.",
                 p5Title: "Climate Resilience & Restoration",
                 p5Desc: "Using adaptive management for fire-adapted habitats, ecological corridors, and urban cooling strategies.",
                 actionHeading: "How to Take Action",
@@ -1322,6 +1346,7 @@
                 link1Text: "Fairchild Tropical Botanic Garden – Official Website",
                 link2Text: "Science & Conservation – Research Programs",
                 link3Text: "The Million Orchid Project – Urban Ecology",
+                link5Text: "Lauren Shapiro Studio – Garden Portals Artwork",
                 link4Text: "Florida Conservation Guide – Environmental Resources",
                 exploreBtnText: "Explore more projects"
             },
@@ -1345,37 +1370,40 @@
                 factsHeading: "Chiffres clés",
                 f1Text: "D'hectares de jardins et de serres à Miami (83 acres).",
                 f1Source: "Source : Fairchild Tropical Botanic Garden",
-                f2Text: "Données génomiques suivant des milliards de paires de bases.",
-                f2Source: "Source : Labo Fairchild",
+                f2Text: "Espèces de plantes locales et exotiques protégées en Floride du Sud.",
+                f2Source: "Source : Conservation Flore de Floride",
                 f3Text: "Ans de passion pour la science des plantes tropicales.",
                 f3Source: "Source : Historique Fairchild",
                 nasaBlockTitle: "Partenariat NASA : Labos & Agriculture Spatiale",
-                nasaBlockDesc: "Avec la NASA, Fairchild teste des plantes pour l'espace grâce à des cultures in vitro et des simulateurs de gravité.",
+                nasaBlockDesc: "En partenariat direct avec le centre spatial Kennedy de la NASA, Fairchild exploite des laboratoires de botanique spécialisés pour tester des cultures comestibles destinées aux missions spatiales. Dans le cadre du programme « Growing Beyond Earth », des étudiants évaluent des centaines de variétés dans des chambres d'essai (chambres Veggie & APH). Grâce aux cultures in vitro et aux simulateurs de gravité à 360°, les chercheurs étudient la tolérance au stress et la microgravité pour nourrir et soutenir le bien-être des astronautes vers la Lune et Mars.",
                 orchidBlockTitle: "The Million Orchid Project : Nature en Ville",
-                orchidBlockDesc: "Réintroduction de millions d'orchidées locales dans les arbres avec l'aide des écoles et des citoyens.",
-                interviewTitle: "Avis d'expert",
+                orchidBlockDesc: "Le Million Orchid Project est une initiative pionnière d'écologie urbaine réintroduisant des millions d'orchidées indigènes menacées dans la canopée de Miami. Produites in vitro en milieu stérile, ces graines microscopiques sont rempotées et élevées par des élèves et citoyens engagés avant d'être implantées sur les arbres de la ville. Ce projet restaure les réseaux de pollinisation et les symbioses fongiques tout en impliquant activement les communautés locales dans la préservation de la biodiversité.",
+                interviewTitle: "Faire de la Conservation un Mouvement Citoyen",
                 profileName: "Dr. Jason Downing",
                 profileRole: "Directeur de recherche, Fairchild",
-                profileBio: "Expert en plantes tropicales, génomique et écologie urbaine à Miami.",
-                intIntro: "Relier le terrain, la tech NASA et la génétique est vital pour stopper l'extinction des espèces.",
-                q1Title: "Défis de terrain",
-                q1Desc: "Le manque de fonds freine souvent les gestionnaires.",
-                v1: "\"Il manque de fonds, pas de volonté. Il faut des données claires.\"",
-                q2Title: "Action locale",
-                q2Desc: "Allier traditions et science moderne.",
-                v2: "\"L'éducation et le dialogue sont indispensables.\"",
-                q3Title: "Verdissement urbain",
-                q3Desc: "Impliquer les élèves pour sauver la nature en ville.",
-                v3: "\"Impliquer les jeunes crée de vrais acteurs du changement.\"",
-                q4Title: "Génomique",
-                q4Desc: "Cartographier l'ADN pour protéger les espèces fragiles.",
-                v4: "\"La génétique nous donne les cartes exactes pour sauver les plantes.\"",
+                profileBio: "Leader de la recherche sur les cultures in vitro, les sciences citoyennes et la restauration urbaine à Miami.",
+                intIntro: "À Fairchild, la conservation n'est plus réservée aux chercheurs. Avec le Million Orchid Project, la science s'allie à l'éducation et la participation citoyenne pour protéger les espèces menacées et transformer l'engagement du public.",
+                q1Title: "Science Citoyenne & Engagement",
+                q1Desc: "En incitant citoyens et élèves à observer et suivre les orchidées plantées, les chercheurs collectent des données précieuses tout en renforçant le lien avec la nature.",
+                v1: "\"Nous ne pouvons pas surveiller chaque orchidée nous-mêmes, mais des milliers d'habitants le peuvent. La communauté devient nos yeux sur le terrain.\"",
+                q2Title: "Stopper le Braconnage par l'Abondance",
+                q2Desc: "Rendre les orchidées sauvages disponibles légalement réduit la pression du braconnage dans la nature.",
+                v2: "\"Si nous cultivons un million d'orchidées, nous détruisons le marché noir. Personne n'ira braconner si l'on peut s'en procurer légalement.\"",
+                q3Title: "L'Éducation, c'est la Conservation",
+                q3Desc: "Plus de 6 000 élèves participent activement aux plantations et aux analyses, plaçant la jeunesse au cœur du projet.",
+                v3: "\"Nous avons plus de 6 000 élèves impliqués. L'éducation n'est pas un bonus. L'éducation, c'est la conservation même.\"",
+                q4Title: "Sensibiliser par la Beauté",
+                q4Desc: "L'esthétique des orchidées sert de porte d'entrée pour éveiller la conscience écologique de toute la communauté.",
+                v4: "\"Au début, les gens ne s'intéressent pas forcément à la conservation, mais ils aiment la beauté. En commençant par la beauté, on en arrive à préserver la nature.\"",
+                q5Title: "La Restauration, un Processus Continu",
+                q5Desc: "Face au changement climatique, la restauration écologique demande un engagement permanent plutôt que des actions ponctuelles.",
+                v5: "\"La restauration n'est pas une destination, c'est un processus permanent. Quand les citoyens s'approprient la nature, la conservation devient un vrai mouvement.\"",
                 pillarsHeading: "Notre approche",
                 roleDesc: "Allier horticulture, science, espace et éducation pour préserver la vie.",
                 p2Title: "Sauvegarde des plantes rares",
                 p2Desc: "Cultiver et protéger les espèces menacées contre les nuisibles.",
                 p4Title: "Art & Science",
-                p4Desc: "Sensibiliser le public via des expositions artistiques.",
+                p4Desc: "Collaborer avec des artistes comme Lauren Shapiro pour créer des sculptures botaniques et sensibiliser le public.",
                 p5Title: "Résilience climatique",
                 p5Desc: "Gérer durablement les habitats et rafraîchir les villes.",
                 actionHeading: "Agir",
@@ -1391,6 +1419,7 @@
                 link1Text: "Site officiel Fairchild",
                 link2Text: "Programmes de recherche",
                 link3Text: "The Million Orchid Project",
+                link5Text: "Lauren Shapiro Studio – Oeuvres Garden Portals",
                 link4Text: "Guide nature de Floride",
                 exploreBtnText: "Voir plus de projets"
             },
@@ -1414,37 +1443,40 @@
                 factsHeading: "Zahlen",
                 f1Text: "Hektar Gärten und Labore in Miami (83 Acres).",
                 f1Source: "Quelle: Fairchild Garden",
-                f2Text: "Genomdaten zur Erforschung von Milliarden Basenpaaren.",
-                f2Source: "Quelle: Fairchild Lab",
+                f2Text: "Geschützte einheimische und exotische Pflanzenarten in Südflorida.",
+                f2Source: "Quelle: Florida Flora Conservation",
                 f3Text: "Jahre Hingabe an die Tropenbotanik.",
                 f3Source: "Quelle: Fairchild History",
                 nasaBlockTitle: "NASA-Partnerschaft: Raumfahrt-Landwirtschaft",
-                nasaBlockDesc: "Fairchild testet in Laboren mit NASA-Hilfe Nutzpflanzen für den Weltraum.",
+                nasaBlockDesc: "In Kooperation mit dem NASA Kennedy Space Center betreibt Fairchild Labore zur Erforschung essbarer Pflanzen für Raumfahrtmissionen. Schüler testen im Projekt \"Growing Beyond Earth\" Pflanzen in speziellen Wachstumskammern. Mithilfe von Mikromehrung und 360-Grad-Gravitationssimulatoren erforschen Wissenschaftler Pflanzenreaktionen auf Schwerelosigkeit für künftige Missionen zum Mond und Mars.",
                 orchidBlockTitle: "Million Orchid Project: Natur in der Stadt",
-                orchidBlockDesc: "Millionen einheimischer Orchideen werden mit Schulen in Städten gepflanzt.",
-                interviewTitle: "Expertenmeinung",
+                orchidBlockDesc: "Das Million Orchid Project ist eine Umweltinitiative zur Wiederansiedlung von Millionen einheimischer Orchideen in Miami. Die in Laboren gezüchteten Mikropflanzen werden zusammen mit Schulen an Stadtbäumen angebracht, um Ökosysteme und Bestäuber-Netzwerke nachhaltig zu stärken.",
+                interviewTitle: "Naturschutz als Bürgerbewegung",
                 profileName: "Dr. Jason Downing",
                 profileRole: "Forschungsleiter",
-                profileBio: "Experte für Tropenpflanzen und Genomik in Miami.",
-                intIntro: "Feldforschung und NASA-Technik sind der Schlüssel zum Artenschutz.",
-                q1Title: "Feldforschung",
-                q1Desc: "Oft fehlen finanzielle Mittel statt gutem Willen.",
-                v1: "\"Es mangelt an Geld, nicht an Willen. Wir brauchen klare Daten.\"",
-                q2Title: "Gemeinschaft",
-                q2Desc: "Wissen teilen und zusammenarbeiten.",
-                v2: "\"Bildung und Kooperation sind der Schlüssel.\"",
-                q3Title: "Stadtgrün",
-                q3Desc: "Schüler helfen aktiv beim Artenschutz mit.",
-                v3: "\"Junge Menschen lernen so, aktive Umweltschützer zu werden.\"",
-                q4Title: "Genetik",
-                q4Desc: "Genom-Daten helfen beim Schutz seltener Pflanzen.",
-                v4: "\"Moderne Gen-Daten zeigen uns exakt, wie wir Arten retten.\"",
+                profileBio: "Leitet Forschung zu Mikrovermehrung, Citizen Science und Ökosystem-Wiederherstellung.",
+                intIntro: "Naturschutz ist bei Fairchild keine reine Laborsache mehr. Durch Bürgerbeteiligung und Schulen werden gefährdete Arten gezielt geschützt.",
+                q1Title: "Citizen Science & Mitwirkung",
+                q1Desc: "Tausende Bürger und Schüler erfassen Daten über gepflanzte Orchideen.",
+                v1: "\"Wir können nicht jede Orchidee selbst überwachen. Die Gemeinschaft wird zu unseren Augen vor Ort.\"",
+                q2Title: "Wilderei durch Überfluss bekämpfen",
+                q2Desc: "Die legale Zucht verringert den Druck auf wilde Bestände.",
+                v2: "\"Wenn wir eine Million Orchideen züchten, zerstören wir den Schwarzmarkt für diese Arten.\"",
+                q3Title: "Bildung ist Naturschutz",
+                q3Desc: "Über 6.000 Schüler nehmen aktiv an den Schutzmaßnahmen teil.",
+                v3: "\"Mehr als 6.000 Schüler machen mit. Bildung ist nicht nur ein Nebeneffekt – Bildung IST Naturschutz.\"",
+                q4Title: "Mit Schönheit begeistern",
+                q4Desc: "Die Ästhetik von Orchideen weckt Begeisterung für den Artenschutz.",
+                v4: "\"Menschen lieben Schönheit. Mit Schönheit kann man Menschen erreichen und am Ende echten Naturschutz erzielen.\"",
+                q5Title: "Wiederherstellung als Daueraufgabe",
+                q5Desc: "Ökologische Erholung braucht ständige Anpassung.",
+                v5: "\"Renaturierung ist ein ständiger Prozess. Wenn Bürger die Natur wertschätzen, wird Naturschutz zu einer echten Bewegung.\"",
                 pillarsHeading: "Unser Ansatz",
                 roleDesc: "Gartenbau, Wissenschaft und Bildung zum Schutz der Natur.",
                 p2Title: "Schutz seltener Pflanzen",
                 p2Desc: "Erhalt gefährdeter Arten und Abwehr von Schädlingen.",
                 p4Title: "Art & Science",
-                p4Desc: "Kunst und Wissenschaft verbinden.",
+                p4Desc: "Zusammenarbeit mit Künstlern wie Lauren Shapiro für botanische Skulpturen.",
                 p5Title: "Klimaresilienz",
                 p5Desc: "Anpassung von Habitaten und Kühlung der Städte.",
                 actionHeading: "Mitmachen",
@@ -1453,7 +1485,6 @@
                 mi2: "Sparen Sie Wasser im Alltag.",
                 mi3: "Unterstützen Sie Umweltprojekte.",
                 mesoTitle: "Gemeinschaft",
-                mesoTitle: "Gemeinschaft",
                 me1: "Machen Sie beim Orchideen-Projekt mit.",
                 me2: "Helfen Sie in lokalen Gärten.",
                 me3: "Schützen Sie Stadtbäume.",
@@ -1461,6 +1492,7 @@
                 link1Text: "Offizielle Website",
                 link2Text: "Forschungsprogramme",
                 link3Text: "Million Orchid Project",
+                link5Text: "Lauren Shapiro Studio – Garden Portals",
                 link4Text: "Florida Naturschutz-Guide",
                 exploreBtnText: "Mehr Projekte"
             },
@@ -1484,37 +1516,40 @@
                 factsHeading: "Datos clave",
                 f1Text: "De hectáreas de jardines y laboratorios en Miami (83 acres).",
                 f1Source: "Fuente: Fairchild Botanical Garden",
-                f2Text: "Datos genómicos analizando pares de bases de ADN.",
-                f2Source: "Fuente: Laboratorio Fairchild",
+                f2Text: "Especies de plantas nativas y exóticas protegidas en el sur de Florida.",
+                f2Source: "Fuente: Florida Flora Conservation",
                 f3Text: "Años dedicados a la ciencia tropical.",
                 f3Source: "Fuente: Historia Fairchild",
                 nasaBlockTitle: "Alianza NASA: Labs y Agricultura Espacial",
-                nasaBlockDesc: "Con la NASA, Fairchild prueba plantas para misiones espaciales mediante cultivo in vitro y simuladores.",
+                nasaBlockDesc: "En alianza directa con el Centro Espacial Kennedy de la NASA, Fairchild opera laboratorios especializados para estudiar especies comestibles para el espacio. Con el proyecto \"Growing Beyond Earth\", estudiantes evalúan cultivos en cámaras especiales para apoyar las futuras misiones a la Luna y Marte.",
                 orchidBlockTitle: "Million Orchid Project: Naturaleza Urbana",
-                orchidBlockDesc: "Proyecto para reintroducir millones de orquídeas en árboles urbanos junto a escuelas.",
-                interviewTitle: "Opinión de experto",
+                orchidBlockDesc: "The Million Orchid Project es una iniciativa pionera para reintroducir millones de orquídeas nativas en el paisaje urbano de Miami. Micropropagadas en laboratorios, las plantas se cultivan junto a escuelas e instituciones para reforestar árboles urbanos y restaurar la biodiversidad.",
+                interviewTitle: "Convertir la Conservación en un Movimiento Ciudadano",
                 profileName: "Dr. Jason Downing",
                 profileRole: "Director de Investigación",
-                profileBio: "Especialista en conservación y genómica en Miami.",
-                intIntro: "Unir el trabajo de campo, la tecnología NASA y la genómica es clave para evitar la extinción.",
-                q1Title: "Retos de campo",
-                q1Desc: "Falta de fondos más que falta de voluntad.",
-                v1: "\"Falta dinero, no voluntad. Necesitamos datos claros.\"",
-                q2Title: "Comunidad",
-                q2Desc: "Colaborar con comunidades y tribus locales.",
-                v2: "\"La educación y el trabajo en equipo son fundamentales.\"",
-                q3Title: "Ecología urbana",
-                q3Desc: "Involucrar a los jóvenes en la restauración natural.",
-                v3: "\"Involucrar a las escuelas crea ciudadanos activos.\"",
-                q4Title: "Genómica",
-                q4Desc: "Uso de datos masivos para proteger especies frágiles.",
-                v4: "\"La genética nos da el mapa exacto para proteger especies.\"",
+                profileBio: "Líder en micropropagación, ciencia ciudadana y restauración ecológica urbana.",
+                intIntro: "En Fairchild, la conservación involucra activamente a la comunidad. A través de iniciativas como The Million Orchid Project, la investigación une ciencia, educación y participación ciudadana.",
+                q1Title: "Ciencia Ciudadana y Participación",
+                q1Desc: "Los ciudadanos registran datos clave de las orquídeas sembradas en la ciudad.",
+                v1: "\"No podemos monitorear cada orquídea nosotros mismos, pero miles de vecinos sí. La comunidad se convierte en nuestros ojos en el terreno.\"",
+                q2Title: "Combatir la Caza Furtiva con Abundancia",
+                q2Desc: "Al cultivar masivamente especies legales, se elimina el atractivo del mercado negro.",
+                v2: "\"Si cultivamos un millón de orquídeas, destruimos el mercado negro de esa especie. Nadie sacará una planta silvestre si puede tenerla legalmente.\"",
+                q3Title: "La Educación ES Conservación",
+                q3Desc: "Más de 6.000 estudiantes participan activamente en las labores de reforestación urbana.",
+                v3: "\"Tenemos a más de 6.000 estudiantes involucrados. La educación no es un beneficio secundario, la educación ES la conservación.\"",
+                q4Title: "Inspirar a Través de la Belleza",
+                q4Desc: "El atractivo visual de las orquídeas conecta al público con causas ecológicas mayores.",
+                v4: "\"A la gente le importa la belleza. Puedes empezar con la belleza estética y terminar logrando conservación real.\"",
+                q5Title: "La Restauración es un Proceso Continuo",
+                q5Desc: "La restauración exige adaptación constante frente al cambio climático y la expansión urbana.",
+                v5: "\"La restauración no es un destino, es un proceso continuo. Cuando la gente siente que la naturaleza le pertenece, la conservación se convierte en un movimiento.\"",
                 pillarsHeading: "Enfoque",
                 roleDesc: "Unir horticultura, ciencia y educación para proteger la biodiversidad.",
                 p2Title: "Plantas raras",
                 p2Desc: "Propagación y defensa de especies amenazadas.",
                 p4Title: "Arte y Ciencia",
-                p4Desc: "Exposiciones para conectar al público con la naturaleza.",
+                p4Desc: "Colaboración con artistas como Lauren Shapiro para crear esculturas botánicas y conectar con el público.",
                 p5Title: "Resiliencia climática",
                 p5Desc: "Gestión de hábitats y enfriamiento urbano.",
                 actionHeading: "Cómo actuar",
@@ -1530,6 +1565,7 @@
                 link1Text: "Web oficial Fairchild",
                 link2Text: "Programas de investigación",
                 link3Text: "Million Orchid Project",
+                link5Text: "Lauren Shapiro Studio – Esculturas Garden Portals",
                 link4Text: "Guía ambiental de Florida",
                 exploreBtnText: "Ver más proyectos"
             }
@@ -1599,6 +1635,12 @@
             document.getElementById('q4-desc').innerText = t.q4Desc;
             document.getElementById('v4').innerText = t.v4;
 
+            if (document.getElementById('q5-title')) {
+                document.getElementById('q5-title').innerText = t.q5Title;
+                document.getElementById('q5-desc').innerText = t.q5Desc;
+                document.getElementById('v5').innerText = t.v5;
+            }
+
             document.getElementById('pillars-heading').innerText = t.pillarsHeading;
             document.getElementById('role-desc').innerText = t.roleDesc;
             document.getElementById('p2-title').innerText = t.p2Title; document.getElementById('p2-desc').innerText = t.p2Desc;
@@ -1619,6 +1661,9 @@
             document.getElementById('link1-text').innerText = t.link1Text;
             document.getElementById('link2-text').innerText = t.link2Text;
             document.getElementById('link3-text').innerText = t.link3Text;
+            if (document.getElementById('link5-text')) {
+                document.getElementById('link5-text').innerText = t.link5Text;
+            }
             document.getElementById('link4-text').innerText = t.link4Text;
 
             document.getElementById('explore-btn-text').innerText = t.exploreBtnText;
