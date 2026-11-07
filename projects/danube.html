@@ -380,6 +380,22 @@
             display: block;
         }
 
+        /* MULTI-IMAGE GRID POUR THE CHALLENGE */
+        .challenge-images-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .challenge-images-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: block;
+        }
+
         /* FACTS GRID */
         .facts-grid {
             display: grid;
@@ -435,7 +451,7 @@
             text-decoration: underline;
         }
 
-        /* PILLARS / APPROACH GRID (für die 3 Bilder) */
+        /* PILLARS / APPROACH GRID */
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -490,7 +506,7 @@
             display: block;
         }
 
-        /* STEPS GRID (Micro/Meso / Action Steps) */
+        /* STEPS GRID */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -744,8 +760,9 @@
                     <p id="challenge-p1">The Danube, Europe's second-longest river, is facing increasing environmental and social challenges. Climate change has led to more frequent droughts and record-low water levels, disrupting ecosystems, navigation, and access to freshwater.</p>
                     <p id="challenge-p2">Despite connecting ten countries and supporting more than 80 million people, the Danube remains a fragile ecosystem. Urbanization, hydropower development, and the loss of wetlands have altered many of its natural habitats.</p>
                 </div>
-                <div class="grid-image">
-                    <img src="Pics/Kayak-Danube/Danube-sunrise.jpg" alt="Danube Sunrise" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Danube-sunrise.jpg';">
+                <div class="challenge-images-grid">
+                    <img src="Pics/Kayak-Danube/IMG_8516.jpg" alt="Danube Challenge 1" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/IMG_8516.jpg';">
+                    <img src="Pics/Kayak-Danube/Capture d’écran 2026-11-07 à 17.29.53.png" alt="Danube Challenge 2" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2017.29.53.png';">
                 </div>
             </div>
         </section>
@@ -774,7 +791,7 @@
             </div>
         </section>
 
-        <!-- OUR PROJECT & PRINCIPLES (Im exakten Pillars-/Grid-Format der anderen Seiten) -->
+        <!-- OUR PROJECT & PRINCIPLES -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="project-title">Our Project & Principles of Sustainable Travel</h2>
@@ -803,7 +820,7 @@
                         <p id="col2-desc">Observing subtle ecological changes, sunset transitions, and the rhythm of nature across various national borders.</p>
                     </div>
                     <div class="card-image-container">
-                        <img src="Pics/Kayak-Danube/Danube-sunset.jpg" alt="Danube Sunset" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Danube-sunset.jpg';">
+                        <img src="Pics/Kayak-Danube/Capture d’écran 2026-11-07 à 17.43.50.png" alt="Scenic Connection" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/Kayak-Danube/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2017.43.50.png';">
                     </div>
                 </div>
 
@@ -819,7 +836,7 @@
             </div>
         </section>
 
-        <!-- HOW YOU CAN PRACTICE SUSTAINABLE RIVER TRAVEL (Exaktes Micro/Meso-Grid Format) -->
+        <!-- HOW YOU CAN PRACTICE SUSTAINABLE RIVER TRAVEL -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="action-heading">How you can practice sustainable river travel</h2>
