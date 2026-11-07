@@ -186,6 +186,14 @@
             font-size: 1.2rem;
         }
 
+        .meta-extra-img {
+            height: 38px;
+            width: auto;
+            border-radius: 4px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         .sdg-icons {
             display: flex;
             gap: 10px;
@@ -378,6 +386,58 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: block;
+        }
+
+        /* EXPERT INSIGHTS STYLING */
+        .article-subtitle {
+            font-size: 0.95rem;
+            color: #4A5568;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.6;
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .expert-portrait-container {
+            margin: 20px 0 25px 0;
+            text-align: left;
+        }
+
+        .expert-portrait {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .article-body h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin: 25px 0 10px 0;
+        }
+
+        .article-body p {
+            font-size: 0.98rem;
+            color: #4A5568;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .article-quote {
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent-green);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--primary-dark);
+            font-weight: 500;
         }
 
         /* FACTS GRID */
@@ -676,7 +736,10 @@
             <div class="hero-meta">
                 <div class="meta-details">
                     <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span id="location-meta">Washington D.C. & Capital Region, USA</span></div>
-                    <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span></div>
+                    <div class="meta-item">
+                        <i class="fa-solid fa-calendar-days"></i> <span id="project-year">2026</span>
+                        <img src="Pics/washington-nature-forward/Capture d’écran 2026-11-07 à 18.12.54.png" alt="2026 Snapshot" class="meta-extra-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-nature-forward/Capture%20d’écran%202026-11-07%20à%2018.12.54.png';">
+                    </div>
                 </div>
                 <div class="sdg-icons">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/ec84383eb713189df22b3c1b63a4ff3ad50eb385/Pics/SDGs/E_SDG_PRINT-11.jpg" alt="SDG 11" class="sdg-img" title="SDG 11: Sustainable Cities and Communities">
@@ -720,10 +783,10 @@
             </div>
         </div>
 
-        <!-- THE CHALLENGE -->
+        <!-- MAIN CHALLENGES -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="challenge-title">The Challenge</h2>
+                <h2 id="challenge-title">Main Challenges</h2>
             </div>
             <div class="grid-2col">
                 <div class="grid-text">
@@ -760,10 +823,10 @@
             </div>
         </section>
 
-        <!-- OUR PROJECT & PRINCIPLES -->
+        <!-- NATURE FORWARD APPROACH -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="project-title">Our Project & Principles</h2>
+                <h2 id="project-title">Nature Forward Approach</h2>
             </div>
             <div class="pillars-grid">
                 <div class="pillar-card">
@@ -798,10 +861,92 @@
             </div>
         </section>
 
-        <!-- HOW YOU CAN PRACTICE SUSTAINABLE RIVER TRAVEL / GRASSROOTS ACTION -->
+        <!-- EXPERT INSIGHTS SECTION -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="action-heading">How you can practice sustainable river travel</h2>
+                <h2 id="insights-title">Expert Insights</h2>
+            </div>
+            
+            <p class="article-subtitle" id="insights-subtitle">
+                <strong>Alison Pearce (Nature Forward): “There Is No Single Solution, Only Collective Strategies for Change”</strong><br>
+                In a wide-ranging interview on conservation, community engagement, environmental education, and organizational leadership, Alison Pearce, Executive Director of Nature Forward, shared her vision for creating lasting environmental impact. Rather than searching for quick fixes, she advocates for long-term strategies centered on people, partnerships, and community empowerment.
+            </p>
+            
+            <div class="expert-portrait-container">
+                <img src="Pics/washington-nature-forward/ALICENT PEARCE PP.jpg" alt="Alison Pearce" class="expert-portrait" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-nature-forward/ALICENT%20PEARCE%20PP.jpg';">
+            </div>
+
+            <div class="article-body" id="insights-content">
+                <h3>Fighting Invasive Species Is a Long-Term Commitment</h3>
+                <p>One of the central themes of the discussion was the challenge of managing invasive species. Alison Pearce stressed that ecological restoration is often misunderstood as a one-time intervention.</p>
+                <div class="article-quote">“When people ask about the solution to invasive plants or environmental challenges, I often say there isn’t a single solution. There are many strategies that, together, can make a difference.”</div>
+                <p>She explained that many people expect immediate results after removing invasive species, only to be disappointed when they return.</p>
+                <div class="article-quote">“You remove invasive plants one year, and they come back the next. That doesn’t mean the work failed. Nature operates on long timescales. Restoration requires persistence and continuous management.”</div>
+                <p>For the CEO of Nature Forward, success is not defined by a permanent victory over nature’s challenges but by sustained progress over time.</p>
+
+                <h3>Balancing Ambition and Focus</h3>
+                <p>As an organization, Nature Forward operates across multiple areas, including environmental education, habitat restoration, conservation advocacy, community engagement, and volunteer programs.</p>
+                <p>While this diversity is a strength, it also creates challenges.</p>
+                <div class="article-quote">“Ideas are never the problem. The real challenge is filtering them, prioritizing them, and sometimes deciding what not to do.”</div>
+                <p>The leadership described a constant flow of suggestions coming from staff, members, volunteers, and community partners. The difficult part is identifying which initiatives align most closely with the organization’s mission and available resources.</p>
+                <div class="article-quote">“There will always be a million ideas. The hard work is deciding which ones can have the greatest impact.”</div>
+
+                <h3>Education as the Foundation of Conservation</h3>
+                <p>Throughout the interview, she repeatedly returned to the importance of education.</p>
+                <p>Whether restoring wetlands, protecting forests, or advocating for policy change, she sees education as the common thread connecting all of Nature Forward’s work.</p>
+                <div class="article-quote">“At the end of the day, almost everything we do is education. Even restoration projects are really about building understanding, skills, and capacity within communities.”</div>
+                <p>She emphasized that environmental education goes far beyond classroom instruction. It involves helping people understand their local ecosystems and empowering them to take action.</p>
+                <p>Children, in particular, play a critical role.</p>
+                <div class="article-quote">“When young people have positive experiences in nature, those experiences often become part of their identity for the rest of their lives.”</div>
+                <p>Yet Nature Forward’s strategy extends beyond direct engagement with children. The organization also invests in teachers, multiplying its impact across thousands of students.</p>
+                <div class="article-quote">“If you train one teacher, that teacher may influence hundreds of students over the course of a career.”</div>
+
+                <h3>Reaching Beyond Traditional Audiences</h3>
+                <p>The executive director believes that conservation organizations must move beyond serving only those who are already interested in nature.</p>
+                <div class="article-quote">“We won’t succeed because we found the perfect solution. We’ll succeed because millions of people adopt better practices.”</div>
+                <p>She illustrated this point with the example of native plants. While ecologists may identify ideal species for biodiversity, widespread adoption depends on accessibility.</p>
+                <div class="article-quote">“If people can’t find a plant in a local garden center and have to grow it themselves from seeds collected on the roadside, that’s not a strategy that can scale.”</div>
+                <p>For the CEO of Nature Forward, practical adoption is often more important than theoretical perfection.</p>
+
+                <h3>Redefining Humanity’s Relationship with Nature</h3>
+                <p>Another important theme was the need to rethink who belongs in conservation.</p>
+                <p>She rejects the notion that some people are inherently “nature people” while others are not.</p>
+                <div class="article-quote">“Everyone has a relationship with nature. Their experience may simply look different from someone else’s.”</div>
+                <p>Nature Forward seeks to build on these existing experiences rather than expecting people to conform to a traditional environmental identity.</p>
+                <p>This philosophy is especially important when engaging communities that have historically been underrepresented in environmental spaces.</p>
+
+                <h3>Partnerships Beyond the Environmental Sector</h3>
+                <p>The leadership highlighted several partnerships that demonstrate how conservation can intersect with social and economic goals.</p>
+                <p>One example involves workforce development programs that provide environmental training to people seeking employment. Participants learn skills such as ecological landscaping and stormwater management while improving their job prospects.</p>
+                <div class="article-quote">“Some of our most impactful partnerships are not with environmental organizations at all.”</div>
+                <p>These collaborations help embed conservation within broader community priorities such as employment, public health, and neighborhood improvement.</p>
+
+                <h3>An Organization That Continues to Evolve</h3>
+                <p>Nature Forward, formerly known as the Audubon Naturalist Society, has undergone significant changes throughout its history.</p>
+                <p>The organization recently rebranded to better reflect its evolving mission and commitment to inclusion.</p>
+                <p>Alison Pearce explained that the goal is to create pathways for participation that are accessible to everyone, regardless of background, income, or prior experience with nature.</p>
+                <p>The organization has also rethought its membership model, making engagement easier and more welcoming for community members who contribute through programs, workshops, and volunteer activities.</p>
+
+                <h3>“The Purpose Is Not the Organization”</h3>
+                <p>Perhaps the most powerful message of the interview concerned organizational purpose.</p>
+                <p>She warned against nonprofits becoming overly focused on their own survival or growth.</p>
+                <div class="article-quote">“The purpose of the organization is not the organization. The purpose is the change we want to create in the world.”</div>
+                <p>This mindset shapes how Nature Forward collaborates with other institutions, government agencies, community groups, and advocacy organizations.</p>
+                <p>Success, she argues, should always be measured by progress toward environmental and social outcomes rather than organizational prestige.</p>
+
+                <h3>Investing in People to Create Lasting Change</h3>
+                <p>As the interview concluded, she returned to what she sees as the organization’s ultimate mission: investing in people.</p>
+                <div class="article-quote">“We invest in people, in their skills, in their motivation, and in their ability to care for the places where they live.”</div>
+                <p>Whether through environmental education, volunteer programs, restoration projects, or community partnerships, Nature Forward’s approach is rooted in empowerment.</p>
+                <p>For the CEO of Nature Forward, meaningful environmental progress does not come from a single breakthrough solution. It comes from giving people the knowledge, confidence, and opportunities to become active stewards of their communities.</p>
+                <p>In a world searching for quick fixes, Nature Forward offers a different vision: one built on patience, participation, education, and the collective power of people working together for nature.</p>
+            </div>
+        </section>
+
+        <!-- HOW CAN YOU TAKE ACTION -->
+        <section class="content-card">
+            <div class="section-header">
+                <h2 id="action-heading">How can you take action</h2>
             </div>
             <div class="steps-grid">
                 <div class="step-card">
@@ -850,6 +995,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Carte dézoommée pour voir les USA au complet (Zoom 3)
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -858,7 +1004,7 @@
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([38.9897, -77.0784], 10);
+            }).setView([39.8283, -98.5795], 3);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -905,18 +1051,20 @@
                 loc2: "Building local climate resilience at Woodend Sanctuary and urban watersheds",
                 loc3: "Holding local governments accountable and fostering broad coalition networks",
                 mapHeading: "Project Map",
-                challengeTitle: "The Challenge",
+                challengeTitle: "Main Challenges",
                 challengeP1: "During our 2026 field exchange in North America, the Aguatura team sat down with Alison Pearce, Ph.D., Executive Director of Nature Forward (formerly known as the Audubon Naturalist Society). Founded in 1897, it is the Capital Region's oldest environmental organization.",
                 challengeP2: "Having served for over a decade in key roles—including Restoration Director and Deputy Director—Alison Pearce now leads the organization in its new chapter. Nature Forward focuses heavily on scalable community solutions, environmental education, stream restoration at its historic Woodend Sanctuary, and holding local and state governments accountable for environmental protection.",
+                insightsTitle: "Expert Insights",
+                insightsSubtitle: "<strong>Alison Pearce (Nature Forward): “There Is No Single Solution, Only Collective Strategies for Change”</strong><br>In a wide-ranging interview on conservation, community engagement, environmental education, and organizational leadership, Alison Pearce, Executive Director of Nature Forward, shared her vision for creating lasting environmental impact. Rather than searching for quick fixes, she advocates for long-term strategies centered on people, partnerships, and community empowerment.",
                 factsHeading: "Key Facts",
                 f1Text: "Year of establishment originally as the Audubon Society of the District of Columbia.", f1Source: "Source: Nature Forward Archives",
                 f2Text: "Historic rebranding from Audubon Naturalist Society to Nature Forward for greater inclusion.", f2Source: "Source: Organization Records",
                 f3Text: "Woodend Sanctuary headquarters property featuring historic mansion and restored streams.", f3Source: "Source: Environmental Property Data",
-                projectTitle: "Our Project & Principles",
+                projectTitle: "Nature Forward Approach",
                 col1Title: "Inclusive Community Engagement", col1Desc: "Lowering financial and social barriers to membership. Transitioning from traditional top-down models to active listening partnerships with diverse local communities and neighborhood hubs across the Capital Region.",
                 col2Title: "Watershed & Stream Restoration", col2Desc: "Managing stormwater runoff and restoring urban watersheds at Woodend Sanctuary and regional parks. Transforming technical engineering projects into hands-on educational opportunities for youth and volunteers.",
                 col3Title: "Local Advocacy & Accountability", col3Desc: "Pushing local county and state levels of government to enforce environmental regulations. Collaborating in strong coalitions to protect natural habitats against unchecked urban development and policy rollbacks.",
-                actionHeading: "How you can practice sustainable river travel",
+                actionHeading: "How can you take action",
                 microTitle: "Micro Level",
                 mi1: "Adopt Practical Nature Solutions: Plant native flora that is widely available in your region, create simple rain gardens, and build accessible habitats.",
                 mi2: "Lower Barriers for Others: Share resources, seeds, and outdoor gear with neighbors to make nature experiences welcoming for everyone.",
@@ -946,18 +1094,20 @@
                 loc2: "Aufbau lokaler Klimaresilienz im Woodend Sanctuary und städtischen Gewässern",
                 loc3: "Kommunal- und Landesregierungen in die Pflicht nehmen",
                 mapHeading: "Projektkarte",
-                challengeTitle: "Die Herausforderung",
+                challengeTitle: "Hauptherausforderungen",
                 challengeP1: "Während unseres Nordamerika-Austauschs 2026 traf sich das Aguatura-Team mit Dr. Alison Pearce, der Geschäftsführerin von Nature Forward (früher Audubon Naturalist Society). Gegründet 1897, ist es die älteste Umweltorganisation der Region.",
                 challengeP2: "Nach mehr als einem Jahrzehnt in Schlüsselpositionen leitet Alison Pearce die Organisation nun in ihrem neuen Kapitel. Nature Forward konzentriert sich auf skalierbare Naturlösungen, Umweltbildung, Bachsanierungen und politische Rechenschaftspflicht.",
+                insightsTitle: "Experten-Einblicke",
+                insightsSubtitle: "<strong>Alison Pearce (Nature Forward): „Es gibt keine Einzellösung, nur kollektive Strategien für den Wandel“</strong><br>In einem ausführlichen Interview teilte Alison Pearce ihre Vision für nachhaltigen Umweltschutz. Statt nach schnellen Lösungen zu suchen, setzt sie auf langfristige Strategien, die auf Menschen, Partnerschaften und Community-Empowerment basieren.",
                 factsHeading: "Wichtige Fakten",
                 f1Text: "Gründungsjahr ursprünglich als Audubon Society of the District of Columbia.", f1Source: "Quelle: Nature Forward Archiven",
                 f2Text: "Historisches Rebranding von Audubon Naturalist Society zu Nature Forward für mehr Inklusion.", f2Source: "Quelle: Organisationsakten",
                 f3Text: "Hauptsitz im Woodend Sanctuary mit historischem Herrenhaus und renaturierten Bächen.", f3Source: "Quelle: Umweltdaten",
-                projectTitle: "Unser Projekt & Prinzipien",
+                projectTitle: "Nature Forward Ansatz",
                 col1Title: "Inklusive Community-Einbindung", col1Desc: "Abbau finanzieller und sozialer Hürden. Übergang von traditionellen Top-Down-Modellen zu partnerschaftlichem Zuhören mit diversen Nachbarschaften in der Hauptstadtregion.",
                 col2Title: "Wassereinzugsgebiete & Bachsanierung", col2Desc: "Regenwassermanagement und Renaturierung städtischer Bäche im Woodend Sanctuary und regionalen Parks. Verwandlung technischer Projekte in praxisnahe Bildungsangebote.",
                 col3Title: "Lokale Advocacy & Rechenschaft", col3Desc: "Einfordern der Einhaltung von Umweltgesetzen auf Kreis- und Landesebene. Aufbau starker Koalitionen zum Schutz natürlicher Habitate gegen unkontrollierte Stadtentwicklung.",
-                actionHeading: "Wie Sie selbst nachhaltig am Fluss reisen können",
+                actionHeading: "Wie Sie aktiv werden können",
                 microTitle: "Mikro-Ebene",
                 mi1: "Praktische Naturlösungen anwenden: Heimische Pflanzen nutzen, die überall verfügbar sind, Regenwassergärten anlegen und Lebensräume schaffen.",
                 mi2: "Hürden für andere abbauen: Ressourcen, Saatgut und Outdoor-Ausrüstung mit Nachbarn teilen, um Naturerlebnisse für alle zugänglich zu machen.",
@@ -987,18 +1137,20 @@
                 loc2: "Renforcement de la résilience climatique au Woodend Sanctuary",
                 loc3: "Responsabiliser les gouvernements locaux et étatiques",
                 mapHeading: "Carte du Projet",
-                challengeTitle: "Le Défi",
+                challengeTitle: "Principaux Défis",
                 challengeP1: "Lors de notre échange de terrain en 2026, l'équipe d'Aguatura a rencontré Dr. Alison Pearce, directrice exécutive de Nature Forward (anciennement Audubon Naturalist Society). Fondée en 1897, c'est la plus ancienne organisation environnementale de la région.",
                 challengeP2: "Après plus d'une décennie dans des rôles clés, Alison Pearce dirige désormais l'organisation dans son nouveau chapitre. Nature Forward se concentre sur des solutions communautaires évolutives, l'éducation et la restauration des rivières.",
+                insightsTitle: "Expert Insights",
+                insightsSubtitle: "<strong>Alison Pearce (Nature Forward) : « Il n'y a pas de solution unique, seulement des stratégies collectives de changement »</strong><br>Dans une longue interview sur la conservation, l'engagement communautaire et le leadership, Alison Pearce a partagé sa vision d'un impact environnemental durable axé sur l'humain et les partenariats.",
                 factsHeading: "Faits Clés",
                 f1Text: "Année de création originale sous le nom d'Audubon Society du District de Columbia.", f1Source: "Source : Archives Nature Forward",
                 f2Text: "Changement de nom historique de l'Audubon Naturalist Society vers Nature Forward.", f2Source: "Source : Dossiers de l'organisation",
                 f3Text: "Siège au Woodend Sanctuary comprenant un manoir historique et des cours d'eau restaurés.", f3Source: "Source : Données environnementales",
-                projectTitle: "Notre Projet & Principes",
+                projectTitle: "L'Approche Nature Forward",
                 col1Title: "Engagement communautaire inclusif", col1Desc: "Réduction des barrières financières et sociales. Passage de modèles descendants à des partenariats d'écoute active avec diverses communautés.",
                 col2Title: "Restauration des bassins versants", col2Desc: "Gestion des eaux pluviales et restauration des rivières urbaines au Woodend Sanctuary. Transformation de projets techniques en opportunités éducatives.",
                 col3Title: "Plaidoyer et redevabilité locale", col3Desc: "Pousser les gouvernements locaux à appliquer les réglementations environnementales et protéger les habitats naturels contre le développement urbain non contrôlé.",
-                actionHeading: "Comment pratiquer un voyage fluvial durable",
+                actionHeading: "Comment vous pouvez agir",
                 microTitle: "Niveau Micro",
                 mi1: "Adopter des solutions naturelles accessibles : Planter de la flore indigène facile à trouver et créer des jardins de pluie.",
                 mi2: "Réduire les barrières : Partager graines et équipements de plein air avec ses voisins pour rendre la nature accessible à tous.",
@@ -1028,18 +1180,20 @@
                 loc2: "Fomentando la resiliencia climática en Woodend Sanctuary",
                 loc3: "Exigiendo rendición de cuentas a los gobiernos locales",
                 mapHeading: "Mapa de Proyectos",
-                challengeTitle: "El Desafío",
+                challengeTitle: "Principales Desafíos",
                 challengeP1: "Durante nuestro intercambio de campo en 2026, el equipo de Aguatura se reunió con la Dra. Alison Pearce, directora ejecutiva de Nature Forward (antes Audubon Naturalist Society). Fundada en 1897, es la organización ambiental más antigua de la región.",
                 challengeP2: "Tras más de una década en funciones clave, Alison Pearce lidera ahora la organización en su nuevo capítulo. Nature Forward se enfoca en soluciones comunitarias escalables, educación ambiental y restauración de ríos.",
+                insightsTitle: "Expert Insights",
+                insightsSubtitle: "<strong>Alison Pearce (Nature Forward): “No hay una solución única, solo estrategias colectivas para el cambio”</strong><br>En una amplia entrevista, Alison Pearce compartió su visión para lograr un impacto ambiental duradero basado en la comunidad y alianzas estratégicas.",
                 factsHeading: "Datos Clave",
                 f1Text: "Año de fundación original como Audubon Society del Distrito de Columbia.", f1Source: "Fuente: Archivos de Nature Forward",
                 f2Text: "Histórico cambio de marca de Audubon Naturalist Society a Nature Forward para mayor inclusión.", f2Source: "Fuente: Registros organizacionales",
                 f3Text: "Sede principal en Woodend Sanctuary con mansión histórica y arroyos restaurados.", f3Source: "Fuente: Datos ambientales",
-                projectTitle: "Nuestro Proyecto y Principios",
+                projectTitle: "Enfoque Nature Forward",
                 col1Title: "Compromiso Comunitario Inclusivo", col1Desc: "Reducción de barreras financieras y sociales. Transición hacia asociaciones de escucha activa con diversas comunidades en la región.",
                 col2Title: "Restauración de Cuencas", col2Desc: "Gestión de aguas pluviales y restauración de arroyos urbanos en Woodend Sanctuary. Transformación de proyectos técnicos en experiencias educativas.",
                 col3Title: "Abogacía y Responsabilidad Local", col3Desc: "Incentivar a los gobiernos locales a cumplir las normativas ambientales y proteger los hábitats naturales frente al desarrollo urbano descontrolado.",
-                actionHeading: "Cómo practicar el turismo fluvial sostenible",
+                actionHeading: "Cómo puedes actuar",
                 microTitle: "Nivel Micro",
                 mi1: "Adoptar soluciones naturales prácticas: Plantar flora nativa accesible, crear jardines de lluvia y acondicionar espacios verdes.",
                 mi2: "Reducir barreras comunitarias: Compartir recursos y herramientas de exterior para hacer la naturaleza accesible a todos.",
@@ -1095,6 +1249,9 @@
             document.getElementById('challenge-title').innerText = t.challengeTitle;
             document.getElementById('challenge-p1').innerHTML = t.challengeP1.replace('Alison Pearce, Ph.D.', '<strong>Alison Pearce, Ph.D.</strong>');
             document.getElementById('challenge-p2').innerText = t.challengeP2;
+
+            document.getElementById('insights-title').innerText = t.insightsTitle;
+            document.getElementById('insights-subtitle').innerHTML = t.insightsSubtitle;
 
             document.getElementById('facts-heading').innerText = t.factsHeading;
             document.getElementById('f1-text').innerText = t.f1Text; document.getElementById('f1-source').innerText = t.f1Source;
