@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome v6.5.1 für Icons -->
+    <!-- FontAwesome v6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Leaflet CSS für die Minimap -->
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
@@ -516,7 +516,7 @@
             color: var(--white);
         }
 
-        /* STEPS LIST */
+        /* STEPS GRID (OHNE BULLETS) */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -541,26 +541,10 @@
             gap: 10px;
         }
 
-        .step-card ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .step-card li {
+        .step-card p {
             font-size: 0.88rem;
             color: #4A5568;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .step-card li::before {
-            content: "•";
-            color: var(--accent-green);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
+            line-height: 1.5;
         }
 
         /* USEFUL LINKS SECTION */
@@ -800,17 +784,17 @@
                 <div class="fact-card">
                     <div class="fact-number">Over 30%</div>
                     <p id="f1-text">of Germany's land area is forest — about 11.5 million ha (~115,000 km²).</p>
-                    <a href="https://www.bmel.de" target="_blank" class="fact-source" id="f1-source">Source: BMLEH – Waldzustandsbericht 2025</a>
+                    <a id="f1-link" href="https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/waldzustandserhebung.html" target="_blank" class="fact-source">Source: BMLEH – Waldzustandsbericht 2025</a>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">4 out of 5</div>
                     <p id="f2-text">trees in Germany show crown loss and drought stress — a visible sign of declining forest health.</p>
-                    <a href="https://www.bmel.de" target="_blank" class="fact-source" id="f2-source">Source: BMLEH – Waldzustandsbericht 2025</a>
+                    <a id="f2-link" href="https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/waldzustandserhebung.html" target="_blank" class="fact-source">Source: BMLEH – Waldzustandsbericht 2025</a>
                 </div>
                 <div class="fact-card">
                     <div class="fact-number">~900,000 ha</div>
                     <p id="f3-text">of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.</p>
-                    <a href="https://www.dlr.de" target="_blank" class="fact-source" id="f3-source">Source: DLR – German Aerospace Center, 2025</a>
+                    <a id="f3-link" href="https://elib.dlr.de/219249/" target="_blank" class="fact-source">Source: DLR – Earth Observation Research, 2025</a>
                 </div>
             </div>
         </section>
@@ -860,35 +844,27 @@
             </div>
         </section>
 
-        <!-- KEY STEPS -->
+        <!-- KEY STEPS (OHNE BULLETS) -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="steps-title">Key steps of our forest restoration project</h2>
             </div>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-clipboard-check"></i> <span id="step1-title">1. Assess</span></h4>
-                    <ul>
-                        <li id="step1-desc">Together with local forestry experts, assess forest health condition and identify primary environmental vulnerabilities.</li>
-                    </ul>
+                    <h4 id="step1-title"><i class="fa-solid fa-clipboard-check"></i> 1. Assess</h4>
+                    <p id="step1-desc">Together with local forestry experts, assess forest health condition and identify primary environmental vulnerabilities.</p>
                 </div>
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-map"></i> <span id="step2-title">2. Plan</span></h4>
-                    <ul>
-                        <li id="step2-desc">Define long-term restoration schedules, establish actionable adaptation targets, and secure regional support programs.</li>
-                    </ul>
+                    <h4 id="step2-title"><i class="fa-solid fa-map"></i> 2. Plan</h4>
+                    <p id="step2-desc">Define long-term restoration schedules, establish actionable adaptation targets, and secure regional support programs.</p>
                 </div>
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-seedling"></i> <span id="step3-title">3. Implement</span></h4>
-                    <ul>
-                        <li id="step3-desc">Plant climate-resilient mixed tree species, promote natural succession, and preserve beneficial deadwood habitats.</li>
-                    </ul>
+                    <h4 id="step3-title"><i class="fa-solid fa-seedling"></i> 3. Implement</h4>
+                    <p id="step3-desc">Plant climate-resilient mixed tree species, promote natural succession, and preserve beneficial deadwood habitats.</p>
                 </div>
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-chart-line"></i> <span id="step4-title">4. Monitor</span></h4>
-                    <ul>
-                        <li id="step4-desc">Continuously evaluate forest growth progression, maintain protective measures, and adapt stewardship practices.</li>
-                    </ul>
+                    <h4 id="step4-title"><i class="fa-solid fa-chart-line"></i> 4. Monitor</h4>
+                    <p id="step4-desc">Continuously evaluate forest growth progression, maintain protective measures, and adapt stewardship practices.</p>
                 </div>
             </div>
         </section>
@@ -900,20 +876,20 @@
             </div>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-user"></i> <span id="micro-title">Micro Level</span></h4>
-                    <ul>
-                        <li id="mi-1">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
-                        <li id="mi-2">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
-                        <li id="mi-3">Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.</li>
-                        <li id="mi-4">Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
+                    <h4 id="micro-title"><i class="fa-solid fa-user"></i> Micro Level</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <li id="mi-1" style="position: relative; padding-left: 15px;">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
+                        <li id="mi-2" style="position: relative; padding-left: 15px;">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
+                        <li id="mi-3" style="position: relative; padding-left: 15px;">Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.</li>
+                        <li id="mi-4" style="position: relative; padding-left: 15px;">Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
                     </ul>
                 </div>
                 <div class="step-card">
-                    <h4><i class="fa-solid fa-people-group"></i> <span id="meso-title">Meso Level</span></h4>
-                    <ul>
-                        <li id="me-1">Connect our forest groups with owners and other institutions: Coordinate regional timber harvesting and share peer expertise.</li>
-                        <li id="me-2">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
-                        <li id="me-3">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
+                    <h4 id="meso-title"><i class="fa-solid fa-people-group"></i> Meso Level</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <li id="me-1" style="position: relative; padding-left: 15px;">Create or connect local forest owners and forest groups: Coordinate regional timber harvesting and share peer expertise.</li>
+                        <li id="me-2" style="position: relative; padding-left: 15px;">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
+                        <li id="me-3" style="position: relative; padding-left: 15px;">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
                     </ul>
                 </div>
             </div>
@@ -923,7 +899,7 @@
         <section class="links-section">
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful Links & Resources</h3>
             <ul class="useful-links-list" id="links-list-container">
-                <!-- Loaded dynamically by updateLocalizedLinks() -->
+                <!-- Dynamically populated -->
             </ul>
         </section>
 
@@ -946,6 +922,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Zoomed out slightly to show all of Germany clearly
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -954,7 +931,7 @@
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([49.635, 12.117], 6);
+            }).setView([51.1657, 10.4515], 5.2);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -982,7 +959,7 @@
                         .bindTooltip('<b>Forest Restoration Pirk</b><br>Germany', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
                         .openTooltip();
                 })
-                .catch(err => console.error("Kartendaten Fehler: ", err));
+                .catch(err => console.error("Map data error: ", err));
 
             updateLocalizedLinks('en');
         });
@@ -999,18 +976,18 @@
                 sum3Title: "Self-Sufficient Harvest", sum3Desc: "Combining sustainable self-sufficient harvesting with forest conservation",
                 mapHeading: "Project Map",
                 challengeTitle: "Main Challenges",
-                challengeP1: "Forests around the world are already under significant pressure from climate change and environmental pollution. Rising temperatures, prolonged droughts, and increasing disturbances are weakening forest ecosystems and threatening their long-term resilience.",
+                challengeP1: "Forests worldwide are under severe pressure from climate change and environmental stressors. Rising temperatures, prolonged droughts, and ecological disturbances weaken forest resilience.",
                 ch1: "Rising temperatures and prolonged seasonal droughts threatening forest health.",
                 ch2: "Severe bark beetle outbreaks taking advantage of stressed monoculture spruce stands.",
                 ch3: "Historical legacy of 1950s–1970s single-species conifer plantations lacking genetic diversity.",
                 ch4: "High vulnerability to windthrow, soil compaction, and extreme weather disturbances.",
                 factsHeading: "Key Facts",
                 f1Text: "of Germany's land area is forest — about 11.5 million ha (~115,000 km²).",
-                f1Source: "Source: BMLEH – Waldzustandsbericht 2025",
+                f1Source: "Source: BMLEH – Waldzustandsbericht",
                 f2Text: "trees in Germany show crown loss and drought stress — a visible sign of declining forest health.",
-                f2Source: "Source: BMLEH – Waldzustandsbericht 2025",
+                f2Source: "Source: BMLEH – Waldzustandsbericht",
                 f3Text: "of tree cover have been lost since 2017 (~8.5% of Germany's forest area), driven by drought, heat and bark beetle outbreaks.",
-                f3Source: "Source: DLR – German Aerospace Center, 2025",
+                f3Source: "Source: DLR – Earth Observation Research",
                 pillarsHeading: "Our Approach",
                 roleDesc: "Together with local experts and hands-on family management, our approach focuses on systematic restoration, species diversification, and building climate resilience from the ground up.",
                 p1Title: "Monoculture Conversion",
@@ -1031,20 +1008,20 @@
                 mi3: "Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.",
                 mi4: "Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.",
                 mesoTitle: "Meso Level",
-                me1: "Connect our forest groups with owners and other institutions: Coordinate regional timber harvesting and share peer expertise.",
+                me1: "Create or connect local forest owners and forest groups: Coordinate regional timber harvesting and share peer expertise.",
                 me2: "Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.",
                 me3: "Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.",
                 linksTitle: "Useful Links & Resources",
                 links: [
                     { name: "FAO Sustainable Forest Management & Restoration Toolbox", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/en", desc: "— Global guidelines, practical tools, and technical modules for restoring degraded forest ecosystems." },
                     { name: "IUFRO – International Union of Forest Research Organizations", url: "https://www.iufro.org/", desc: "— Global network for forest science, silvicultural research, and climate-adaptive forestry." },
-                    { name: "WRI Forest Landscape Restoration & Global Forest Watch", url: "https://www.wri.org/initiatives/forest-landscape-restoration", desc: "— International initiatives and monitoring tools for forest resilience and landscape restoration." }
+                    { name: "German Federal Ministry of Food and Agriculture – Forestry Funding", url: "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html", desc: "— Official federal guidelines and funding programs for climate-resilient forest management." }
                 ],
                 exploreBtnText: "Explore more projects"
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
-                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität transformieren",
+                heroTitle: "Lokale Wälder für Klimaresilienz und Biodiversität in Bayern transformieren",
                 locationMeta: "Pirk, Deutschland",
                 projectYear: "2022 (laufend)",
                 summaryTitle: "Projektthemen",
@@ -1053,151 +1030,153 @@
                 sum3Title: "Selbstversorgung & Schutz", sum3Desc: "Kombination aus nachhaltiger Eigenversorgung und Waldnaturschutz",
                 mapHeading: "Projektkarte",
                 challengeTitle: "Hauptherausforderungen",
-                challengeP1: "Wälder weltweit stehen durch den Klimawandel und Umweltverschmutzung unter starkem Druck. Steigende Temperaturen, anhaltende Dürren und Störungen schwächen die Ökosysteme.",
+                challengeP1: "Wälder weltweit stehen durch den Klimawandel und Umweltfaktoren unter erheblichem Druck. Steigende Temperaturen, anhaltende Dürren und ökologische Störungen schwächen die Widerstandskraft der Ökosysteme.",
                 ch1: "Steigende Temperaturen und anhaltende saisonale Dürren gefährden die Waldgesundheit.",
-                ch2: "Schwere Borkenkäferausbrüche, die geschwächte Fichten-Monokulturen befallen.",
+                ch2: "Schwere Borkenkäferausbrüche, die gestresste Fichten-Monokulturen stark befallen.",
                 ch3: "Historisches Erbe von Nadelbaum-Monokulturen aus den 1950er bis 1970er Jahren ohne genetische Vielfalt.",
-                ch4: "Hohe Anfälligkeit für Windwurf, Bodenverdichtung und extreme Wetterstörungen.",
+                ch4: "Hohe Anfälligkeit für Windwurf, Bodenverdichtung und extreme Wetterereignisse.",
                 factsHeading: "Wichtige Fakten",
                 f1Text: "von Deutschlands Landfläche ist Wald – ca. 11,5 Millionen Hektar (~115.000 km²).",
-                f1Source: "Quelle: BMLEH – Waldzustandsbericht 2025",
-                f2Text: "der Bäume in Deutschland zeigen Kronenverlichtung und Dürrestress – ein sichtbares Zeichen sinkender Gesundheit.",
-                f2Source: "Quelle: BMLEH – Waldzustandsbericht 2025",
-                f3Text: "an Baumkronen/Waldfläche gingen seit 2017 verloren (~8,5 %), angetrieben durch Hitze und Borkenkäfer.",
-                f3Source: "Quelle: DLR – Deutsches Zentrum für Luft- und Raumfahrt, 2025",
+                f1Source: "Quelle: BMLEH – Waldzustandsbericht",
+                f2Text: "der Bäume in Deutschland zeigen Kronenverlichtung und Dürrestress – ein sichtbares Alarmsignal.",
+                f2Source: "Quelle: BMLEH – Waldzustandsbericht",
+                f3Text: "an Waldfläche gingen seit 2017 verloren (~8,5 %), angetrieben durch Hitze, Dürre und Borkenkäfer.",
+                f3Source: "Quelle: DLR – Erdbeobachtungsforschung",
                 pillarsHeading: "Unser Ansatz",
-                roleDesc: "Gemeinsam mit lokalen Experten und praktischem Familienmanagement konzentriert sich unser Ansatz auf systematische Wiederherstellung, Artenvielfalt und Klimaresilienz.",
+                roleDesc: "Gemeinsam mit lokalen Experten und praktischem Familienmanagement konzentriert sich unser Ansatz auf systematischen Waldumbau, Artenvielfalt und den Aufbau langfristiger Klimaresilienz.",
                 p1Title: "Monokultur-Umbau",
                 p1Desc: "Schrittweiser Ersatz anfälliger Nadelbäume durch eine ausgewogene, widerstandsfähige Mischung heimischer und hitzetoleranter Baumarten.",
                 p2Title: "Klimaanpassung",
-                p2Desc: "Umsetzung gezielter Maßnahmen zur Linderung von Dürrestress, Minderung des Borkenkäferrisikos und Schutz der Waldgesundheit.",
+                p2Desc: "Umsetzung gezielter Maßnahmen zur Linderung von Dürrestress, Minderung des Borkenkäferrisikos und zum Schutz des Waldes.",
                 p3Title: "Selbstversorgung & Schutz",
-                p3Desc: "Kombination aus nachhaltiger Eigenversorgung mit Holz und langfristigem Waldnaturschutz sowie Kronendachschutz.",
-                stepsTitle: "Hauptschritte unseres Waldor-Projekts",
-                step1Title: "1. Analysieren", step1Desc: "Gemeinsam mit Forstexperten den Waldzustand analysieren und Umweltrisiken ermitteln.",
-                step2Title: "2. Planen", step2Desc: "Langfristige Restaurierungspläne definieren und regionale Förderprogramme sichern.",
-                step3Title: "3. Umsetzen", step3Desc: "Klimaresistente Mischbaumarten pflanzen, natürliche Sukzession fördern und Totholz erhalten.",
-                step4Title: "4. Überwachen", step4Desc: "Waldwachstum kontinuierlich bewerten, Schutzmaßnahmen pflegen und die Bewirtschaftung anpassen.",
+                p3Desc: "Kombination einer nachhaltigen Eigenversorgung mit Holz und langfristigem Waldnaturschutz sowie dauerhaftem Kronendachschutz.",
+                stepsTitle: "Hauptschritte unseres Waldrestaurierungsprojekts",
+                step1Title: "1. Analysieren", step1Desc: "Gemeinsam mit Forstexperten den Waldzustand bewerten und ökologische Schwachstellen ermitteln.",
+                step2Title: "2. Planen", step2Desc: "Langfristige Restaurierungspläne festlegen, konkrete Anpassungsziele definieren und Fördermittel sichern.",
+                step3Title: "3. Umsetzen", step3Desc: "Klimaresistente Mischbaumarten pflanzen, natürliche Sukzession fördern und wertvolle Totholzbiotope erhalten.",
+                step4Title: "4. Überwachen", step4Desc: "Das Baumwachstum kontinuierlich beobachten, Schutzmaßnahmen pflegen und die Bewirtschaftung flexibel anpassen.",
                 actionHeading: "Wie Sie aktiv werden können",
                 microTitle: "Mikro-Ebene",
-                mi1: "Lokale Forstämter kontaktieren: Holen Sie sich professionelle Beratung und maßgeschneiderte Managementpläne bei Ihrem regionalen Amt ein.",
-                mi2: "Natürliche Verjüngung fördern: Lassen Sie natürliche Sukzession zu und behalten Sie Totholz für die Bodenregeneration bei.",
-                mi3: "Selektive Pflanzung diverser und klimaresistenter Arten: Wählen Sie widerstandsfähige heimische Mischungen.",
-                mi4: "Selektive und nachhaltige Holzentnahme: Balancieren Sie die Eigenversorgung sorgfältig mit dem Kronendachschutz aus.",
+                mi1: "Lokale Forstbehörden einbinden: Holen Sie sich professionelle Beratung und maßgeschneiderte Managementpläne beim zuständigen Forstamt ein.",
+                mi2: "Natürliche Verjüngung fördern: Lassen Sie natürliche Sukzession zu und erhalten Sie Totholz auf privaten Flächen.",
+                mi3: "Selektive Pflanzung: Wählen Sie klimaresistente, heimische Mischbaumarten zur Zukunftssicherung der Bestände.",
+                mi4: "Nachhaltige Holzentnahme: Balancieren Sie die Eigenversorgung sorgfältig mit dem Schutz des Kronendachs aus.",
                 mesoTitle: "Meso-Ebene",
-                me1: "Verbindung unserer Forstgruppen mit Eigentümern und anderen Institutionen: Regionale Holsernte koordinieren und Fachwissen austauschen.",
-                me2: "Staatliche Fördermittel nutzen: Nutzen Sie staatliche Zuschüsse für den klimaresistenten Waldumbau.",
-                me3: "Öffentlichkeitsarbeit & Bildung: Organisieren Sie regionale Workshops zur Biodiversität.",
+                me1: "Waldbesitzer vernetzen / Forstgruppen gründen: Koordinieren Sie die regionale Holzernte gemeinsam und tauschen Sie Fachwissen aus.",
+                me2: "Staatliche Fördermittel nutzen: Beanspruchen Sie kommunale und bundesweite Programme zur Unterstützung des klimaangepassten Waldumbaus.",
+                me3: "Öffentlichkeitsarbeit & Bildung: Organisieren Sie regionale Workshops und Info-Veranstaltungen zum Biodiversitätsschutz.",
                 linksTitle: "Nützliche Links & Ressourcen",
                 links: [
-                    { name: "FAO Werkzeugkasten für nachhaltige Waldwirtschaft", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/de", desc: "— Internationale Leitfäden und Praxis-Module zur Wiederherstellung von Waldökosystemen." },
-                    { name: "Waldwissen.net (Wissen für die Forstpraxis)", url: "https://www.waldwissen.net/", desc: "— Interdisziplinäre Forschungsplattform für klimaresistenten Waldumbau und Forstwirtschaft." },
-                    { name: "IUFRO (Internationaler Verband Forstlicher Forschungsanstalten)", url: "https://www.iufro.org/", desc: "— Globales Forschungsnetzwerk für Waldwissenschaften und Silvitektur." }
+                    { name: "FAO – Werkzeugkasten für nachhaltige Waldwirtschaft", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/de", desc: "— Internationale Leitlinien und Praxis-Tools zur Wiederherstellung geschädigter Waldökosysteme." },
+                    { name: "Bundesministerium für Ernährung und Landwirtschaft (BMLEH) – Forstförderung", url: "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html", desc: "— Offizielle Förderprogramme und Richtlinien für den klimaangepassten Waldumbau in Deutschland." },
+                    { name: "IUFRO – Internationaler Verband Forstlicher Forschungsanstalten", url: "https://www.iufro.org/", desc: "— Weltweites Forschungsnetzwerk für Waldwissenschaften und klimaanpassungsfähige Forstwirtschaft." }
                 ],
                 exploreBtnText: "Weitere Projekte entdecken"
             },
             fr: {
                 navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
-                heroTitle: "Transformer les forêts locales pour la résilience climatique et la biodiversité",
+                heroTitle: "Transformer les forêts locales pour renforcer la résilience climatique et la biodiversité en Bavière",
                 locationMeta: "Pirk, Allemagne",
                 projectYear: "2022 (en cours)",
                 summaryTitle: "Thèmes du Projet",
                 sum1Title: "Conversion de Monoculture", sum1Desc: "Remplacer les espèces vulnérables par des forêts mixtes",
-                sum2Title: "Adaptation Climatique", sum2Desc: "Lutter contre le stress hydrique et les scolytes",
-                sum3Title: "Récolte Autonome", sum3Desc: "Combiner une récolte vivrière durable et la conservation des forêts",
+                sum2Title: "Adaptation Climatique", sum2Desc: "Lutter contre le stress hydrique et les risques liés aux scolytes",
+                sum3Title: "Récolte Autonome", sum3Desc: "Associer une récolte vivrière durable et la conservation des forêts",
                 mapHeading: "Carte des Projets",
                 challengeTitle: "Défis Principaux",
-                challengeP1: "Les forêts du monde entier subissent une pression considérable due au changement climatique.",
-                ch1: "Hausse des températures et sécheresses saisonnières prolongées menaçant la santé des forêts.",
-                ch2: "Graves épidémies de scolytes profitant des peuplements d'épicéas stressés.",
+                challengeP1: "Les forêts du monde entier subissent une pression considérable due au changement climatique et aux pollutions. La hausse des températures et les sécheresses affaiblissent les écosystèmes.",
+                ch1: "Hausse des températures et sécheresses prolongées menaçant la santé des peuplements.",
+                ch2: "Épidémies graves de scolytes profitant des peuplements d'épicéas affaiblis.",
                 ch3: "Héritage historique des plantations de conifères monospécifiques des années 1950-1970.",
-                ch4: "Forte vulnérabilité aux tempêtes, au compactage des sols et aux perturbations climatiques.",
+                ch4: "Forte vulnérabilité aux tempêtes, au compactage des sols et aux perturbations climatiques extrêmes.",
                 factsHeading: "Faits Clés",
                 f1Text: "de la superficie de l'Allemagne est couverte de forêts (~11,5 millions d'ha).",
-                f1Source: "Source : BMLEH – Waldzustandsbericht 2025",
-                f2Text: "des arbres en Allemagne montrent des signes de stress hydrique et dépérissement.",
-                f2Source: "Source : BMLEH – Waldzustandsbericht 2025",
-                f3Text: "de couvert forestier perdus depuis 2017 en raison des sécheresses et des insectes.",
-                f3Source: "Source : DLR – Centre allemand de l'aérospatiale, 2025",
+                f1Source: "Source : BMLEH – Rapport sur l'état des forêts",
+                f2Text: "des arbres en Allemagne montrent des signes de dépérissement et de stress hydrique.",
+                f2Source: "Source : BMLEH – Rapport sur l'état des forêts",
+                f3Text: "de couvert forestier perdus depuis 2017 en raison de la sécheresse et des insectes.",
+                f3Source: "Source : DLR – Recherche en observation de la Terre",
                 pillarsHeading: "Notre Approche",
-                roleDesc: "En collaboration avec des experts locaux et une gestion familiale, notre approche se concentre sur la restauration systématique et la diversification.",
+                roleDesc: "En collaboration avec des experts locaux et une gestion familiale active, notre approche privilégie la restauration systématique, la diversification et la résilience climatique.",
                 p1Title: "Conversion de Monoculture",
-                p1Desc: "Remplacement progressif des peuplements vulnérables par un mélange équilibré et résilient d'espèces adaptées.",
+                p1Desc: "Remplacement progressif des conifères vulnérables par un mélange équilibré d'essences indigènes et tolérantes à la chaleur.",
                 p2Title: "Adaptation Climatique",
-                p2Desc: "Mise en œuvre de mesures ciblées pour atténuer le stress hydrique et réduire la vulnérabilité aux scolytes.",
+                p2Desc: "Mise en œuvre de mesures ciblées pour atténuer le stress hydrique et protéger la santé de la forêt face aux aléas climatiques.",
                 p3Title: "Récolte Autonome",
-                p3Desc: "Association d'une récolte durable de subsistance et de la conservation forestière à long terme.",
-                stepsTitle: "Étapes clés du projet",
-                step1Title: "1. Évaluer", step1Desc: "Évaluation de la santé de la forêt et identification des vulnérabilités environnementales.",
-                step2Title: "2. Planifier", step2Desc: "Définition des plannings de restauration à long terme et obtention des subventions.",
-                step3Title: "3. Mettre en œuvre", step3Desc: "Plantation d'arbres résilients, promotion de la succession naturelle et préservation du bois mort.",
-                step4Title: "4. Suivre", step4Desc: "Évaluation continue de la croissance de la forêt et adaptation de la gestion.",
-                actionHeading: "Comment pouvez-vous agir",
+                p3Desc: "Association d'une récolte de bois durable et de la conservation forestière à long terme avec protection du couvert.",
+                stepsTitle: "Étapes clés de notre projet de restauration",
+                step1Title: "1. Évaluer", step1Desc: "Évaluer l'état de santé de la forêt avec des experts locaux et identifier les vulnérabilités environnementales.",
+                step2Title: "2. Planifier", step2Desc: "Définir les calendriers de restauration à long terme, fixer des objectifs d'adaptation et obtenir des aides.",
+                step3Title: "3. Mettre en œuvre", step3Desc: "Planter des essences mixtes résilientes, encourager la succession naturelle et préserver les habitats de bois mort.",
+                step4Title: "4. Suivre", step4Desc: "Évaluer en continu la croissance des arbres, entretenir les mesures de protection et adapter la gestion.",
+                actionHeading: "Comment vous pouvez agir",
                 microTitle: "Niveau Micro",
-                mi1: "Consulter les autorités forestières : Contactez votre bureau forestier régional pour des conseils professionnels.",
-                mi2: "Promouvoir la régénération naturelle : Laissez la succession naturelle et préservez le bois mort.",
-                mi3: "Plantation sélective d'espèces diverses et résilientes au climat.",
-                mi4: "Récolte sélective et durable.",
+                mi1: "Consulter les autorités forestières : Contactez vos bureaux régionaux pour des conseils professionnels adaptés.",
+                mi2: "Promouvoir la régénération naturelle : Laissez agir la succession naturelle et préservez le bois mort.",
+                mi3: "Plantation sélective d'essences diversifiées et résistantes au climat pour pérenniser les peuplements.",
+                mi4: "Récolte sélective et durable : Équilibrez l'autosuffisance en bois et la protection continue du couvert.",
                 mesoTitle: "Niveau Méso",
-                me1: "Connecter nos groupes forestiers avec les propriétaires et d'autres institutions.",
-                me2: "Utiliser les subventions publiques : Profitez des aides gouvernementales.",
-                me3: "Sensibilisation et éducation : Organisez des ateliers régionaux sur la biodiversité.",
+                me1: "Créer ou connecter des groupements forestiers : Coordonnez la récolte régionale et partagez l'expertise.",
+                me2: "Utiliser les subventions publiques : Profitez des aides publiques pour soutenir la conversion climatique.",
+                me3: "Sensibilisation et éducation : Organisez des ateliers régionaux et des sessions de partage sur la biodiversité.",
                 linksTitle: "Liens Utiles & Ressources",
                 links: [
-                    { name: "FAO – Module de Restauration des Forêts", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/fr", desc: "— Directives mondiales et outils pratiques pour la gestion et la restauration forestière." },
-                    { name: "IUFRO – Union internationale des instituts de recherches forestières", url: "https://www.iufro.org/", desc: "— Réseau scientifique international dédié à la recherche et l'adaptation des forêts au climat." }
+                    { name: "FAO – Boîte à outils pour la gestion et restauration forestière", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/fr", desc: "— Directives mondiales et modules techniques pour restaurer les écosystèmes forestiers." },
+                    { name: "Ministère fédéral allemand de l'Alimentation et de l'Agriculture – Aides forestières", url: "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html", desc: "— Programmes et directives officiels pour la gestion forestière adaptée au climat." },
+                    { name: "IUFRO – Union internationale des instituts de recherches forestières", url: "https://www.iufro.org/", desc: "— Réseau mondial de recherche pour la science forestière et la sylviculture adaptative." }
                 ],
                 exploreBtnText: "Découvrir plus de projets"
             },
             es: {
                 navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
-                heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad",
+                heroTitle: "Transformar los bosques locales hacia la resiliencia climática y la biodiversidad en Baviera",
                 locationMeta: "Pirk, Alemania",
                 projectYear: "2022 (en curso)",
                 summaryTitle: "Temas del Proyecto",
                 sum1Title: "Conversión de Monocultivo", sum1Desc: "Reemplazar especies vulnerables por bosques mixtos resilientes",
                 sum2Title: "Adaptación Climática", sum2Desc: "Combatir el estrés por sequía y los riesgos de plagas",
-                sum3Title: "Cosecha Autosuficiente", sum3Desc: "Combinar la cosecha de subsistencia sostenible con la conservación forestal",
+                sum3Title: "Cosecha Autosuficiente", sum3Desc: "Combinar la recolección sostenible de subsistencia con la conservación forestal",
                 mapHeading: "Mapa de Proyectos",
                 challengeTitle: "Desafíos Principales",
-                challengeP1: "Los bosques de todo el mundo sufren una gran presión debido al cambio climático y la contaminación.",
+                challengeP1: "Los bosques de todo el mundo sufren una gran presión debido al cambio climático y la contaminación. Las temperaturas en aumento y las sequías prolongadas debilitan los ecosistemas.",
                 ch1: "Aumento de temperaturas y sequías estacionales prolongadas que amenazan la salud forestal.",
-                ch2: "Graves brotes de escarabajos de la corteza que afectan a los abetos estresados.",
-                ch3: "Legado histórico de plantaciones de una sola especie de coníferas de los años 50 a 70.",
+                ch2: "Graves brotes de escarabajos de la corteza que afectan a los abetos estresados en monocultivo.",
+                ch3: "Legado histórico de plantaciones de coníferas de una sola especie de los años 50 a 70.",
                 ch4: "Alta vulnerabilidad a la dacha por viento, compactación del suelo y eventos climáticos extremos.",
                 factsHeading: "Datos Clave",
                 f1Text: "del territorio de Alemania es bosque (~11.5 millones de ha).",
-                f1Source: "Fuente: BMLEH – Waldzustandsbericht 2025",
-                f2Text: "de los árboles en Alemania muestran signos de pérdida de copa y estrés por sequía.",
-                f2Source: "Fuente: BMLEH – Waldzustandsbericht 2025",
-                f3Text: "de superficie forestal se han perdido desde 2017 debido a la sequía y calor.",
-                f3Source: "Fuente: DLR – Centro Aeroespacial Alemán, 2025",
+                f1Source: "Fuente: BMLEH – Informe sobre el estado de los bosques",
+                f2Text: "de los árboles en Alemania muestran pérdida de copa y estrés por sequía visible.",
+                f2Source: "Fuente: BMLEH – Informe sobre el estado de los bosques",
+                f3Text: "de superficie forestal se han perdido desde 2017 debido a la sequía, el calor y las plagas.",
+                f3Source: "Fuente: DLR – Investigación en Observación de la Tierra",
                 pillarsHeading: "Nuestro Enfoque",
-                roleDesc: "Junto con expertos locales y gestión familiar, nuestro enfoque se centra en la restauración sistemática, diversificación y resiliencia climática.",
+                roleDesc: "Junto con expertos locales y gestión familiar, nuestro enfoque se centra en la restauración sistemática, la diversificación de especies y la resiliencia climática.",
                 p1Title: "Conversión de Monocultivo",
-                p1Desc: "Reemplazo gradual de rodales vulnerables por una mezcla equilibrada y resiliente de especies nativas y tolerantes al calor.",
+                p1Desc: "Reemplazo gradual de coníferas vulnerables por una mezcla equilibrada de especies nativas y tolerantes al calor.",
                 p2Title: "Adaptación Climática",
-                p2Desc: "Implementación de medidas para mitigar el estrés por sequía y reducir la vulnerabilidad a plagas.",
+                p2Desc: "Implementación de medidas para mitigar el estrés por sequía, reducir la vulnerabilidad a plagas y proteger la salud forestal.",
                 p3Title: "Cosecha Autosuficiente",
                 p3Desc: "Combinación de prácticas sostenibles de recolección de subsistencia con la conservación forestal a largo plazo.",
-                stepsTitle: "Pasos clave de nuestro proyecto",
-                step1Title: "1. Evaluar", step1Desc: "Evaluación del estado del bosque junto con expertos forestales y análisis de vulnerabilidades.",
-                step2Title: "2. Planificar", step2Desc: "Definición de plazos de restauración y obtención de programas de apoyo regional.",
-                step3Title: "3. Implementar", step3Desc: "Plantación de árboles resilientes, promoción de la sucesión natural y conservación de madera muerta.",
-                step4Title: "4. Monitorear", step4Desc: "Evaluación continua del crecimiento forestal y adaptación de prácticas de gestión.",
+                stepsTitle: "Pasos clave de nuestro proyecto de restauración",
+                step1Title: "1. Evaluar", step1Desc: "Evaluar el estado de salud del bosque con expertos locales e identificar las vulnerabilidades principales.",
+                step2Title: "2. Planificar", step2Desc: "Definir plazos de restauración a largo plazo, establecer objetivos de adaptación y asegurar programas de apoyo.",
+                step3Title: "3. Implementar", step3Desc: "Plantar especies mixtas resilientes al clima, promover la sucesión natural y preservar hábitats de madera muerta.",
+                step4Title: "4. Monitorear", step4Desc: "Evaluar continuamente el crecimiento forestal, mantener medidas de protección y adaptar las prácticas.",
                 actionHeading: "Cómo puedes actuar",
                 microTitle: "Nivel Micro",
                 mi1: "Consultar a las autoridades forestales: Contacte a su oficina regional para asesoramiento profesional.",
-                mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta.",
-                mi3: "Plantación selectiva de especies diversas y resilientes al clima.",
-                mi4: "Cosecha selectiva y sostenible.",
+                mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta en terrenos privados.",
+                mi3: "Plantación selectiva de especies diversas y resilientes para asegurar el futuro de los rodales.",
+                mi4: "Cosecha selectiva y sostenible: Equilibre la autosuficiencia de madera con la protección del dosel forestal.",
                 mesoTitle: "Nivel Meso",
-                me1: "Conectar nuestros grupos forestales con propietarios y otras instituciones.",
-                me2: "Utilizar subsidios estatales: Aproveche las ayudas gubernamentales para la conversión.",
-                me3: "Educación y divulgación: Organice talleres regionales sobre biodiversidad.",
+                me1: "Crear o conectar propietarios y grupos forestales: Coordine la cosecha regional y comparta experiencias.",
+                me2: "Utilizar subsidios estatales: Aproveche las ayudas públicas destinadas a la conversión forestal climática.",
+                me3: "Divulgación comunitaria: Organice talleres regionales y sesiones de intercambio sobre biodiversidad.",
                 linksTitle: "Enlaces Útiles y Recursos",
                 links: [
-                    { name: "FAO – Caja de Herramientas para la Ordenación Forestal Sostenible", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/es", desc: "— Guías internacionales y módulos técnicos para la restauración de ecosistemas forestales." },
+                    { name: "FAO – Caja de Herramientas para la Gestión y Restauración Forestal", url: "https://www.fao.org/sustainable-forest-management-toolbox/modules/forest-restoration/es", desc: "— Guías internacionales y módulos técnicos para restaurar ecosistemas forestales degradados." },
+                    { name: "Ministerio Federal de Alimentación y Agricultura de Alemania – Ayudas Forestales", url: "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html", desc: "— Programas oficiales y directrices de financiación para la gestión forestal adaptada al clima." },
                     { name: "IUFRO – Unión Internacional de Organizaciones de Investigación Forestal", url: "https://www.iufro.org/", desc: "— Red global de investigación científica forestal y silvicultura adaptativa." }
                 ],
                 exploreBtnText: "Explorar más proyectos"
@@ -1247,11 +1226,11 @@
 
             document.getElementById('facts-heading').innerText = t.factsHeading;
             document.getElementById('f1-text').innerText = t.f1Text;
-            document.getElementById('f1-source').innerText = t.f1Source;
+            document.getElementById('f1-link').innerText = t.f1Source;
             document.getElementById('f2-text').innerText = t.f2Text;
-            document.getElementById('f2-source').innerText = t.f2Source;
+            document.getElementById('f2-link').innerText = t.f2Source;
             document.getElementById('f3-text').innerText = t.f3Text;
-            document.getElementById('f3-source').innerText = t.f3Source;
+            document.getElementById('f3-link').innerText = t.f3Source;
 
             document.getElementById('pillars-heading').innerText = t.pillarsHeading;
             document.getElementById('role-desc').innerText = t.roleDesc;
