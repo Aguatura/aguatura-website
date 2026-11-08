@@ -763,7 +763,7 @@
                     <li class="location-item">
                         <div class="location-icon"><i class="fa-solid fa-water"></i></div>
                         <div class="location-text">
-                            <strong id="focus-2-title">Stream Restoration & Stormwater</strong>
+                            <strong id="focus-2-title">Stream Restoration & Sanctuary Stormwater</strong>
                             <span id="loc-2">Building local climate resilience at Woodend Sanctuary and urban watersheds</span>
                         </div>
                     </li>
@@ -790,8 +790,8 @@
             </div>
             <div class="grid-2col">
                 <div class="grid-text">
-                    <p id="challenge-p1">During our 2026 field exchange in North America, the Aguatura team sat down with <strong>Alison Pearce, Ph.D.</strong>, Executive Director of Nature Forward (formerly known as the Audubon Naturalist Society). Founded in 1897, it is the Capital Region's oldest environmental organization.</p>
-                    <p id="challenge-p2">Having served for over a decade in key roles—including Restoration Director and Deputy Director—Alison Pearce now leads the organization in its new chapter. Nature Forward focuses heavily on scalable community solutions, environmental education, stream restoration at its historic Woodend Sanctuary, and holding local and state governments accountable for environmental protection.</p>
+                    <p id="challenge-p1">The Washington D.C. capital region faces profound environmental hurdles driven by rapid urbanization, extensive surface sealing, and climate change pressures. High levels of impervious surfaces lead to severe stormwater runoff, threatening local urban watersheds, water quality in the Potomac and Anacostia river basins, and aquatic habitats.</p>
+                    <p id="challenge-p2">Furthermore, habitat fragmentation, the proliferation of invasive species across urban green spaces, and urban heat island effects threaten urban biodiversity and ecosystem resilience. Addressing these challenges requires coordinated grassroots conservation, active stream restoration, and robust community engagement across all neighborhoods.</p>
                 </div>
                 <div class="grid-image">
                     <img src="Pics/washington-nature-forward/Woodend house.jpg" alt="Woodend Sanctuary Headquarters" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-nature-forward/Woodend%20house.jpg';">
@@ -806,19 +806,19 @@
             </div>
             <div class="facts-grid">
                 <div class="fact-card">
+                    <div class="fact-number">1,754 Ac</div>
+                    <p id="f1-text">Rock Creek Park acreage protecting vital urban wildlife corridors and forest canopies in Washington D.C.</p>
+                    <span class="fact-source" id="f1-source">Source: National Park Service</span>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">100+ Mi</div>
+                    <p id="f2-text">Extent of urban river networks (Potomac & Anacostia watersheds) vulnerable to severe stormwater runoff.</p>
+                    <span class="fact-source" id="f2-source">Source: Regional Watershed Data</span>
+                </div>
+                <div class="fact-card">
                     <div class="fact-number">1897</div>
-                    <p id="f1-text">Year of establishment originally as the Audubon Society of the District of Columbia.</p>
-                    <span class="fact-source" id="f1-source">Source: Nature Forward Archives</span>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-number">2022</div>
-                    <p id="f2-text">Historic rebranding from Audubon Naturalist Society to Nature Forward for greater inclusion.</p>
-                    <span class="fact-source" id="f2-source">Source: Organization Records</span>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-number">40 Ac</div>
-                    <p id="f3-text">Woodend Sanctuary headquarters property featuring historic mansion and restored streams.</p>
-                    <span class="fact-source" id="f3-source">Source: Environmental Property Data</span>
+                    <p id="f3-text">Establishment year of Nature Forward, engaging thousands of citizens and students annually in regional stewardship.</p>
+                    <span class="fact-source" id="f3-source">Source: Nature Forward Archives</span>
                 </div>
             </div>
         </section>
@@ -952,9 +952,9 @@
                 <div class="step-card">
                     <h4><i class="fa-solid fa-user"></i> <span id="micro-title">Micro Level</span></h4>
                     <ul>
-                        <li id="mi-1">Adopt Practical Nature Solutions: Plant native flora that is widely available in your region, create simple rain gardens, and build accessible habitats.</li>
-                        <li id="mi-2">Lower Barriers for Others: Share resources, seeds, and outdoor gear with neighbors to make nature experiences welcoming for everyone.</li>
-                        <li id="mi-3">Engage in Local Water Care: Participate in citizen science stream monitoring or neighborhood stormwater management projects.</li>
+                        <li id="mi-1">Support local cities/NGOs in your neighborhood.</li>
+                        <li id="mi-2">Plant native flora in your garden or balcony and create simple rain gardens to reduce stormwater runoff.</li>
+                        <li id="mi-3">Participate in local citizen science and neighborhood clean-ups to protect urban waterways.</li>
                     </ul>
                 </div>
                 <div class="step-card">
@@ -995,7 +995,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Carte dézoommée pour voir les USA au complet (Zoom 3)
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -1045,30 +1044,30 @@
                 projectYear: "2026",
                 summaryTitle: "Project Topics",
                 topic1Title: "Inclusive Community Engagement",
-                topic2Title: "Stream Restoration & Stormwater",
+                topic2Title: "Stream Restoration & Sanctuary Stormwater",
                 topic3Title: "Strategic Advocacy & Partnerships",
                 loc1: "Redefining membership, lowering barriers, and partnering with local hubs",
                 loc2: "Building local climate resilience at Woodend Sanctuary and urban watersheds",
                 loc3: "Holding local governments accountable and fostering broad coalition networks",
                 mapHeading: "Project Map",
                 challengeTitle: "Main Challenges",
-                challengeP1: "During our 2026 field exchange in North America, the Aguatura team sat down with Alison Pearce, Ph.D., Executive Director of Nature Forward (formerly known as the Audubon Naturalist Society). Founded in 1897, it is the Capital Region's oldest environmental organization.",
-                challengeP2: "Having served for over a decade in key roles—including Restoration Director and Deputy Director—Alison Pearce now leads the organization in its new chapter. Nature Forward focuses heavily on scalable community solutions, environmental education, stream restoration at its historic Woodend Sanctuary, and holding local and state governments accountable for environmental protection.",
+                challengeP1: "The Washington D.C. capital region faces profound environmental hurdles driven by rapid urbanization, extensive surface sealing, and climate change pressures. High levels of impervious surfaces lead to severe stormwater runoff, threatening local urban watersheds, water quality in the Potomac and Anacostia river basins, and aquatic habitats.",
+                challengeP2: "Furthermore, habitat fragmentation, the proliferation of invasive species across urban green spaces, and urban heat island effects threaten urban biodiversity and ecosystem resilience. Addressing these challenges requires coordinated grassroots conservation, active stream restoration, and robust community engagement across all neighborhoods.",
                 insightsTitle: "Expert Insights",
                 insightsSubtitle: "<strong>Alison Pearce (Nature Forward): “There Is No Single Solution, Only Collective Strategies for Change”</strong><br>In a wide-ranging interview on conservation, community engagement, environmental education, and organizational leadership, Alison Pearce, Executive Director of Nature Forward, shared her vision for creating lasting environmental impact. Rather than searching for quick fixes, she advocates for long-term strategies centered on people, partnerships, and community empowerment.",
                 factsHeading: "Key Facts",
-                f1Text: "Year of establishment originally as the Audubon Society of the District of Columbia.", f1Source: "Source: Nature Forward Archives",
-                f2Text: "Historic rebranding from Audubon Naturalist Society to Nature Forward for greater inclusion.", f2Source: "Source: Organization Records",
-                f3Text: "Woodend Sanctuary headquarters property featuring historic mansion and restored streams.", f3Source: "Source: Environmental Property Data",
+                f1Text: "Rock Creek Park acreage protecting vital urban wildlife corridors and forest canopies in Washington D.C.", f1Source: "Source: National Park Service",
+                f2Text: "Extent of urban river networks (Potomac & Anacostia watersheds) vulnerable to severe stormwater runoff.", f2Source: "Source: Regional Watershed Data",
+                f3Text: "Establishment year of Nature Forward, engaging thousands of citizens and students annually in regional stewardship.", f3Source: "Source: Nature Forward Archives",
                 projectTitle: "Nature Forward Approach",
                 col1Title: "Inclusive Community Engagement", col1Desc: "Lowering financial and social barriers to membership. Transitioning from traditional top-down models to active listening partnerships with diverse local communities and neighborhood hubs across the Capital Region.",
                 col2Title: "Watershed & Stream Restoration", col2Desc: "Managing stormwater runoff and restoring urban watersheds at Woodend Sanctuary and regional parks. Transforming technical engineering projects into hands-on educational opportunities for youth and volunteers.",
                 col3Title: "Local Advocacy & Accountability", col3Desc: "Pushing local county and state levels of government to enforce environmental regulations. Collaborating in strong coalitions to protect natural habitats against unchecked urban development and policy rollbacks.",
                 actionHeading: "How can you take action",
                 microTitle: "Micro Level",
-                mi1: "Adopt Practical Nature Solutions: Plant native flora that is widely available in your region, create simple rain gardens, and build accessible habitats.",
-                mi2: "Lower Barriers for Others: Share resources, seeds, and outdoor gear with neighbors to make nature experiences welcoming for everyone.",
-                mi3: "Engage in Local Water Care: Participate in citizen science stream monitoring or neighborhood stormwater management projects.",
+                mi1: "Support local cities/NGOs in your neighborhood.",
+                mi2: "Plant native flora in your garden or balcony and create simple rain gardens to reduce stormwater runoff.",
+                mi3: "Participate in local citizen science and neighborhood clean-ups to protect urban waterways.",
                 mesoTitle: "Meso Level",
                 me1: "Partner with Neighborhood Hubs: Collaborate with local community centers and grassroots organizations to listen to local priorities before launching programs.",
                 me2: "Advocate at Local Government Levels: Attend city council or county meetings to hold decision-makers accountable for watershed protection laws.",
@@ -1076,8 +1075,8 @@
                 linksTitle: "Useful Links & Resources",
                 links: [
                     { name: "Nature Forward – Official Website", url: "https://natureforward.org", desc: "— Official organization platform for regional conservation and community resilience." },
-                    { name: "Nature Forward History & Background", url: "https://en.wikipedia.org/wiki/Nature_Forward", desc: "— Historical background and organizational evolution on Wikipedia." },
-                    { name: "Name Change & Rebranding Announcement", url: "https://natureforward.org/name-change/", desc: "— Official details on the transition from Audubon Naturalist Society." }
+                    { name: "EPA – Individual Actions for Urban Sustainability", url: "https://www.epa.gov/sustainability/sustainability-lifestyle", desc: "— Practical guidelines on how individuals can foster sustainability in cities and local communities." },
+                    { name: "City Nature Challenge – Global Urban Bioblitz", url: "https://www.citynaturechallenge.org", desc: "— International citizen science initiative to document urban biodiversity in metropolitan regions." }
                 ],
                 exploreBtnText: "Explore more projects"
             },
@@ -1088,30 +1087,30 @@
                 projectYear: "2026",
                 summaryTitle: "Projektthemen",
                 topic1Title: "Inklusive Community-Einbindung",
-                topic2Title: "Bach-Renaturierung & Regenwasser",
+                topic2Title: "Bach-Renaturierung & Sanctuary-Regenwasser",
                 topic3Title: "Strategische Advocacy & Netzwerke",
                 loc1: "Neugestaltung der Mitgliedschaft und Partnerschaften mit lokalen Zentren",
                 loc2: "Aufbau lokaler Klimaresilienz im Woodend Sanctuary und städtischen Gewässern",
                 loc3: "Kommunal- und Landesregierungen in die Pflicht nehmen",
                 mapHeading: "Projektkarte",
                 challengeTitle: "Hauptherausforderungen",
-                challengeP1: "Während unseres Nordamerika-Austauschs 2026 traf sich das Aguatura-Team mit Dr. Alison Pearce, der Geschäftsführerin von Nature Forward (früher Audubon Naturalist Society). Gegründet 1897, ist es die älteste Umweltorganisation der Region.",
-                challengeP2: "Nach mehr als einem Jahrzehnt in Schlüsselpositionen leitet Alison Pearce die Organisation nun in ihrem neuen Kapitel. Nature Forward konzentriert sich auf skalierbare Naturlösungen, Umweltbildung, Bachsanierungen und politische Rechenschaftspflicht.",
+                challengeP1: "Die Hauptstadtregion Washington D.C. steht vor tiefgreifenden Umweltherausforderungen durch rasche Urbanisierung, umfangreiche Oberflächenversiegelung und den Klimawandel. Hohe Anteile versiegelter Flächen führen zu starkem Regenwasserabfluss, der städtische Gewässer, die Wasserqualität der Flussbecken von Potomac und Anacostia sowie aquatische Lebensräume gefährdet.",
+                challengeP2: "Zudem bedrohen Habitatfragmentierung, invasive Arten in städtischen Grünflächen und städtische Hitzeinseln die urbane Biodiversität. Die Bewältigung dieser Herausforderungen erfordert koordinierten Naturschutz, aktive Bachrenaturierung und eine starke Einbindung der Nachbarschaften.",
                 insightsTitle: "Experten-Einblicke",
                 insightsSubtitle: "<strong>Alison Pearce (Nature Forward): „Es gibt keine Einzellösung, nur kollektive Strategien für den Wandel“</strong><br>In einem ausführlichen Interview teilte Alison Pearce ihre Vision für nachhaltigen Umweltschutz. Statt nach schnellen Lösungen zu suchen, setzt sie auf langfristige Strategien, die auf Menschen, Partnerschaften und Community-Empowerment basieren.",
                 factsHeading: "Wichtige Fakten",
-                f1Text: "Gründungsjahr ursprünglich als Audubon Society of the District of Columbia.", f1Source: "Quelle: Nature Forward Archiven",
-                f2Text: "Historisches Rebranding von Audubon Naturalist Society zu Nature Forward für mehr Inklusion.", f2Source: "Quelle: Organisationsakten",
-                f3Text: "Hauptsitz im Woodend Sanctuary mit historischem Herrenhaus und renaturierten Bächen.", f3Source: "Quelle: Umweltdaten",
+                f1Text: "Fläche des Rock Creek Park zum Schutz wichtiger urbaner Wildtierkorridore und Baumkronen in Washington D.C.", f1Source: "Quelle: National Park Service",
+                f2Text: "Ausdehnung städtischer Flussnetzwerke (Potomac- & Anacostia-Wassereinzugsgebiete) mit hoher Anfälligkeit für Starkregenabflüsse.", f2Source: "Quelle: Regionale Wassereinzugsgebiets-Daten",
+                f3Text: "Gründungsjahr von Nature Forward; bindet jährlich Tausende Bürger und Studierende in den regionalen Naturschutz ein.", f3Source: "Quelle: Nature Forward Archiven",
                 projectTitle: "Nature Forward Ansatz",
                 col1Title: "Inklusive Community-Einbindung", col1Desc: "Abbau finanzieller und sozialer Hürden. Übergang von traditionellen Top-Down-Modellen zu partnerschaftlichem Zuhören mit diversen Nachbarschaften in der Hauptstadtregion.",
                 col2Title: "Wassereinzugsgebiete & Bachsanierung", col2Desc: "Regenwassermanagement und Renaturierung städtischer Bäche im Woodend Sanctuary und regionalen Parks. Verwandlung technischer Projekte in praxisnahe Bildungsangebote.",
                 col3Title: "Lokale Advocacy & Rechenschaft", col3Desc: "Einfordern der Einhaltung von Umweltgesetzen auf Kreis- und Landesebene. Aufbau starker Koalitionen zum Schutz natürlicher Habitate gegen unkontrollierte Stadtentwicklung.",
                 actionHeading: "Wie Sie aktiv werden können",
                 microTitle: "Mikro-Ebene",
-                mi1: "Praktische Naturlösungen anwenden: Heimische Pflanzen nutzen, die überall verfügbar sind, Regenwassergärten anlegen und Lebensräume schaffen.",
-                mi2: "Hürden für andere abbauen: Ressourcen, Saatgut und Outdoor-Ausrüstung mit Nachbarn teilen, um Naturerlebnisse für alle zugänglich zu machen.",
-                mi3: "Aktive Gewässerpflege: An Gewässermonitoring und lokalen Regenwassermanagement-Projekten teilnehmen.",
+                mi1: "Unterstütze lokale Städte/NGOs in deiner Nachbarschaft.",
+                mi2: "Pflanze heimische Flora im Garten oder auf dem Balkon und lege Regenwassergärten an, um Oberflächenabfluss zu reduzieren.",
+                mi3: "Nimm an lokalem Citizen Science und Nachbarschaftssäuberungen zum Schutz städtischer Gewässer teil.",
                 mesoTitle: "Meso-Ebene",
                 me1: "Mit Stadtteil-Hubs zusammenarbeiten: Mit lokalen Nachbarschaftszentren kooperieren und Anliegen der Gemeinschaft anhören.",
                 me2: "Auf kommunaler Ebene aktiv werden: An Stadtratssitzungen teilnehmen und die Einhaltung von Umweltgesetzen einfordern.",
@@ -1119,8 +1118,8 @@
                 linksTitle: "Nützliche Links & Ressourcen",
                 links: [
                     { name: "Nature Forward – Offizielle Website", url: "https://natureforward.org", desc: "— Offizielle Plattform für regionalen Naturschutz und Community-Resilienz." },
-                    { name: "Nature Forward Geschichte & Hintergrund", url: "https://en.wikipedia.org/wiki/Nature_Forward", desc: "— Historischer Hintergrund und organisatorische Evolution auf Wikipedia." },
-                    { name: "Bekanntgabe der Namensänderung & Rebranding", url: "https://natureforward.org/name-change/", desc: "— Offizielle Details zum Übergang von der Audubon Naturalist Society." }
+                    { name: "EPA – Individuelle Maßnahmen für urbane Nachhaltigkeit", url: "https://www.epa.gov/sustainability/sustainability-lifestyle", desc: "— Praktische Richtlinien, wie Einzelpersonen Nachhaltigkeit in Städten und Gemeinden fördern können." },
+                    { name: "City Nature Challenge – Globales Urbanes Bioblitz", url: "https://www.citynaturechallenge.org", desc: "— Internationale Bürgerwissenschafts-Initiative zur Dokumentation städtischer Biodiversität." }
                 ],
                 exploreBtnText: "Weitere Projekte entdecken"
             },
@@ -1131,30 +1130,30 @@
                 projectYear: "2026",
                 summaryTitle: "Thèmes du Projet",
                 topic1Title: "Engagement communautaire inclusif",
-                topic2Title: "Restauration des cours d'eau",
+                topic2Title: "Restauration des rivières (Woodend Sanctuary)",
                 topic3Title: "Plaidoyer stratégique et coalitions",
                 loc1: "Redéfinition de l'adhésion et partenariats avec les acteurs locaux",
                 loc2: "Renforcement de la résilience climatique au Woodend Sanctuary",
                 loc3: "Responsabiliser les gouvernements locaux et étatiques",
                 mapHeading: "Carte du Projet",
                 challengeTitle: "Principaux Défis",
-                challengeP1: "Lors de notre échange de terrain en 2026, l'équipe d'Aguatura a rencontré Dr. Alison Pearce, directrice exécutive de Nature Forward (anciennement Audubon Naturalist Society). Fondée en 1897, c'est la plus ancienne organisation environnementale de la région.",
-                challengeP2: "Après plus d'une décennie dans des rôles clés, Alison Pearce dirige désormais l'organisation dans son nouveau chapitre. Nature Forward se concentre sur des solutions communautaires évolutives, l'éducation et la restauration des rivières.",
+                challengeP1: "La région de la capitale Washington D.C. fait face à des défis environnementaux profonds liés à l'urbanisation rapide, l'imperméabilisation des sols et le changement climatique. L'artificialisation entraîne des ruissellement importants, menaçant les bassins versants du Potomac et de l'Anacostia.",
+                challengeP2: "De plus, la fragmentation des habitats et les îlots de chaleur menacent la biodiversité urbaine. Relever ces défis exige une conservation participative coordonnée et une gestion active des cours d'eau dans tous les quartiers.",
                 insightsTitle: "Expert Insights",
                 insightsSubtitle: "<strong>Alison Pearce (Nature Forward) : « Il n'y a pas de solution unique, seulement des stratégies collectives de changement »</strong><br>Dans une longue interview sur la conservation, l'engagement communautaire et le leadership, Alison Pearce a partagé sa vision d'un impact environnemental durable axé sur l'humain et les partenariats.",
                 factsHeading: "Faits Clés",
-                f1Text: "Année de création originale sous le nom d'Audubon Society du District de Columbia.", f1Source: "Source : Archives Nature Forward",
-                f2Text: "Changement de nom historique de l'Audubon Naturalist Society vers Nature Forward.", f2Source: "Source : Dossiers de l'organisation",
-                f3Text: "Siège au Woodend Sanctuary comprenant un manoir historique et des cours d'eau restaurés.", f3Source: "Source : Données environnementales",
+                f1Text: "Superficie du Rock Creek Park protégeant des corridors écologiques vitaux et canopées urbaines à Washington D.C.", f1Source: "Source : National Park Service",
+                f2Text: "Étendue des réseaux fluviaux urbains (bassins du Potomac et de l'Anacostia) vulnérables aux fortes pluies.", f2Source: "Source : Données régionales",
+                f3Text: "Année de création de Nature Forward, impliquant des milliers de citoyens et étudiants dans la protection régionale.", f3Source: "Source : Archives Nature Forward",
                 projectTitle: "L'Approche Nature Forward",
                 col1Title: "Engagement communautaire inclusif", col1Desc: "Réduction des barrières financières et sociales. Passage de modèles descendants à des partenariats d'écoute active avec diverses communautés.",
                 col2Title: "Restauration des bassins versants", col2Desc: "Gestion des eaux pluviales et restauration des rivières urbaines au Woodend Sanctuary. Transformation de projets techniques en opportunités éducatives.",
                 col3Title: "Plaidoyer et redevabilité locale", col3Desc: "Pousser les gouvernements locaux à appliquer les réglementations environnementales et protéger les habitats naturels contre le développement urbain non contrôlé.",
                 actionHeading: "Comment vous pouvez agir",
                 microTitle: "Niveau Micro",
-                mi1: "Adopter des solutions naturelles accessibles : Planter de la flore indigène facile à trouver et créer des jardins de pluie.",
-                mi2: "Réduire les barrières : Partager graines et équipements de plein air avec ses voisins pour rendre la nature accessible à tous.",
-                mi3: "S'engager pour l'eau : Participer au suivi participatif des cours d'eau et à la gestion des eaux de pluie.",
+                mi1: "Soutenir les villes/ONG locales de votre quartier.",
+                mi2: "Planter de la flore indigène sur votre balcon ou jardin et créer des jardins de pluie pour réduire le ruissellement.",
+                mi3: "Participer aux sciences participatives locales et au nettoyage des cours d'eau urbains.",
                 mesoTitle: "Niveau Méso",
                 me1: "Partenariats de quartier : Collaborer avec les centres communautaires pour écouter les besoins locaux avant d'agir.",
                 me2: "Plaidoyer local : Participer aux conseils municipaux pour exiger le respect des lois de protection de l'eau.",
@@ -1162,8 +1161,8 @@
                 linksTitle: "Liens Utiles & Ressources",
                 links: [
                     { name: "Nature Forward – Site Officiel", url: "https://natureforward.org", desc: "— Plateforme officielle de l'organisation pour la conservation régionale." },
-                    { name: "Histoire de Nature Forward", url: "https://en.wikipedia.org/wiki/Nature_Forward", desc: "— Contexte historique et évolution sur Wikipédia." },
-                    { name: "Annonce du changement de nom", url: "https://natureforward.org/name-change/", desc: "— Détails officiels sur la transition depuis l'Audubon Naturalist Society." }
+                    { name: "EPA – Actions individuelles pour la durabilité urbaine", url: "https://www.epa.gov/sustainability/sustainability-lifestyle", desc: "— Lignes directrices pratiques pour favoriser la durabilité dans les villes." },
+                    { name: "City Nature Challenge – Bioblitz Urbain Mondial", url: "https://www.citynaturechallenge.org", desc: "— Initiative internationale de science citoyenne documentant la biodiversité urbaine." }
                 ],
                 exploreBtnText: "Découvrir plus de projets"
             },
@@ -1174,30 +1173,30 @@
                 projectYear: "2026",
                 summaryTitle: "Temas del Proyecto",
                 topic1Title: "Compromiso Comunitario Inclusivo",
-                topic2Title: "Restauración de Cuencas y Ríos",
+                topic2Title: "Restauración de Ríos (Woodend Sanctuary)",
                 topic3Title: "Abogacía y Alianzas Estratégicas",
                 loc1: "Redefiniendo la membresía y colaborando con centros locales",
                 loc2: "Fomentando la resiliencia climática en Woodend Sanctuary",
                 loc3: "Exigiendo rendición de cuentas a los gobiernos locales",
                 mapHeading: "Mapa de Proyectos",
                 challengeTitle: "Principales Desafíos",
-                challengeP1: "Durante nuestro intercambio de campo en 2026, el equipo de Aguatura se reunió con la Dra. Alison Pearce, directora ejecutiva de Nature Forward (antes Audubon Naturalist Society). Fundada en 1897, es la organización ambiental más antigua de la región.",
-                challengeP2: "Tras más de una década en funciones clave, Alison Pearce lidera ahora la organización en su nuevo capítulo. Nature Forward se enfoca en soluciones comunitarias escalables, educación ambiental y restauración de ríos.",
+                challengeP1: "La región capital de Washington D.C. enfrenta profundos desafíos ambientales impulsados por la rápida urbanización, la pavimentación de superficies y el cambio climático. Las altas tasas de superficies impermeables generan fuertes escorrentías, amenazando las cuencas urbanas y la calidad del agua en los ríos Potomac y Anacostia.",
+                challengeP2: "Asimismo, la fragmentación de hábitats, las especies invasoras y el efecto de isla de calor urbana amenazan la biodiversidad. Abordar estos problemas requiere conservación participativa, restauración de arroyos y un fuerte compromiso vecinal.",
                 insightsTitle: "Expert Insights",
                 insightsSubtitle: "<strong>Alison Pearce (Nature Forward): “No hay una solución única, solo estrategias colectivas para el cambio”</strong><br>En una amplia entrevista, Alison Pearce compartió su visión para lograr un impacto ambiental duradero basado en la comunidad y alianzas estratégicas.",
                 factsHeading: "Datos Clave",
-                f1Text: "Año de fundación original como Audubon Society del Distrito de Columbia.", f1Source: "Fuente: Archivos de Nature Forward",
-                f2Text: "Histórico cambio de marca de Audubon Naturalist Society a Nature Forward para mayor inclusión.", f2Source: "Fuente: Registros organizacionales",
-                f3Text: "Sede principal en Woodend Sanctuary con mansión histórica y arroyos restaurados.", f3Source: "Fuente: Datos ambientales",
+                f1Text: "Superficie del Rock Creek Park que protege corredores de fauna urbana y copas de árboles en Washington D.C.", f1Source: "Fuente: National Park Service",
+                f2Text: "Extensión de redes fluviales urbanas (cuencas Potomac y Anacostia) vulnerables a fuertes escorrentías pluviales.", f2Source: "Fuente: Datos regionales de cuencas",
+                f3Text: "Año de fundación de Nature Forward, que involucra a miles de ciudadanos y estudiantes anuales.", f3Source: "Fuente: Archivos de Nature Forward",
                 projectTitle: "Enfoque Nature Forward",
                 col1Title: "Compromiso Comunitario Inclusivo", col1Desc: "Reducción de barreras financieras y sociales. Transición hacia asociaciones de escucha activa con diversas comunidades en la región.",
                 col2Title: "Restauración de Cuencas", col2Desc: "Gestión de aguas pluviales y restauración de arroyos urbanos en Woodend Sanctuary. Transformación de proyectos técnicos en experiencias educativas.",
                 col3Title: "Abogacía y Responsabilidad Local", col3Desc: "Incentivar a los gobiernos locales a cumplir las normativas ambientales y proteger los hábitats naturales frente al desarrollo urbano descontrolado.",
                 actionHeading: "Cómo puedes actuar",
                 microTitle: "Nivel Micro",
-                mi1: "Adoptar soluciones naturales prácticas: Plantar flora nativa accesible, crear jardines de lluvia y acondicionar espacios verdes.",
-                mi2: "Reducir barreras comunitarias: Compartir recursos y herramientas de exterior para hacer la naturaleza accesible a todos.",
-                mi3: "Participar en la protección del agua: Involucrarse en monitoreo ciudadano de ríos y gestión de agua de lluvia.",
+                mi1: "Apoya a ciudades/ONG locales en tu vecindario.",
+                mi2: "Planta flora nativa en tu jardín o balcón y crea sencillos jardines de lluvia para mitigar la escorrentía pluvial.",
+                mi3: "Participa en ciencia ciudadana local y limpiezas de vecindario para proteger las vías fluviales urbanas.",
                 mesoTitle: "Nivel Meso",
                 me1: "Colaborar con centros comunitarios: Escuchar y priorizar necesidades locales antes de iniciar proyectos de conservación.",
                 me2: "Incidir en el gobierno local: Asistir a reuniones municipales para exigir el cumplimiento de leyes de protección ambiental.",
@@ -1205,8 +1204,8 @@
                 linksTitle: "Enlaces Útiles y Recursos",
                 links: [
                     { name: "Nature Forward – Sitio Web Oficial", url: "https://natureforward.org", desc: "— Plataforma oficial de la organización para la conservación regional." },
-                    { name: "Historia de Nature Forward", url: "https://en.wikipedia.org/wiki/Nature_Forward", desc: "— Antecedentes históricos y evolución en Wikipedia." },
-                    { name: "Anuncio de cambio de nombre", url: "https://natureforward.org/name-change/", desc: "— Detalles oficiales sobre la transición desde la Audubon Naturalist Society." }
+                    { name: "EPA – Acciones individuales para la sostenibilidad urbana", url: "https://www.epa.gov/sustainability/sustainability-lifestyle", desc: "— Pautas prácticas sobre cómo las personas pueden fomentar la sostenibilidad en ciudades." },
+                    { name: "City Nature Challenge – Bioblitz Urbano Global", url: "https://www.citynaturechallenge.org", desc: "— Iniciativa internacional de ciencia ciudadana para documentar la biodiversidad urbana." }
                 ],
                 exploreBtnText: "Explorar más proyectos"
             }
@@ -1247,7 +1246,7 @@
             document.getElementById('map-heading').innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${t.mapHeading}`;
             
             document.getElementById('challenge-title').innerText = t.challengeTitle;
-            document.getElementById('challenge-p1').innerHTML = t.challengeP1.replace('Alison Pearce, Ph.D.', '<strong>Alison Pearce, Ph.D.</strong>');
+            document.getElementById('challenge-p1').innerText = t.challengeP1;
             document.getElementById('challenge-p2').innerText = t.challengeP2;
 
             document.getElementById('insights-title').innerText = t.insightsTitle;
