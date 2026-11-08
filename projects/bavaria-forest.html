@@ -516,7 +516,7 @@
             color: var(--white);
         }
 
-        /* STEPS GRID (OHNE BULLETS) */
+        /* STEPS GRID (OHNE BULLETS FOR STEPS) */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -545,6 +545,33 @@
             font-size: 0.88rem;
             color: #4A5568;
             line-height: 1.5;
+        }
+
+        /* ACTION LIST BULLET POINTS */
+        .action-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-list li {
+            font-size: 0.88rem;
+            color: #4A5568;
+            position: relative;
+            padding-left: 18px;
+            line-height: 1.5;
+        }
+
+        .action-list li::before {
+            content: "•";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+            font-weight: bold;
         }
 
         /* USEFUL LINKS SECTION */
@@ -844,7 +871,7 @@
             </div>
         </section>
 
-        <!-- KEY STEPS (OHNE BULLETS) -->
+        <!-- KEY STEPS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="steps-title">Key steps of our forest restoration project</h2>
@@ -869,7 +896,7 @@
             </div>
         </section>
 
-        <!-- HOW CAN YOU TAKE ACTION -->
+        <!-- HOW CAN YOU TAKE ACTION (MIT BULLET POINTS) -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="action-heading">How can you take action</h2>
@@ -877,19 +904,19 @@
             <div class="steps-grid">
                 <div class="step-card">
                     <h4 id="micro-title"><i class="fa-solid fa-user"></i> Micro Level</h4>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                        <li id="mi-1" style="position: relative; padding-left: 15px;">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
-                        <li id="mi-2" style="position: relative; padding-left: 15px;">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
-                        <li id="mi-3" style="position: relative; padding-left: 15px;">Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.</li>
-                        <li id="mi-4" style="position: relative; padding-left: 15px;">Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
+                    <ul class="action-list">
+                        <li id="mi-1">Consult Local Forestry Authorities: Contact regional forestry offices for professional advice and tailored management plans.</li>
+                        <li id="mi-2">Promote Natural Regeneration: Allow natural succession and preserve deadwood on private land plots to enrich soil biology.</li>
+                        <li id="mi-3">Selective planting of diverse and climate-resilient species: Choose resilient native mixes to future-proof forest stands.</li>
+                        <li id="mi-4">Selective and sustainable harvesting: Balance self-sufficient wood harvesting carefully with continuous canopy cover protection.</li>
                     </ul>
                 </div>
                 <div class="step-card">
                     <h4 id="meso-title"><i class="fa-solid fa-people-group"></i> Meso Level</h4>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                        <li id="me-1" style="position: relative; padding-left: 15px;">Create or connect local forest owners and forest groups: Coordinate regional timber harvesting and share peer expertise.</li>
-                        <li id="me-2" style="position: relative; padding-left: 15px;">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
-                        <li id="me-3" style="position: relative; padding-left: 15px;">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
+                    <ul class="action-list">
+                        <li id="me-1">Create or connect local forest owners and forest groups: Coordinate regional timber harvesting and share peer expertise.</li>
+                        <li id="me-2">Utilize State Subsidies: Leverage municipal and regional government grants designed to support climate-resilient forest conversion.</li>
+                        <li id="me-3">Community Outreach & Education: Organize regional workshops and knowledge-sharing sessions on biodiversity preservation.</li>
                     </ul>
                 </div>
             </div>
@@ -922,7 +949,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Zoomed out slightly to show all of Germany clearly
             var map = L.map('minimap', {
                 zoomControl: false,
                 dragging: false,
@@ -1168,7 +1194,7 @@
                 mi1: "Consultar a las autoridades forestales: Contacte a su oficina regional para asesoramiento profesional.",
                 mi2: "Promover la regeneración natural: Permita la sucesión natural y mantenga madera muerta en terrenos privados.",
                 mi3: "Plantación selectiva de especies diversas y resilientes para asegurar el futuro de los rodales.",
-                mi4: "Cosecha selectiva y sostenible: Equilibre la autosuficiencia de madera con la protección del dosel forestal.",
+                mi4: "Cosecha selectiva y sostenible: Equilibre la autosufficiencia de madera con la protección del dosel forestal.",
                 mesoTitle: "Nivel Meso",
                 me1: "Crear o conectar propietarios y grupos forestales: Coordine la cosecha regional y comparta experiencias.",
                 me2: "Utilizar subsidios estatales: Aproveche las ayudas públicas destinadas a la conversión forestal climática.",
