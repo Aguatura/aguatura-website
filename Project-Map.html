@@ -565,7 +565,7 @@
                 latestDesc: "Descubre nuestras iniciativas a continuación (más recientes primero).",
                 noProject: "Aún no hay proyectos activos registrados en este país.",
                 noMatch: "Ningún proyecto coincide con los filtros seleccionados.",
-                ctaText: "Si conoces algún proyecto de este país y quieres compartirlo,",
+                ctaText: "Si conoces algún proyecto de este país und quieres compartirlo,",
                 ctaLink: "contáctanos",
                 btnText: "Saber más",
                 backToList: "← Volver a la lista"
@@ -752,7 +752,7 @@
             }
         ];
 
-        let currentLang = 'en';
+        let currentLang = localStorage.getItem('aguatura_lang') || 'en';
         let selectedLayer = null;
         let lastClickedCountry = null;
         let mapMarkers = [];
@@ -1110,6 +1110,7 @@
 
         function changeLanguage(lang) {
             currentLang = lang;
+            localStorage.setItem('aguatura_lang', lang); // Sprache für andere Seiten speichern
             const t = translations[lang];
 
             document.documentElement.lang = lang;
@@ -1133,6 +1134,13 @@
                 renderFilteredProjects();
             }
         }
+
+        // Beim Laden der Seite gespeicherte Sprache anwenden
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedLang = localStorage.getItem('aguatura_lang') || 'en';
+            document.getElementById('language-select').value = savedLang;
+            changeLanguage(savedLang);
+        });
 
         let geojson;
         fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
