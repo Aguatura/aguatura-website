@@ -143,7 +143,7 @@
             padding: 35px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             border-top: 5px solid var(--accent-green);
         }
 
@@ -187,11 +187,15 @@
         }
 
         .rockcreek-hero-logo {
-            height: 55px;
+            height: 48px;
             width: auto;
             object-fit: contain;
             margin-left: 10px;
-            border-radius: 4px;
+            border-radius: 6px;
+            background: #fff;
+            padding: 4px;
+            border: 1px solid #CBD5E1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
         }
 
         .sdg-icons {
@@ -217,7 +221,7 @@
         /* MAP & SUMMARY LAYOUT */
         .map-section-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 25px;
             margin-bottom: 35px;
             align-items: stretch;
@@ -363,297 +367,299 @@
         }
 
         /* MAIN CHALLENGES */
-        .challenges-intro {
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .grid-text p {
             font-size: 1rem;
             color: #4A5568;
+            margin-bottom: 15px;
             line-height: 1.7;
-            margin-bottom: 20px;
         }
 
         .challenges-bullet-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            padding-left: 0;
-            margin-bottom: 25px;
+            gap: 14px;
+            margin-top: 15px;
         }
 
-        .challenges-bullet-list li {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            line-height: 1.5;
+        .challenge-item {
             display: flex;
             align-items: flex-start;
-            gap: 14px;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #4A5568;
+            line-height: 1.5;
         }
 
-        .challenge-bullet-icon {
+        .challenge-icon {
             background: var(--bg-light);
-            color: var(--primary-dark);
-            width: 36px;
-            height: 36px;
+            color: var(--accent-green);
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             flex-shrink: 0;
             border: 1px solid #E2E8F0;
+            margin-top: 2px;
         }
 
-        .challenges-bullet-list li strong {
-            color: var(--primary-dark);
-            font-size: 1rem;
-        }
-
-        .challenges-bullet-list li span {
-            color: #4A5568;
-        }
-
-        /* IMAGES STYLES */
         .section-full-img {
             width: 100%;
             height: auto;
-            max-height: 420px;
+            max-height: 340px;
             object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: block;
         }
 
-        /* KEY FACTS */
-        .key-facts-container {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            gap: 15px;
-            width: 100%;
+        /* FACTS GRID */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .key-fact-card {
-            flex: 1 1 0px !important;
-            min-width: 0 !important;
-            background-color: var(--primary-dark);
-            color: var(--white);
-            padding: 25px 15px;
-            border-radius: 12px;
+        .fact-card {
+            background: var(--primary-dark);
+            padding: 22px;
+            border-radius: 8px;
+            border: 2px solid var(--accent-green);
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+            transition: transform 0.2s ease;
         }
 
-        .key-fact-number {
+        .fact-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .fact-card .fact-number {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 2.2vw, 2.5rem);
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .key-fact-label {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: #E2E8F0;
-            line-height: 1.3;
-            margin-bottom: 12px;
+        .fact-card p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
         }
 
-        .key-fact-source {
+        .fact-source {
             font-size: 0.75rem;
-            color: #A3E6CD;
-            text-decoration: underline;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
             display: inline-block;
-            opacity: 0.9;
+            text-decoration: underline;
+            cursor: pointer;
             transition: color 0.2s ease;
         }
 
-        .key-fact-source:hover {
-            color: #FFFFFF;
+        .fact-source:hover {
+            color: var(--white);
         }
 
-        /* APPROACH INTRO TEXT */
-        .approach-intro {
-            font-size: 1rem;
-            color: #4A5568;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        /* INITIATIVES LIST & CARDS */
-        .initiatives-container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-top: 10px;
-        }
-
-        .initiative-row {
+        /* PILLARS GRID (APPROACH) */
+        .pillars-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pillar-card {
             background: var(--bg-light);
             padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-green);
-        }
-
-        .initiative-row.stacked-layout {
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-dark);
             display: flex;
             flex-direction: column;
-            align-items: stretch;
-            gap: 15px;
+            justify-content: space-between;
         }
 
-        .initiative-content h3 {
+        .pillar-card h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.25rem;
-            margin-bottom: 10px;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .initiative-content p {
-            font-size: 0.92rem;
-            color: #4A5568;
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: #555;
             line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        /* INTERVIEW SECTION */
+        .card-image-container {
+            width: 100%;
+            height: 160px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-top: auto;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* EXPERT INSIGHTS & JOURNALISTIC STYLE */
         .interview-profile {
             display: flex;
             align-items: center;
             gap: 20px;
             background: var(--bg-light);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 22px;
+            border-radius: 12px;
             margin-bottom: 25px;
-            border-left: 4px solid var(--accent-green);
+            border-left: 5px solid var(--accent-green);
         }
 
         .profile-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            border-radius: 12px;
+            overflow: hidden;
             background: var(--primary-dark);
             color: var(--white);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
         .profile-info h3 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.2rem;
+            font-size: 1.35rem;
         }
 
         .profile-info p {
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: #555;
-            margin-top: 3px;
+            margin-top: 4px;
         }
 
-        .qa-container {
+        .journalistic-interview {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
         }
 
-        .qa-item {
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 18px;
-        }
-
-        .qa-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .qa-question {
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 8px;
-            display: flex;
-            gap: 10px;
-            font-size: 0.98rem;
-        }
-
-        .qa-answer {
+        .interview-intro-text {
+            font-size: 1rem;
             color: #4A5568;
-            font-size: 0.93rem;
-            line-height: 1.6;
-            padding-left: 24px;
+            line-height: 1.7;
+            margin-bottom: 5px;
         }
 
-        .quote-box {
-            background: #EBF4F0;
-            border-left: 4px solid var(--primary-dark);
-            padding: 20px;
-            border-radius: 6px;
-            font-style: italic;
-            color: var(--primary-dark);
-            font-size: 1.02rem;
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* ACTION GRID */
-        .action-grid {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            gap: 25px;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .action-card {
-            flex: 1 1 0px !important;
-            min-width: 0 !important;
+        .qa-card-modern {
             background: var(--bg-light);
-            padding: 25px;
+            padding: 22px;
             border-radius: 10px;
-            border-top: 4px solid var(--accent-green);
+            border-left: 4px solid var(--primary-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        .action-card h4 {
+        .qa-card-modern h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-dark);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .action-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .action-list li {
+        .qa-card-modern p {
             font-size: 0.92rem;
             color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .verbatim-quote {
+            background: var(--white);
+            border-left: 3px solid var(--accent-green);
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 0.98rem;
+            line-height: 1.5;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.02);
+        }
+
+        /* STEPS GRID (ACTION) */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .step-card {
+            background: var(--bg-light);
+            padding: 22px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .step-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 10px;
         }
 
-        .action-list li i {
+        .step-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-card li {
+            font-size: 0.88rem;
+            color: #4A5568;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .step-card li::before {
+            content: "•";
             color: var(--accent-green);
-            margin-top: 4px;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
         /* USEFUL LINKS SECTION */
@@ -680,6 +686,10 @@
             gap: 12px;
         }
 
+        .useful-links-list li {
+            font-size: 0.95rem;
+        }
+
         .useful-links-list a {
             color: var(--primary-dark);
             font-weight: 600;
@@ -687,6 +697,12 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .useful-links-list a:hover {
+            color: var(--accent-green);
+            text-decoration: underline;
         }
 
         /* EXPLORE MORE BUTTON */
@@ -707,6 +723,12 @@
             font-weight: 600;
             font-size: 1.05rem;
             box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
         }
 
         /* FOOTER */
@@ -727,8 +749,23 @@
             .map-section-grid {
                 grid-template-columns: 1fr;
             }
-            .initiative-row {
+            .grid-2col {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .interview-profile {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -769,7 +806,7 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTAINER -->
     <div class="main-container animate-fade">
 
         <!-- HERO SECTION -->
@@ -798,7 +835,7 @@
             </div>
         </section>
 
-        <!-- 1. PROJECT TOPICS & 2. PROJECT MAP -->
+        <!-- MAP & SUMMARY LAYOUT -->
         <div class="map-section-grid">
             <div class="map-info-card">
                 <h3 id="summary-title"><i class="fa-solid fa-list-check"></i> Project Topics</h3>
@@ -833,128 +870,116 @@
             </div>
         </div>
 
-        <!-- 3. MAIN CHALLENGES -->
+        <!-- MAIN CHALLENGES -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="challenges-title">Main Challenges</h2>
             </div>
-            <p class="challenges-intro" id="challenges-p">
-                Urban natural ecosystems face an unprecedented combination of environmental pressures:
-            </p>
-            <ul class="challenges-bullet-list">
-                <li>
-                    <div class="challenge-bullet-icon"><i class="fa-solid fa-seedling"></i></div>
-                    <div>
-                        <strong id="c1-title">Invasive Species Pressure</strong> — 
-                        <span id="c1-desc">Non-native vines choke mature tree canopies, preventing natural forest regeneration and killing native flora.</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenge-bullet-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
-                    <div>
-                        <strong id="c2-title">Stormwater Runoff & Erosion</strong> — 
-                        <span id="c2-desc">Heavy rainwater washes off concrete, carrying urban pollutants directly into the creek and causing severe bank erosion.</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenge-bullet-icon"><i class="fa-solid fa-building-user"></i></div>
-                    <div>
-                        <strong id="c3-title">Urban Pressure & Fragmented Habitat</strong> — 
-                        <span id="c3-desc">Surrounding dense infrastructure isolates wildlife populations and strains public park resources.</span>
-                    </div>
-                </li>
-            </ul>
-
-            <!-- PHOTO INTÉGRÉE SOUS MAIN CHALLENGES -->
-            <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.26.01.png" 
-                 alt="Main Challenges in Rock Creek Park" 
-                 class="section-full-img"
-                 onerror="this.style.display='none';">
+            <div class="grid-2col">
+                <div class="grid-text">
+                    <p id="challenges-p">Urban natural ecosystems face an unprecedented combination of environmental pressures and intensive urban development.</p>
+                    <ul class="challenges-bullet-list">
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-seedling"></i></div>
+                            <div>
+                                <strong id="c1-title">Invasive Species Pressure</strong> — 
+                                <span id="c1-desc">Non-native vines choke mature tree canopies, preventing natural forest regeneration.</span>
+                            </div>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+                            <div>
+                                <strong id="c2-title">Stormwater Runoff & Erosion</strong> — 
+                                <span id="c2-desc">Heavy rainwater washes off concrete surfaces, carrying urban pollutants directly into the creek.</span>
+                            </div>
+                        </li>
+                        <li class="challenge-item">
+                            <div class="challenge-icon"><i class="fa-solid fa-building-user"></i></div>
+                            <div>
+                                <strong id="c3-title">Urban Pressure & Fragmented Habitat</strong> — 
+                                <span id="c3-desc">Surrounding dense infrastructure isolates wildlife populations and strains public park resources.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.26.01.png" 
+                         alt="Main Challenges in Rock Creek Park" 
+                         class="section-full-img"
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-rockcreek/Capture%20d’écran%202026-11-08%20à%2008.26.01.png';">
+                </div>
+            </div>
         </section>
 
-        <!-- 4. KEY FACTS (CONVERTIS EN METRIQUE / SANS ACRES ET SANS MILES) -->
+        <!-- KEY FACTS -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="keyfacts-main-title">Key Facts</h2>
             </div>
-            <div class="key-facts-container">
-                <div class="key-fact-card">
-                    <div class="key-fact-number">710 Hectares</div>
-                    <div class="key-fact-label" id="kf1-label">(7.1 km²) of protected contiguous urban forest</div>
-                    <a href="https://www.nps.gov/rocr/index.htm" target="_blank" class="key-fact-source">
-                        Source: National Park Service Portal
-                    </a>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">710 Hectares</div>
+                    <p id="kf1-label">(7.1 km²) of protected contiguous urban forest ecosystem.</p>
+                    <a href="https://www.nps.gov/rocr/index.htm" target="_blank" class="fact-source">Source: National Park Service</a>
                 </div>
-                <div class="key-fact-card">
-                    <div class="key-fact-number">52.5 km</div>
-                    <div class="key-fact-label" id="kf2-label">tributary stream path flowing into Potomac River & Chesapeake Bay</div>
-                    <a href="https://waterdata.usgs.gov/nwis/uv?site_no=01648000" target="_blank" class="key-fact-source">
-                        Source: USGS Water Data (Rock Creek)
-                    </a>
+                <div class="fact-card">
+                    <div class="fact-number">52.5 km</div>
+                    <p id="kf2-label">Tributary stream path flowing into Potomac River & Chesapeake Bay.</p>
+                    <a href="https://waterdata.usgs.gov/nwis/uv?site_no=01648000" target="_blank" class="fact-source">Source: USGS Water Data</a>
                 </div>
-                <div class="key-fact-card">
-                    <div class="key-fact-number">5,000+</div>
-                    <div class="key-fact-label" id="kf3-label">Annual volunteers engaged across watershed cleanups & restoration</div>
-                    <a href="https://www.potomacriverkeepernetwork.org" target="_blank" class="key-fact-source">
-                        Source: Potomac Riverkeeper Network
-                    </a>
+                <div class="fact-card">
+                    <div class="fact-number">5,000+</div>
+                    <p id="kf3-label">Annual volunteers engaged across watershed cleanups & restoration.</p>
+                    <a href="https://www.potomacriverkeepernetwork.org" target="_blank" class="fact-source">Source: Potomac Riverkeeper Network</a>
                 </div>
             </div>
         </section>
 
-        <!-- 5. APPROACH ROCKCREEK CONSERVANCY -->
+        <!-- APPROACH ROCKCREEK CONSERVANCY -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="init-heading">Approach Rockcreek Conservancy</h2>
+                <h2 id="init-heading">Approach Rock Creek Conservancy</h2>
             </div>
-            <p class="approach-intro" id="approach-intro-text">
-                Just steps away from the political institutions of the U.S. capital winds Rock Creek Park, a 710-hectare (7.1 km²) natural sanctuary described as the green spine of Washington, D.C. Behind the preservation of this urban green lung is Rock Creek Conservancy, a non-profit organization that relies primarily on human connection, grassroots action, and strong institutional partnerships to protect local biodiversity.
+            <p class="approach-intro" id="approach-intro-text" style="font-size: 1rem; color: #4A5568; line-height: 1.7; margin-bottom: 25px;">
+                Steps away from the U.S. Capitol lies Rock Creek Park, a 710-hectare (7.1 km²) natural oasis forming Washington, D.C.'s green lung. Rock Creek Conservancy leads its protection by combining community action, ecological restoration, and strong institutional partnerships.
             </p>
-            <div class="initiatives-container">
-                
-                <!-- INITIATIVE 1: INVASIVE PLANT REMOVAL AVEC PHOTO D'ÉCRAN 08.28.24 EN DESSOUS -->
-                <div class="initiative-row stacked-layout">
-                    <div class="initiative-content">
-                        <h3><i class="fa-solid fa-scissors"></i> <span id="init1-title">Weed Warriors & Invasive Plant Removal</span></h3>
-                        <p id="init1-desc">To combat aggressive invasive vines and plants that choke native trees, the Conservancy trains local volunteers through the "Weed Warriors" program. Certified leaders gain specialized botanical knowledge to supervise independent removal events across various park sections.</p>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div>
+                        <h4 id="init1-title"><i class="fa-solid fa-scissors"></i> Weed Warriors & Plant Removal</h4>
+                        <p id="init1-desc">Training local volunteers through the "Weed Warriors" program to independently identify and safely remove invasive vines choking mature trees.</p>
                     </div>
-                    <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.28.24.png" 
-                         alt="Weed Warriors Invasive Plant Removal" 
-                         class="section-full-img"
-                         onerror="this.style.display='none';">
+                    <div class="card-image-container">
+                        <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.28.24.png" alt="Weed Warriors" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-rockcreek/Capture%20d’écran%202026-11-08%20à%2008.28.24.png';">
+                    </div>
                 </div>
 
-                <!-- INITIATIVE 2: STREAM CLEANUPS AVEC PHOTO D'ÉCRAN 08.30.05 EN DESSOUS -->
-                <div class="initiative-row stacked-layout">
-                    <div class="initiative-content">
-                        <h3><i class="fa-solid fa-water"></i> <span id="init2-title">Stream Cleanups & Water Protection</span></h3>
-                        <p id="init2-desc">Rock Creek flows directly into the Potomac River and Chesapeake Bay. Through annual large-scale cleanup events, thousands of community members systematically remove trash and urban waste from the creek beds, protecting aquatic ecosystems and generating critical pollution tracking data.</p>
+                <div class="pillar-card">
+                    <div>
+                        <h4 id="init2-title"><i class="fa-solid fa-water"></i> Stream Cleanups & Protection</h4>
+                        <p id="init2-desc">Organizing large-scale community cleanups along tributary paths flowing into the Potomac River to remove urban trash and protect aquatic life.</p>
                     </div>
-                    <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.30.05.png" 
-                         alt="Stream Cleanup Rock Creek" 
-                         class="section-full-img"
-                         onerror="this.style.display='none';">
+                    <div class="card-image-container">
+                        <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.30.05.png" alt="Stream Cleanups" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-rockcreek/Capture%20d’écran%202026-11-08%20à%2008.30.05.png';">
+                    </div>
                 </div>
 
-                <!-- INITIATIVE 3: STORMWATER MANAGEMENT AVEC PHOTO D'ÉCRAN 08.40.37 EN DESSOUS -->
-                <div class="initiative-row stacked-layout">
-                    <div class="initiative-content">
-                        <h3><i class="fa-solid fa-cloud-showers-heavy"></i> <span id="init3-title">Stormwater Management & RainScapes</span></h3>
-                        <p id="init3-desc">Heavy rain runoff washes urban pollutants and oil straight into natural waterways, causing severe soil erosion. The Conservancy promotes green infrastructure solutions, such as rain gardens, cisterns, and permeable surfaces, helping neighborhoods absorb stormwater naturally before it reaches the park.</p>
+                <div class="pillar-card">
+                    <div>
+                        <h4 id="init3-title"><i class="fa-solid fa-cloud-showers-heavy"></i> Stormwater & RainScapes</h4>
+                        <p id="init3-desc">Promoting green infrastructure solutions, such as rain gardens and permeable surfaces, helping neighborhoods absorb stormwater naturally.</p>
                     </div>
-                    <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.40.37.png" 
-                         alt="Stormwater Management & RainScapes" 
-                         class="section-full-img"
-                         onerror="this.style.display='none';">
+                    <div class="card-image-container">
+                        <img src="Pics/washington-rockcreek/Capture d’écran 2026-11-08 à 08.40.37.png" alt="Stormwater Management" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/washington-rockcreek/Capture%20d’écran%202026-11-08%20à%2008.40.37.png';">
+                    </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- 6. EXPERTS INSIGHTS -->
+        <!-- EXPERT INSIGHTS -->
         <section class="content-card">
             <div class="section-header">
-                <h2 id="interview-title">Experts Insights: Reinventing Urban Conservation Through Community</h2>
+                <h2 id="interview-title">Expert Insights</h2>
             </div>
 
             <div class="interview-profile">
@@ -962,79 +987,72 @@
                 <div class="profile-info">
                     <h3>Ryan McIntyre</h3>
                     <p id="profile-role">Forest Resilience Manager, Rock Creek Conservancy</p>
-                    <p id="profile-bio">Leads participatory ecosystem management, volunteer capacity-building, and forest restoration strategies across Rock Creek Park in Washington, D.C.</p>
+                    <p id="profile-bio">Leads participatory ecosystem management, volunteer capacity-building, and forest restoration strategies across Rock Creek Park.</p>
                 </div>
             </div>
 
-            <div class="qa-container">
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q1-text">How does your partnership with federal and local authorities work?</span></div>
-                    <div class="qa-answer" id="a1-text">
-                        "We describe our collaboration with the National Park Service as being 'hand and glove,' basically moving together. Every year, we build a joint work plan where we lay out season by season what we're going to be doing, and we have weekly meetings with our counterparts at the park to determine what we're going to focus on and establish synergies."
-                    </div>
+            <div class="journalistic-interview">
+                <p id="int-intro" class="interview-intro-text">
+                    Protecting an urban forest requires more than ecological knowledge—it demands deep community integration, institutional synergy, and grassroots empowerment.
+                </p>
+
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-handshake"></i> <span id="q1-text">How does your partnership with federal and local authorities work?</span></h4>
+                    <p id="a1-text">"Our collaboration with the National Park Service is truly hand-in-glove. We plan work together season by season and meet weekly to coordinate projects and establish synergies."</p>
                 </div>
 
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q2-text">How do you mobilize and train community "Weed Warriors"?</span></div>
-                    <div class="qa-answer" id="a2-text">
-                        The Conservancy relies on predictable events for neighborhood ownership, a network effect where dedicated volunteers train their social circles, and structured 10-minute field briefings at every session to ensure high-quality restoration work on the ground.
-                    </div>
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-users-gear"></i> <span id="q2-text">How do you mobilize and train community "Weed Warriors"?</span></h4>
+                    <p id="a2-text">We rely on regular volunteer events, peer outreach, and structured 10-minute field briefings at every session to ensure high-quality restoration work on the ground.</p>
                 </div>
 
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q3-text">How do you integrate Diversity, Equity, and Inclusion into your projects?</span></div>
-                    <div class="qa-answer" id="a3-text">
-                        "We don't want to be only working in really wealthy neighborhoods. We want to be serving the whole community. Whenever we are picking out new projects or using government grants, we are usually intentionally looking to serve underfunded areas."
-                    </div>
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-scale-balanced"></i> <span id="q3-text">How do you integrate Diversity, Equity, and Inclusion into your projects?</span></h4>
+                    <p id="a3-text">"Conservation belongs to everyone. We intentionally focus funding and new projects on historically underfunded communities rather than only wealthy neighborhoods."</p>
                 </div>
 
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q4-text">What metrics do you use to evaluate ecological progress?</span></div>
-                    <div class="qa-answer" id="a4-text">
-                        Progress is measured through three main quantitative indicators: total engaged volunteer hours, square footage of invasive plants cleared, and the number of vines cut from mature trees to save the forest canopy.
-                    </div>
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-chart-line"></i> <span id="q4-text">What metrics do you use to evaluate ecological progress?</span></h4>
+                    <p id="a4-text">Progress is measured through total engaged volunteer hours, square footage of invasive plants cleared, and the number of tree-strangling vines cut from mature canopies.</p>
                 </div>
 
-                <div class="qa-item">
-                    <div class="qa-question"><i class="fa-solid fa-circle-question"></i> <span id="q5-text">What are the main future challenges regarding climate change and funding?</span></div>
-                    <div class="qa-answer" id="a5-text">
-                        To adapt to climate change, the team researches which tree species will withstand changing weather patterns in D.C. To maintain financial resilience against fluctuating public budgets, the Conservancy diversifies revenue through individual gifts, major donations, and targeted grants.
-                    </div>
+                <div class="qa-card-modern">
+                    <h4><i class="fa-solid fa-seedling"></i> <span id="q5-text">What are the main future challenges regarding climate change and funding?</span></h4>
+                    <p id="a5-text">Selecting resilient tree species for future climates while diversifying revenue streams to remain independent of public budget shifts.</p>
                 </div>
 
-                <div class="quote-box" id="quote-text">
-                    "I'm hoping to help us expand and growing our volunteer base into smaller little pocket communities—people who are dedicated to a specific park area—and take on more projects that can be led by the community itself."
-                    <br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Ryan McIntyre, Forest Resilience Manager</small>
+                <div class="verbatim-quote" id="quote-text">
+                    "My goal is to empower local neighborhood groups to take full ownership of their nearby park sections and lead restoration autonomously."
                 </div>
             </div>
         </section>
 
-        <!-- 7. HOW CAN YOU TAKE ACTION -->
+        <!-- HOW CAN YOU TAKE ACTION -->
         <section class="content-card">
             <div class="section-header">
                 <h2 id="action-title">How can you take action</h2>
             </div>
-            <div class="action-grid">
-                <div class="action-card">
+            <div class="steps-grid">
+                <div class="step-card">
                     <h4><i class="fa-solid fa-user"></i> <span id="micro-title">Micro Level</span></h4>
-                    <ul class="action-list">
-                        <li><i class="fa-solid fa-check"></i> <span id="micro-1">Participate in local Weed Warriors events or neighborhood park cleanups.</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span id="micro-2">Install a rain garden or permeable surfaces on your residential property to capture runoff.</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span id="micro-3">Learn to identify non-native invasive vines in your own yard to stop their spread into public forests.</span></li>
+                    <ul>
+                        <li id="micro-1">Participate in local Weed Warriors events or neighborhood park cleanups.</li>
+                        <li id="micro-2">Install a rain garden or rain barrel on your residential property to capture runoff.</li>
+                        <li id="micro-3">Learn to identify non-native invasive vines in your yard to stop their spread.</li>
                     </ul>
                 </div>
-                <div class="action-card">
+                <div class="step-card">
                     <h4><i class="fa-solid fa-people-group"></i> <span id="meso-title">Meso Level</span></h4>
-                    <ul class="action-list">
-                        <li><i class="fa-solid fa-check"></i> <span id="meso-1">Form neighborhood stewardship groups to adopt and care for local park sections.</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span id="meso-2">Partner with municipal authorities to align community volunteer efforts with formal management plans.</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span id="meso-3">Organize youth environmental education workshops in underserved urban communities.</span></li>
+                    <ul>
+                        <li id="meso-1">Form neighborhood stewardship groups to adopt and care for local park sections.</li>
+                        <li id="meso-2">Partner with municipal authorities to align community volunteer efforts with formal plans.</li>
+                        <li id="meso-3">Organize youth environmental education workshops in urban communities.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 8. USEFUL LINKS AND RESOURCES -->
+        <!-- USEFUL LINKS SECTION -->
         <section class="links-section">
             <h3 id="links-title"><i class="fa-solid fa-arrow-up-right-from-square"></i> Useful links and resources</h3>
             <ul class="useful-links-list">
@@ -1076,14 +1094,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var map = L.map('minimap', {
-                zoomControl: true,
-                dragging: true,
+                zoomControl: false,
+                dragging: false,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
                 boxZoom: false,
                 keyboard: false,
                 attributionControl: false
-            }).setView([39.8283, -98.5795], 3);
+            }).setView([37.0902, -95.7129], 3);
 
             fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                 .then(response => response.json())
@@ -1092,9 +1110,9 @@
                         style: function(feature) {
                             var countryName = feature.properties.name;
                             if (countryName === "United States of America" || countryName === "United States") {
-                                return { fillColor: "#1B4D3E", fillOpacity: 0.85, color: "#1B4D3E", weight: 1.5 };
+                                return { fillColor: "#1B4D3E", fillOpacity: 0.9, color: "#1B4D3E", weight: 1.5 };
                             } else {
-                                return { fillColor: "#82C3A6", fillOpacity: 0.25, color: "#FFFFFF", weight: 1 };
+                                return { fillColor: "#82C3A6", fillOpacity: 0.3, color: "#FFFFFF", weight: 1 };
                             }
                         }
                     }).addTo(map);
@@ -1111,10 +1129,9 @@
                         .bindTooltip('<b>Rock Creek Conservancy</b><br>Washington, D.C.', { direction: 'top', className: 'custom-tooltip', offset: [0, -10] })
                         .openTooltip();
                 })
-                .catch(err => console.error("Kartendaten Fehler: ", err));
+                .catch(err => console.error("Map error: ", err));
         });
 
-        /* TRADUCTIONS FLUIDES ET NATURELLES (UNIQUEMENT METRIQUE) */
         const translations = {
             en: {
                 navHome: "Home", navMap: "Project Map", navAbout: "About us",
@@ -1122,223 +1139,247 @@
                 locationMeta: "Washington, D.C., USA",
                 projectYear: "2026",
                 summaryTitle: "Project Topics",
-                sum1Title: "Hand-in-Glove Collaboration", sum1Desc: "Close alignment between local conservancies and National Park Service",
-                sum2Title: "Weed Warriors Program", sum2Desc: "Training local leaders to eliminate invasive plants independently",
-                sum3Title: "Inclusive Conservation", sum3Desc: "Targeted outreach in historically underfunded neighborhoods",
+                sum1Title: "Hand-in-Glove Collaboration", sum1Desc: "Seamless alignment between local conservancies and National Park Service",
+                sum2Title: "Weed Warriors Program", sum2Desc: "Training community leaders to independently remove invasive plants",
+                sum3Title: "Inclusive Conservation", sum3Desc: "Targeted environmental outreach in underserved urban neighborhoods",
                 mapHeading: "Project Location",
                 keyfactsMainTitle: "Key Facts",
-                kf1Label: "(7.1 km²) of protected urban forest",
-                kf2Label: "stream path flowing into Potomac River & Chesapeake Bay",
-                kf3Label: "Volunteers mobilized each year for cleanups and restoration",
-                approachIntroText: "Steps away from the U.S. Capitol lies Rock Creek Park, a 710-hectare (7.1 km²) natural oasis forming Washington, D.C.'s green lung. Rock Creek Conservancy leads its protection by combining community action and institutional partnerships.",
+                kf1Label: "(7.1 km²) of protected contiguous urban forest ecosystem.",
+                kf2Label: "Tributary stream path flowing into Potomac River & Chesapeake Bay.",
+                kf3Label: "Annual volunteers engaged across watershed cleanups & restoration.",
+                approachIntroText: "Steps away from the U.S. Capitol lies Rock Creek Park, a 710-hectare (7.1 km²) natural oasis forming Washington, D.C.'s green lung. Rock Creek Conservancy leads its protection by combining community action, ecological restoration, and strong institutional partnerships.",
                 challengesTitle: "Main Challenges",
-                challengesP: "The park faces three major environmental threats:",
-                c1Title: "Invasive Species", c1Desc: "Aggressive vines choke mature trees and block natural forest regrowth.",
-                c2Title: "Stormwater Runoff", c2Desc: "Rainwater washing off city streets causes heavy erosion and pollution.",
-                c3Title: "Urban Pressure", c3Desc: "Surrounding city infrastructure isolates wildlife and puts pressure on park resources.",
-                initHeading: "Our Approach with Rock Creek Conservancy",
+                challengesP: "Urban natural ecosystems face an unprecedented combination of environmental pressures and intensive urban development.",
+                c1Title: "Invasive Species Pressure", c1Desc: "Non-native vines choke mature tree canopies, preventing natural forest regeneration.",
+                c2Title: "Stormwater Runoff & Erosion", c2Desc: "Heavy rainwater washes off concrete surfaces, carrying urban pollutants directly into the creek.",
+                c3Title: "Urban Pressure & Fragmented Habitat", c3Desc: "Surrounding dense infrastructure isolates wildlife populations and strains public park resources.",
+                initHeading: "Approach Rock Creek Conservancy",
                 init1Title: "Weed Warriors & Plant Removal",
-                init1Desc: "To protect native trees, the Conservancy trains residents through the 'Weed Warriors' program to safely identify and remove invasive plants.",
-                init2Title: "Stream Cleanups & Water Protection",
-                init2Desc: "Rock Creek drains into the Potomac River. Annual community cleanups clear tons of trash while collecting valuable pollution data.",
+                init1Desc: "Training local volunteers through the 'Weed Warriors' program to independently identify and safely remove invasive vines choking mature trees.",
+                init2Title: "Stream Cleanups & Protection",
+                init2Desc: "Organizing large-scale community cleanups along tributary paths flowing into the Potomac River to remove urban trash and protect aquatic life.",
                 init3Title: "Stormwater & RainScapes",
-                init3Desc: "Green infrastructure like rain gardens and permeable paving help neighborhoods absorb rainwater naturally before it pollutes the creek.",
-                interviewTitle: "Expert Insights: Community-Led Urban Conservation",
+                init3Desc: "Promoting green infrastructure solutions, such as rain gardens and permeable surfaces, helping neighborhoods absorb stormwater naturally.",
+                interviewTitle: "Expert Insights",
                 profileRole: "Forest Resilience Manager, Rock Creek Conservancy",
-                profileBio: "Oversees forest restoration, community programs, and field operations in Washington, D.C.",
-                q1Text: "How do you work with national and local authorities?",
-                a1Text: "\"Our collaboration with the National Park Service is truly hand-in-glove. We plan work together season by season and meet weekly to coordinate projects.\"",
-                q2Text: "How are Weed Warriors trained on the ground?",
-                a2Text: "We rely on regular volunteer events, peer-to-peer outreach, and a quick 10-minute safety and identification briefing at the start of every session.",
-                q3Text: "How do you ensure equity and inclusion in your work?",
-                a3Text: "\"Conservation belongs to everyone. We intentionally focus funding and new projects on historically underfunded communities.\"",
-                q4Text: "How do you measure ecological success?",
-                a4Text: "We track volunteer hours, square footage of invasive plants cleared, and the number of tree-strangling vines cut.",
-                q5Text: "What are your main challenges for the future?",
-                a5Text: "Selecting tree species resilient to climate change, while diversifying funding to stay resilient regardless of public budget shifts.",
-                quoteText: "\"My goal is to empower local neighborhood groups to take full ownership of their nearby park sections.\"",
-                actionTitle: "How You Can Take Action",
-                microTitle: "Individual Actions",
-                micro1: "Join a local Weed Warriors event or neighborhood cleanup.",
-                micro2: "Install a rain garden or rain barrel to capture stormwater at home.",
-                micro3: "Learn to spot invasive vines in your yard before they spread to nearby parks.",
-                mesoTitle: "Community Actions",
-                meso1: "Start a neighborhood group to care for a local park section.",
-                meso2: "Partner with city services to coordinate community greening efforts.",
-                meso3: "Host youth workshops on urban nature and river protection.",
-                linksTitle: "Useful Links and Resources",
+                profileBio: "Leads participatory ecosystem management, volunteer capacity-building, and forest restoration strategies across Rock Creek Park.",
+                intIntro: "Protecting an urban forest requires more than ecological knowledge—it demands deep community integration, institutional synergy, and grassroots empowerment.",
+                q1Title: "Hand-in-Glove Collaboration",
+                q1Text: "How does your partnership with federal and local authorities work?",
+                a1Text: "\"Our collaboration with the National Park Service is truly hand-in-glove. We plan work together season by season and meet weekly to coordinate projects and establish synergies.\"",
+                q2Title: "Weed Warriors Training",
+                q2Text: "How do you mobilize and train community 'Weed Warriors'?",
+                a2Text: "We rely on regular volunteer events, peer outreach, and structured 10-minute field briefings at every session to ensure high-quality restoration work on the ground.",
+                q3Title: "Inclusive Conservation & Equity",
+                q3Text: "How do you integrate Diversity, Equity, and Inclusion into your projects?",
+                a3Text: "\"Conservation belongs to everyone. We intentionally focus funding and new projects on historically underfunded communities rather than only wealthy neighborhoods.\"",
+                q4Title: "Ecological Metrics",
+                q4Text: "What metrics do you use to evaluate ecological progress?",
+                a4Text: "Progress is measured through total engaged volunteer hours, square footage of invasive plants cleared, and the number of tree-strangling vines cut from mature canopies.",
+                q5Title: "Climate Change & Funding",
+                q5Text: "What are the main future challenges regarding climate change and funding?",
+                a5Text: "Selecting resilient tree species for future climates while diversifying revenue streams to remain independent of public budget shifts.",
+                quoteText: "\"My goal is to empower local neighborhood groups to take full ownership of their nearby park sections and lead restoration autonomously.\"",
+                actionTitle: "How can you take action",
+                microTitle: "Micro Level",
+                micro1: "Participate in local Weed Warriors events or neighborhood park cleanups.",
+                micro2: "Install a rain garden or rain barrel on your residential property to capture runoff.",
+                micro3: "Learn to identify non-native invasive vines in your yard to stop their spread.",
+                mesoTitle: "Meso Level",
+                meso1: "Form neighborhood stewardship groups to adopt and care for local park sections.",
+                meso2: "Partner with municipal authorities to align community volunteer efforts with formal plans.",
+                meso3: "Organize youth environmental education workshops in urban communities.",
+                linksTitle: "Useful links and resources",
                 link1Text: "Rock Creek Conservancy – Official Website",
-                link2Text: "Weed Warriors Program – Volunteer Training",
-                link3Text: "National Park Service – Rock Creek Park",
-                exploreBtnText: "Explore More Projects"
+                link2Text: "Weed Warriors Program – Volunteer Training & Leadership",
+                link3Text: "National Park Service – Rock Creek Park Official Portal",
+                exploreBtnText: "Explore more projects"
             },
             fr: {
-                navHome: "Accueil", navMap: "Carte des Projets", navAbout: "À propos",
+                navHome: "Accueil", navMap: "Carte", navAbout: "À propos",
                 heroTitle: "Restauration et Conservation de la Forêt Urbaine",
-                locationMeta: "Washington, D.C., États-Unis",
+                locationMeta: "Washington, D.C., USA",
                 projectYear: "2026",
-                summaryTitle: "Axe du Projet",
+                summaryTitle: "Points clés",
                 sum1Title: "Partenariat Étroit", sum1Desc: "Coopération fluide entre l'association locale et le National Park Service",
                 sum2Title: "Programme Weed Warriors", sum2Desc: "Formation de référents citoyens pour éliminer les plantes invasives",
                 sum3Title: "Conservation Inclusive", sum3Desc: "Actions ciblées dans les quartiers populaires et sous-financés",
                 mapHeading: "Localisation du Projet",
-                keyfactsMainTitle: "Chiffres Clés",
-                kf1Label: "(7,1 km²) de forêt urbaine continue protégée",
-                kf2Label: "de cours d'eau rejoignant le fleuve Potomac et la baie de Chesapeake",
-                kf3Label: "Bénévoles mobilisés chaque année pour le nettoyage et la restauration",
+                keyfactsMainTitle: "Faits Clés",
+                kf1Label: "(7,1 km²) de forêt urbaine continue protégée.",
+                kf2Label: "Cours d'eau rejoignant le fleuve Potomac et la baie de Chesapeake.",
+                kf3Label: "Bénévoles mobilisés chaque année pour le nettoyage et la restauration.",
                 approachIntroText: "À deux pas du Capitole se trouve Rock Creek Park, un havre naturel de 710 hectares (7,1 km²) formant le poumon vert de Washington. La Rock Creek Conservancy veille sur cet espace en s'appuyant sur l'action citoyenne et des alliances institutionnelles solides.",
                 challengesTitle: "Défis Majeurs",
-                challengesP: "Le parc fait face à trois pressions environnementales directes :",
-                c1Title: "Plantes Invasives", c1Desc: "Des lianes exotiques étouffent la canopée et empêchent la forêt de se régénérer.",
-                c2Title: "Eaux de Ruissellement", c2Desc: "Les pluies torrentielles sur le béton érodent les berges et polluent la rivière.",
-                c3Title: "Pression Urbaine", c3Desc: "La densité de la ville isole la faune et sollicite fortement les ressources du parc.",
-                initHeading: "Notre Approche avec la Rock Creek Conservancy",
-                init1Title: "Désherbage Citoyen & Plantes Invasives",
-                init1Desc: "Pour sauver les arbres, l'association forme les habitants via le programme 'Weed Warriors' pour identifier et arracher efficacement les espèces invasives.",
-                init2Title: "Nettoyage des Rivières & Protection de l'Eau",
-                init2Desc: "Le ruisseau se jette dans le Potomac. Chaque année, des opérations citoyennes retirent des tonnes de déchets tout en mesurant la pollution.",
-                init3Title: "Gestion des Eaux Pluviales",
-                init3Desc: "Jardins de pluie et sols perméables aident les quartiers à absorber l'eau naturellement avant qu'elle n'érode le cours d'eau.",
-                interviewTitle: "Regards d'Experts : La Conservation au Cœur des Quartiers",
-                profileRole: "Responsable de la Résilience Forestière",
-                profileBio: "Pilote la restauration écologique et l'engagement citoyen dans le Rock Creek Park à Washington, D.C.",
+                challengesP: "Les écosystèmes naturels urbains font face à une combinaison inédite de pressions environnementales et d'urbanisation intensive.",
+                c1Title: "Pression des espèces invasives", c1Desc: "Des lianes exotiques étouffent la canopée et empêchent la forêt de se régénérer naturellement.",
+                c2Title: "Eaux de ruissellement et érosion", c2Desc: "Les pluies torrentielles sur le béton charrient des polluants directement dans le cours d'eau.",
+                c3Title: "Pression urbaine et fragmentation", c3Desc: "L'infrastructure dense environnante isole la faune sauvage et sollicite les ressources du parc.",
+                initHeading: "L'Approche Rock Creek Conservancy",
+                init1Title: "Weed Warriors & Arrachage",
+                init1Desc: "Formation des bénévoles via le programme 'Weed Warriors' pour identifier et éliminer de manière autonome les lianes qui étouffent les arbres.",
+                init2Title: "Nettoyage & Protection des Rivières",
+                init2Desc: "Organisation de grands nettoyages communautaires le long des affluents du Potomac pour retirer les déchets urbains et protéger la vie aquatique.",
+                init3Title: "Gestion des Eaux & RainScapes",
+                init3Desc: "Promotion d'infrastructures vertes (jardins de pluie, sols perméables) pour aider les quartiers à absorber l'eau naturellement.",
+                interviewTitle: "Expert Insights",
+                profileRole: "Responsable de la Résilience Forestière, Rock Creek Conservancy",
+                profileBio: "Pilote la gestion participative des écosystèmes et la restauration forestière dans le Rock Creek Park à Washington, D.C.",
+                intIntro: "Protéger une forêt urbaine exige bien plus que des connaissances écologiques : cela demande un ancrage citoyen profond et une synergie institutionnelle.",
+                q1Title: "Partenariat Public-Privé",
                 q1Text: "Comment travaillez-vous avec les autorités publiques ?",
-                a1Text: "\"Notre collaboration avec le National Park Service se fait main dans la main. Nous établissons un plan d'action commun par saison et faisons un point chaque semaine.\"",
-                q2Text: "Comment sont formés les 'Weed Warriors' sur le terrain ?",
-                a2Text: "Nous tablons sur des événements réguliers, l'effet de réseau entre voisins et une formation rapide de 10 minutes au début de chaque session.",
-                q3Text: "Comment intégrez-vous l'équité et l'inclusion ?",
-                a3Text: "\"La nature appartient à tous. Nous orientons prioritairement nos budgets et nos actions vers les quartiers historiquement moins bien dotés.\"",
-                q4Text: "Comment mesurez-vous le succès sur le terrain ?",
-                a4Text: "Nous comptons les heures de bénévolat, les mètres carrés nettoyés et le nombre de lianes coupées sur les arbres.",
-                q5Text: "Quels sont vos prochains défis ?",
-                a5Text: "Choisir des arbres capables de résister au changement climatique et diversifier nos financements pour rester autonomes.",
-                quoteText: "\"Mon souhait est de donner aux habitants les moyens de gérer eux-mêmes et d'adopter les parcelles de forêt proches de chez eux.\"",
-                actionTitle: "Des Idées pour Agir",
-                microTitle: "À Mon Échelle",
-                micro1: "Participer à une journée de nettoyage ou d'arrachage de plantes invasives.",
-                micro2: "Installer un jardin de pluie ou un récupérateur d'eau chez soi.",
-                micro3: "Apprendre à repérer les lianes invasives dans son jardin pour éviter leur propagation.",
-                mesoTitle: "À l'Échelle Locale",
-                meso1: "Créer un groupe de voisins pour parrainer un coin de parc local.",
-                meso2: "Travailler avec sa mairie pour aligner les initiatives citoyennes et publiques.",
-                meso3: "Organiser des ateliers de sensibilisation à l'environnement pour les jeunes du quartier.",
-                linksTitle: "Liens et Ressources Utiles",
+                a1Text: "\"Notre collaboration avec le National Park Service se fait main dans la main. Nous planifions les actions ensemble saison par saison et nous réunissons chaque semaine.\"",
+                q2Title: "Formation des Weed Warriors",
+                q2Text: "Comment mobilisez-vous et formez-vous les 'Weed Warriors' ?",
+                a2Text: "Nous misons sur des événements réguliers, le bouche-à-oreille et des briefings de terrain de 10 minutes à chaque session pour garantir un travail de qualité.",
+                q3Title: "Équité et Inclusion",
+                q3Text: "Comment intégrez-vous l'équité et l'inclusion dans vos projets ?",
+                a3Text: "\"La conservation appartient à tous. Nous ciblons intentionnellement les quartiers historiquement sous-financés plutôt que les zones aisées.\"",
+                q4Title: "Indicateurs Écologiques",
+                q4Text: "Quels indicateurs utilisez-vous pour évaluer les progrès ?",
+                a4Text: "Le succès se mesure par les heures de bénévolat, les surfaces nettoyées et le nombre de lianes coupées sur les arbres matures.",
+                q5Title: "Climat et Financement",
+                q5Text: "Quels sont les principaux défis futurs face au climat et aux budgets ?",
+                a5Text: "Sélectionner des essences d'arbres résistantes au climat futur tout en diversifiant nos sources de revenus pour rester indépendants.",
+                quoteText: "\"Mon objectif est de donner aux groupes de quartier les moyens de s'approprier pleinement leurs parcelles de parc et de mener la restauration de façon autonome.\"",
+                actionTitle: "Comment vous pouvez agir",
+                microTitle: "Niveau Micro",
+                micro1: "Participez aux événements des Weed Warriors ou aux nettoyages de quartier.",
+                micro2: "Installez un jardin de pluie ou un récupérateur d'eau chez vous.",
+                micro3: "Apprenez à identifier les lianes invasives pour stopper leur propagation.",
+                mesoTitle: "Niveau Méso",
+                meso1: "Créez des groupes de riverains pour adopter et entretenir une portion de parc.",
+                meso2: "Collaborez avec les autorités municipales pour aligner les efforts citoyens.",
+                meso3: "Organisez des ateliers d'éducation à l'environnement pour les jeunes.",
+                linksTitle: "Liens utiles et ressources",
                 link1Text: "Rock Creek Conservancy – Site Officiel",
-                link2Text: "Programme Weed Warriors – Devenir Bénévole",
-                link3Text: "National Park Service – Page Officielle du Parc",
-                exploreBtnText: "Découvrir d'autres projets"
+                link2Text: "Programme Weed Warriors – Formation & Bénévolat",
+                link3Text: "National Park Service – Portail Officiel du Parc",
+                exploreBtnText: "Découvrir plus de projets"
             },
             de: {
                 navHome: "Startseite", navMap: "Projektkarte", navAbout: "Über uns",
                 heroTitle: "Schutz und Wiederaufforstung des Stadtwalds",
                 locationMeta: "Washington, D.C., USA",
                 projectYear: "2026",
-                summaryTitle: "Projekt-Schwerpunkte",
+                summaryTitle: "Kernpunkte",
                 sum1Title: "Enge Zusammenarbeit", sum1Desc: "Nahtlose Abstimmung zwischen lokaler Initiative und National Park Service",
                 sum2Title: "Weed Warriors Programm", sum2Desc: "Ausbildung von Anwohnern zur eigenständigen Entfernung invasiver Pflanzen",
                 sum3Title: "Inklusiver Naturschutz", sum3Desc: "Gezielte Aktionen in bisher benachteiligten Stadtvierteln",
                 mapHeading: "Projektstandort",
                 keyfactsMainTitle: "Wichtige Fakten",
-                kf1Label: "(7,1 km²) geschützter, zusammenhängender Stadtwald",
-                kf2Label: "Flusslauf mündet in den Potomac River & Chesapeake Bay",
-                kf3Label: "Freiwillige jährlich bei Aufräum- und Pflanzaktionen aktiv",
+                kf1Label: "(7,1 km²) geschützter, zusammenhängender Stadtwald.",
+                kf2Label: "Flusslauf mündet in den Potomac River & Chesapeake Bay.",
+                kf3Label: "Freiwillige jährlich bei Aufräum- und Pflanzaktionen aktiv.",
                 approachIntroText: "Nur wenige Minuten vom US-Kapitol entfernt erstreckt sich der Rock Creek Park – ein 710 Hektar (7,1 km²) großer Naturschatz und die grüne Lunge von Washington, D.C. Die Rock Creek Conservancy schützt diesen Park durch Bürgerengagement und starke Partnerschaften.",
-                challengesTitle: "Zentrale Herausforderungen",
-                challengesP: "Der Stadtwald steht vor drei großen Umweltproblemen:",
-                c1Title: "Invasive Pflanzen", c1Desc: "Fremde Schlingpflanzen ersticken alte Bäume und hemmen den Nachwuchs.",
-                c2Title: "Regenwasser-Abfluss", c2Desc: "Starkregen von Asphaltflächen schwemmt Schadstoffe in den Fluss und beschädigt Ufer.",
-                c3Title: "Druck der Großstadt", c3Desc: "Dichte Bebauung isoliert Tierarten und belastet die Parkressourcen.",
-                initHeading: "Unser Ansatz mit der Rock Creek Conservancy",
+                challengesTitle: "Hauptherausforderungen",
+                challengesP: "Städtische Ökosysteme stehen vor einer beispiellosen Kombination aus Umweltdruck und intensiver urbaner Entwicklung.",
+                c1Title: "Druck durch invasive Arten", c1Desc: "Fremde Schlingpflanzen ersticken alte Baumkronen und hemmen die natürliche Waldverjüngung.",
+                c2Title: "Regenwasser-Abfluss & Erosion", c2Desc: "Starkregen von versiegelten Flächen schwemmt Schadstoffe direkt in den Bach und verursacht Ufererosion.",
+                c3Title: "Städtischer Druck & Fragmentierung", c3Desc: "Dichte Bebauung isoliert Tierpopulationen und belastet die Parkressourcen.",
+                initHeading: "Der Ansatz der Rock Creek Conservancy",
                 init1Title: "Weed Warriors & Pflanzenpflege",
-                init1Desc: "Zum Schutz heimischer Bäume bildet die Conservancy Bürger aus, um schädliche Kletterpflanzen sicher zu erkennen und zu entfernen.",
+                init1Desc: "Ausbildung von Bürgern durch das 'Weed Warriors'-Programm, um schädliche Kletterpflanzen in alten Bäumen eigenständig und sicher zu entfernen.",
                 init2Title: "Flussreinigung & Gewässerschutz",
-                init2Desc: "Der Rock Creek fließt direkt in den Potomac River. Bei jährlichen Säuberungen entfernen Hunderte Freiwillige Müll aus dem Wasser.",
-                init3Title: "Regenwasser-Management",
-                init3Desc: "Grüne Infrastruktur wie Regengärten hilft Stadtvierteln, Niederschlag natürlich aufzunehmen, bevor er den Fluss belasten kann.",
-                interviewTitle: "Experten-Einblick: Naturschutz aus der Mitte der Gesellschaft",
-                profileRole: "Manager für Wald-Resilienz",
-                profileBio: "Leitet Waldschutzprojekte und Bürgerprogramme im Rock Creek Park in Washington, D.C.",
+                init2Desc: "Großteils ehrenamtliche Säuberungsaktionen entlang der Zuflüsse zum Potomac River, um Müll zu entfernen und aquatische Lebensräume zu schützen.",
+                init3Title: "Regenwasser & RainScapes",
+                init3Desc: "Förderung grüner Infrastruktur wie Regengärten und versickerungsfähiger Flächen, damit Stadtviertel Niederschlag auf natürliche Weise aufnehmen.",
+                interviewTitle: "Expert Insights",
+                profileRole: "Manager für Wald-Resilienz, Rock Creek Conservancy",
+                profileBio: "Leitet partizipatives Ökosystemmanagement, Ehrenamtsstrukturen und Waldschutzstrategien im Rock Creek Park.",
+                intIntro: "Der Schutz eines Stadtwaldes erfordert weit mehr als ökologisches Fachwissen – er verlangt tiefe gesellschaftliche Verankerung und institutionelle Synergien.",
+                q1Title: "Enge Zusammenarbeit",
                 q1Text: "Wie klappt die Zusammenarbeit mit Behörden?",
                 a1Text: "\"Die Partnerschaft mit dem National Park Service greift wie ein Zahnrad ins andere. Wir planen jede Saison gemeinsam und stimmen uns wöchentlich ab.\"",
+                q2Title: "Weed Warriors Ausbildung",
                 q2Text: "Wie werden Ehrenamtliche geschult?",
-                a2Text: "Wir setzen auf regelmäßige Termine, Mundpropaganda unter Nachbarn und eine kurze 10-Minuten-Einführung vor jedem Einsatz.",
+                a2Text: "Wir setzen auf regelmäßige Einsätze, Mundpropaganda und kompakte 10-Minuten-Briefings vor Ort, um höchste Qualität bei der Pflege zu sichern.",
+                q3Title: "Inklusiver Naturschutz",
                 q3Text: "Wie wird Chancengleichheit gelebt?",
-                a3Text: "\"Naturschutz geht alle an. Wir investieren gezielt Zeit und Budget in Viertel, die bisher wenig Unterstützung erhalten haben.\"",
+                a3Text: "\"Naturschutz geht alle an. Wir investieren Zeit und Budget gezielt in Viertel mit Nachholbedarf statt nur in wohlhabenden Gegenden.\"",
+                q4Title: "Ökologische Metriken",
                 q4Text: "Wie messen Sie Ihren Erfolg?",
-                a4Text: "Wir erfassen geleistete Stunden, befreite Flächen sowie die Anzahl durchgetrennter Würgeschlingen an Bäumen.",
+                a4Text: "Erfolge messen wir an geleisteten Ehrenamtsstunden, befreiten Quadratmetern und der Anzahl durchgetrennter Kletterpflanzen an Bäumen.",
+                q5Title: "Klimawandel & Finanzierung",
                 q5Text: "Was sind die Herausforderungen der Zukunft?",
-                a5Text: "Bäume pflanzen, die dem Klimawandel standhalten, und die Finanzierung unabhängig von staatlichen Töpfen aufstellen.",
-                quoteText: "\"Mein Ziel ist es, dass Nachbarschaften die Pflege ihres eigenen Waldstücks selbst in die Hand nehmen können.\"",
-                actionTitle: "So Können Sie Mitmachen",
-                microTitle: "Im Alltag",
-                micro1: "Bei lokalen Müll- oder Pflegeaktionen im Park mithelfen.",
-                micro2: "Einen Regengarten oder eine Tonne am Haus installieren, um Regenwasser zu nutzen.",
-                micro3: "Schädliche Schlingpflanzen im eigenen Garten erkennen und entfernen.",
-                mesoTitle: "In Der Gemeinschaft",
-                meso1: "Eine Nachbarschaftsgruppe gründen, um ein Parkstück zu betreuen.",
-                meso2: "Mit der Stadtverwaltung zusammenarbeiten, um grüne Projekte abzustimmen.",
-                meso3: "Workshops für Jugendliche zu Natur- und Gewässerschutz organisieren.",
+                a5Text: "Klimaresistente Baumarten erforschen und gleichzeitig Finanzierungsquellen diversifizieren, um von öffentlichen Budgets unabhängig zu bleiben.",
+                quoteText: "\"Mein Ziel ist es, Nachbarschaftsgruppen zu befähigen, die Verantwortung für ihren Parkabschnitt selbst zu übernehmen und eigenständig zu pflegen.\"",
+                actionTitle: "So können Sie aktiv werden",
+                microTitle: "Mikro-Ebene",
+                micro1: "Nehmen Sie an lokalen Weed Warriors-Einsätzen oder Park-Cleanups teil.",
+                micro2: "Installieren Sie einen Regengarten oder eine Regentonne am Haus.",
+                micro3: "Lernen Sie, invasive Schlingpflanzen im eigenen Garten zu erkennen.",
+                mesoTitle: "Meso-Ebene",
+                meso1: "Gründen Sie Nachbarschaftsgruppen zur Betreuung eines Parkabschnitts.",
+                meso2: "Arbeiten Sie mit der Stadtverwaltung zusammen, um grüne Initiativen abzustimmen.",
+                meso3: "Organisieren Sie Umweltworkshops für Jugendliche in urbanen Vierteln.",
                 linksTitle: "Nützliche Links & Ressourcen",
                 link1Text: "Rock Creek Conservancy – Offizielle Website",
-                link2Text: "Weed Warriors Programm – Mitmachen",
-                link3Text: "National Park Service – Rock Creek Park",
-                exploreBtnText: "Weitere Projekte Entdecken"
+                link2Text: "Weed Warriors Programm – Ehrenamt & Schulung",
+                link3Text: "National Park Service – Offizielles Parkportal",
+                exploreBtnText: "Weitere Projekte entdecken"
             },
             es: {
-                navHome: "Inicio", navMap: "Mapa de Proyectos", navAbout: "Sobre nosotros",
+                navHome: "Inicio", navMap: "Mapa", navAbout: "Nosotros",
                 heroTitle: "Restauración y Conservación del Bosque Urbano",
-                locationMeta: "Washington D.C., EE. UU.",
+                locationMeta: "Washington, D.C., EE. UU.",
                 projectYear: "2026",
-                summaryTitle: "Ejes del Proyecto",
+                summaryTitle: "Puntos clave",
                 sum1Title: "Trabajo Mano a Mano", sum1Desc: "Coordinación fluida entre la organización local y el Servicio de Parques Nacionales",
                 sum2Title: "Programa Weed Warriors", sum2Desc: "Capacitación de vecinos para eliminar plantas invasoras de forma autónoma",
                 sum3Title: "Conservación Inclusiva", sum3Desc: "Acciones enfocadas en comunidades y barrios con menos recursos",
                 mapHeading: "Ubicación del Proyecto",
                 keyfactsMainTitle: "Datos Clave",
-                kf1Label: "(7.1 km²) de bosque urbano protegido continuo",
-                kf2Label: "de arroyo que desemboca en el río Potomac y la bahía de Chesapeake",
-                kf3Label: "Voluntarios movilizados cada año para limpieza y restauración",
+                kf1Label: "(7.1 km²) de bosque urbano protegido continuo.",
+                kf2Label: "Arroyo que desemboca en el río Potomac y la bahía de Chesapeake.",
+                kf3Label: "Voluntarios movilizados cada año para limpieza y restauración.",
                 approachIntroText: "A pocos pasos del Capitolio se extiende Rock Creek Park, un oasis natural de 710 hectáreas (7.1 km²) que es el pulmón verde de Washington. Rock Creek Conservancy lidera su protección uniendo la acción comunitaria con alianzas institucionales.",
                 challengesTitle: "Desafíos Principales",
-                challengesP: "El parque enfrenta tres grandes amenazas ambientales:",
-                c1Title: "Especies Invasoras", c1Desc: "Enredaderas exóticas asfixian los árboles y bloquean el crecimiento del bosque.",
-                c2Title: "Aguas Pluviales", c2Desc: "Las lluvias sobre el asfalto generan erosión y arrastran contaminación al río.",
-                c3Title: "Presión Urbana", c3Desc: "La infraestructura ciudadana aísla a la fauna y presiona los recursos del parque.",
-                initHeading: "Nuestro Enfoque con Rock Creek Conservancy",
-                init1Title: "Limpieza de Plantas Invasoras",
-                init1Desc: "Para proteger los árboles locales, la organización capacita a vecinos en el programa 'Weed Warriors' para identificar y retirar plantas dañinas.",
-                init2Title: "Protección de Ríos y Arroyos",
-                init2Desc: "El arroyo fluye hacia el río Potomac. Cada año, las jornadas comunitarias retiran toneladas de basura y analizan la calidad del agua.",
-                init3Title: "Gestión de Aguas de Lluvia",
-                init3Desc: "Jardines de lluvia y suelos permeables ayudan a los barrios a absorber el agua antes de que erosione el cauce natural.",
-                interviewTitle: "Visión de Expertos: Conservación Guiada por la Comunidad",
-                profileRole: "Gerente de Resiliencia Forestal",
-                profileBio: "Dirige proyectos de restauración ambiental y voluntariado en Rock Creek Park (Washington D.C.).",
-                q1Text: "¿Cómo colaboran con las autoridades públicas?",
-                a1Text: "\"Nuestra relación con el Servicio de Parques Nacionales es codo a codo. Planificamos cada temporada juntos y nos reunimos todas las semanas.\"",
-                q2Text: "¿Cómo capacitan a los voluntarios en el terreno?",
-                a2Text: "Organizamos eventos periódicos, aprovechamos el boca a boca entre vecinos y damos una breve inducción de 10 minutos al inicio de cada jornada.",
-                q3Text: "¿Cómo aplican la inclusión en su trabajo?",
-                a3Text: "\"La naturaleza nos pertenece a todos. Priorizamos recursos y proyectos en los barrios que históricamente han recibido menos apoyo.\"",
-                q4Text: "¿Cómo miden los avances en el parque?",
-                a4Text: "Medimos horas de voluntariado, metros cuadrados limpios de invasoras y número de enredaderas cortadas de los árboles.",
-                q5Text: "¿Cuáles son los grandes retos a futuro?",
-                a5Text: "Elegir árboles resistentes al cambio climático y diversificar los ingresos para no depender solo de fondos públicos.",
-                quoteText: "\"Mi sueño es que cada barrio pueda cuidar y gestionar su propio sector del bosque con autonomía.\"",
-                actionTitle: "Cómo Puedes Colaborar",
-                microTitle: "A Nivel Individual",
-                micro1: "Sumarte a jornadas locales de limpieza o retiro de plantas invasoras.",
-                micro2: "Instalar un jardín de lluvia o captador de agua en tu casa.",
-                micro3: "Aprender a identificar enredaderas dañinas en tu jardín antes de que se extiendan.",
-                mesoTitle: "A Nivel Comunitario",
-                meso1: "Crear un grupo de vecinos para cuidar un sector del parque cercano.",
-                meso2: "Coordinar proyectos verdes comunitarios con el municipio.",
-                meso3: "Organizar talleres ambientales para jóvenes sobre el cuidado de los ríos.",
-                linksTitle: "Enlaces y Recursos Útiles",
+                challengesP: "Los ecosistemas naturales urbanos enfrentan una combinación sin precedentes de presiones ambientales y desarrollo urbano.",
+                c1Title: "Presión de Especies Invasoras", c1Desc: "Las enredaderas exóticas asfixian las copas de los árboles e impiden la regeneración natural del bosque.",
+                c2Title: "Escorrentía y Erosión", c2Desc: "Las fuertes lluvias sobre superficies pavimentadas arrastran contaminantes urbanos directamente al arroyo.",
+                c3Title: "Presión Urbana y Hábitat Fragmentado", c3Desc: "La densa infraestructura circundante aísla la fauna y tensiona los recursos del parque.",
+                initHeading: "El Enfoque de Rock Creek Conservancy",
+                init1Title: "Weed Warriors y Retirada",
+                init1Desc: "Capacitación de voluntarios locales mediante el programa 'Weed Warriors' para identificar y retirar de forma segura enredaderas dañinas.",
+                init2Title: "Limpieza y Protección de Ríos",
+                init2Desc: "Organización de limpiezas comunitarias a lo largo de los afluentes del río Potomac para retirar basura urbana y proteger la vida acuática.",
+                init3Title: "Gestión de Lluvias y RainScapes",
+                init3Desc: "Promoción de infraestructura verde, como jardines de lluvia y superficies permeables, ayudando a absorber el agua de forma natural.",
+                interviewTitle: "Expert Insights",
+                profileRole: "Gerente de Resiliencia Forestal, Rock Creek Conservancy",
+                profileBio: "Dirige la gestión participativa de ecosistemas, el voluntariado y las estrategias de restauración forestal en Rock Creek Park.",
+                intIntro: "Proteger un bosque urbano exige más que conocimientos ecológicos: requiere integración comunitaria y empoderamiento de base.",
+                q1Title: "Colaboración Estrecha",
+                q1Text: "¿Cómo colaboran con las autoridades federales y locales?",
+                a1Text: "\"Nuestra relación con el Servicio de Parques Nacionales es codo a codo. Planificamos las tareas temporada por temporada y nos reunimos semanalmente.\"",
+                q2Title: "Capacitación de Weed Warriors",
+                q2Text: "¿Cómo movilizan y capacitan a los 'Weed Warriors'?",
+                a2Text: "Confiamos en eventos regulares, divulgación entre pares y breves charlas de seguridad de 10 minutos para garantizar un trabajo de alta calidad.",
+                q3Title: "Conservación Inclusiva y Equidad",
+                q3Text: "¿Cómo integran la Diversidad y la Inclusión en sus proyectos?",
+                a3Text: "\"La conservación pertenece a todos. Enfocamos intencionalmente nuevos proyectos en comunidades históricamente desatendidas.\"",
+                q4Title: "Métricas Ecológicas",
+                q4Text: "¿Qué métricas utilizan para evaluar el progreso ecológico?",
+                a4Text: "Medimos horas de voluntariado, metros cuadrados limpios de plantas invasoras y número de enredaderas cortadas de los árboles.",
+                q5Title: "Cambio Climático y Financiación",
+                q5Text: "¿Cuáles son los principales retos futuros en clima y financiación?",
+                a5Text: "Seleccionar especies de árboles resilientes al clima futuro mientras diversificamos fuentes de ingresos para ser independientes.",
+                quoteText: "\"Mi meta es empoderar a los grupos vecinales para que asuman la propiedad total de sus sectores del parque y lideren la restauración.\"",
+                actionTitle: "Cómo puedes actuar",
+                microTitle: "Nivel Micro",
+                micro1: "Participa en eventos locales de Weed Warriors o limpiezas de parques.",
+                micro2: "Instala un jardín de lluvia o un bidón colector en tu propiedad.",
+                micro3: "Aprende a identificar enredaderas invasoras en tu jardín para frenar su expansión.",
+                mesoTitle: "Nivel Meso",
+                meso1: "Forma grupos vecinales para adoptar y cuidar secciones locales del parque.",
+                meso2: "Colabora con las autoridades municipales para alinear esfuerzos.",
+                meso3: "Organiza talleres de educación ambiental juvenil en comunidades urbanas.",
+                linksTitle: "Enlaces y recursos útiles",
                 link1Text: "Rock Creek Conservancy – Sitio Oficial",
-                link2Text: "Programa Weed Warriors – Voluntariado",
-                link3Text: "Servicio de Parques Nacionales – Rock Creek Park",
-                exploreBtnText: "Explorar Más Proyectos"
+                link2Text: "Programa Weed Warriors – Capacitación y Voluntariado",
+                link3Text: "Servicio de Parques Nacionales – Portal Oficial",
+                exploreBtnText: "Explorar más proyectos"
             }
         };
 
@@ -1374,21 +1415,27 @@
             document.getElementById('c3-title').innerText = t.c3Title; document.getElementById('c3-desc').innerText = t.c3Desc;
 
             document.getElementById('init-heading').innerText = t.initHeading;
-            document.getElementById('init1-title').innerText = t.init1Title; document.getElementById('init1-desc').innerText = t.init1Desc;
-            document.getElementById('init2-title').innerText = t.init2Title; document.getElementById('init2-desc').innerText = t.init2Desc;
-            document.getElementById('init3-title').innerText = t.init3Title; document.getElementById('init3-desc').innerText = t.init3Desc;
+            document.getElementById('init1-title').innerHTML = `<i class="fa-solid fa-scissors"></i> ${t.init1Title}`; document.getElementById('init1-desc').innerText = t.init1Desc;
+            document.getElementById('init2-title').innerHTML = `<i class="fa-solid fa-water"></i> ${t.init2Title}`; document.getElementById('init2-desc').innerText = t.init2Desc;
+            document.getElementById('init3-title').innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i> ${t.init3Title}`; document.getElementById('init3-desc').innerText = t.init3Desc;
 
             document.getElementById('interview-title').innerText = t.interviewTitle;
             document.getElementById('profile-role').innerText = t.profileRole;
             document.getElementById('profile-bio').innerText = t.profileBio;
+            document.getElementById('int-intro').innerText = t.intIntro;
             
+            document.getElementById('q1-title').innerText = t.q1Title;
             document.getElementById('q1-text').innerText = t.q1Text; document.getElementById('a1-text').innerText = t.a1Text;
+            document.getElementById('q2-title').innerText = t.q2Title;
             document.getElementById('q2-text').innerText = t.q2Text; document.getElementById('a2-text').innerText = t.a2Text;
+            document.getElementById('q3-title').innerText = t.q3Title;
             document.getElementById('q3-text').innerText = t.q3Text; document.getElementById('a3-text').innerText = t.a3Text;
+            document.getElementById('q4-title').innerText = t.q4Title;
             document.getElementById('q4-text').innerText = t.q4Text; document.getElementById('a4-text').innerText = t.a4Text;
+            document.getElementById('q5-title').innerText = t.q5Title;
             document.getElementById('q5-text').innerText = t.q5Text; document.getElementById('a5-text').innerText = t.a5Text;
             
-            document.getElementById('quote-text').innerHTML = `${t.quoteText}<br><small style="font-weight: 600; font-style: normal; margin-top: 5px; display: block; color: var(--accent-green);">— Ryan McIntyre, Forest Resilience Manager</small>`;
+            document.getElementById('quote-text').innerText = t.quoteText;
 
             document.getElementById('action-title').innerText = t.actionTitle;
             document.getElementById('micro-title').innerText = t.microTitle;
