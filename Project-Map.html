@@ -465,7 +465,7 @@
         <!-- Karte -->
         <div id="map"></div>
 
-        <!-- Infobox / Dynamische Projektliste -->
+        <!-- Infobox & Teaser-Projektliste (Neueste zuerst) -->
         <div id="project-info">
             <h2 id="project-title">Filtered Projects</h2>
             <p id="project-desc">Explore our active global efforts matching your selection.</p>
@@ -586,6 +586,22 @@
         };
 
         const projectsList = [
+            {
+                id: "fairchild-botanical-garden",
+                countryKeys: ["United States of America"],
+                countryName: "United States",
+                sortOrder: 2026110,
+                dateStr: "Nov 2026",
+                location: "Miami, Florida, USA",
+                coords: [25.6811, -80.2711],
+                topic: "Biodiversity",
+                tags: ["Biodiversity", "Plant Conservation", "Space Research"],
+                en: { title: "Fairchild Tropical Botanic Garden", desc: "Protecting rare tropical flora, space agriculture research with NASA, and urban orchid restoration." },
+                de: { title: "Fairchild Botanischer Garten", desc: "Schutz seltener Tropenflora, NASA-Weltraumagrarforschung und urbane Orchideen-Wiederansiedlung." },
+                fr: { title: "Jardin Botanique Fairchild", desc: "Protection de la flore tropicale rare, recherche spatiale avec la NASA et restauration d'orchidées." },
+                es: { title: "Jardín Botánico Fairchild", desc: "Protección de flora tropical rara, investigación espacial con la NASA y restauración urbana de orquídeas." },
+                link: "projects/fairchild-botanical-garden.html"
+            },
             {
                 id: "washinton-nature-conservation",
                 countryKeys: ["United States of America"],
