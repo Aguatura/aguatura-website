@@ -397,7 +397,7 @@
     <header>
         <div class="header-left">
             <div class="logo-container">
-                <a href="index.html">
+                <a href="index.html" id="link-home-logo">
                     <img src="https://raw.githubusercontent.com/Aguatura/aguatura-website/main/Pics/logo/Aguatura-logo.jpg" 
                          alt="Aguatura Logo">
                 </a>
@@ -420,7 +420,7 @@
 
             <!-- Sprachauswahl -->
             <select id="language-select" onchange="changeLanguage(this.value)">
-                <option value="en" selected>English</option>
+                <option value="en">English</option>
                 <option value="de">Deutsch</option>
                 <option value="fr">Français</option>
                 <option value="es">Español</option>
@@ -542,7 +542,7 @@
                 btnClear: "Effacer les filtres",
                 latestTitle: "Aperçu des projets",
                 latestDesc: "Découvrez nos initiatives ci-dessous (les plus récentes en premier).",
-                noProject: "Aucun projet actif n'est enregistré dans ce pays.",
+                noProject: "Aucun actif actif n'est enregistré dans ce pays.",
                 noMatch: "Aucun projet ne correspond à vos filtres.",
                 ctaText: "Si vous connaissez un projet dans ce pays et souhaitez le partager,",
                 ctaLink: "contactez-nous",
@@ -565,7 +565,7 @@
                 latestDesc: "Descubre nuestras iniciativas a continuación (más recientes primero).",
                 noProject: "Aún no hay proyectos activos registrados en este país.",
                 noMatch: "Ningún proyecto coincide con los filtros seleccionados.",
-                ctaText: "Si conoces algún proyecto de este país und quieres compartirlo,",
+                ctaText: "Si conoces algún proyecto de este país y quieres compartirlo,",
                 ctaLink: "contáctanos",
                 btnText: "Saber más",
                 backToList: "← Volver a la lista"
@@ -752,7 +752,7 @@
             }
         ];
 
-        let currentLang = localStorage.getItem('aguatura_lang') || 'en';
+        let currentLang = 'en';
         let selectedLayer = null;
         let lastClickedCountry = null;
         let mapMarkers = [];
@@ -961,6 +961,7 @@
 
             if (matchingProjects.length === 0) {
                 contentContainer.innerHTML = `<p style="text-align: center; color: #777; padding: 20px;">${t.noMatch}</p>`;
+                updateInternalLinks(currentLang);
                 return;
             }
 
@@ -998,6 +999,7 @@
             `;
 
             contentContainer.innerHTML = gridHTML;
+            updateInternalLinks(currentLang);
         }
 
         function displaySingleProject(projectId) {
@@ -1030,6 +1032,7 @@
                         <button onclick="renderFilteredProjects();" style="background:none; border:none; color:var(--primary-dark); font-weight:600; cursor:pointer;">${t.backToList}</button>
                     </div>
                 `;
+                updateInternalLinks(currentLang);
             }
         }
 
@@ -1106,11 +1109,24 @@
                     </div>
                 `;
             }
+            updateInternalLinks(currentLang);
+        }
+
+        // Hängt den aktuellen Sprachparameter an alle internen Links an
+        function updateInternalLinks(lang) {
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('http')) {
+                    const cleanHref = href.split('?')[0];
+                    link.setAttribute('href', cleanHref + '?lang=' + lang);
+                }
+            });
         }
 
         function changeLanguage(lang) {
             currentLang = lang;
-            localStorage.setItem('aguatura_lang', lang); // Sprache für andere Seiten speichern
+            localStorage.setItem('aguatura_lang', lang);
             const t = translations[lang];
 
             document.documentElement.lang = lang;
@@ -1133,12 +1149,21 @@
             } else {
                 renderFilteredProjects();
             }
+
+            updateInternalLinks(lang);
         }
 
-        // Beim Laden der Seite gespeicherte Sprache anwenden
+        // Beim Laden der Seite Sprache aus URL oder localStorage setzen
         document.addEventListener("DOMContentLoaded", function() {
-            const savedLang = localStorage.getItem('aguatura_lang') || 'en';
-            document.getElementById('language-select').value = savedLang;
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlLang = urlParams.get('lang');
+            const savedLang = urlLang || localStorage.getItem('aguatura_lang') || 'en';
+            
+            const langSelect = document.getElementById('language-select');
+            if (langSelect) {
+                langSelect.value = savedLang;
+            }
+
             changeLanguage(savedLang);
         });
 
